@@ -49,7 +49,7 @@ public class OnClickSignIn implements View.OnClickListener
 
         Log.d(TAG , "signIn:" + email);
 
-        if (!ValidateForm()) {
+        if (!Validation.ValidateForm(mSignEmail,mSignPassword)) {
             return;
         }
 
@@ -79,29 +79,5 @@ public class OnClickSignIn implements View.OnClickListener
         Intent intent = new Intent(mContext, MapHunter.class);
         mContext.startActivity(intent);
         mContext.finish();
-    }
-
-    //TODO:Hide typed in Password!!!
-    //This method checks the correctness of the typed in Email and Password!!!
-    public boolean ValidateForm() {
-        boolean valid = true;
-
-        String email = mSignEmail.getText().toString();
-        if (TextUtils.isEmpty(email)) {
-            mSignEmail.setError("Required.");
-            valid = false;
-        } else {
-            mSignEmail.setError(null);
-        }
-
-        String password = mSignPassword.getText().toString();
-        if (TextUtils.isEmpty(password)) {
-            mSignPassword.setError("Required.");
-            valid = false;
-        } else {
-            mSignPassword.setError(null);
-        }
-
-        return valid;
     }
 }

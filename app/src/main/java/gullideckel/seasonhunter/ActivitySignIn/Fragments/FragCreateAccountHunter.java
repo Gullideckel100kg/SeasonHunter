@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import gullideckel.seasonhunter.ActivitySignIn.OnClickSignInHunter.OnClickCreateAccount;
 import gullideckel.seasonhunter.R;
 
 
@@ -36,39 +37,26 @@ public class FragCreateAccountHunter extends Fragment
 
         Button btnCreateAccount = (Button) view.findViewById(R.id.btnCreateNewAccount);
 
-        btnCreateAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                if(CheckPasswordLength(edtCreatePassword.getText().toString())
-                        && CheckPasswordSync(edtCreatePassword.getText().toString(), edtRepeatPassword.getText().toString()))
-                {
-                    if(CheckEmailOnServer(edtCreateEmail.getText().toString()))
-                    {
-                        //TODO: Send Data to Server and LogIn
-                    }
-                }
-            }
-        });
+        btnCreateAccount.setOnClickListener(new OnClickCreateAccount(edtCreateEmail,edtCreatePassword, edtRepeatPassword, getActivity()));
+//        btnCreateAccount.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                if(CheckPasswordLength(edtCreatePassword.getText().toString())
+//                        && CheckPasswordSync(edtCreatePassword.getText().toString(), edtRepeatPassword.getText().toString()))
+//                {
+//                    if(CheckEmailOnServer(edtCreateEmail.getText().toString()))
+//                    {
+//                        //TODO: Send Data to Server and LogIn
+//                    }
+//                }
+//            }
+//        });
 
         return view;
     }
 
-    private boolean CheckPasswordLength(String password)
-    {
-        if(password.length() < 6)
-            return false;
-        else
-            return true;
-    }
 
-    private boolean CheckPasswordSync(String password, String repeatedPassword)
-    {
-        if(password == repeatedPassword)
-            return true;
-        else
-            return false;
-    }
 
     private boolean CheckEmailOnServer(String eMail)
     {

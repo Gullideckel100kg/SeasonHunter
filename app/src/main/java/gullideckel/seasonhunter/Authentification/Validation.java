@@ -5,7 +5,9 @@ import android.widget.EditText;
 
 public class Validation
 {
-    public boolean ValidateForm(EditText signEmail, EditText signPassword) {
+    //TODO:Hide typed in Password!!!
+    //This method checks the correctness of the typed in Email and Password!!!
+    public static boolean ValidateForm(EditText signEmail, EditText signPassword) {
         boolean valid = true;
 
         String email = signEmail.getText().toString();

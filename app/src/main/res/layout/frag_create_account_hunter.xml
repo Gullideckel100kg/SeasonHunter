@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivitySignIn.Fragments.FragCreateAccountHunter">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,8 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:id="@+id/txtEmailExist"/>
-
+            android:id="@+id/txtEmailExist"
+            android:visibility="gone"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -61,4 +62,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</ScrollView>
