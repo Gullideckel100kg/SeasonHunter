@@ -46,13 +46,6 @@
             android:text="Show password"
             android:id="@+id/chkShowPassword"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:text="Your Password has to contain at least 6 signs"
-                android:id="@+id/txtPasswordLength"/>
-
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

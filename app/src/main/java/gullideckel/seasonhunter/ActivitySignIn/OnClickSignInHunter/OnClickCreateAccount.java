@@ -40,11 +40,7 @@ public class OnClickCreateAccount implements View.OnClickListener
     @Override
     public void onClick(View v)
     {
-        if(CheckPasswordLength(mEdtPassword.getText().toString()))
-        {
-            CreateAccount();
-        }
-
+        CreateAccount();
     }
 
     private void CreateAccount()
@@ -88,16 +84,4 @@ public class OnClickCreateAccount implements View.OnClickListener
                     }
                 });
     }
-
-    private boolean CheckPasswordLength(String password)
-    {
-        if(password.length() < 6)
-        {
-            Toast.makeText(mContext, "Your password has to contain at least 6 signs", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else
-            return true;
-    }
-
 }

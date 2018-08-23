@@ -36,8 +36,6 @@ public class FragCreateAccountHunter extends Fragment
         EditText edtCreateEmail = (EditText) view.findViewById(R.id.edtCreateEmail);
         EditText edtCreatePassword = (EditText) view.findViewById(R.id.edtCreatePassword);
 
-        TextView txtPasswordLength = (TextView) view.findViewById(R.id.txtPasswordLength);
-
         Button btnCreateAccount = (Button) view.findViewById(R.id.btnCreateNewAccount);
 
         btnCreateAccount.setOnClickListener(new OnClickCreateAccount(edtCreateEmail,edtCreatePassword, getActivity()));

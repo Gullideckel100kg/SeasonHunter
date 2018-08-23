@@ -49,8 +49,15 @@ public class FragSignInHunter extends Fragment
             }
         });
 
-        //TODO: Check if possible declare Editbox in OnCreate!!!
         btnSignIn.setOnClickListener(new OnClickSignIn(edtSignEmail, edtSignPassword, getActivity()));
+
+        txtForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                mListener.onReplaceFragment(new FragForgotPassword());
+            }
+        });
     }
 
 
