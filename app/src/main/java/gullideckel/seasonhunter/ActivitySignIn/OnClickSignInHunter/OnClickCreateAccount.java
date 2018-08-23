@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
 
 import gullideckel.seasonhunter.Authentification.Validation;
 
@@ -24,23 +25,26 @@ public class OnClickCreateAccount implements View.OnClickListener
 
     private EditText mEdtEmail;
     private EditText mEdtPassword;
-    private EditText mEdtRepeatPassword;
     private Activity mContext;
 
-    public  OnClickCreateAccount(EditText edtEmail, EditText edtPassword, EditText edtRepeatPassword, Context context)
+
+    public  OnClickCreateAccount(EditText edtEmail, EditText edtPassword, Context context)
     {
         mAuth = FirebaseAuth.getInstance();
 
         mEdtEmail = edtEmail;
         mEdtPassword = edtPassword;
-        mEdtRepeatPassword = edtRepeatPassword;
         mContext = (Activity) context;
     }
 
     @Override
     public void onClick(View v)
     {
-        CreateAccount();
+        if(CheckPasswordLength(mEdtPassword.getText().toString()))
+        {
+            CreateAccount();
+        }
+
     }
 
     private void CreateAccount()
@@ -50,6 +54,7 @@ public class OnClickCreateAccount implements View.OnClickListener
             return;
         }
 
+        CheckEmailOnServer();
 
         mAuth.createUserWithEmailAndPassword(mEdtEmail.getText().toString(), mEdtPassword.getText().toString())
                 .addOnCompleteListener(mContext, new OnCompleteListener<AuthResult>() {
@@ -69,19 +74,30 @@ public class OnClickCreateAccount implements View.OnClickListener
                 });
     }
 
+    private void CheckEmailOnServer()
+    {
+        mAuth.fetchSignInMethodsForEmail(mEdtEmail.getText().toString())
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task)
+                    {
+                        if(!task.getResult().getSignInMethods().isEmpty())
+                        {
+                            Toast.makeText(mContext, "Email already exist", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
     private boolean CheckPasswordLength(String password)
     {
         if(password.length() < 6)
+        {
+            Toast.makeText(mContext, "Your password has to contain at least 6 signs", Toast.LENGTH_SHORT).show();
             return false;
+        }
         else
             return true;
     }
 
-    private boolean CheckPasswordSync(String password, String repeatedPassword)
-    {
-        if(password == repeatedPassword)
-            return true;
-        else
-            return false;
-    }
 }

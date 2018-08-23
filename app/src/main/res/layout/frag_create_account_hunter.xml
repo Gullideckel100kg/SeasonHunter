@@ -1,65 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivitySignIn.Fragments.FragCreateAccountHunter">
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center_vertical">
+        android:layout_height="match_parent">
 
-        <EditText
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="E-mail"
-            android:id="@+id/edtCreateEmail"/>
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
 
-        <TextView
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="E-mail"
+                android:id="@+id/edtCreateEmail"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/txtEmailExist"
+                android:visibility="gone"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Your Password"
+                android:id="@+id/edtCreatePassword" />
+
+            <CheckBox
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="10dp"
-            android:id="@+id/txtEmailExist"
-            android:visibility="gone"/>
+            android:text="Show password"
+            android:id="@+id/chkShowPassword"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="Your Password"
-            android:id="@+id/edtCreatePassword" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:text="Your Password has to contain at least 6 signs"
+                android:id="@+id/txtPasswordLength"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:text="Your Password has to contain at least 6 signs"
-            android:id="@+id/txtPasswordLength"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Account"
+                android:layout_margin="10dp"
+                android:id="@+id/btnCreateNewAccount"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="Repeat Password"
-            android:id="@+id/edtRepeatPassword"/>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:id="@+id/txtPasswordNoSync"/>
+    </ScrollView>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create Account"
-            android:layout_margin="10dp"
-            android:id="@+id/btnCreateNewAccount"/>
-
-    </LinearLayout>
-
-</ScrollView>
+</FrameLayout>

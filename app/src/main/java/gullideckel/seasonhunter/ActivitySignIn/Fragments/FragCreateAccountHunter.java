@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,51 +20,35 @@ import gullideckel.seasonhunter.R;
 
 public class FragCreateAccountHunter extends Fragment
 {
+    //TODO: Checkbox show password
+    //TODO: Password typed in hidden
+    //TODO: No line breaks at Editboxes
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-
-        View view = inflater.inflate(R.layout.frag_create_account_hunter, container, false);
+        super.onViewCreated(view, savedInstanceState);
 
         view.setBackgroundColor(Color.WHITE);
         view.bringToFront();
 
-        final EditText edtCreateEmail = (EditText) view.findViewById(R.id.edtCreateEmail);
-        final EditText edtCreatePassword = (EditText) view.findViewById(R.id.edtCreatePassword);
-        final EditText edtRepeatPassword = (EditText) view.findViewById(R.id.edtRepeatPassword);
+        EditText edtCreateEmail = (EditText) view.findViewById(R.id.edtCreateEmail);
+        EditText edtCreatePassword = (EditText) view.findViewById(R.id.edtCreatePassword);
 
         TextView txtPasswordLength = (TextView) view.findViewById(R.id.txtPasswordLength);
 
         Button btnCreateAccount = (Button) view.findViewById(R.id.btnCreateNewAccount);
 
-        btnCreateAccount.setOnClickListener(new OnClickCreateAccount(edtCreateEmail,edtCreatePassword, edtRepeatPassword, getActivity()));
-//        btnCreateAccount.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                if(CheckPasswordLength(edtCreatePassword.getText().toString())
-//                        && CheckPasswordSync(edtCreatePassword.getText().toString(), edtRepeatPassword.getText().toString()))
-//                {
-//                    if(CheckEmailOnServer(edtCreateEmail.getText().toString()))
-//                    {
-//                        //TODO: Send Data to Server and LogIn
-//                    }
-//                }
-//            }
-//        });
-
-        return view;
+        btnCreateAccount.setOnClickListener(new OnClickCreateAccount(edtCreateEmail,edtCreatePassword, getActivity()));
     }
 
-
-
-    private boolean CheckEmailOnServer(String eMail)
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        // Todo: Check on Firebase
-        return false;
+        return inflater.inflate(R.layout.frag_create_account_hunter, container, false);
     }
+
 //
 //    // TODO: Rename method, update argument and hook method into UI event
 //    public void onButtonPressed(Uri uri)

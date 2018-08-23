@@ -18,7 +18,8 @@ import gullideckel.seasonhunter.R;
 
 
 // {@link IReplaceFragment} interface
-
+//TODO: UI underlap behind the Icon
+//TODO; No line breaks at Editboxes
 public class FragSignInHunter extends Fragment
 {
     private IReplaceFragment mListener;
