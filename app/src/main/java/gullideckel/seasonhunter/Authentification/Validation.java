@@ -11,7 +11,6 @@ public class Validation
         String email = signEmail.getText().toString();
         if (TextUtils.isEmpty(email)) {
             signEmail.setError("Required.");
-            signEmail.setEr
             valid = false;
         } else {
             signEmail.setError(null);

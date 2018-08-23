@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".SignInHunter"
+    tools:context=".ActivitySignIn.SignInHunter"
     tools:showIn="@layout/act_sign_in_hunter">
 
     <LinearLayout
@@ -24,18 +24,23 @@
             android:src="@drawable/marker"
             android:layout_marginTop="15dp"/>
 
-        <RelativeLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/fragCreateAccount" />
+                android:id="@+id/fragCreateAccount"
+                android:layout_centerInParent="true"/>
+
+
+
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -104,6 +109,7 @@
 
                 </LinearLayout>
             </ScrollView>
-        </RelativeLayout>
-    </LinearLayout>
+
+            </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

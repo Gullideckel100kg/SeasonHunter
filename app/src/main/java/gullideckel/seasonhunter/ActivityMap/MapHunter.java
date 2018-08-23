@@ -1,4 +1,4 @@
-package gullideckel.seasonhunter;
+package gullideckel.seasonhunter.ActivityMap;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
@@ -13,6 +13,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+
+import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
+import gullideckel.seasonhunter.R;
 
 public class MapHunter extends FragmentActivity implements OnMapReadyCallback
 {

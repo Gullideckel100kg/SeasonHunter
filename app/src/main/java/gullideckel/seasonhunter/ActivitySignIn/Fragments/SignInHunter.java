@@ -1,27 +1,24 @@
-package gullideckel.seasonhunter;
+package gullideckel.seasonhunter.ActivitySignIn.Fragments;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
+import gullideckel.seasonhunter.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CreateAccountHunter.OnFragmentInteractionListener} interface
+ * {@link SignInHunter.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CreateAccountHunter#newInstance} factory method to
+ * Use the {@link SignInHunter#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateAccountHunter extends Fragment
+public class SignInHunter extends Fragment
 {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +31,7 @@ public class CreateAccountHunter extends Fragment
 
     private OnFragmentInteractionListener mListener;
 
-    public CreateAccountHunter()
+    public SignInHunter()
     {
         // Required empty public constructor
     }
@@ -45,12 +42,12 @@ public class CreateAccountHunter extends Fragment
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateAccountHunter.
+     * @return A new instance of fragment SignInHunter.
      */
     // TODO: Rename and change types and number of parameters
-    public static CreateAccountHunter newInstance(String param1, String param2)
+    public static SignInHunter newInstance(String param1, String param2)
     {
-        CreateAccountHunter fragment = new CreateAccountHunter();
+        SignInHunter fragment = new SignInHunter();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,58 +70,8 @@ public class CreateAccountHunter extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-
-        View view = inflater.inflate(R.layout.frag_create_account_hunter, container, false);
-
-        view.setBackgroundColor(Color.WHITE);
-        view.bringToFront();
-
-        final EditText edtCreateEmail = (EditText) view.findViewById(R.id.edtCreateEmail);
-        final EditText edtCreatePassword = (EditText) view.findViewById(R.id.edtCreatePassword);
-        final EditText edtRepeatPassword = (EditText) view.findViewById(R.id.edtRepeatPassword);
-
-        TextView txtPasswordLength = (TextView) view.findViewById(R.id.txtPasswordLength);
-
-        Button btnCreateAccount = (Button) view.findViewById(R.id.btnCreateNewAccount);
-
-        btnCreateAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                if(CheckPasswordLength(edtCreatePassword.getText().toString())
-                        && CheckPasswordSync(edtCreatePassword.getText().toString(), edtRepeatPassword.getText().toString()))
-                {
-                    if(CheckEmailOnServer(edtCreateEmail.getText().toString()))
-                    {
-                        //TODO: Send Data to Server and LogIn
-                    }
-                }
-            }
-        });
-
-        return view;
-    }
-
-    private boolean CheckPasswordLength(String password)
-    {
-        if(password.length() < 6)
-            return false;
-        else
-            return true;
-    }
-
-    private boolean CheckPasswordSync(String password, String repeatedPassword)
-    {
-        if(password == repeatedPassword)
-            return true;
-        else
-            return false;
-    }
-
-    private boolean CheckEmailOnServer(String eMail)
-    {
-        // Todo: Check on Firebase
-        return false;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.frag_sign_in_hunter, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
