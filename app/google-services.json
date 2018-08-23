@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "699243007049",
+    "firebase_url": "https://seasonhunter-d7b3a.firebaseio.com",
+    "project_id": "seasonhunter-d7b3a",
+    "storage_bucket": "seasonhunter-d7b3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699243007049:android:47820120a3327961",
+        "android_client_info": {
+          "package_name": "gullideckel.seasonhunter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699243007049-vs751nk472e7gn81mn9pn3c4o1cokkdk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gullideckel.seasonhunter",
+            "certificate_hash": "4a0928f5d0bb4c6235fa880996638b69fa4a20e2"
+          }
+        },
+        {
+          "client_id": "699243007049-uf97c9cm1n4udtej5tdig9bunmnb5855.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACtVTyc3dxA3m2pAePcfqHSt9rP5imwpA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "699243007049-uf97c9cm1n4udtej5tdig9bunmnb5855.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
