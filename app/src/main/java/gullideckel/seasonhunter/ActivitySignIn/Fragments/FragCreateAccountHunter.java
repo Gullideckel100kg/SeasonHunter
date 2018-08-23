@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import gullideckel.seasonhunter.ActivitySignIn.OnClickSignInHunter.OnClickCreateAccount;
+import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
 import gullideckel.seasonhunter.R;
 
 
@@ -24,6 +25,7 @@ public class FragCreateAccountHunter extends Fragment
     //TODO: Password typed in hidden
     //TODO: No line breaks at Editboxes
 
+    private IReplaceFragment mListener;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
@@ -47,36 +49,25 @@ public class FragCreateAccountHunter extends Fragment
         return inflater.inflate(R.layout.frag_create_account_hunter, container, false);
     }
 
-//
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri)
-//    {
-//        if (mListener != null)
-//        {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
-//
-//    @Override
-//    public void onAttach(Context context)
-//    {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener)
-//        {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else
-//        {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        if (context instanceof IReplaceFragment)
+        {
+            mListener = (IReplaceFragment) context;
+        } else
+        {
+            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+        }
+    }
 
-//    @Override
-//    public void onDetach()
-//    {
-//        super.onDetach();
-//        mListener = null;
-//    }
+    @Override
+    public void onDetach()
+    {
+        super.onDetach();
+        mListener = null;
+    }
 
 
 }

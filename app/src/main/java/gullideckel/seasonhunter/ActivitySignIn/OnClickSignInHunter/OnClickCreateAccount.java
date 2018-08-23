@@ -12,10 +12,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
 
+import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragEmailVerification;
 import gullideckel.seasonhunter.Authentification.Validation;
+import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
 
 public class OnClickCreateAccount implements View.OnClickListener
 {
@@ -43,12 +46,14 @@ public class OnClickCreateAccount implements View.OnClickListener
         CreateAccount();
     }
 
+    //TODO: Remove keypad
     private void CreateAccount()
     {
         Log.d(TAG, "createAccount:" + mEdtEmail.getText().toString());
         if (!Validation.ValidateForm(mEdtEmail, mEdtPassword)) {
             return;
         }
+
 
         CheckEmailOnServer();
 
@@ -60,6 +65,7 @@ public class OnClickCreateAccount implements View.OnClickListener
                         if (task.isSuccessful())
                         {
                             Log.d(TAG, "createUserWithEmail:success");
+                            ((IReplaceFragment) mContext).onReplaceFragment(new FragEmailVerification());
                         }
                         else
                         {
@@ -77,6 +83,12 @@ public class OnClickCreateAccount implements View.OnClickListener
                     @Override
                     public void onComplete(@NonNull Task<SignInMethodQueryResult> task)
                     {
+                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException)
+                        {
+                            Log.w(TAG, "Invalid Email address");
+                            Toast.makeText(mContext, "Invalid Email address", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         if(!task.getResult().getSignInMethods().isEmpty())
                         {
                             Toast.makeText(mContext, "Email already exist", Toast.LENGTH_SHORT).show();
