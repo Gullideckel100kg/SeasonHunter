@@ -20,6 +20,9 @@ import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragEmailVerification;
 import gullideckel.seasonhunter.Authentification.Validation;
 import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
 
+
+//TODO: Password with 6 signs
+
 public class OnClickCreateAccount implements View.OnClickListener
 {
     private static final String TAG = "OnClickCreateAccount";
