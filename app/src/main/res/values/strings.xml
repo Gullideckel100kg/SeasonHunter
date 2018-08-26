@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SeasonHunter</string>
+    <string name="app_name">Season Hunter</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_map_hunter">Map</string>
     <string name="title_activity_sign_in_hunter">SignInHunter</string>
