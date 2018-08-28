@@ -6,44 +6,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
+        <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Work type:"/>
+            android:id="@+id/chkAddCompanyType"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:id="@+id/edtAddJobType"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Product:"/>
-
-        <LinearLayout
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="Remove"
+            android:id="@+id/bthRemoveCompanyType"/>
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Salary"
-                android:id="@+id/chkIsSalary"/>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Volunteering"
-                android:layout_marginLeft="20dp"
-                android:id="@+id/chkIsVolunteer"/>
-
-        </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
