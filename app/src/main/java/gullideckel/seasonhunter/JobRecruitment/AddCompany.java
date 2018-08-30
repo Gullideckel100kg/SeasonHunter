@@ -6,15 +6,15 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-import java.util.List;
-
-import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
+import gullideckel.seasonhunter.Interfaces.IFragmentHandlerCompany;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
-import gullideckel.seasonhunter.JobRecruitment.Fragments.FragCompanyInfo;
+import gullideckel.seasonhunter.JobRecruitment.Fragments.FragCompanyInfo.FragCompanyInfo;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInfoObject;
 import gullideckel.seasonhunter.R;
 
-public class AddCompany extends FragmentActivity implements IFragmentHandler
+public class AddCompany extends FragmentActivity implements IFragmentHandlerCompany
 {
+    private JobInfoObject mJobInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,13 +22,15 @@ public class AddCompany extends FragmentActivity implements IFragmentHandler
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_add_company);
 
-        ReplaceFragment(new FragCompanyInfo());
+        mJobInfo = new JobInfoObject();
+        ReplaceFragment(FragCompanyInfo.newInstance(mJobInfo));
 
     }
 
     @Override
-    public void onReplaceFragment(Fragment fragment,@IntFrag int intFrag)
+    public void onReplaceFragment(Fragment fragment, @IntFrag int intFrag, JobInfoObject jobInfo)
     {
+        mJobInfo = jobInfo;
         switch (intFrag)
         {
             case IntFrag.REPLACE:
@@ -66,10 +68,9 @@ public class AddCompany extends FragmentActivity implements IFragmentHandler
             super.onBackPressed();
     }
 
-
-
     private void PopStackCompletly()
     {
         getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        finish();
     }
 }

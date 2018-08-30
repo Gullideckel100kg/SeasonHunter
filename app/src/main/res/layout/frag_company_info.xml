@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".JobRecruitment.Fragments.FragCompanyInfo"
+    tools:context=".JobRecruitment.Fragments.FragCompanyInfo.FragCompanyInfo"
     android:orientation="vertical"
     android:weightSum="10">
 
@@ -34,6 +34,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Company type:"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/txtNoCompanyType"
+                android:text="Please select at least one company type"
+                android:textColor="#FF0000"
+                android:visibility="gone"/>
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"

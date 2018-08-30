@@ -1,6 +1,7 @@
-package gullideckel.seasonhunter.JobRecruitment.Fragments;
+package gullideckel.seasonhunter.JobRecruitment.Fragments.FragCompanyInfo;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,50 +13,49 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragSignInHunter;
 import gullideckel.seasonhunter.Interfaces.IEditCompanyType;
-import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
+import gullideckel.seasonhunter.Interfaces.IFragmentHandlerCompany;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.JobRecruitment.Fragments.Adapters.AdapterAddedCompanyType;
 import gullideckel.seasonhunter.JobRecruitment.Fragments.Adapters.AdapterCompanyType;
-import gullideckel.seasonhunter.JobRecruitment.OnClick.OnClickNavigation;
+import gullideckel.seasonhunter.JobRecruitment.Fragments.FragCompanyContact;
 import gullideckel.seasonhunter.Objects.CompanyTypeObject;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyInfoObject;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInfoObject;
 import gullideckel.seasonhunter.R;
 
 
 public class FragCompanyInfo extends Fragment implements IEditCompanyType
 {
-    //TODO List of Company types add properly on Server
-    private List<CompanyTypeObject> mCompanyTypes = new ArrayList<>();
-    private List<CompanyTypeObject> mAddedCompanyType = new ArrayList<>();
 
-    private IFragmentHandler mListener;
+    private List<CompanyTypeObject> mCompanyTypes;
+    private List<CompanyTypeObject> mAddedCompanyType;
+
+    private IFragmentHandlerCompany mListener;
 
     private EditText mEdtAddOtherCompanyType;
+    private CheckBox mChkOrganic;
+    private EditText mEdtCompanyName;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-//    private OnFragmentInteractionListener mListener;
+    private TextView mTxtNoCompanyName;
 
     private AdapterAddedCompanyType mAdapterAddedCompanyType;
     private AdapterCompanyType mAdapterCompanyType;
 
-    private boolean mIsCompanyChanged = false;
+    private FillCompanyInfo mFillInfo;
+    private CompanyTypePositions mCompanyPosition;
 
-    public FragCompanyInfo()
+    protected JobInfoObject mJobInfo;
+
+    private void FillCompanyTypes()
     {
         mCompanyTypes.add(new CompanyTypeObject( "Farm",false));
         mCompanyTypes.add(new CompanyTypeObject("Packhouse",false));
@@ -63,36 +63,12 @@ public class FragCompanyInfo extends Fragment implements IEditCompanyType
         mCompanyTypes.add(new CompanyTypeObject("Restaurant",false));
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragCompanyInfo.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragCompanyInfo newInstance(String param1, String param2)
+    public static FragCompanyInfo newInstance(JobInfoObject jobInfo)
     {
         FragCompanyInfo fragment = new FragCompanyInfo();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+        fragment.mJobInfo = jobInfo;
         return fragment;
     }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null)
-        {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
@@ -103,6 +79,11 @@ public class FragCompanyInfo extends Fragment implements IEditCompanyType
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recAddCompanyType.setLayoutManager(layoutManager);
+
+        mCompanyTypes = new ArrayList<>();
+        mAddedCompanyType = new ArrayList<>();
+
+        FillCompanyTypes();
 
         mAdapterCompanyType = new AdapterCompanyType(mCompanyTypes, this);
         recAddCompanyType.setAdapter(mAdapterCompanyType);
@@ -117,17 +98,47 @@ public class FragCompanyInfo extends Fragment implements IEditCompanyType
         recAddedCompanyType.setAdapter(mAdapterAddedCompanyType);
 
         mEdtAddOtherCompanyType = (EditText) view.findViewById(R.id.edtAddOtherCompanyType);
+        mChkOrganic = (CheckBox) view.findViewById(R.id.chkAddOrganic);
+        mTxtNoCompanyName = (TextView) view.findViewById(R.id.txtNoCompanyType);
+        mEdtCompanyName = (EditText) view.findViewById(R.id.edtAddCompanyName);
 
-        ((Button) view.findViewById(R.id.btnBackAddCompanyName)).setOnClickListener(new OnClickNavigation(null, IntFrag.POPSTACKCOMPLETLY, mListener));
-        ((Button)view.findViewById(R.id.btnNextAddCompanyName)).setOnClickListener(new OnClickNavigation(new FragCompanyContact(), IntFrag.REPLACE, mListener));
-
+        ((Button) view.findViewById(R.id.btnBackAddCompanyName)).setOnClickListener(BackToTheBeginning);
+        ((Button)view.findViewById(R.id.btnNextAddCompanyName)).setOnClickListener(NextToCompanyContact);
         ((Button)view.findViewById(R.id.btnAddOtherCompanyType)).setOnClickListener(OnAddOtherCompanyType);
+
+        mCompanyPosition = new CompanyTypePositions();
+        mFillInfo = new FillCompanyInfo();
+
+        mFillInfo.FillCompanyInfo(mJobInfo, mEdtCompanyName, mChkOrganic);
+        mFillInfo.FillCompanyTypes(mJobInfo,mCompanyTypes, mAdapterCompanyType, mAddedCompanyType, mAdapterAddedCompanyType);
     }
 
-    private Fragment StartNewInstance()
+    private View.OnClickListener NextToCompanyContact = new View.OnClickListener()
     {
-        return FragCompanyContact.newInstance("", "");
-    }
+        @Override
+        public void onClick(View v)
+        {
+            mTxtNoCompanyName.setVisibility(View.GONE);
+
+            if(mFillInfo.IsCorrectFilled(mEdtCompanyName, mAddedCompanyType, mTxtNoCompanyName))
+            {
+                List<String> companyTypes = new ArrayList<>();
+                for (CompanyTypeObject obj: mAddedCompanyType)
+                    companyTypes.add(obj.GetCompanyType());
+
+                mJobInfo.SetCompanyInfo(new CompanyInfoObject(mEdtCompanyName.getText().toString(), companyTypes, mChkOrganic.isChecked()));
+                mListener.onReplaceFragment(FragCompanyContact.newInstance(mJobInfo), IntFrag.REPLACE, mJobInfo);
+            }
+        }
+    };
+
+    private View.OnClickListener BackToTheBeginning = new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            mListener.onReplaceFragment(null, IntFrag.POPSTACKCOMPLETLY, null);
+        }
+    };
 
     //TODO: For better List check set text uncapitalized, dont allow special charaktors and no numbers may as well
     private View.OnClickListener OnAddOtherCompanyType =  new View.OnClickListener()
@@ -147,35 +158,13 @@ public class FragCompanyInfo extends Fragment implements IEditCompanyType
         }
     };
 
-    //TODO: if I wanna have an animation I have to figure out how its gonna work without notifyDataSetChanged
+
     @Override
     public void onCompanyType(CompanyTypeObject companyType, int position)
     {
-        if(mAddedCompanyType.contains(companyType) && !mIsCompanyChanged)
-        {
-            mAddedCompanyType.remove(companyType);
-            mAdapterAddedCompanyType.notifyDataSetChanged();
-
-            if(mCompanyTypes.contains(companyType) && mCompanyTypes.get(mCompanyTypes.indexOf(companyType)).GetChecked())
-            {
-                mCompanyTypes.get(mCompanyTypes.indexOf(companyType)).SetCompany(companyType.GetCompanyType(), false);
-                mIsCompanyChanged = true;
-                mAdapterCompanyType.notifyDataSetChanged();
-            }
-        }
-        else if(position > mAddedCompanyType.size() - 1 && !mIsCompanyChanged)
-        {
-            mAddedCompanyType.add(companyType);
-            mAdapterAddedCompanyType.notifyDataSetChanged();
-        }
-        else if (!mIsCompanyChanged)
-        {
-                mAddedCompanyType.add(position, companyType);
-                mAdapterAddedCompanyType.notifyDataSetChanged();
-        }
-        else
-            mIsCompanyChanged = false;
+        mCompanyPosition.SetPositionCompanyType(companyType, mAdapterAddedCompanyType, mAdapterCompanyType, mCompanyTypes, mAddedCompanyType, position);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -188,10 +177,10 @@ public class FragCompanyInfo extends Fragment implements IEditCompanyType
     public void onAttach(Context context)
     {
         super.onAttach(context);
-        if (context instanceof IFragmentHandler)
-            mListener = (IFragmentHandler) context;
+        if (context instanceof IFragmentHandlerCompany)
+            mListener = (IFragmentHandlerCompany) context;
         else
-            throw new RuntimeException(context.toString() + " must implement IFragmentHandler");
+            throw new RuntimeException(context.toString() + " must implement IFragmentHandlerCompany");
     }
 
     @Override

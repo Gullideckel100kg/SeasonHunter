@@ -12,8 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
+import gullideckel.seasonhunter.Interfaces.IFragmentHandlerCompany;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
-import gullideckel.seasonhunter.JobRecruitment.OnClick.OnClickNavigation;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInfoObject;
 import gullideckel.seasonhunter.R;
 
 /**
@@ -26,50 +27,16 @@ import gullideckel.seasonhunter.R;
  */
 public class FragCompanyContact extends Fragment
 {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    protected JobInfoObject mJobInfo;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private IFragmentHandlerCompany mListener;
 
-    private IFragmentHandler mListener;
-
-    public FragCompanyContact()
-    {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragCompanyContact.
-     */
     // TODO: Rename and change types and number of parameters
-    public static FragCompanyContact newInstance(String param1, String param2)
+    public static FragCompanyContact newInstance(JobInfoObject jobInfo)
     {
         FragCompanyContact fragment = new FragCompanyContact();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+        fragment.mJobInfo = jobInfo;
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null)
-        {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -77,9 +44,17 @@ public class FragCompanyContact extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        ((Button) view.findViewById(R.id.btnNextAddCompanyContact)).setOnClickListener(new OnClickNavigation(new FragCompanyJobOffers(), IntFrag.REPLACE, mListener));
-        ((Button) view.findViewById(R.id.btnBackAddCompanyContact)).setOnClickListener(new OnClickNavigation(null, IntFrag.POPSTACK, mListener));
+//        ((Button) view.findViewById(R.id.btnNextAddCompanyContact)).setOnClickListener(new OnClickNavigation(new FragCompanyJobOffers(), IntFrag.REPLACE, mListener));
+        ((Button) view.findViewById(R.id.btnBackAddCompanyContact)).setOnClickListener(BackToCompanyInfo);
     }
+
+    private View.OnClickListener BackToCompanyInfo = new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            mListener.onReplaceFragment(null, IntFrag.POPSTACK, null);
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,10 +68,10 @@ public class FragCompanyContact extends Fragment
     public void onAttach(Context context)
     {
         super.onAttach(context);
-        if (context instanceof IFragmentHandler)
-            mListener = (IFragmentHandler) context;
+        if (context instanceof IFragmentHandlerCompany)
+            mListener = (IFragmentHandlerCompany) context;
         else
-            throw new RuntimeException(context.toString() + " must implement IFragmentHandler");
+            throw new RuntimeException(context.toString() + " must implement IFragmentHandlerCompany");
     }
 
     @Override
