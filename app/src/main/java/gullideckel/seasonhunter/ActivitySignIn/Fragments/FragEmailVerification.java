@@ -1,8 +1,6 @@
 package gullideckel.seasonhunter.ActivitySignIn.Fragments;
 
-import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,7 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
+import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
+import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.R;
 
 public class FragEmailVerification extends Fragment
@@ -31,7 +30,7 @@ public class FragEmailVerification extends Fragment
     private TextView mTxtVerifyEmail;
     private Button mBtnVerified;
 
-    private IReplaceFragment mListener;
+    private IFragmentHandler mListener;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
@@ -101,7 +100,7 @@ public class FragEmailVerification extends Fragment
         @Override
         public void onClick(View v)
         {
-            mListener.onReplaceFragment(new FragSignInHunter());
+            mListener.onReplaceFragment(new FragSignInHunter(), IntFrag.REPLACE);
         }
     };
 
@@ -116,9 +115,9 @@ public class FragEmailVerification extends Fragment
     public void onAttach(Context context)
     {
         super.onAttach(context);
-        if (context instanceof IReplaceFragment)
+        if (context instanceof IFragmentHandler)
         {
-            mListener = (IReplaceFragment) context;
+            mListener = (IFragmentHandler) context;
         }
         else
         {

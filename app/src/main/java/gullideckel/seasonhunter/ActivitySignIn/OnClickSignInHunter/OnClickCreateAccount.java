@@ -13,12 +13,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
 
 import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragEmailVerification;
 import gullideckel.seasonhunter.Authentification.Validation;
-import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
+import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
+import gullideckel.seasonhunter.Interfaces.IntFrag;
 
 
 //TODO: Password with 6 signs
@@ -68,7 +68,7 @@ public class OnClickCreateAccount implements View.OnClickListener
                         if (task.isSuccessful())
                         {
                             Log.d(TAG, "createUserWithEmail:success");
-                            ((IReplaceFragment) mContext).onReplaceFragment(new FragEmailVerification());
+                            ((IFragmentHandler) mContext).onReplaceFragment(new FragEmailVerification(), IntFrag.REPLACE);
                         }
                         else
                         {

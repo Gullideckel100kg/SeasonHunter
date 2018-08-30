@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
 import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
+import gullideckel.seasonhunter.JobRecruitment.AddCompany;
 import gullideckel.seasonhunter.R;
 
 public class MapHunter extends FragmentActivity implements OnMapReadyCallback
@@ -47,6 +48,22 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback
                 OpenSignInHunter();
             }
         });
+
+        Button btnAddCompany = (Button) findViewById(R.id.btnAddCompany);
+
+        btnAddCompany.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                OpenActivity();
+            }
+        });
+    }
+
+    private void OpenActivity()
+    {
+        Intent intent = new Intent(this, AddCompany.class);
+        startActivity(intent);
     }
 
     private void OpenSignInHunter()

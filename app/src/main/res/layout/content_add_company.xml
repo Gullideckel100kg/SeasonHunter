@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".JobRecruitment.JobAdInfo"
-    tools:showIn="@layout/act_job_ad_info">
+    tools:context=".JobRecruitment.AddCompany"
+    tools:showIn="@layout/act_add_company">
 
     <FrameLayout
         android:layout_width="match_parent"

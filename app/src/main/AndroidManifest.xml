@@ -46,7 +46,7 @@
             android:label="@string/title_activity_sign_in_hunter"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".JobRecruitment.JobAdInfo"
+            android:name=".JobRecruitment.AddCompany"
             android:label="@string/title_activity_job_ad_info"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

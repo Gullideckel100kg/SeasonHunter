@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".JobRecruitment.JobAdInfo">
+    tools:context=".JobRecruitment.AddCompany">
 
-    <include layout="@layout/content_job_ad_info" />
+    <include layout="@layout/content_add_company" />
 
 
 </android.support.design.widget.CoordinatorLayout>

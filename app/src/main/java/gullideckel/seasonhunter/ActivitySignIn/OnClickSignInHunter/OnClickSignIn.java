@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -18,13 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.concurrent.Executor;
-
 import gullideckel.seasonhunter.ActivityMap.MapHunter;
 import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragEmailVerification;
-import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
 import gullideckel.seasonhunter.Authentification.Validation;
-import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
+import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
+import gullideckel.seasonhunter.Interfaces.IntFrag;
 
 public class OnClickSignIn implements View.OnClickListener
 {
@@ -107,7 +104,7 @@ public class OnClickSignIn implements View.OnClickListener
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
-                        ((IReplaceFragment)mContext).onReplaceFragment(new FragEmailVerification());
+                        ((IFragmentHandler)mContext).onReplaceFragment(new FragEmailVerification(), IntFrag.REPLACE);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

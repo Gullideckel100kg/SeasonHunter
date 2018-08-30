@@ -3,11 +3,17 @@ package gullideckel.seasonhunter.JobRecruitment.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
+import gullideckel.seasonhunter.Interfaces.IntFrag;
+import gullideckel.seasonhunter.JobRecruitment.OnClick.OnClickNavigation;
 import gullideckel.seasonhunter.R;
 
 /**
@@ -29,7 +35,7 @@ public class FragCompanyContact extends Fragment
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private IFragmentHandler mListener;
 
     public FragCompanyContact()
     {
@@ -67,6 +73,15 @@ public class FragCompanyContact extends Fragment
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+
+        ((Button) view.findViewById(R.id.btnNextAddCompanyContact)).setOnClickListener(new OnClickNavigation(new FragCompanyJobOffers(), IntFrag.REPLACE, mListener));
+        ((Button) view.findViewById(R.id.btnBackAddCompanyContact)).setOnClickListener(new OnClickNavigation(null, IntFrag.POPSTACK, mListener));
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
@@ -74,27 +89,14 @@ public class FragCompanyContact extends Fragment
         return inflater.inflate(R.layout.frag_company_contact, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri)
-    {
-        if (mListener != null)
-        {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context)
     {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener)
-        {
-            mListener = (OnFragmentInteractionListener) context;
-        } else
-        {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+        if (context instanceof IFragmentHandler)
+            mListener = (IFragmentHandler) context;
+        else
+            throw new RuntimeException(context.toString() + " must implement IFragmentHandler");
     }
 
     @Override

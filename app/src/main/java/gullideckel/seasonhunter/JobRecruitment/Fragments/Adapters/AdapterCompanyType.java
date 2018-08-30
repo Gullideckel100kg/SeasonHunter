@@ -1,5 +1,6 @@
 package gullideckel.seasonhunter.JobRecruitment.Fragments.Adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,43 +11,53 @@ import android.widget.CompoundButton;
 
 import java.util.List;
 
+import gullideckel.seasonhunter.Interfaces.IEditCompanyType;
+import gullideckel.seasonhunter.Objects.CompanyTypeObject;
 import gullideckel.seasonhunter.R;
 
-public class AdapterCompanyType extends RecyclerView.Adapter<AdapterCompanyType.CostumeViewHolder>
+public class AdapterCompanyType extends RecyclerView.Adapter<AdapterCompanyType.CompanyTypeViewHolder>
 {
-    private List<String> mCompanyTypes;
+    private List<CompanyTypeObject> mCompanyTypes;
+    private IEditCompanyType mContext;
 
-    public AdapterCompanyType(List<String> companyTypes)
+    public AdapterCompanyType(List<CompanyTypeObject> companyTypes, IEditCompanyType context)
     {
         mCompanyTypes = companyTypes;
+        mContext = context;
     }
 
     @NonNull
     @Override
-    public CostumeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public CompanyTypeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_add_company_type, parent, false);
 
-        CostumeViewHolder vh = new CostumeViewHolder(view);
+        CompanyTypeViewHolder vh = new CompanyTypeViewHolder(view);
 
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CostumeViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull CompanyTypeViewHolder holder, final int position)
     {
-        holder.mChk.setText(mCompanyTypes.get(position));
+        holder.mChk.setText(mCompanyTypes.get(position).GetCompanyType());
+        holder.mChk.setChecked(mCompanyTypes.get(position).GetChecked());
 
         holder.mChk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
             {
-                if(isChecked)
-                {
-
-                }
+                mCompanyTypes.get(position).SetChecked(isChecked);
+                mContext.onCompanyType(mCompanyTypes.get(position), position);
             }
         });
+    }
+
+
+
+    public void CompanyTypeSelection(boolean isSelected, int position)
+    {
+        getItemViewType(position);
     }
 
     @Override
@@ -56,11 +67,11 @@ public class AdapterCompanyType extends RecyclerView.Adapter<AdapterCompanyType.
     }
 
 
-    public static class CostumeViewHolder extends RecyclerView.ViewHolder
+    public static class CompanyTypeViewHolder extends RecyclerView.ViewHolder
     {
         protected CheckBox mChk;
 
-        public CostumeViewHolder(View v)
+        public CompanyTypeViewHolder(View v)
         {
             super(v);
             mChk = (CheckBox) v.findViewById(R.id.chkAddCompanyType);

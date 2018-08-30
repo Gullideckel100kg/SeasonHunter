@@ -13,16 +13,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import gullideckel.seasonhunter.ActivitySignIn.OnClickSignInHunter.OnClickSignIn;
-import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
+import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
+import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.R;
 
 
-// {@link IReplaceFragment} interface
 //TODO: UI underlap behind the Icon
 //TODO; No line breaks at Editboxes
 public class FragSignInHunter extends Fragment
 {
-    private IReplaceFragment mListener;
+    private IFragmentHandler mListener;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
@@ -45,7 +45,7 @@ public class FragSignInHunter extends Fragment
             @Override
             public void onClick(View v)
             {
-                mListener.onReplaceFragment(new FragCreateAccountHunter());
+                mListener.onReplaceFragment(new FragCreateAccountHunter(), IntFrag.REPLACE);
             }
         });
 
@@ -55,7 +55,7 @@ public class FragSignInHunter extends Fragment
             @Override
             public void onClick(View v)
             {
-                mListener.onReplaceFragment(new FragForgotPassword());
+                mListener.onReplaceFragment(new FragForgotPassword(), IntFrag.REPLACE);
             }
         });
     }
@@ -79,13 +79,13 @@ public class FragSignInHunter extends Fragment
     public void onAttach(Context context)
     {
         super.onAttach(context);
-        if (context instanceof IReplaceFragment)
+        if (context instanceof IFragmentHandler)
         {
-            mListener = (IReplaceFragment) context;
+            mListener = (IFragmentHandler) context;
         } else
         {
             throw new RuntimeException(context.toString()
-                    + " must implement IReplaceFragment");
+                    + " must implement IFragmentHandler");
         }
     }
 
