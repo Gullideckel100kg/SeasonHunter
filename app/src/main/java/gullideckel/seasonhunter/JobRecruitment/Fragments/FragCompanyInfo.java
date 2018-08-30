@@ -93,6 +93,7 @@ public class FragCompanyInfo extends Fragment implements IEditCompanyType
         }
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
@@ -108,7 +109,7 @@ public class FragCompanyInfo extends Fragment implements IEditCompanyType
 
         RecyclerView recAddedCompanyType = (RecyclerView) view.findViewById(R.id.recAddedCompanyType);
 
-        StaggeredGridLayoutManager staggeredLayoutManager = new StaggeredGridLayoutManager(10, LinearLayoutManager.HORIZONTAL);
+        StaggeredGridLayoutManager staggeredLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
 
         mAdapterAddedCompanyType = new AdapterAddedCompanyType(mAddedCompanyType, this);
 
