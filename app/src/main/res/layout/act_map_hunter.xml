@@ -17,15 +17,7 @@
         android:textSize="24dp"
         android:visibility="gone"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ok"
-        android:id="@+id/btnSelectAddress"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="25dp"
-        android:visibility="gone"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -101,19 +93,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:id="@+id/frmAutoPlace">
+                android:id="@+id/frmAutoPlace"
+                android:background="@color/colorWhite"
+                android:layout_margin="10dp">
 
                 <fragment
                     android:id="@+id/frag_place_autocomplete"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-                    android:layout_margin="20dp" />
+                    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment" />
 
             </FrameLayout>
 
         </FrameLayout>
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ok"
+        android:id="@+id/btnSelectAddress"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="25dp" />
 
 </RelativeLayout>
