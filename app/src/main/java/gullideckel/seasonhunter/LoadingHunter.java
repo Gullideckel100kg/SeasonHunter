@@ -3,9 +3,12 @@ package gullideckel.seasonhunter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Calendar;
 
 import gullideckel.seasonhunter.ActivityMap.MapHunter;
 import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
@@ -18,7 +21,6 @@ public class LoadingHunter extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_start_loading);
-
         OpenApp(LoadUser());
     }
 
@@ -32,6 +34,7 @@ public class LoadingHunter extends AppCompatActivity
         }
         return false;
     }
+
 
     private void OpenApp(boolean isCurrentUser)
     {

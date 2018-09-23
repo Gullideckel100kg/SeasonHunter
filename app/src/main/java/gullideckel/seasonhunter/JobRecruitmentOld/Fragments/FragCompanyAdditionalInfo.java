@@ -1,4 +1,4 @@
-package gullideckel.seasonhunter.JobRecruitment.Fragments;
+package gullideckel.seasonhunter.JobRecruitmentOld.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -13,12 +13,12 @@ import gullideckel.seasonhunter.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FragCompanyReviewJob.OnFragmentInteractionListener} interface
+ * {@link FragCompanyAdditionalInfo.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FragCompanyReviewJob#newInstance} factory method to
+ * Use the {@link FragCompanyAdditionalInfo#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragCompanyReviewJob extends Fragment
+public class FragCompanyAdditionalInfo extends Fragment
 {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,7 +31,7 @@ public class FragCompanyReviewJob extends Fragment
 
     private OnFragmentInteractionListener mListener;
 
-    public FragCompanyReviewJob()
+    public FragCompanyAdditionalInfo()
     {
         // Required empty public constructor
     }
@@ -42,12 +42,12 @@ public class FragCompanyReviewJob extends Fragment
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FragCompanyReviewJob.
+     * @return A new instance of fragment FragCompanyAdditionalInfo.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragCompanyReviewJob newInstance(String param1, String param2)
+    public static FragCompanyAdditionalInfo newInstance(String param1, String param2)
     {
-        FragCompanyReviewJob fragment = new FragCompanyReviewJob();
+        FragCompanyAdditionalInfo fragment = new FragCompanyAdditionalInfo();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,7 +71,7 @@ public class FragCompanyReviewJob extends Fragment
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frag_company_review_job, container, false);
+        return inflater.inflate(R.layout.old_frag_company_additional_info, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

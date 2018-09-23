@@ -1,4 +1,4 @@
-package gullideckel.seasonhunter.JobRecruitment.Fragments.FragCompanyInfo;
+package gullideckel.seasonhunter.JobRecruitmentOld.Fragments.FragCompanyInfo;
 
 import android.graphics.Color;
 import android.view.View;
@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.JobRecruitment.Fragments.Adapters.AdapterAddedCompanyType;
-import gullideckel.seasonhunter.JobRecruitment.Fragments.Adapters.AdapterCompanyType;
+import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.Adapters.AdapterAddedCompanyType;
+import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.Adapters.AdapterCompanyType;
 import gullideckel.seasonhunter.Objects.CompanyTypeObject;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInfoObject;
 
@@ -36,6 +36,7 @@ public class FillCompanyInfo
                     if(obj.GetCompanyType().contains(cmptype))
                     {
                         companyTypes.get(companyTypes.indexOf(obj)).SetChecked(true);
+                        cmpInfo = obj;
                         adapter.notifyDataSetChanged();
                     }
                 }

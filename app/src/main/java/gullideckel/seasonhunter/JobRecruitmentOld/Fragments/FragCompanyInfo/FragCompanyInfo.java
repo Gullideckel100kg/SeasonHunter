@@ -1,4 +1,4 @@
-package gullideckel.seasonhunter.JobRecruitment.Fragments.FragCompanyInfo;
+package gullideckel.seasonhunter.JobRecruitmentOld.Fragments.FragCompanyInfo;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -24,9 +24,9 @@ import java.util.List;
 import gullideckel.seasonhunter.Interfaces.IEditCompanyType;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandlerCompany;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
-import gullideckel.seasonhunter.JobRecruitment.Fragments.Adapters.AdapterAddedCompanyType;
-import gullideckel.seasonhunter.JobRecruitment.Fragments.Adapters.AdapterCompanyType;
-import gullideckel.seasonhunter.JobRecruitment.Fragments.FragCompanyContact;
+import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.Adapters.AdapterAddedCompanyType;
+import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.Adapters.AdapterCompanyType;
+import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.FragCompanyContact.FragCompanyContact;
 import gullideckel.seasonhunter.Objects.CompanyTypeObject;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyInfoObject;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInfoObject;
@@ -53,8 +53,10 @@ public class FragCompanyInfo extends Fragment implements IEditCompanyType
     private FillCompanyInfo mFillInfo;
     private CompanyTypePositions mCompanyPosition;
 
-    protected JobInfoObject mJobInfo;
+    public JobInfoObject mJobInfo;
 
+
+    //TODO:Save CompanyTypes On Server
     private void FillCompanyTypes()
     {
         mCompanyTypes.add(new CompanyTypeObject( "Farm",false));
@@ -75,6 +77,8 @@ public class FragCompanyInfo extends Fragment implements IEditCompanyType
     {
         super.onViewCreated(view, savedInstanceState);
 
+        view.setBackgroundColor(Color.WHITE);
+        view.bringToFront();
         RecyclerView recAddCompanyType = (RecyclerView) view.findViewById(R.id.recAddCompanyType);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -136,7 +140,7 @@ public class FragCompanyInfo extends Fragment implements IEditCompanyType
         @Override
         public void onClick(View v)
         {
-            mListener.onReplaceFragment(null, IntFrag.POPSTACKCOMPLETLY, null);
+            mListener.onReplaceFragment(null, IntFrag.POPSTACK, new JobInfoObject());
         }
     };
 
@@ -170,7 +174,7 @@ public class FragCompanyInfo extends Fragment implements IEditCompanyType
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.frag_company_info, container, false);
+        return inflater.inflate(R.layout.old_frag_company_info, container, false);
     }
 
     @Override

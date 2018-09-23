@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".JobRecruitment.Fragments.FragCompanyReviewJob">
+    tools:context=".JobRecruitmentOld.Fragments.FragCompanyReviewJob">
 
     <ScrollView
         android:layout_width="match_parent"

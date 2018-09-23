@@ -1,9 +1,9 @@
-package gullideckel.seasonhunter.JobRecruitment.Fragments.FragCompanyInfo;
+package gullideckel.seasonhunter.JobRecruitmentOld.Fragments.FragCompanyInfo;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.JobRecruitment.Fragments.Adapters.AdapterAddedCompanyType;
-import gullideckel.seasonhunter.JobRecruitment.Fragments.Adapters.AdapterCompanyType;
+import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.Adapters.AdapterAddedCompanyType;
+import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.Adapters.AdapterCompanyType;
 import gullideckel.seasonhunter.Objects.CompanyTypeObject;
 
 public class CompanyTypePositions

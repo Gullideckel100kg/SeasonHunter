@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".JobRecruitment Old.Fragments.FragCompanyInfo.FragCompanyInfo"
     android:orientation="vertical"
-    tools:context=".JobRecruitment.Fragments.FragCompanyContact"
     android:weightSum="10">
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,89 +21,79 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Address:"/>
+                android:text="Company Name:"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:id="@+id/edtAddAddress"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Country:"
-                android:layout_margin="10dp"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:id="@+id/edtAddCountry"/>
+                android:id="@+id/edtAddCompanyName" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Please give at least one contact information!"/>
+                android:text="Company type:"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Business number:"
-                android:layout_margin="10dp"/>
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/txtNoCompanyType"
+                android:text="Please select at least one company type"
+                android:textColor="#FF0000"
+                android:visibility="gone"/>
 
-            <EditText
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scrollbars="vertical"
                 android:layout_margin="10dp"
-                android:id="@+id/edtAddBusinessNumber"/>
+                android:id="@+id/recAddCompanyType"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Phone number:"
-                android:layout_margin="10dp"/>
+                android:text="Other Company type:"
+                android:padding="10dp"/>
 
-            <EditText
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtAddOtherCompanyType"
+                    android:layout_margin="10dp"
+                    android:layout_weight="9"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginVertical="10dp"
+                    android:id="@+id/btnAddOtherCompanyType"/>
+
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:id="@+id/edtAddPhoneNumber"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="E-mail:"
-                android:layout_margin="10dp"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:id="@+id/edtAddEmail"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Website:"
-                android:layout_margin="10dp"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:id="@+id/edtAddWebsite"/>
+                android:id="@+id/recAddedCompanyType"/>
 
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Online Recruitment"
-                android:id="@+id/chkAddOnlineRecruitment"/>
+                android:text="Organic?"
+                android:id="@+id/chkAddOrganic"/>
 
         </LinearLayout>
-
     </ScrollView>
 
     <RelativeLayout
@@ -120,7 +109,7 @@
             android:paddingRight="20dp"
             android:layout_marginLeft="20dp"
             android:text="Back"
-            android:id="@+id/btnBackAddCompanyContact"
+            android:id="@+id/btnBackAddCompanyName"
             android:layout_alignParentLeft="true"/>
 
         <Button
@@ -130,7 +119,7 @@
             android:paddingLeft="20dp"
             android:layout_marginRight="20dp"
             android:text="Next"
-            android:id="@+id/btnNextAddCompanyContact"
+            android:id="@+id/btnNextAddCompanyName"
             android:layout_alignParentRight="true"/>
 
     </RelativeLayout>

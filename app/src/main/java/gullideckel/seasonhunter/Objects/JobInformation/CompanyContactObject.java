@@ -12,15 +12,39 @@ public class CompanyContactObject
     private String mStrWebsite;
     private boolean mIsOnlineRecruitment;
 
-    public CompanyContactObject(String address, String country, String buisnissNumber, String phoneNumber, String email, String website, boolean onlinceRecruitment)
+    public void SetAddress(String address)
     {
         mStrAddress = address;
+    }
+
+    public void SetCountry(String country)
+    {
         mStrCountry = country;
-        mStrBuisnessNumber = buisnissNumber;
-        mStrPhoneNumber = phoneNumber;
+    }
+
+    public void SetBuisnessNumber(String buisnessNumber)
+    {
+        mStrBuisnessNumber = buisnessNumber;
+    }
+
+    public void SetPhoneNumber(String phonenumber)
+    {
+        mStrPhoneNumber = phonenumber;
+    }
+
+    public void SetEmail(String email)
+    {
         mStrEmail = email;
+    }
+
+    public void SetWebsite(String website)
+    {
         mStrWebsite = website;
-        mIsOnlineRecruitment = onlinceRecruitment;
+    }
+
+    public void SetOnlineRecruitment(boolean isOnlineRecruitment)
+    {
+        mIsOnlineRecruitment = isOnlineRecruitment;
     }
 
     public String GetAddress()
