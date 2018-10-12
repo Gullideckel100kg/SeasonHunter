@@ -9,7 +9,20 @@ public class JobInfoObject
    private List<JobOfferObject> mLstCompanyJobOffers;
    private CompanyAdditionalInfoObject mCompanyAdditionalInfo;
 
-   public void SetCompanyInfo(CompanyInfoObject companyInfo)
+    private CompanyAddress mCompanyAddress;
+
+
+    public JobInfoObject()
+    {
+        mCompanyAddress = new CompanyAddress();
+    }
+
+    public CompanyAddress GetCompanyAddress()
+    {
+        return mCompanyAddress;
+    }
+
+    public void SetCompanyInfo(CompanyInfoObject companyInfo)
    {
        mCompanyInfo = companyInfo;
    }
@@ -28,6 +41,7 @@ public class JobInfoObject
    {
        mCompanyAdditionalInfo = additionalInfo;
    }
+
 
     public CompanyInfoObject GetCompanyInfo()
     {

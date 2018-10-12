@@ -1,12 +1,12 @@
-package gullideckel.seasonhunter.ActivityMap.GeoCoding;
+package gullideckel.seasonhunter.JobRecruitment.CompanyAddress.GeoCoding;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 
 import gullideckel.seasonhunter.Interfaces.IUpdateAddress;
-import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
 public class CameraMove implements GoogleMap.OnCameraIdleListener, IUpdateAddress
@@ -17,6 +17,8 @@ public class CameraMove implements GoogleMap.OnCameraIdleListener, IUpdateAddres
     private TextView mTxtAddress;
     private TextView mTxtCoordinates;
     private Context mContext;
+
+    private CurrentAddress mCurrentAddress;
 
     public CameraMove(TextView txtAddress, TextView txtCoordinates, Context context)
     {
@@ -36,18 +38,19 @@ public class CameraMove implements GoogleMap.OnCameraIdleListener, IUpdateAddres
         StartAsyncTask();
     }
 
-
     @Override
     public void onCameraIdle()
     {
         StartAsyncTask();
+        mTxtAddress.setTextColor(Color.BLACK);
     }
 
+    //TODO: Make sure Address is loaded before Click ok. Istakefinish is not used so far
     private void StartAsyncTask()
     {
         AddressTask.ISTASKFINISH = false;
         mGeoMap.SetLatLng();
-        new AddressTask(this).execute(mGeoMap);
+        new AddressTask(this, mContext).execute(mGeoMap);
     }
 
     @Override
@@ -58,12 +61,11 @@ public class CameraMove implements GoogleMap.OnCameraIdleListener, IUpdateAddres
             mTxtAddress.setText(address.GetAddressLine());
             mTxtCoordinates.setText(StaticMethod.GPSConvert(address.GetLatitude(), address.GetLongitude()));
         }
-        else
-        {
-            mTxtAddress.setText(mContext.getString(R.string.no_address_found));
-            address.SetAddressLine(mContext.getString(R.string.no_address_found));
-        }
-        mTxtAddress.setText(address.GetAddressLine());
+        mCurrentAddress = address;
+    }
 
+    public CurrentAddress GetCurrentAddress()
+    {
+        return mCurrentAddress;
     }
 }

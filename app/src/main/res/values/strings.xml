@@ -13,5 +13,10 @@
     <string name="save_choose_location">Save and choose location</string>
 
     <string name="no_address_found">No Address found</string>
+    <string name="title_activity_test_company_info">TestCompanyInfo</string>
+
+    <string name="this_location">Use this location?</string>
+    <string name="select">Select</string>
+    <string name="change">Change</string>
 
 </resources>

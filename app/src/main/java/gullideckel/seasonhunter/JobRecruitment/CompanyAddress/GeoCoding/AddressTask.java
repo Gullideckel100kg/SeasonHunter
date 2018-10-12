@@ -1,5 +1,6 @@
-package gullideckel.seasonhunter.ActivityMap.GeoCoding;
+package gullideckel.seasonhunter.JobRecruitment.CompanyAddress.GeoCoding;
 
+import android.content.Context;
 import android.location.Address;
 import android.os.AsyncTask;
 
@@ -8,15 +9,18 @@ import java.util.List;
 import java.util.Locale;
 
 import gullideckel.seasonhunter.Interfaces.IUpdateAddress;
+import gullideckel.seasonhunter.R;
 
 public class AddressTask extends AsyncTask<GeoMap, Void, CurrentAddress>
 {
+    private Context mContext;
     private IUpdateAddress mCallback;
     public  static boolean ISTASKFINISH = false;
 
-    public AddressTask(IUpdateAddress updateAddress)
+    public AddressTask(IUpdateAddress updateAddress, Context context)
     {
         mCallback = updateAddress;
+        mContext = context;
     }
 
     @Override
@@ -39,6 +43,8 @@ public class AddressTask extends AsyncTask<GeoMap, Void, CurrentAddress>
                 }
                 else
                 {
+                    currentAddress.SetAddressLine(mContext.getString(R.string.no_address_found));
+                    currentAddress.SetCountry("");
                     currentAddress.SetLatitude(geoMaps[0].GetLatLng().latitude);
                     currentAddress.SetLongitude(geoMaps[0].GetLatLng().longitude);
                     return currentAddress;
@@ -52,6 +58,8 @@ public class AddressTask extends AsyncTask<GeoMap, Void, CurrentAddress>
 
         return null;
     }
+
+
 
     @Override
     protected void onPostExecute(CurrentAddress address)

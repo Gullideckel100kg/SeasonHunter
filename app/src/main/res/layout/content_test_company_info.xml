@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ActivityMap.TestCompanyInfo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/red_barn"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Company name: Philo Apple Orchard"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Company type: Farm + Packhouse"
+            android:layout_marginHorizontal="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contact:"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:text="Phone: +1 482 939 2345"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:text="Email: philoAppleFarm@gmail.com"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Website: www.philoApples.ca (Online Recruitment)"
+            android:layout_marginHorizontal="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:text="Address: 5463 McDougald Rd, Peachland, B V0H 1X8, Canada" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Job: Apple thinning: End of June - Middle of July"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Job: Apple picking: Beginning of August -  Middle of September"
+            android:layout_marginHorizontal="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Facilites and Benefits:"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dinner included, Camping, Showers, Kitchen, Community Area, Power"
+            android:layout_margin="10dp"/>
+
+
+
+
+
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

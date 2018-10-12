@@ -1,6 +1,6 @@
 package gullideckel.seasonhunter.Interfaces;
 
-import gullideckel.seasonhunter.ActivityMap.GeoCoding.CurrentAddress;
+import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.GeoCoding.CurrentAddress;
 
 public interface IUpdateAddress
 {
