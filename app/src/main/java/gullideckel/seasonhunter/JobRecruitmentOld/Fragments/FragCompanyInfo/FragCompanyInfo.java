@@ -28,7 +28,7 @@ import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.Adapters.AdapterAdde
 import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.Adapters.AdapterCompanyType;
 import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.FragCompanyContact.FragCompanyContact;
 import gullideckel.seasonhunter.Objects.CompanyTypeObject;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyInfoObject;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyInfoObject;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInfoObject;
 import gullideckel.seasonhunter.R;
 

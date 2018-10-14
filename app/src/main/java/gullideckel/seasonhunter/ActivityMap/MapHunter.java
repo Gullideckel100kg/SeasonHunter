@@ -23,12 +23,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.GeoCoding.GeoMap;
 import gullideckel.seasonhunter.ActivityMap.MapHunterClickListener.ButtonClicks;
 import gullideckel.seasonhunter.Interfaces.IAddressHandler;
 import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
 import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.AddressSelection;
 import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.PlaceAutoComplete.PlaceAutoCompleteClass;
+import gullideckel.seasonhunter.Objects.CompanyType.CompanyTypeObject;
 import gullideckel.seasonhunter.R;
 
 public class MapHunter extends FragmentActivity implements OnMapReadyCallback, IAddressHandler, IReplaceFragment,
@@ -46,6 +50,9 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
     private AddressSelection mAddressSelection;
 
     private boolean mIsSelectCompanyLocation = false;
+
+    private List<CompanyTypeObject> companyTypes = new ArrayList<CompanyTypeObject>()
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -146,7 +153,7 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
     public void SetAddress(String companyName)
     {
         mAddressSelection.SetAddress(companyName, new GeoMap(mGeocoder, mMap), new PlaceAutoCompleteClass((PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.frag_place_autocomplete), mMap));
-        onBackPressed();
+        getSupportFragmentManager().popBackStackImmediate();
         mIsSelectCompanyLocation = true;
     }
 

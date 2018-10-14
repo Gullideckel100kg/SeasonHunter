@@ -5,6 +5,8 @@ import android.location.Location;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import java.util.List;
+
 public class StaticMethod
 {
     public static void RemoveKeyPad(Activity activity)
@@ -56,5 +58,30 @@ public class StaticMethod
         builder.append("\"");
 
         return builder.toString();
+    }
+
+    public static <T> T CastClass(Class<T> c, List<Object> items)
+    {
+        for (Object o: items)
+        {
+            if (c.isInstance(o))
+            {
+                T t = c.cast(o);
+                return  t;
+            }
+        }
+        return null;
+    }
+
+
+    public static boolean ContainsInstance(Class cl, List<Object> items)
+    {
+        for (Object o : items)
+        {
+            if (cl.isInstance(o)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

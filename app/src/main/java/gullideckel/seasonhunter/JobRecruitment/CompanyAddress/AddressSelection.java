@@ -68,7 +68,7 @@ public class AddressSelection implements ISnapShot
     }
 
 
-    //TODO: Set set button listener at this class, ClickAddress has no declaration atm
+    //TODO: Set button listener at this class, ClickAddress has no declaration atm
     private View.OnClickListener ClickAddress = new View.OnClickListener()
     {
         @Override
@@ -90,9 +90,9 @@ public class AddressSelection implements ISnapShot
                 jobInfo.GetCompanyAddress().SetLatitude(mCameraMove.GetCurrentAddress().GetLatitude());
                 jobInfo.GetCompanyAddress().SetLongitude(mCameraMove.GetCurrentAddress().GetLongitude());
 
-                jobInfo.GetCompanyAddress().SetCompanyName(mTxtCompanyName.getText().toString());
+                jobInfo.GetCompanyName().SetCompanyName(mTxtCompanyName.getText().toString());
 
-                mListener.onReplaceFragment(FragCompanyDetails.newInstance(jobInfo, bitmap));
+                mListener.onReplaceFragment(FragAddress.newInstance(jobInfo, bitmap));
             }
             else
             {

@@ -2,17 +2,23 @@ package gullideckel.seasonhunter.ActivityMap.MapHunterClickListener;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
 import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
 import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.AddressSelection;
 import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.Snapshot.MySnapshot;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.FragCompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyName.FragCompanyName;
+import gullideckel.seasonhunter.Objects.CompanyType.CompanyTypeObject;
 import gullideckel.seasonhunter.R;
 
 public class ButtonClicks
@@ -50,12 +56,16 @@ public class ButtonClicks
         mBtnAddAddress.setOnClickListener(ClickNewAddress);
     }
 
+    //TODO: Companytypes should be saved on Server
+    private List<CompanyTypeObject> CompanyTypes;
 
     private View.OnClickListener ClickNewCompany = new View.OnClickListener() {
         @Override
         public void onClick(View v)
         {
-            ((IReplaceFragment) mActivity).onReplaceFragment(new FragCompanyName());
+
+
+            ((IReplaceFragment) mActivity).onReplaceFragment(FragCompanyDetails.NewInstance(CompanyTypes));
         }
     };
 

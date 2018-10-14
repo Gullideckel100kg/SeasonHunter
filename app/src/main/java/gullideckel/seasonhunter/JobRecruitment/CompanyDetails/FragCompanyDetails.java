@@ -1,43 +1,44 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.GeoCoding.CurrentAddress;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInfoObject;
+import java.util.ArrayList;
+import java.util.List;
+
+import gullideckel.seasonhunter.Objects.CompanyType.CompanyTypeObject;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyName;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyType;
 import gullideckel.seasonhunter.R;
-import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
 
 public class FragCompanyDetails extends Fragment
 {
+    private RecyclerView mRclyCompanyDetails;
+    private List<Object> mJobInfos;
 
-    protected JobInfoObject mJobInfo;
-    protected Bitmap mMapShot;
+    protected List<CompanyTypeObject> mCompanyTypes;
 
-    private ImageView mImgAddress;
-    private ImageButton mEdtAddress;
-    private TextView mTxtAddress;
-    private TextView mTxtCoordinates;
-    private TextView mTxtCompanyName;
-    private ImageButton mEdtCompanyName;
+    private ComplexCompanyDetailsAdapter mAdapter;
 
-    public static FragCompanyDetails newInstance(JobInfoObject jobInfo, Bitmap mapShot)
+//    private ImageView mImgAddress;
+//    private ImageButton mEdtAddress;
+//    private TextView mTxtAddress;
+//    private TextView mTxtCoordinates;
+//    private TextView mTxtCompanyName;
+//    private ImageButton mEdtCompanyName;
+
+    public static FragCompanyDetails NewInstance(List<CompanyTypeObject> companyTypes)
     {
         FragCompanyDetails fragment = new FragCompanyDetails();
-        fragment.mJobInfo = jobInfo;
-        fragment.mMapShot =mapShot;
+        fragment.mCompanyTypes = companyTypes;
         return fragment;
     }
 
@@ -46,17 +47,29 @@ public class FragCompanyDetails extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        mImgAddress = (ImageView) view.findViewById(R.id.imgPrevAddress);
-        mEdtAddress = (ImageButton) view.findViewById(R.id.imgEditAddress);
-        mTxtAddress = (TextView) view.findViewById(R.id.txtPrevAddress);
-        mTxtCoordinates = (TextView) view.findViewById(R.id.txtPrevCoordinates);
-        mTxtCompanyName = (TextView) view.findViewById(R.id.txtPrevCompanyName);
-        mEdtCompanyName = (ImageButton) view.findViewById(R.id.imgEdtCompanyName);
+        mJobInfos = new ArrayList<>();
+        mJobInfos.add(new CompanyName());
 
-        mImgAddress.setImageBitmap(mMapShot);
-        mTxtCompanyName.setText(mJobInfo.GetCompanyAddress().GetCompanyName());
-        mTxtAddress.setText(mJobInfo.GetCompanyAddress().GetAddress());
-        mTxtCoordinates.setText(StaticMethod.GPSConvert(mJobInfo.GetCompanyAddress().GetLatitude(), mJobInfo.GetCompanyAddress().GetLongitude()));
+        mRclyCompanyDetails = (RecyclerView) view.findViewById(R.id.rclyCompanyDetails);
+
+        mRclyCompanyDetails.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAdapter = new ComplexCompanyDetailsAdapter(mJobInfos, mCompanyTypes);
+        mRclyCompanyDetails.setAdapter(mAdapter);
+
+
+
+
+//        mImgAddress = (ImageView) view.findViewById(R.id.imgPrevAddress);
+//        mEdtAddress = (ImageButton) view.findViewById(R.id.imgEditAddress);
+//        mTxtAddress = (TextView) view.findViewById(R.id.txtPrevAddress);
+//        mTxtCoordinates = (TextView) view.findViewById(R.id.txtPrevCoordinates);
+//        mTxtCompanyName = (TextView) view.findViewById(R.id.txtPrevCompanyName);
+//        mEdtCompanyName = (ImageButton) view.findViewById(R.id.imgEdtCompanyName);
+//
+//        mImgAddress.setImageBitmap(mMapShot);
+//        mTxtCompanyName.setText(mJobInfo.GetCompanyName().GetCompanyName());
+//        mTxtAddress.setText(mJobInfo.GetCompanyAddress().GetAddress());
+//        mTxtCoordinates.setText(StaticMethod.GPSConvert(mJobInfo.GetCompanyAddress().GetLatitude(), mJobInfo.GetCompanyAddress().GetLongitude()));
     }
 
     @Override

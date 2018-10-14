@@ -1,17 +1,12 @@
-package gullideckel.seasonhunter.Objects.JobInformation;
+package gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub;
 
 public class CompanyAddress
 {
-    private String mCompanyName;
     private String mAddress;
     private String mCountry;
     private double mLatitude;
     private double mLongitude;
 
-    public void SetCompanyName(String companyName)
-    {
-        mCompanyName = companyName;
-    }
 
     public void SetAddress(String address)
     {
@@ -31,11 +26,6 @@ public class CompanyAddress
     public void SetLongitude(double longitude)
     {
         mLongitude = longitude;
-    }
-
-    public String GetCompanyName()
-    {
-        return  mCompanyName;
     }
 
     public String GetAddress()

@@ -9,7 +9,7 @@ import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyContactObject;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContactObject;
 import gullideckel.seasonhunter.R;
 
 public class AddressManager

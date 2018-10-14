@@ -17,7 +17,7 @@ import android.widget.TextView;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandlerCompany;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.FragCompanyJobOffers;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyContactObject;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContactObject;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInfoObject;
 import gullideckel.seasonhunter.R;
 

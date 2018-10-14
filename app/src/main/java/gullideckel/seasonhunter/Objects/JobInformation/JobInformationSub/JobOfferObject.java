@@ -1,4 +1,4 @@
-package gullideckel.seasonhunter.Objects.JobInformation;
+package gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub;
 
 public class JobOfferObject
 {
