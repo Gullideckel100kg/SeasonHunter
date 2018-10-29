@@ -1,4 +1,4 @@
-package gullideckel.seasonhunter.JobRecruitment.CompanyAddress.GeoCoding;
+package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.GeoCoding;
 
 import android.location.Geocoder;
 

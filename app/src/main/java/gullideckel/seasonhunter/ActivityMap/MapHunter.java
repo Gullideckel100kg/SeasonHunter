@@ -1,16 +1,28 @@
 package gullideckel.seasonhunter.ActivityMap;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Geocoder;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,13 +38,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 import java.util.List;
 
-import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.GeoCoding.GeoMap;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.CompanyAddressConfi;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.GeoCoding.GeoMap;
 import gullideckel.seasonhunter.ActivityMap.MapHunterClickListener.ButtonClicks;
 import gullideckel.seasonhunter.Interfaces.IAddressHandler;
 import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
 import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.AddressSelection;
-import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.PlaceAutoComplete.PlaceAutoCompleteClass;
-import gullideckel.seasonhunter.Objects.CompanyType.CompanyTypeObject;
 import gullideckel.seasonhunter.R;
 
 public class MapHunter extends FragmentActivity implements OnMapReadyCallback, IAddressHandler, IReplaceFragment,
@@ -44,15 +55,13 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
     private Button mBtnLogOut;
     private FirebaseAuth mAuth;
     private Geocoder mGeocoder;
-    private PlaceAutocompleteFragment mAutocompleteFragment;
     ButtonClicks mButtonClicks;
 
-    private AddressSelection mAddressSelection;
+//    private AddressSelection mAddressSelection;
 
     private boolean mIsSelectCompanyLocation = false;
 
-    private List<CompanyTypeObject> companyTypes = new ArrayList<CompanyTypeObject>()
-
+    public static List<Marker> mLstJobMarkers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -66,11 +75,13 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
 
         mGeocoder = new Geocoder(this);
 
-        mAddressSelection = new AddressSelection(getWindow().getDecorView(),this);
+
+//        mAddressSelection = new AddressSelection(getWindow().getDecorView(),this);
 
         mButtonClicks = new ButtonClicks(getWindow().getDecorView(), this);
         mButtonClicks.AddNewCompanyClickEvent();
         mButtonClicks.AddNewLogOutClickEvent();
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
     }
 
@@ -79,7 +90,7 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
     {
         mMap = googleMap;
 
-        mButtonClicks.AddNewAddressClickEvent(googleMap, mAddressSelection);
+//        mButtonClicks.AddNewAddressClickEvent(googleMap, mAddressSelection);
 
         GoogleMapOptions options = new GoogleMapOptions();
 
@@ -97,29 +108,23 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
     //TODO: Just for test. Have to be deleted later
     private void ExampleMarkers(GoogleMap map)
     {
-        MarkerOptions marker = new MarkerOptions().position(new LatLng(50,-120));
-        marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("red_barn",50,50)));
+        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(50,-120))
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("red_barn",50,50))));
 
-        map.addMarker(marker);
+        mLstJobMarkers.add(marker);
 
-        marker = new MarkerOptions().position(new LatLng(49.477895,-119.498461));
-        marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("red_barn",50,50)));
+        marker = map.addMarker(new MarkerOptions().position(new LatLng(49.731491,-119.797831))
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("red_barn",50,50))));
 
-        map.addMarker(marker);
+        mLstJobMarkers.add(marker);
 
-        marker = new MarkerOptions().position(new LatLng(49.731491,-119.797831));
-        marker.title("Philo Apple Orchard\nShow more info");
-        marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("red_barn",50,50)));
+        marker = map.addMarker(new MarkerOptions().position(new LatLng(49.596290,-119.734889))
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("red_barn",50,50))));
 
-        map.addMarker(marker);
-
-        map.setOnMarkerClickListener(this);
-
-        marker = new MarkerOptions().position(new LatLng(49.596290,-119.734889));
-        marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("red_barn",50,50)));
-
-        map.addMarker(marker);
+        mLstJobMarkers.add(marker);
     }
+
+
 
     @Override
     public boolean onMarkerClick(Marker marker)
@@ -138,21 +143,9 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
 
 
     @Override
-    public void onBackPressed()
-    {
-        if(!mIsSelectCompanyLocation)
-            super.onBackPressed();
-        else
-        {
-            mAddressSelection.SetVisibilities(View.VISIBLE, View.GONE);
-            mIsSelectCompanyLocation = false;
-        }
-    }
-
-    @Override
     public void SetAddress(String companyName)
     {
-        mAddressSelection.SetAddress(companyName, new GeoMap(mGeocoder, mMap), new PlaceAutoCompleteClass((PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.frag_place_autocomplete), mMap));
+//        mAddressSelection.SetAddress(companyName, new GeoMap(mGeocoder, mMap), new PlaceAutoCompleteClass((PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.frag_place_autocomplete), mMap));
         getSupportFragmentManager().popBackStackImmediate();
         mIsSelectCompanyLocation = true;
     }
@@ -165,4 +158,5 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
 }

@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragSignInHunter;
+import gullideckel.seasonhunter.ActivitySignIn.OnClickSignInHunter.OnClickSignIn;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.R;
@@ -21,7 +22,9 @@ public class SignInHunter extends FragmentActivity implements IFragmentHandler
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_sign_in_hunter);
 
-        ReplaceFragment(new FragSignInHunter());
+        new OnClickSignIn(null, null,this).OpenMapHunter();
+
+//        ReplaceFragment(new FragSignInHunter());
     }
 
     @Override

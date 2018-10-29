@@ -9,7 +9,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_job_ad_info">JobAdInfo</string>
 
-    <string name="company_name">Company name:</string>
+    <string name="company_name_with_colon">Company name:</string>
     <string name="save_choose_location">Save and choose location</string>
 
     <string name="no_address_found">No Address found</string>
@@ -21,6 +21,12 @@
 
     <string name="save">Save</string>
     <string name="edit">Edit</string>
+    <string name="company_name">Company name</string>
+
+    <string name="select_company_type">Select company type</string>
+    <string name="select_Address">Select the location of the company</string>
+
+    <string name="search_job_location">Search Location</string>
 
 
 </resources>

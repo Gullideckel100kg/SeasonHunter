@@ -1,22 +1,28 @@
 package gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub;
 
-import java.util.List;
-
-import gullideckel.seasonhunter.Objects.CompanyType.CompanyTypeObject;
+import android.graphics.Bitmap;
 
 public class CompanyType
 {
-    private List<CompanyTypeObject> mCompanyTypes;
     private String mCompanyType;
+    private Bitmap mLogo;
 
-    public CompanyType(List<CompanyTypeObject> companyTypes)
+    public CompanyType(){}
+
+    public CompanyType(Bitmap logo, String companyName)
     {
-        mCompanyTypes = companyTypes;
+        mCompanyType = companyName;
+        mLogo = logo;
     }
 
-    public List<CompanyTypeObject> GetCompanyTypes()
+    public void SetCompanyTypeLogo(Bitmap logo)
     {
-        return  mCompanyTypes;
+        mLogo = logo;
+    }
+
+    public Bitmap GetLogo()
+    {
+        return mLogo;
     }
 
     public void SetCompanyType(String companyType)

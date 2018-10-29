@@ -47,42 +47,45 @@ public class OnClickSignIn implements View.OnClickListener
         SignIn(mSignEmail.getText().toString(), mSignPassword.getText().toString());
     }
 
+    //TODO:Sign in didnt work
     private void SignIn(String email, String password) {
 
-        Log.d(TAG , "signIn:" + email);
 
-        if (!Validation.ValidateForm(mSignEmail,mSignPassword)) {
-            return;
-        }
-
-
-        //TODO: Enable Button so map activity pops up only one time!!!
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mContext, new OnCompleteListener<AuthResult>()
-        {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task)
-            {
-                if (task.isSuccessful())
-                {
-                    Log.d(TAG, "signInWithEmail:success");
-                    if(mAuth.getCurrentUser().isEmailVerified())
-                        OpenMapHunter();
-                    else
-                    {
-                         AlertDialogVerification();
-                    }
-                }
-                else
-                {
-                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                    Toast.makeText(mContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        OpenMapHunter();
+//        Log.d(TAG , "signIn:" + email);
+//
+//        if (!Validation.ValidateForm(mSignEmail,mSignPassword)) {
+//            return;
+//        }
+//
+//
+//        //TODO: Enable Button so map activity pops up only one time!!!
+//        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mContext, new OnCompleteListener<AuthResult>()
+//        {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task)
+//            {
+//                if (task.isSuccessful())
+//                {
+//                    Log.d(TAG, "signInWithEmail:success");
+//                    if(mAuth.getCurrentUser().isEmailVerified())
+//
+//                    else
+//                    {
+//                         AlertDialogVerification();
+//                    }
+//                }
+//                else
+//                {
+//                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+//                    Toast.makeText(mContext, "Authentication failed.",
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
 
-    private void OpenMapHunter()
+    public void OpenMapHunter()
     {
         Intent intent = new Intent(mContext, MapHunter.class);
         mContext.startActivity(intent);

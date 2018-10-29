@@ -1,6 +1,7 @@
 package gullideckel.seasonhunter.StaticMethods;
 
 import android.app.Activity;
+import android.content.Context;
 import android.location.Location;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -9,6 +10,8 @@ import java.util.List;
 
 public class StaticMethod
 {
+
+
     public static void RemoveKeyPad(Activity activity)
     {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(activity.INPUT_METHOD_SERVICE);
@@ -19,6 +22,18 @@ public class StaticMethod
             view = new View(activity);
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public static void HideKeypadFrom(Context context, View view)
+    {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public static void ShowKeypadFrom(Context context, View view)
+    {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
     }
 
     public static String GPSConvert(double latitude, double longitude)
@@ -74,14 +89,14 @@ public class StaticMethod
     }
 
 
-    public static boolean ContainsInstance(Class cl, List<Object> items)
+    public static <T> boolean ContainsInstance(Class<T> cl, List<Object> items)
     {
         for (Object o : items)
         {
             if (cl.isInstance(o)) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }

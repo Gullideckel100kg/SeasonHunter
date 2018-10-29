@@ -1,119 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
+    android:id="@+id/cnstMapHunter"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/frmJobRecruitment">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtCompanyName"
-        android:layout_margin="20dp"
-        android:textSize="24dp"
-        android:visibility="gone"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/linMapTopBar">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add Company"
-                    android:layout_margin="10dp"
-                    android:id="@+id/btnAddCompany"/>
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="Logout"
-                    android:id="@+id/btnLogout"/>
-
-            </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <fragment
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".ActivityMap.MapHunter" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="25dp"
-                android:src="@drawable/marker"
-                android:id="@+id/imgMarker"
-                android:visibility="gone"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="bottom"
-                android:background="@color/colorWhite"
-                android:id="@+id/linMapAddress"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:id="@+id/txtMapAddress" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:id="@+id/txtMapCoordinates"/>
-
-            </LinearLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:id="@+id/frmAutoPlace"
-                android:background="@color/colorWhite"
-                android:layout_margin="10dp">
-
-                <fragment
-                    android:id="@+id/frag_place_autocomplete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment" />
-
-            </FrameLayout>
-
-        </FrameLayout>
-
-    </LinearLayout>
+    android:layout_height="match_parent">
 
     <Button
+        android:id="@+id/btnAddCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ok"
-        android:id="@+id/btnSelectAddress"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="25dp"
-        android:visibility="gone"/>
+        android:layout_margin="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Add Company"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Logout"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frmMapHunter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toBottomOf="@+id/btnLogout">
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ActivityMap.MapHunter" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frmJobRecruitment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
+

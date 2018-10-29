@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,13 +16,15 @@ import gullideckel.seasonhunter.R;
 
 public class CompanyTypeViewHolder extends RecyclerView.ViewHolder
 {
-
     private ConstraintLayout mCnstSave;
     private ConstraintLayout mCnstEdit;
 
-    private ListView mLstCompanyType;
+    private TextView mSelectCompanyType;
+
+    private RecyclerView mRclyCompanyType;
     private Button mBtnSave;
 
+    private ImageView mImgCompanyLogo;
     private TextView mTxtCompanyType;
     private ImageButton mIBtnEdit;
 
@@ -32,11 +35,15 @@ public class CompanyTypeViewHolder extends RecyclerView.ViewHolder
         mCnstSave = (ConstraintLayout) v.findViewById(R.id.cnstSaveCompanyType);
         mCnstEdit = (ConstraintLayout) v.findViewById(R.id.cnstEditCompanyType);
 
-        mLstCompanyType = (ListView) v.findViewById(R.id.lstAddCompanyType);
+        mRclyCompanyType = (RecyclerView) v.findViewById(R.id.rclyAddCompanyType);
         mBtnSave = (Button) v.findViewById(R.id.btnSaveCompanyType);
 
         mTxtCompanyType = (TextView) v.findViewById(R.id.txtAddCompanyType);
         mIBtnEdit = (ImageButton) v.findViewById(R.id.ibtnEditCompanyType);
+        mImgCompanyLogo = (ImageView) v.findViewById(R.id.imgSaveCompanyTypeLogo);
+
+        mSelectCompanyType = (TextView) v.findViewById(R.id.txtSelectCompanyType);
+
     }
 
     public ConstraintLayout GetCnstEdit()
@@ -49,9 +56,9 @@ public class CompanyTypeViewHolder extends RecyclerView.ViewHolder
         return mCnstSave;
     }
 
-    public ListView GetLstCompanyType()
+    public RecyclerView GetRclyCompanyType()
     {
-        return mLstCompanyType;
+        return mRclyCompanyType;
     }
 
     public Button GetBtnSave()
@@ -67,5 +74,15 @@ public class CompanyTypeViewHolder extends RecyclerView.ViewHolder
     public ImageButton GetIBtnEdit()
     {
         return mIBtnEdit;
+    }
+
+    public ImageView GetImgCompanyLogo()
+    {
+        return  mImgCompanyLogo;
+    }
+
+    public TextView GetSelectCompanyType()
+    {
+        return mSelectCompanyType;
     }
 }
