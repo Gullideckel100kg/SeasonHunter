@@ -4,7 +4,7 @@ import java.util.List;
 
 import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyAdditionalInfoObject;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyAddress;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContactObject;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContact;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyInfoObject;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyName;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.JobOfferObject;
@@ -13,7 +13,7 @@ public class JobInfoObject
 {
     private CompanyName mCompanyName;
    private CompanyInfoObject mCompanyInfo;
-   private CompanyContactObject mCompanyContact;
+   private CompanyContact mCompanyContact;
    private List<JobOfferObject> mLstCompanyJobOffers;
    private CompanyAdditionalInfoObject mCompanyAdditionalInfo;
    private CompanyAddress mCompanyAddress;
@@ -40,7 +40,7 @@ public class JobInfoObject
        mCompanyInfo = companyInfo;
    }
 
-    public void SetCompanyContact(CompanyContactObject companyContact)
+    public void SetCompanyContact(CompanyContact companyContact)
     {
        mCompanyContact = companyContact;
    }
@@ -61,7 +61,7 @@ public class JobInfoObject
         return mCompanyInfo;
     }
 
-    public CompanyContactObject GetCompanyContact()
+    public CompanyContact GetCompanyContact()
     {
         return mCompanyContact;
     }

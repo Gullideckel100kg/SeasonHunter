@@ -27,6 +27,17 @@
     <string name="select_Address">Select the location of the company</string>
 
     <string name="search_job_location">Search Location</string>
+    <string name="contact_headline">Add Contact informations:</string>
 
+    <string name="add_phone">Add phone number</string>
+    <string name="add_email">Add email</string>
+    <string name="add_website">Add Website</string>
+    <string name="online_recruitment">Online recruitment</string>
+
+    <string name="phone">Phone:</string>
+    <string name="email">Email:</string>
+    <string name="website">Website:</string>
+
+    <string name="job_offer_headline">Post your job offers:</string>
 
 </resources>

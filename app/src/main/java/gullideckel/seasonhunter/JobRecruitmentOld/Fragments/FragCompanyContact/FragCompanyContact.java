@@ -17,7 +17,7 @@ import android.widget.TextView;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandlerCompany;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.JobRecruitmentOld.Fragments.FragCompanyJobOffers;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContactObject;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContact;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInfoObject;
 import gullideckel.seasonhunter.R;
 
@@ -26,7 +26,7 @@ public class FragCompanyContact extends Fragment
     private static final String TAG = "FragCompanyContact";
 
     protected JobInfoObject mJobInfo;
-    private CompanyContactObject mContactInfo;
+    private CompanyContact mContactInfo;
 
     private IFragmentHandlerCompany mListener;
     private AddressManager mAddressManager;
@@ -59,7 +59,7 @@ public class FragCompanyContact extends Fragment
 //        ((Button) view.findViewById(R.id.btnNextAddCompanyContact)).setOnClickListener(new OnClickNavigation(new FragCompanyJobOffers(), IntFrag.REPLACE, mListener));
         ((Button) view.findViewById(R.id.btnBackAddCompanyContact)).setOnClickListener(BackToCompanyInfo);
 
-        mContactInfo = new CompanyContactObject();
+        mContactInfo = new CompanyContact();
         mAddressManager = new AddressManager();
         mAddressManager.AutoCompleteListener(getActivity(), mContactInfo);
 
@@ -88,9 +88,9 @@ public class FragCompanyContact extends Fragment
         {
             if(CheckIsFilledCorrectly())
             {
-                mJobInfo.GetCompanyContact().SetAddress(mContactInfo.GetAddress());
-                mJobInfo.GetCompanyContact().SetBuisnessNumber(mEdtBusinessNumber.getText().toString());
-                mJobInfo.GetCompanyContact().SetCountry(mEdtCountry.getText().toString());
+//                mJobInfo.GetCompanyContact().SetAddress(mContactInfo.GetAddress());
+//                mJobInfo.GetCompanyContact().SetBuisnessNumber(mEdtBusinessNumber.getText().toString());
+//                mJobInfo.GetCompanyContact().SetCountry(mEdtCountry.getText().toString());
                 mJobInfo.GetCompanyContact().SetEmail(mEdtEmail.getText().toString());
                 mJobInfo.GetCompanyContact().SetOnlineRecruitment(mChkOnlineRecruitment.isChecked());
                 mJobInfo.GetCompanyContact().SetPhoneNumber(mEdtPhoneNumber.getText().toString());
@@ -123,10 +123,10 @@ public class FragCompanyContact extends Fragment
             return false;
         }
 
-        if(mContactInfo.GetAddress().isEmpty())
-        {
-            return false;
-        }
+//        if(mContactInfo.GetAddress().isEmpty())
+//        {
+//            return false;
+//        }
 
 
         if(mChkOnlineRecruitment.isChecked() && mEdtWebsite.getText().toString().isEmpty())

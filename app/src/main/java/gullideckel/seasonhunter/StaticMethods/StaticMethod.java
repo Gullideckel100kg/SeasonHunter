@@ -2,6 +2,8 @@ package gullideckel.seasonhunter.StaticMethods;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.location.Location;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -94,9 +96,23 @@ public class StaticMethod
         for (Object o : items)
         {
             if (cl.isInstance(o)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
+    }
+
+    public static Bitmap GetResizedBitmap(Bitmap bm, int newWidth, int newHeight)
+    {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+
+        Matrix matrix = new Matrix();
+
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        return Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
     }
 }

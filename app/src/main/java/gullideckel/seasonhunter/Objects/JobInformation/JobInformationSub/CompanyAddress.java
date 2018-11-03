@@ -7,7 +7,6 @@ public class CompanyAddress
     private double mLatitude;
     private double mLongitude;
 
-
     public void SetAddress(String address)
     {
         mAddress = address;

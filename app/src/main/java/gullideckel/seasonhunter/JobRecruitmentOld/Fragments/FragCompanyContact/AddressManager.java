@@ -1,23 +1,17 @@
 package gullideckel.seasonhunter.JobRecruitmentOld.Fragments.FragCompanyContact;
 
 import android.app.Activity;
-import android.util.Log;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContactObject;
-import gullideckel.seasonhunter.R;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContact;
 
 public class AddressManager
 {
     private static final String TAG = "AddressManagaer";
     private LatLng mLatLng;
 
-    public void AutoCompleteListener(Activity activity, final CompanyContactObject contactInfo)
+    public void AutoCompleteListener(Activity activity, final CompanyContact contactInfo)
     {
 //        PlaceAutocompleteFragment autocompleteFragment =
 //                (PlaceAutocompleteFragment) activity.getFragmentManager().findFragmentById(R.id.frag_place_autocomplete);

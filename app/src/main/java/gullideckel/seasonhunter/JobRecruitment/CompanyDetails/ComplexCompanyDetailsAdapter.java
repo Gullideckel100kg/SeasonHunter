@@ -17,16 +17,23 @@ import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.B_CompanyType.Comp
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.CompanyAddressConfi;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.CompanyAddressViewHolder;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.CostumLayoutManager;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.D_CompanyContact.CompanyContactConfi;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.D_CompanyContact.CompanyContactViewHolder;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.CompanyJobConfi;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.CompanyJobViewHolder;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyAddress;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyName;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyType;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyAddress;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContact;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyJob;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyName;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyType;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
-public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ICompanyName, ICompanyType, ICompanyAddress
+public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ICompanyName, ICompanyType, ICompanyAddress, ICompanyDetails
 {
     private List<Object> mItems;
     private List<CompanyType> mLstCompanyTypes;
@@ -58,6 +65,10 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
             return  COMPANYTYPE;
         else if (mItems.get(position) instanceof CompanyAddress)
             return COMPANYADDRESS;
+        else if (mItems.get(position) instanceof CompanyContact)
+            return  COMPANYCONTACT;
+        else if (mItems.get(position) instanceof  CompanyJob)
+            return  COMPANYJOBS;
 
         return -1;
     }
@@ -83,6 +94,14 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
                 View v3 = inflater.inflate(R.layout.details_company_address_viewholder, parent, false);
                 viewHolder = new CompanyAddressViewHolder(v3);
                 break;
+            case COMPANYCONTACT:
+                View v4 = inflater.inflate(R.layout.details_company_contact_viewholder, parent, false);
+                viewHolder = new CompanyContactViewHolder(v4);
+                break;
+            case COMPANYJOBS:
+                View v5 = inflater.inflate(R.layout.details_company_job_viewholder, parent, false);
+                viewHolder = new CompanyJobViewHolder(v5);
+                break;
             default:
                 return null;
         }
@@ -105,9 +124,18 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
                 confiTpe.Confi();
                 break;
             case COMPANYADDRESS:
-                mCompanyAddressConfi = new CompanyAddressConfi((CompanyAddressViewHolder) holder, this, mLogo, mContext);
+                mCompanyAddressConfi = new CompanyAddressConfi((CompanyAddressViewHolder) holder, this, mLogo, mContext, mLayoutManager, (CompanyAddress) mItems.get(position));
                 mCompanyAddressConfi.Confi();
                 break;
+            case COMPANYCONTACT:
+                CompanyContactConfi confiCntct = new CompanyContactConfi((CompanyContactViewHolder) holder, mContext, this, (CompanyContact)mItems.get(position));
+                confiCntct.Confi();
+                break;
+            case COMPANYJOBS:
+                CompanyJobConfi confiJob = new CompanyJobConfi((CompanyJobViewHolder) holder, mContext, this, mLayoutManager);
+                confiJob.Confi();
+                break;
+
         }
     }
 
@@ -119,11 +147,10 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
         return mItems.size();
     }
 
-
     @Override
     public void OnCompanyName(String companyName)
     {
-        if(StaticMethod.ContainsInstance(CompanyType.class, mItems))
+        if(!StaticMethod.ContainsInstance(CompanyType.class, mItems))
         {
             mItems.add(new CompanyType());
             notifyItemInserted(mItems.size() - 1);
@@ -139,7 +166,7 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
     {
         mLogo = companyType.GetLogo();
 
-        if (StaticMethod.ContainsInstance(CompanyAddress.class, mItems))
+        if (!StaticMethod.ContainsInstance(CompanyAddress.class, mItems))
         {
             mItems.add(new CompanyAddress());
             notifyItemInserted(mItems.size() - 1);
@@ -160,6 +187,55 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
     @Override
     public void OnCompanyAddress(CompanyAddress companyAddress)
     {
+        if(!StaticMethod.ContainsInstance(CompanyContact.class, mItems))
+        {
+            mItems.add(new CompanyContact());
+            notifyItemInserted(mItems.size() - 1);
+        }
+
+        CompanyAddress companyAddressClass = StaticMethod.CastClass(CompanyAddress.class, mItems);
+
+        if(companyAddressClass != null)
+        {
+            companyAddressClass.SetAddress(companyAddress.GetAddress());
+            companyAddressClass.SetCountry(companyAddress.GetCountry());
+            companyAddressClass.SetLatitude(companyAddress.GetLatitude());
+            companyAddress.SetLongitude(companyAddress.GetLongitude());
+        }
 
     }
+
+    @Override
+    public void OnItemUpdate(int position)
+    {
+        int  count = getItemCount();
+
+        if(position >= count - 1)
+        {
+            mItems.add(getNewClassInstance(position + 1));
+            notifyItemInserted(position + 1);
+        }
+
+    }
+
+    private Object getNewClassInstance(int classType)
+    {
+        switch (classType)
+        {
+            case COMPANYNAME:
+                return new CompanyName();
+            case COMPANYTYPE:
+                return new CompanyType();
+            case COMPANYADDRESS:
+                return new CompanyAddress();
+            case COMPANYCONTACT:
+                return new CompanyContact();
+            case COMPANYJOBS:
+                return new CompanyJob();
+            default:
+                return null;
+        }
+    }
+
+
 }
