@@ -7,6 +7,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.MapView;
@@ -20,7 +21,16 @@ public class CompanyAddressViewHolder extends RecyclerView.ViewHolder
     private TextView mTxtCoordinates;
     private Button mBtnSave;
     private ImageButton mIBtnEdit;
+
+    private RelativeLayout relSnapPic;
+
+    public RelativeLayout getRelSnapPic()
+    {
+        return relSnapPic;
+    }
+
     private ImageView mSnapAddress;
+    private ImageView mSnapLogo;
     private AutoCompleteTextView mTxtAutoComplete;
 
     private MapView mMapView;
@@ -41,7 +51,9 @@ public class CompanyAddressViewHolder extends RecyclerView.ViewHolder
 
         mTxtAutoComplete = v.findViewById(R.id.txtAutoComplete);
 
+        relSnapPic = (RelativeLayout) v.findViewById(R.id.relSnapPic);
         mSnapAddress = v.findViewById(R.id.imgSnapAddress);
+        mSnapLogo = v.findViewById(R.id.imgSnapLogo);
 
         mMapView = v.findViewById(R.id.mapView);
         mLogo = v.findViewById(R.id.imgJobMarker);
@@ -83,6 +95,8 @@ public class CompanyAddressViewHolder extends RecyclerView.ViewHolder
     {
         return mSnapAddress;
     }
+
+    public ImageView GetSnapLogo()  { return mSnapLogo; }
 
     public MapView GetMapView()
     {

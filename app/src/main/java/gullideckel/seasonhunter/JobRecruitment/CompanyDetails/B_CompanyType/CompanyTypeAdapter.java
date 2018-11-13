@@ -5,25 +5,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyType;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyType;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyTypes;
 import gullideckel.seasonhunter.R;
 
 public class CompanyTypeAdapter extends RecyclerView.Adapter<CompanyTypeViewHolderList>
 {
-    private List<CompanyType> mItems;
+    private CompanyTypes items;
 
     private int mLastCheckedPosition = -1;
 
-    private CompanyType mCompanyType;
+    private CompanyTypes.CompanyType mCompanyType;
 
-    public CompanyTypeAdapter(List<CompanyType> items)
+    public CompanyTypeAdapter(CompanyTypes items)
     {
-        mItems = items;
+        this.items = items;
     }
 
     @NonNull
@@ -38,8 +36,8 @@ public class CompanyTypeAdapter extends RecyclerView.Adapter<CompanyTypeViewHold
     @Override
     public void onBindViewHolder(@NonNull final CompanyTypeViewHolderList holder, final int position)
     {
-        holder.GetImgCompanyType().setImageBitmap(mItems.get(position).GetLogo());
-        holder.GetTxtCompanyType().setText(mItems.get(position).GetCompanyType());
+        holder.GetImgCompanyType().setImageBitmap(items.getCompanyTypes().get(position).GetLogo());
+        holder.GetTxtCompanyType().setText(items.getCompanyTypes().get(position).GetCompanyType());
 
         holder.GetRdbCompanyType().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +45,7 @@ public class CompanyTypeAdapter extends RecyclerView.Adapter<CompanyTypeViewHold
                 mLastCheckedPosition = position;
                 notifyDataSetChanged();
                 if(holder.GetRdbCompanyType().isChecked())
-                    mCompanyType = mItems.get(position);
+                    items.setSelectedCompanyType(position);
             }
         });
         holder.GetRdbCompanyType().setChecked(position == mLastCheckedPosition);
@@ -56,11 +54,6 @@ public class CompanyTypeAdapter extends RecyclerView.Adapter<CompanyTypeViewHold
     @Override
     public int getItemCount()
     {
-        return mItems.size();
-    }
-
-    public CompanyType GetCompanyType()
-    {
-        return mCompanyType;
+        return items.getCompanyTypes().size();
     }
 }

@@ -39,5 +39,101 @@
     <string name="website">Website:</string>
 
     <string name="job_offer_headline">Post your job offers:</string>
+    <string name="job_title">Job title:</string>
+    <string name="no_payment">Please select a kind of Payment</string>
+    <string name="hourly_paid">Hourly paid</string>
+    <string name="piece_work">Piece work</string>
+    <string name="volunteering">Volunteering</string>
+    <string name="start_date">Start date: (approximately)</string>
+    <string name="no_start_date">Please select a start date</string>
+    <string name="end_date">End date: (approximately)</string>
+    <string name="no_end_date">Please select a end date</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="additional_info">Additional info:</string>
+    <string name="toast_no_delete_first_item">Can not remove this item. There has to be at least one post</string>
+
+    <string name="of">of</string>
+    
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>Mai</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    
+    <string-array name="days">
+        <item>first week</item>
+        <item>second week</item>
+        <item>third week</item>
+        <item>fourth week</item>
+        <item>full month</item>
+        <item>1st</item>
+        <item>2nd</item>
+        <item>3rd</item>
+        <item>4th</item>
+        <item>5th</item>
+        <item>6th</item>
+        <item>7th</item>
+        <item>8th</item>
+        <item>9th</item>
+        <item>10th</item>
+        <item>11th</item>
+        <item>12th</item>
+        <item>13th</item>
+        <item>14th</item>
+        <item>15th</item>
+        <item>16th</item>
+        <item>17th</item>
+        <item>18th</item>
+        <item>19th</item>
+        <item>20th</item>
+        <item>21st</item>
+        <item>22nd</item>
+        <item>23rd</item>
+        <item>24th</item>
+        <item>25th</item>
+        <item>26th</item>
+        <item>27th</item>
+        <item>28th</item>
+        <item>29th</item>
+        <item>30th</item>
+        <item>31th</item>
+    </string-array>
+
+
+    <string name="benefits_headline">Select the benefits which you offer additional to your employer</string>
+    <string name="benefits">Benefits</string>
+    <string name="offer_food">Offer food</string>
+    <string name="offer_dring">Offer drinks</string>
+    <string name="sleepingplace">Sleeping place</string>
+    <string name="campgroung">Campground</string>
+    <string name="shower">Shower</string>
+    <string name="toilet">Toilet</string>
+    <string name="dips">Dips</string>
+    <string name="language_course">Language course</string>
+    <string name="agriculter_course">Agriculter course</string>
+    <string name="cooking_course">Cooking course</string>
+    <string name="kitchen">Kitchen</string>
+    <string name="fridge">Fridge</string>
+    <string name="storage_room">Storage room</string>
+    <string name="community_area">Community area</string>
+    <string name="wifi">Wifi</string>
+    <string name="animals_allowed">Animals allowed</string>
+    <string name="barbecue">Barbecue</string>
+    <string name="laundry">Laundry</string>
+    <string name="power">Power</string>
+    <string name="scenery">Nice scenery</string>
+    <string name="organic">Organic</string>
+
+    <string name="post">POST</string>
 
 </resources>

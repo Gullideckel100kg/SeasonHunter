@@ -9,29 +9,30 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.CostumLayoutManager;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.IPost;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyName;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyType;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyTypes;
 import gullideckel.seasonhunter.R;
 
 
-public class FragCompanyDetails extends Fragment
+public class FragCompanyDetails extends Fragment implements IPost
 {
-    protected List<CompanyType> mCompanyTypes;
-
-    private List<Object> mJobInfos;
+    protected List<CompanyTypes.CompanyType> companyTypes;
 
     private RecyclerView mRclyCompanyDetails;
-    private CostumLayoutManager mLayoutManager;
 
-    public static FragCompanyDetails NewInstance(List<CompanyType> companyTypes)
+    private CompanyDetailsObject companyDetails;
+
+    public static FragCompanyDetails NewInstance(List<CompanyTypes.CompanyType> companyTypes)
     {
         FragCompanyDetails fragment = new FragCompanyDetails();
-        fragment.mCompanyTypes = companyTypes;
+        fragment.companyTypes = companyTypes;
         return fragment;
     }
 
@@ -43,22 +44,42 @@ public class FragCompanyDetails extends Fragment
         view.bringToFront();
         view.setBackgroundColor(Color.WHITE);
 
-        mJobInfos = new ArrayList<>();
-        mJobInfos.add(new CompanyName());
+        List<Object> jobInfos = new ArrayList<>();
+        jobInfos.add(new CompanyName());
 
         mRclyCompanyDetails = (RecyclerView) view.findViewById(R.id.rclyCompanyDetails);
 
-        mLayoutManager = new CostumLayoutManager(getContext());
-        mRclyCompanyDetails.setLayoutManager(mLayoutManager);
+        CostumLayoutManager layoutManager = new CostumLayoutManager(getContext());
+        mRclyCompanyDetails.setLayoutManager(layoutManager);
 
-        ComplexCompanyDetailsAdapter adapter = new ComplexCompanyDetailsAdapter(mJobInfos, mCompanyTypes, getContext(), mLayoutManager);
+        Button btnPost = (Button) view.findViewById(R.id.btnPostJob);
+        btnPost.setOnClickListener(Post);
+
+        companyDetails = new CompanyDetailsObject(jobInfos, layoutManager, getContext(), btnPost);
+
+        ComplexCompanyDetailsAdapter adapter = new ComplexCompanyDetailsAdapter(companyDetails, companyTypes);
         mRclyCompanyDetails.setAdapter(adapter);
+
+
     }
 
+    private View.OnClickListener Post = new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         return inflater.inflate(R.layout.frag_company_details, container, false);
+    }
+
+    @Override
+    public void OnPost()
+    {
+        companyDetails.getBtnPost().setVisibility(View.VISIBLE);
     }
 }

@@ -14,10 +14,9 @@ import java.util.List;
 
 import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
 import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
-import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.AddressSelection;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.Snapshot.MySnapshot;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.FragCompanyDetails;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyType;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyTypes;
 import gullideckel.seasonhunter.R;
 
 public class ButtonClicks
@@ -55,7 +54,7 @@ public class ButtonClicks
 //    }
 
     //TODO: Companytypes should be saved on Server
-    private List<CompanyType> CompanyTypes;
+    private List<gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyTypes.CompanyType> CompanyTypes;
 
     private View.OnClickListener ClickNewCompany = new View.OnClickListener() {
         @Override
@@ -64,14 +63,14 @@ public class ButtonClicks
 
             CompanyTypes = new ArrayList<>();
 
-            CompanyTypes.add(new CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.farm), "Farm"));
-            CompanyTypes.add(new CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.packing), "Packhouse"));
-            CompanyTypes.add(new CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.fruit), "Fruit farm"));
-            CompanyTypes.add(new CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.chef), "Restaurant"));
-            CompanyTypes.add(new CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.tree), "Tree planting"));
-            CompanyTypes.add(new CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.factory), "Factory"));
-            CompanyTypes.add(new CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.christmas), "Christmas"));
-            CompanyTypes.add(new CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.otherwork), "Others"));
+            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.farm), "Farm"));
+            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.packing), "Packhouse"));
+            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.fruit), "Fruit farm"));
+            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.chef), "Restaurant"));
+            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.tree), "Tree planting"));
+            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.factory), "Factory"));
+            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.christmas), "Christmas"));
+            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.otherwork), "Others"));
 
 
             ((IReplaceFragment) mActivity).onReplaceFragment(FragCompanyDetails.NewInstance(CompanyTypes));

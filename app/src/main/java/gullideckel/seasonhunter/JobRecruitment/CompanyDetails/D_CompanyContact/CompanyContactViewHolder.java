@@ -16,8 +16,8 @@ public class CompanyContactViewHolder extends RecyclerView.ViewHolder
     private ConstraintLayout cnstContactEdit;
     private ConstraintLayout cnstContactSaved;
 
-    private Button btnAddPhone;
-    private Button btnAddEmail;
+    private ImageButton iBtnAddPhone;
+    private ImageButton iBtnAddEmail;
 
     private RecyclerView lstPhone;
     private RecyclerView lstEmail;
@@ -40,8 +40,8 @@ public class CompanyContactViewHolder extends RecyclerView.ViewHolder
         cnstContactEdit = (ConstraintLayout) vh.findViewById(R.id.cnstContactEdit);
         cnstContactSaved = (ConstraintLayout) vh.findViewById(R.id.cnstContactSaved);
 
-        btnAddPhone = (Button) vh.findViewById(R.id.btnAddPhone);
-        btnAddEmail = (Button) vh.findViewById(R.id.btnAddEmail);
+        iBtnAddPhone = (ImageButton) vh.findViewById(R.id.iBtnAddPhone);
+        iBtnAddEmail = (ImageButton) vh.findViewById(R.id.iBtnAddEmail);
 
         lstPhone = (RecyclerView) vh.findViewById(R.id.lstPhone);
         lstEmail = (RecyclerView) vh.findViewById(R.id.lstEmail);
@@ -68,14 +68,14 @@ public class CompanyContactViewHolder extends RecyclerView.ViewHolder
         return cnstContactSaved;
     }
 
-    public Button GetBtnAddEmail()
+    public ImageButton getiBtnAddPhone()
     {
-        return btnAddEmail;
+        return iBtnAddPhone;
     }
 
-    public Button GetBtnAddPhone()
+    public ImageButton getiBtnAddEmail()
     {
-        return btnAddPhone;
+        return iBtnAddEmail;
     }
 
     public RecyclerView GetLstEmail()

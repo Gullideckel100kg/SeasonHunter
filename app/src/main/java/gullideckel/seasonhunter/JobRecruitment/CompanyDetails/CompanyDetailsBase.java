@@ -2,31 +2,69 @@ package gullideckel.seasonhunter.JobRecruitment.CompanyDetails;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.widget.Button;
+
+import java.util.List;
 
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.A_CompanyName.CompanyNameViewHolder;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.B_CompanyType.CompanyTypeViewHolder;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.CompanyAddressViewHolder;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.CostumLayoutManager;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.D_CompanyContact.CompanyContactViewHolder;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.CompanyJobViewHolder;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.F_CompanyBenefits.CompanyBenefitsViewHolder;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyAddress;
+import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
 public class CompanyDetailsBase
 {
-    private RecyclerView.ViewHolder vh;
-    private Context context;
-    private ICompanyDetails listener;
+    private final static String TAG = "CompanyDetailsBase";
 
-    public CompanyDetailsBase(RecyclerView.ViewHolder vh, Context context, ICompanyDetails listener)
+    private RecyclerView.ViewHolder vh;
+    private ICompanyDetails listener;
+    private CompanyDetailsObject detailObject;
+
+    public CompanyDetailsBase(RecyclerView.ViewHolder vh, ICompanyDetails listener, CompanyDetailsObject detailObject)
     {
         this.vh  = vh;
-        this.context = context;
         this.listener = listener;
+        this.detailObject = detailObject;
+    }
+
+    public CostumLayoutManager getLayoutManager()
+    {
+        return detailObject.getLayoutManager();
     }
 
     public Context getContext()
     {
-        return context;
+        return detailObject.getContext();
+    }
+
+    public Button getBtnPost()
+    {
+        return detailObject.getBtnPost();
+    }
+
+    public List<Object> getItems()
+    {
+        return detailObject.getItems();
+    }
+
+    public <T> T getObjectAtPosition(Class<T> c)
+    {
+        if(StaticMethod.CastClass(c, detailObject.getItems()) != null)
+            return StaticMethod.CastClass(c, detailObject.getItems());
+
+        Log.d(TAG,"getObjectAtPosition: Wrong Instance");
+        return null;
+    }
+
+    public CompanyDetailsObject getDetailObject()
+    {
+        return detailObject;
     }
 
     public CompanyNameViewHolder getName()
@@ -54,8 +92,21 @@ public class CompanyDetailsBase
         return  (CompanyJobViewHolder) vh;
     }
 
+    public CompanyBenefitsViewHolder getBenefit(){ return  (CompanyBenefitsViewHolder) vh;}
+
     public ICompanyDetails getListener()
     {
         return listener;
+    }
+
+    //TODO: Find an other solution for scrolltoPosition without delay
+    public void ScrollToPositionDelayed(final int position)
+    {
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                detailObject.getLayoutManager().scrollToPosition(position);
+            }
+        }, 100);
     }
 }

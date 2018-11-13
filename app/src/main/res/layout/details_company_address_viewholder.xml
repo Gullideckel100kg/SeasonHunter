@@ -6,18 +6,33 @@
     android:layout_height="wrap_content"
     tools:layout_editor_absoluteY="81dp">
 
-    <ImageView
-        android:id="@+id/imgSnapAddress"
-        android:layout_width="0dp"
+    <RelativeLayout
+        android:id="@+id/relSnapPic"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitCenter"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAutoComplete" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAutoComplete">
+
+        <ImageView
+            android:id="@+id/imgSnapAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitCenter" />
+
+        <ImageView
+            android:id="@+id/imgSnapLogo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="20dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"/>
+    </RelativeLayout>
 
     <ImageButton
         android:id="@+id/ibtnEditAddress"
@@ -28,7 +43,7 @@
         android:scaleType="fitCenter"
         android:src="@drawable/editpencil"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/imgSnapAddress"
+        app:layout_constraintBottom_toTopOf="@+id/relSnapPic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -41,7 +56,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:text="Select"
-        app:layout_constraintBottom_toTopOf="@+id/imgSnapAddress"
+        app:layout_constraintBottom_toTopOf="@+id/relSnapPic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -96,10 +111,11 @@
         android:id="@+id/cnstMapView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1:1"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imgSnapAddress"
-        app:layout_constraintStart_toStartOf="@+id/imgSnapAddress"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/relSnapPic"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtAutoComplete"
         app:layout_constraintVertical_bias="0.233">
 

@@ -4,27 +4,27 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsObject;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.ComplexCompanyDetailsAdapter;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyName;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyName;
 import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
-public class CompanyNameConfi
+public class CompanyNameConfi extends CompanyDetailsBase
 {
-    private CompanyNameViewHolder mHolder;
-    private ICompanyName mListener;
-    private Context mContext;
 
-    public CompanyNameConfi(CompanyNameViewHolder holder, ICompanyName listener, Context context)
+    public CompanyNameConfi(CompanyNameViewHolder vh, ICompanyDetails listener, CompanyDetailsObject companyDetails)
     {
-        mHolder = holder;
-        mListener = listener;
-        mContext = context;
+        super(vh, listener, companyDetails);
     }
 
     public void Confi()
     {
-        mHolder.GetBtnSave().setOnClickListener(SaveCompanyName);
-        mHolder.GetIBtnEdit().setOnClickListener(EditCompanyName);
-        mHolder.GetEdtCompanyName().setOnFocusChangeListener(OnFocus);
+        getName().GetBtnSave().setOnClickListener(SaveCompanyName);
+        getName().GetIBtnEdit().setOnClickListener(EditCompanyName);
+        getName().GetEdtCompanyName().setOnFocusChangeListener(OnFocus);
     }
 
     private View.OnClickListener SaveCompanyName = new View.OnClickListener() {
@@ -32,17 +32,17 @@ public class CompanyNameConfi
         public void onClick(View v)
         {
 
-            if(mHolder.GetEdtCompanyName().getText().toString().isEmpty())
+            if(getName().GetEdtCompanyName().getText().toString().isEmpty())
             {
-                mHolder.GetEdtCompanyName().setHintTextColor(Color.RED);
+                getName().GetEdtCompanyName().setHintTextColor(Color.RED);
             }
             else
             {
-                mHolder.GetCnstEdit().setVisibility(View.GONE);
-                mHolder.GetCnstSave().setVisibility(View.VISIBLE);
-                mHolder.GetTxtCompanyName().setText(mHolder.GetEdtCompanyName().getText());
-                mListener.OnCompanyName(mHolder.GetTxtCompanyName().getText().toString());
-                StaticMethod.HideKeypadFrom(mContext, mHolder.GetEdtCompanyName());
+                getName().GetCnstEdit().setVisibility(View.GONE);
+                getName().GetCnstSave().setVisibility(View.VISIBLE);
+                getName().GetTxtCompanyName().setText(getName().GetEdtCompanyName().getText());
+                getListener().OnItemUpdate(ComplexCompanyDetailsAdapter.COMPANYNAME);
+                StaticMethod.HideKeypadFrom(getContext(), getName().GetEdtCompanyName());
             }
 
         }
@@ -52,8 +52,8 @@ public class CompanyNameConfi
         @Override
         public void onClick(View v)
         {
-            mHolder.GetCnstEdit().setVisibility(View.VISIBLE);
-            mHolder.GetCnstSave().setVisibility(View.GONE);
+            getName().GetCnstEdit().setVisibility(View.VISIBLE);
+            getName().GetCnstSave().setVisibility(View.GONE);
         }
     };
 
@@ -62,7 +62,7 @@ public class CompanyNameConfi
         public void onFocusChange(View v, boolean hasFocus)
         {
             if(hasFocus)
-                StaticMethod.ShowKeypadFrom(mContext, v);
+                StaticMethod.ShowKeypadFrom(getContext(), v);
         }
     };
 }

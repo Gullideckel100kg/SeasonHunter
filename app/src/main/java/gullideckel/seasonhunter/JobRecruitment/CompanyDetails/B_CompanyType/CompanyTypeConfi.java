@@ -1,57 +1,53 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.B_CompanyType;
 
-import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.widget.EditText;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyType;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyType;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsObject;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.ComplexCompanyDetailsAdapter;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
+import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyTypes;
 
-public class CompanyTypeConfi
+public class CompanyTypeConfi extends CompanyDetailsBase
 {
-    private CompanyTypeViewHolder mHolder;
-    private ICompanyType mListener;
-    private List<CompanyType> mItmes;
-    private Context mContext;
+    private CompanyTypes items;
     private CompanyTypeAdapter mAdapter;
 
-    public CompanyTypeConfi(CompanyTypeViewHolder holder, ICompanyType listener, List<CompanyType> items, Context context)
+    public CompanyTypeConfi(CompanyTypeViewHolder vh, ICompanyDetails listener, CompanyDetailsObject companyDetails, List<CompanyTypes.CompanyType> companyTypes)
     {
-        mHolder = holder;
-        mListener = listener;
-        mItmes = items;
-        mContext = context;
+        super(vh, listener, companyDetails);
+        this.items = getObjectAtPosition(CompanyTypes.class);
+        this.items.setCompanyTypes(companyTypes);
     }
 
     public void Confi()
     {
-        mAdapter = new CompanyTypeAdapter(mItmes);
-        mHolder.GetRclyCompanyType().setLayoutManager(new LinearLayoutManager(mContext));
-        mHolder.GetRclyCompanyType().setAdapter(mAdapter);
+        mAdapter = new CompanyTypeAdapter(items);
+        getType().GetRclyCompanyType().setLayoutManager(new LinearLayoutManager(getContext()));
+        getType().GetRclyCompanyType().setAdapter(mAdapter);
 
-        mHolder.GetBtnSave().setOnClickListener(SaveCompanyType);
-        mHolder.GetIBtnEdit().setOnClickListener(EditCompanyType);
+        getType().GetBtnSave().setOnClickListener(SaveCompanyType);
+        getType().GetIBtnEdit().setOnClickListener(EditCompanyType);
     }
 
     private View.OnClickListener SaveCompanyType = new View.OnClickListener() {
         @Override
         public void onClick(View v)
         {
-            if(mAdapter.GetCompanyType() != null)
+            if(items.getSelectedCompanyType() > -1)
             {
-                mHolder.GetCnstEdit().setVisibility(View.VISIBLE);
-                mHolder.GetCnstSave().setVisibility(View.GONE);
-                mHolder.GetImgCompanyLogo().setImageBitmap(mAdapter.GetCompanyType().GetLogo());
-                mHolder.GetTxtCompanyType().setText(mAdapter.GetCompanyType().GetCompanyType());
-                mListener.OnCompanyType(mAdapter.GetCompanyType());
+                getType().GetCnstEdit().setVisibility(View.VISIBLE);
+                getType().GetCnstSave().setVisibility(View.GONE);
+                getType().GetImgCompanyLogo().setImageBitmap(items.getCompanyTypes().get(items.getSelectedCompanyType()).GetLogo());
+                getType().GetTxtCompanyType().setText(items.getCompanyTypes().get(items.getSelectedCompanyType()).GetCompanyType());
+                getListener().OnItemUpdate(ComplexCompanyDetailsAdapter.COMPANYTYPE);
             }
             else
-                mHolder.GetSelectCompanyType().setTextColor(Color.RED);
+                getType().GetSelectCompanyType().setTextColor(Color.RED);
         }
     };
 
@@ -59,9 +55,9 @@ public class CompanyTypeConfi
         @Override
         public void onClick(View v)
         {
-            mHolder.GetSelectCompanyType().setTextColor(Color.BLACK);
-            mHolder.GetCnstEdit().setVisibility(View.GONE);
-            mHolder.GetCnstSave().setVisibility(View.VISIBLE);
+            getType().GetSelectCompanyType().setTextColor(Color.BLACK);
+            getType().GetCnstEdit().setVisibility(View.GONE);
+            getType().GetCnstSave().setVisibility(View.VISIBLE);
         }
     };
 }

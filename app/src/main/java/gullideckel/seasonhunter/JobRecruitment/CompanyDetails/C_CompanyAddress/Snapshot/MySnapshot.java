@@ -1,6 +1,7 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.Snapshot;
 
 import android.graphics.Bitmap;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -14,15 +15,16 @@ import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 public class MySnapshot implements GoogleMap.SnapshotReadyCallback, GoogleMap.OnMapLoadedCallback
 {
     private GoogleMap mMap;
-    private Marker mMarker;
+    private ImageView imgSnapLogo;
     private ISnapShot mListener;
     private Bitmap mLogo;
 
-    public MySnapshot(GoogleMap map, ISnapShot listener, Bitmap logo)
+    public MySnapshot(GoogleMap map, ISnapShot listener, Bitmap logo, ImageView imgSnapLogo)
     {
         mMap = map;
         mListener = listener;
         mLogo = logo;
+        this.imgSnapLogo = imgSnapLogo;
     }
 
     private Bitmap getMapResizedSnapshot(Bitmap mapSnapshot)
@@ -49,10 +51,11 @@ public class MySnapshot implements GoogleMap.SnapshotReadyCallback, GoogleMap.On
     {
         mMap.getUiSettings().setScrollGesturesEnabled(false);
         mMap.clear();
-        mMarker = mMap.addMarker(new MarkerOptions()
-                .position(mMap.getCameraPosition().target)
-                .title("JobMarker")
-                .icon(BitmapDescriptorFactory.fromBitmap(StaticMethod.GetResizedBitmap(mLogo, 40, 40))));
+//        mMarker = mMap.addMarker(new MarkerOptions()
+//                .position(mMap.getCameraPosition().target)
+//                .title("JobMarker")
+//                .icon(BitmapDescriptorFactory.fromBitmap(StaticMethod.GetResizedBitmap(mLogo, 40, 40))));
+        imgSnapLogo.setImageBitmap(mLogo);
         mMap.snapshot(this);
     }
 }

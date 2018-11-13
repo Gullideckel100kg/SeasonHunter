@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsObject;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.ComplexCompanyDetailsAdapter;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
 import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContact;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyJob;
 import gullideckel.seasonhunter.R;
 
 public class CompanyContactConfi extends CompanyDetailsBase
@@ -26,23 +26,24 @@ public class CompanyContactConfi extends CompanyDetailsBase
     private CompanyContact item;
 
     //TODO: Set String in String value folder
-    public CompanyContactConfi(RecyclerView.ViewHolder vh, Context context, ICompanyDetails listener, CompanyContact item)
+    public CompanyContactConfi(RecyclerView.ViewHolder vh, ICompanyDetails listener, CompanyDetailsObject detailsObject)
     {
-        super(vh, context, listener);
-
-        lstPhone = new ArrayList<>();
-        lstEmail = new ArrayList<>();
-
-        this.item = item;
-
-        adapterPhone = new CompanyContactAdapter(lstPhone, "Phone");
-        adapterEmail = new CompanyContactAdapter(lstEmail, "Email");
+        super(vh, listener, detailsObject);
+        item = getObjectAtPosition(CompanyContact.class);
     }
 
     public void Confi()
     {
-        getContact().GetBtnAddPhone().setOnClickListener(AddPhone);
-        getContact().GetBtnAddEmail().setOnClickListener(AddEmail);
+        lstPhone = new ArrayList<>();
+        lstPhone.add(new String());
+        lstEmail = new ArrayList<>();
+        lstEmail.add(new String());
+
+        adapterPhone = new CompanyContactAdapter(lstPhone, "Phone");
+        adapterEmail = new CompanyContactAdapter(lstEmail, "Email");
+
+        getContact().getiBtnAddPhone().setOnClickListener(AddPhone);
+        getContact().getiBtnAddEmail().setOnClickListener(AddEmail);
 
         getContact().GetBtnSave().setOnClickListener(Save);
         getContact().GetiBtnEdit().setOnClickListener(Edit);
