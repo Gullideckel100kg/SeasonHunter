@@ -1,19 +1,22 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.D_CompanyContact;
 
-import android.content.Context;
+import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsObject;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.ComplexCompanyDetailsAdapter;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContact;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyContact;
 import gullideckel.seasonhunter.R;
+import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
 public class CompanyContactConfi extends CompanyDetailsBase
 {
@@ -25,8 +28,7 @@ public class CompanyContactConfi extends CompanyDetailsBase
 
     private CompanyContact item;
 
-    //TODO: Set String in String value folder
-    public CompanyContactConfi(RecyclerView.ViewHolder vh, ICompanyDetails listener, CompanyDetailsObject detailsObject)
+    public CompanyContactConfi(RecyclerView.ViewHolder vh, ICompanyDetails listener, CompanyDetails detailsObject)
     {
         super(vh, listener, detailsObject);
         item = getObjectAtPosition(CompanyContact.class);
@@ -34,26 +36,35 @@ public class CompanyContactConfi extends CompanyDetailsBase
 
     public void Confi()
     {
-        lstPhone = new ArrayList<>();
-        lstPhone.add(new String());
-        lstEmail = new ArrayList<>();
-        lstEmail.add(new String());
+        if(getContact().getRelContact().getVisibility() == View.INVISIBLE || getContact().getRelContact().getVisibility() == View.GONE)
+        {
+            OpenContact();
 
-        adapterPhone = new CompanyContactAdapter(lstPhone, "Phone");
-        adapterEmail = new CompanyContactAdapter(lstEmail, "Email");
+            lstPhone = new ArrayList<>();
+            lstPhone.add(new String());
+            lstEmail = new ArrayList<>();
+            lstEmail.add(new String());
 
-        getContact().getiBtnAddPhone().setOnClickListener(AddPhone);
-        getContact().getiBtnAddEmail().setOnClickListener(AddEmail);
+            adapterPhone = new CompanyContactAdapter(lstPhone, getContext().getString(R.string.phone), InputType.TYPE_CLASS_PHONE);
+            adapterEmail = new CompanyContactAdapter(lstEmail, getContext().getString(R.string.email), InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 
-        getContact().GetBtnSave().setOnClickListener(Save);
-        getContact().GetiBtnEdit().setOnClickListener(Edit);
+            getContact().getiBtnAddPhone().setOnClickListener(AddPhone);
+            getContact().getiBtnAddEmail().setOnClickListener(AddEmail);
 
-        getContact().GetLstPhone().setLayoutManager(new LinearLayoutManager(getContext()));
-        getContact().GetLstEmail().setLayoutManager(new LinearLayoutManager(getContext()));
+            getContact().GetBtnSave().setOnClickListener(Save);
+            getContact().GetiBtnEdit().setOnClickListener(Edit);
 
-        getContact().GetLstPhone().setAdapter(adapterPhone);
-        getContact().GetLstEmail().setAdapter(adapterEmail);
+            getContact().GetLstPhone().setLayoutManager(new LinearLayoutManager(getContext()));
+            getContact().GetLstEmail().setLayoutManager(new LinearLayoutManager(getContext()));
+
+            getContact().GetLstPhone().setAdapter(adapterPhone);
+            getContact().GetLstEmail().setAdapter(adapterEmail);
+
+            getContact().getRelContact().setVisibility(View.VISIBLE);
+        }
     }
+
+
 
     private View.OnClickListener AddPhone = new View.OnClickListener()
     {
@@ -76,68 +87,143 @@ public class CompanyContactConfi extends CompanyDetailsBase
         }
     };
 
-    //TODO: Check for correct user input. Minimum one Contact
+    @Override
+    protected void OnKeyPadDisappearing()
+    {
+        super.OnKeyPadDisappearing();
+        if(getContact().GetCnstContactEdit().getVisibility() == View.VISIBLE)
+        {
+            getContact().GetCnstContactEdit().setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            ScrollToPositionDelayed(CompanyDetails.COMPANYCONTACT);
+        }
+    }
+
     private View.OnClickListener Save = new View.OnClickListener()
     {
         @Override
         public void onClick(View v)
         {
-            item = new CompanyContact();
-            StringBuilder sb = new StringBuilder();
-            for(int i = 0; i < lstPhone.size(); i++)
+            if(CorrectInput())
+            {
+                StringPhone();
+                StringEmail();
+                StringWebsite();
+
+                StaticMethod.RemoveKeyPad((Activity) getContext());
+
+                getContact().GetCnstContactEdit().setVisibility(View.GONE);
+                getContact().GetCnstContactSaved().setVisibility(View.VISIBLE);
+
+                getListener().OnItemUpdate(CompanyDetails.COMPANYJOBS);
+                getContact().GetTxtWrongInput().setVisibility(View.GONE);
+
+                item.setWebsite(getContact().GetEdtWebsite().getText().toString());
+
+                item.setOnlineRecruitment(getContact().GetChkOnlineRecruitment().isChecked());
+
+                getLayoutManager().setScrollEnabled(true);
+            }
+            else
+                getContact().GetTxtWrongInput().setVisibility(View.VISIBLE);
+        }
+    };
+
+    private void StringPhone()
+    {
+        StringBuilder sb = new StringBuilder();
+        item.getPhoneNumber().clear();
+        for(int i = 0; i < lstPhone.size(); i++)
+        {
+            if(!lstPhone.get(i).isEmpty())
             {
                 if(i > 0)
                     sb.append("\n" + getContext().getString(R.string.phone) + " " + lstPhone.get(i));
                 else
                     sb.append(getContext().getString(R.string.phone) + " " + lstPhone.get(i));
-                item.SetPhoneNumber(lstPhone.get(i));
-            }
-            if(!sb.toString().isEmpty())
-                getContact().GetTxtPhone().setText(sb);
 
-            sb = new StringBuilder();
-            for(int i = 0; i < lstEmail.size(); i++)
+                item.getPhoneNumber().add(lstPhone.get(i));
+            }
+        }
+        if(!sb.toString().isEmpty())
+            getContact().GetTxtPhone().setText(sb);
+    }
+
+    private void StringEmail()
+    {
+        StringBuilder sb = new StringBuilder();
+        item.getEmail().clear();
+        for(int i = 0; i < lstEmail.size(); i++)
+        {
+            if(!lstEmail.get(i).isEmpty())
             {
                 if(i > 0)
                     sb.append("\n" + getContext().getString(R.string.email) + " " + lstEmail.get(i));
                 else
                     sb.append(getContext().getString(R.string.email) + " " + lstEmail.get(i));
-                item.SetEmail(lstEmail.get(i));
+
+                item.getEmail().add(lstEmail.get(i));
             }
-            if(!sb.toString().isEmpty())
-                getContact().GetTxtEmail().setText(sb);
-
-            if(!getContact().GetEdtWebsite().getText().toString().isEmpty())
-            {
-                item.SetWebsite(getContact().GetEdtWebsite().getText().toString());
-                if(getContact().GetChkOnlineRecruitment().isChecked())
-                {
-                    getContact().GetTxtWebsite().setText(getContext().getString(R.string.website) + " " +
-                            getContact().GetEdtWebsite().getText() + " (" + getContext().getString(R.string.online_recruitment) + ")");
-                    item.SetOnlineRecruitment(true  );
-                }
-                else
-                {
-                    getContact().GetTxtWebsite().setText(getContext().getString(R.string.website) + " " +
-                            getContact().GetEdtWebsite().getText());
-                }
-
-            }
-
-            getContact().GetCnstContactEdit().setVisibility(View.GONE);
-            getContact().GetCnstContactSaved().setVisibility(View.VISIBLE);
-
-            getListener().OnItemUpdate(ComplexCompanyDetailsAdapter.COMPANYCONTACT);
         }
-    };
+        if(!sb.toString().isEmpty())
+            getContact().GetTxtEmail().setText(sb);
+    }
+
+    private void StringWebsite()
+    {
+        if(!getContact().GetEdtWebsite().getText().toString().isEmpty())
+        {
+            item.setWebsite(getContact().GetEdtWebsite().getText().toString());
+            if(getContact().GetChkOnlineRecruitment().isChecked())
+            {
+                getContact().GetTxtWebsite().setText(getContext().getString(R.string.website) + " " +
+                        getContact().GetEdtWebsite().getText() + " (" + getContext().getString(R.string.online_recruitment) + ")");
+                item.setOnlineRecruitment(true);
+            }
+            else
+            {
+                getContact().GetTxtWebsite().setText(getContext().getString(R.string.website) + " " +
+                        getContact().GetEdtWebsite().getText());
+            }
+        }
+    }
 
     private View.OnClickListener Edit = new View.OnClickListener()
     {
         @Override
         public void onClick(View v)
         {
-            getContact().GetCnstContactEdit().setVisibility(View.VISIBLE);
-            getContact().GetCnstContactSaved().setVisibility(View.GONE);
+            OpenContact();
         }
     };
+
+    private void OpenContact()
+    {
+        getContact().GetCnstContactEdit().setVisibility(View.VISIBLE);
+        getContact().GetCnstContactSaved().setVisibility(View.GONE);
+
+        ScrollToPositionDelayed(CompanyDetails.COMPANYCONTACT);
+        getLayoutManager().setScrollEnabled(false);
+    }
+
+
+    //TODO Check if phone number is correct, email input correct and website correct, Method can be looked up at google
+    private boolean CorrectInput()
+    {
+        for(int i = 0; i < lstPhone.size(); i ++)
+        {
+            if(!lstPhone.get(i).isEmpty())
+                return true;
+        }
+
+        for(int i = 0; i < lstEmail.size(); i ++)
+        {
+            if(!lstEmail.get(i).isEmpty())
+                return true;
+        }
+
+        if(!getContact().GetEdtWebsite().getText().toString().isEmpty())
+            return true;
+
+        return false;
+    }
 }

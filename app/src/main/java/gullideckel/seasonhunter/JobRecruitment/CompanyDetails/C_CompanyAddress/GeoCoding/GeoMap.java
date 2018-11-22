@@ -5,11 +5,14 @@ import android.location.Geocoder;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
+
 public class GeoMap
 {
     private GoogleMap mMap;
     private Geocoder mGeo;
     private LatLng mLatLng;
+    private CompanyAddress companyAddress;
 
     public GeoMap(Geocoder geo, GoogleMap map)
     {

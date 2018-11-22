@@ -42,14 +42,10 @@
         <activity
             android:name=".ActivityMap.MapHunter"
             android:label="@string/title_activity_map_hunter"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity
             android:name=".ActivitySignIn.SignInHunter"
             android:label="@string/title_activity_sign_in_hunter"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".JobRecruitmentOld.AddCompany"
-            android:label="@string/title_activity_job_ad_info"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ActivityMap.TestCompanyInfo"

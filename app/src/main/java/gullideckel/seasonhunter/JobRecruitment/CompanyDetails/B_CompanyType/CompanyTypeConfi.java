@@ -7,17 +7,16 @@ import android.view.View;
 import java.util.List;
 
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsObject;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.ComplexCompanyDetailsAdapter;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyTypes;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes;
 
 public class CompanyTypeConfi extends CompanyDetailsBase
 {
     private CompanyTypes items;
-    private CompanyTypeAdapter mAdapter;
+    private CompanyTypeAdapter adapter;
 
-    public CompanyTypeConfi(CompanyTypeViewHolder vh, ICompanyDetails listener, CompanyDetailsObject companyDetails, List<CompanyTypes.CompanyType> companyTypes)
+    public CompanyTypeConfi(CompanyTypeViewHolder vh, ICompanyDetails listener, CompanyDetails companyDetails, List<CompanyTypes.CompanyType> companyTypes)
     {
         super(vh, listener, companyDetails);
         this.items = getObjectAtPosition(CompanyTypes.class);
@@ -26,12 +25,18 @@ public class CompanyTypeConfi extends CompanyDetailsBase
 
     public void Confi()
     {
-        mAdapter = new CompanyTypeAdapter(items);
-        getType().GetRclyCompanyType().setLayoutManager(new LinearLayoutManager(getContext()));
-        getType().GetRclyCompanyType().setAdapter(mAdapter);
+        if(getType().getRelType().getVisibility() == View.INVISIBLE || getType().getRelType().getVisibility() == View.GONE)
+        {
+            adapter = new CompanyTypeAdapter(items);
+            getType().GetRclyCompanyType().setLayoutManager(new LinearLayoutManager(getContext()));
+            getType().GetRclyCompanyType().setAdapter(adapter);
 
-        getType().GetBtnSave().setOnClickListener(SaveCompanyType);
-        getType().GetIBtnEdit().setOnClickListener(EditCompanyType);
+            getType().GetBtnSave().setOnClickListener(SaveCompanyType);
+            getType().GetIBtnEdit().setOnClickListener(EditCompanyType);
+
+            getType().getRelType().setVisibility(View.VISIBLE);
+            OpenType();
+        }
     }
 
     private View.OnClickListener SaveCompanyType = new View.OnClickListener() {
@@ -42,9 +47,10 @@ public class CompanyTypeConfi extends CompanyDetailsBase
             {
                 getType().GetCnstEdit().setVisibility(View.VISIBLE);
                 getType().GetCnstSave().setVisibility(View.GONE);
-                getType().GetImgCompanyLogo().setImageBitmap(items.getCompanyTypes().get(items.getSelectedCompanyType()).GetLogo());
-                getType().GetTxtCompanyType().setText(items.getCompanyTypes().get(items.getSelectedCompanyType()).GetCompanyType());
-                getListener().OnItemUpdate(ComplexCompanyDetailsAdapter.COMPANYTYPE);
+                getType().GetImgCompanyLogo().setImageBitmap(items.getCompanyTypes().get(items.getSelectedCompanyType()).getLogo());
+                getType().GetTxtCompanyType().setText(items.getCompanyTypes().get(items.getSelectedCompanyType()).getCompanyType());
+
+                getListener().OnItemUpdate(CompanyDetails.COMPANYADDRESS);
             }
             else
                 getType().GetSelectCompanyType().setTextColor(Color.RED);
@@ -60,4 +66,13 @@ public class CompanyTypeConfi extends CompanyDetailsBase
             getType().GetCnstSave().setVisibility(View.VISIBLE);
         }
     };
+
+    private void OpenType()
+    {
+        ScrollToPosition(CompanyDetails.COMPANYTYPE);
+        getBtnPost().setVisibility(View.GONE);
+        getType().GetSelectCompanyType().setTextColor(Color.BLACK);
+        getType().GetCnstEdit().setVisibility(View.GONE);
+        getType().GetCnstSave().setVisibility(View.VISIBLE);
+    }
 }

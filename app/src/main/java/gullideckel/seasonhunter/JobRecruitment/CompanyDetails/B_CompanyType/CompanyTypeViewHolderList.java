@@ -24,12 +24,20 @@ public class CompanyTypeViewHolderList extends RecyclerView.ViewHolder
     private TextView mTxtCompanyType;
     private ImageView mImgCompanyType;
     private RadioButton mRdbCompanyType;
+    private View v;
 
     private int mLastCheckedPosition;
+
+    public View getV()
+    {
+        return v;
+    }
 
     public CompanyTypeViewHolderList(View v)
     {
         super(v);
+        this.v = v;
+
 
         mTxtCompanyType = (TextView) v.findViewById(R.id.txtAddCompanyType);
         mImgCompanyType = (ImageView) v.findViewById(R.id.imgCompanyTypeLogo);

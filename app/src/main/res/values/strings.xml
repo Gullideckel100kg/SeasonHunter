@@ -37,7 +37,10 @@
     <string name="phone">Phone:</string>
     <string name="email">Email:</string>
     <string name="website">Website:</string>
+    <string name="contact_wrong_input">Please fill out at least one Contact information</string>
 
+    <string name="add_job_offers">Add your Job offers  > > > </string>
+    <string name="jobs_semi">Jobs:</string>
     <string name="job_offer_headline">Post your job offers:</string>
     <string name="job_title">Job title:</string>
     <string name="no_payment">Please select a kind of Payment</string>
@@ -54,7 +57,7 @@
     <string name="toast_no_delete_first_item">Can not remove this item. There has to be at least one post</string>
 
     <string name="of">of</string>
-    
+
     <string-array name="months">
         <item>January</item>
         <item>February</item>
@@ -69,7 +72,7 @@
         <item>November</item>
         <item>December</item>
     </string-array>
-    
+
     <string-array name="days">
         <item>first week</item>
         <item>second week</item>

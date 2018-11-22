@@ -18,6 +18,24 @@ public class CompanyJobEditViewHolder extends RecyclerView.ViewHolder
     private TextView txtNoPayment;
 
     private RadioGroup rdgPayment;
+    private RadioButton rdbHourly;
+    private RadioButton rdbPiece;
+    private RadioButton rdbVolunteer;
+
+    public RadioButton getRdbHourly()
+    {
+        return rdbHourly;
+    }
+
+    public RadioButton getRdbPiece()
+    {
+        return rdbPiece;
+    }
+
+    public RadioButton getRdbVolunteer()
+    {
+        return rdbVolunteer;
+    }
 
     private TextView txtSpinStartHeadline;
     private Spinner spinStartDay;
@@ -74,6 +92,10 @@ public class CompanyJobEditViewHolder extends RecyclerView.ViewHolder
         txtNoPayment = (TextView) v.findViewById(R.id.txtNoPayment);
 
         rdgPayment = (RadioGroup) v.findViewById(R.id.rdgPayment);
+
+        rdbHourly = (RadioButton) v.findViewById(R.id.rdbHourlyPaid);
+        rdbPiece = (RadioButton) v.findViewById(R.id.rdbPieceWork);
+        rdbVolunteer = (RadioButton) v.findViewById(R.id.rdbVolunteering);
 
         txtSpinStartHeadline = (TextView) v.findViewById(R.id.txtStartDateHeadLine);
         spinStartDay = (Spinner) v.findViewById(R.id.spinDayStart);

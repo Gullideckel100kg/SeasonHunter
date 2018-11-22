@@ -3,28 +3,26 @@ package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.D_CompanyContact;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.B_CompanyType.CompanyTypeViewHolderList;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContact;
 import gullideckel.seasonhunter.R;
 
 public class CompanyContactAdapter extends RecyclerView.Adapter<CompanyContactViewHolderList>
 {
     private List<String> items;
-    private String type;
+    private String hint;
+    private int inputType;
 
-    public CompanyContactAdapter(List<String> items, String type)
+    public CompanyContactAdapter(List<String> items, String hint,int inputType)
     {
         this.items = items;
-        this.type = type;
+        this.hint = hint;
+        this.inputType = inputType;
     }
 
     @NonNull
@@ -41,12 +39,9 @@ public class CompanyContactAdapter extends RecyclerView.Adapter<CompanyContactVi
     @Override
     public void onBindViewHolder(@NonNull CompanyContactViewHolderList holder, final int position)
     {
-        holder.getTxtContact().setText(type);
+        holder.getTxtContact().setText(hint);
 
-        if(position == 0)
-            holder.getEdtContact().setInputType(InputType.TYPE_CLASS_PHONE);
-        else if (position == 1)
-            holder.getEdtContact().setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        holder.getEdtContact().setInputType(inputType);
 
         holder.getEdtContact().addTextChangedListener(new TextWatcher() {
             @Override

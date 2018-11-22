@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Locale;
 
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyAddress;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyAddress;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
 import gullideckel.seasonhunter.R;
 
 public class AddressTask extends AsyncTask<GeoMap, Void, CompanyAddress>
@@ -36,18 +36,18 @@ public class AddressTask extends AsyncTask<GeoMap, Void, CompanyAddress>
                 CompanyAddress currentAddress = new CompanyAddress();
                 if(addresses.size() > 0)
                 {
-                    currentAddress.SetAddress(addresses.get(0).getAddressLine(0));
-                    currentAddress.SetCountry(addresses.get(0).getCountryName());
-                    currentAddress.SetLatitude(addresses.get(0).getLatitude());
-                    currentAddress.SetLongitude(addresses.get(0).getLongitude());
+                    currentAddress.setAddress(addresses.get(0).getAddressLine(0));
+                    currentAddress.setCountry(addresses.get(0).getCountryName());
+                    currentAddress.setLatitude(addresses.get(0).getLatitude());
+                    currentAddress.setLongitude(addresses.get(0).getLongitude());
                     return currentAddress;
                 }
                 else
                 {
-                    currentAddress.SetAddress(mContext.getString(R.string.no_address_found));
-                    currentAddress.SetCountry("");
-                    currentAddress.SetLatitude(geoMaps[0].GetLatLng().latitude);
-                    currentAddress.SetLongitude(geoMaps[0].GetLatLng().longitude);
+                    currentAddress.setAddress(mContext.getString(R.string.no_address_found));
+                    currentAddress.setCountry("");
+                    currentAddress.setLatitude(geoMaps[0].GetLatLng().latitude);
+                    currentAddress.setLongitude(geoMaps[0].GetLatLng().longitude);
                     return currentAddress;
                 }
 

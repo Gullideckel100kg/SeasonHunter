@@ -16,7 +16,7 @@ import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
 import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.Snapshot.MySnapshot;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.FragCompanyDetails;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyTypes;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes;
 import gullideckel.seasonhunter.R;
 
 public class ButtonClicks
@@ -54,7 +54,7 @@ public class ButtonClicks
 //    }
 
     //TODO: Companytypes should be saved on Server
-    private List<gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyTypes.CompanyType> CompanyTypes;
+    private List<gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes.CompanyType> CompanyTypes;
 
     private View.OnClickListener ClickNewCompany = new View.OnClickListener() {
         @Override

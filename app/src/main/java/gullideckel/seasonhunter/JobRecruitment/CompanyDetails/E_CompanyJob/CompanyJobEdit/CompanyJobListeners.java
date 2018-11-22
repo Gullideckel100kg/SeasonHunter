@@ -11,7 +11,7 @@ import android.widget.Spinner;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyJobs;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
 import gullideckel.seasonhunter.R;
 
 public class CompanyJobListeners

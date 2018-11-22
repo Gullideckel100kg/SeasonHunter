@@ -1,34 +1,28 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.F_CompanyBenefits;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.BitmapFactory;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Handler;
 
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.CostumLayoutManager;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsObject;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.ComplexCompanyDetailsAdapter;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyBenefits;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyBenefits;
 import gullideckel.seasonhunter.R;
+import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
 public class CompanyBenefitsConfi extends CompanyDetailsBase
 {
     private CompanyBenefitsAdapter adapter;
     private CompanyBenefits benefits;
 
-    public CompanyBenefitsConfi(RecyclerView.ViewHolder vh, ICompanyDetails listener, CompanyDetailsObject detailsObject)
+    public CompanyBenefitsConfi(RecyclerView.ViewHolder vh, ICompanyDetails listener, CompanyDetails detailsObject)
     {
         super(vh, listener, detailsObject);
         benefits = getObjectAtPosition(CompanyBenefits.class);
@@ -37,18 +31,35 @@ public class CompanyBenefitsConfi extends CompanyDetailsBase
 
     public void Confi()
     {
-        FillBenefitsExample();
 
-        adapter = new CompanyBenefitsAdapter(benefits.getCompanyBenefits());
+        if(getBenefit().getRelBenefits().getVisibility() == View.INVISIBLE || getBenefit().getRelBenefits().getVisibility() == View.GONE)
+        {
+            FillBenefitsExample();
 
-        getBenefit().getRcylBenefitsEdit().setLayoutManager(new GridLayoutManager(getContext(), 1));
-        getBenefit().getRcylBenefitsEdit().setAdapter(adapter);
+            adapter = new CompanyBenefitsAdapter(benefits.getCompanyBenefits());
+            StaticMethod.RemoveKeyPad((Activity) getContext());
 
-        ScrollToPositionDelayed(ComplexCompanyDetailsAdapter.COMPANYBENEFITS);
-        getLayoutManager().setScrollEnabled(false);
+            getBenefit().getRcylBenefitsEdit().setLayoutManager(new GridLayoutManager(getContext(), 1));
+            getBenefit().getRcylBenefitsEdit().setAdapter(adapter);
 
-        getBenefit().getBtnSave().setOnClickListener(Save);
-        getBenefit().getiBtnEdit().setOnClickListener(Edit);
+            OpenBenefits();
+
+            getBenefit().getBtnSave().setOnClickListener(Save);
+            getBenefit().getiBtnEdit().setOnClickListener(Edit);
+
+            getBenefit().getRelBenefits().setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    protected void OnKeyPadDisappearing()
+    {
+        super.OnKeyPadDisappearing();
+        if(getBenefit().getCnstBenefitsEdit().getVisibility() == View.VISIBLE)
+        {
+            getBenefit().getCnstBenefitsEdit().setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            ScrollToPositionDelayed(CompanyDetails.COMPANYBENEFITS);
+        }
     }
 
     private View.OnClickListener Save = new View.OnClickListener() {
@@ -64,7 +75,7 @@ public class CompanyBenefitsConfi extends CompanyDetailsBase
 
             ViewVisibility(View.GONE, View.VISIBLE);
 
-            getListener().OnItemUpdate(ComplexCompanyDetailsAdapter.POST);
+            getListener().OnItemUpdate(CompanyDetails.POST);
         }
     };
 
@@ -76,14 +87,19 @@ public class CompanyBenefitsConfi extends CompanyDetailsBase
             getBenefit().getRcylBenefitsEdit().setLayoutManager(new GridLayoutManager(getContext(),1));
             getBenefit().getRcylBenefitsEdit().setAdapter(adapter);
 
-            ViewVisibility(View.VISIBLE, View.GONE);
-
-            getBtnPost().setVisibility(View.GONE);
-
-            ScrollToPositionDelayed(ComplexCompanyDetailsAdapter.COMPANYBENEFITS);
-            getLayoutManager().setScrollEnabled(false);
+            OpenBenefits();
         }
     };
+
+    private void OpenBenefits()
+    {
+        ViewVisibility(View.VISIBLE, View.GONE);
+
+        getBtnPost().setVisibility(View.GONE);
+
+        ScrollToPositionDelayed(CompanyDetails.COMPANYBENEFITS);
+        getLayoutManager().setScrollEnabled(false);
+    }
 
     private void SetBenefitList()
     {
@@ -110,7 +126,6 @@ public class CompanyBenefitsConfi extends CompanyDetailsBase
         benefits.getCompanyBenefits().add(GetBenefit(R.drawable.campgroung, R.string.campgroung));
         benefits.getCompanyBenefits().add(GetBenefit(R.drawable.shower, R.string.shower));
         benefits.getCompanyBenefits().add(GetBenefit(R.drawable.toilet, R.string.toilet));
-        benefits.getCompanyBenefits().add(GetBenefit(R.drawable.dips, R.string.dips));
         benefits.getCompanyBenefits().add(GetBenefit(R.drawable.languagecourse, R.string.language_course));
         benefits.getCompanyBenefits().add(GetBenefit(R.drawable.argicourse, R.string.agriculter_course));
         benefits.getCompanyBenefits().add(GetBenefit(R.drawable.cookingcourse, R.string.cooking_course));

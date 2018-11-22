@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyBenefits;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyBenefits;
 import gullideckel.seasonhunter.R;
 
 public class CompanyBenefitsAdapterSaved extends RecyclerView.Adapter<CompanyBenefitsViewHolderSaved>

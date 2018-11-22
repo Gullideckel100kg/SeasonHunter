@@ -43,7 +43,6 @@ import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.G
 import gullideckel.seasonhunter.ActivityMap.MapHunterClickListener.ButtonClicks;
 import gullideckel.seasonhunter.Interfaces.IAddressHandler;
 import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
-import gullideckel.seasonhunter.JobRecruitment.CompanyAddress.AddressSelection;
 import gullideckel.seasonhunter.R;
 
 public class MapHunter extends FragmentActivity implements OnMapReadyCallback, IAddressHandler, IReplaceFragment,
@@ -56,8 +55,6 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
     private FirebaseAuth mAuth;
     private Geocoder mGeocoder;
     ButtonClicks mButtonClicks;
-
-//    private AddressSelection mAddressSelection;
 
     private boolean mIsSelectCompanyLocation = false;
 
@@ -75,9 +72,6 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
 
         mGeocoder = new Geocoder(this);
 
-
-//        mAddressSelection = new AddressSelection(getWindow().getDecorView(),this);
-
         mButtonClicks = new ButtonClicks(getWindow().getDecorView(), this);
         mButtonClicks.AddNewCompanyClickEvent();
         mButtonClicks.AddNewLogOutClickEvent();
@@ -90,19 +84,11 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
     {
         mMap = googleMap;
 
-//        mButtonClicks.AddNewAddressClickEvent(googleMap, mAddressSelection);
-
         GoogleMapOptions options = new GoogleMapOptions();
 
         options.compassEnabled(true);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50,-120), 7));
         ExampleMarkers(googleMap);
-
-
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     //TODO: Just for test. Have to be deleted later
@@ -154,7 +140,7 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
     public void onReplaceFragment(Fragment fragment)
     {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frmJobRecruitment, fragment);
+        transaction.add(R.id.frmJobRecruitment, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

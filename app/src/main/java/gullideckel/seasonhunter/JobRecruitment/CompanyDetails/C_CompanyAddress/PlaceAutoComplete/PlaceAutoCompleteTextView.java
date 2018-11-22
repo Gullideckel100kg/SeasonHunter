@@ -24,7 +24,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 
 import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
-public class PlaceAutoCompleteTextView implements GoogleApiClient.OnConnectionFailedListener
+public class PlaceAutoCompleteTextView
 {
     private GoogleMap mMap;
     private Context mContext;
@@ -37,22 +37,16 @@ public class PlaceAutoCompleteTextView implements GoogleApiClient.OnConnectionFa
     private static final LatLngBounds LAT_LNG_BOUNDSC = new LatLngBounds(new LatLng(-40, -168), new LatLng(71,146));
     private static final String TAG = "PlaceAutoCompleteTV";
 
-    public PlaceAutoCompleteTextView(GoogleMap map, Context context, AutoCompleteTextView txtAutoComplete)
+    public PlaceAutoCompleteTextView(GoogleMap map, Context context, AutoCompleteTextView txtAutoComplete, GoogleApiClient googleApiClient)
     {
         mMap = map;
         mContext = context;
         mTxtAutoComplete = txtAutoComplete;
+        mGoogleApiClient = googleApiClient;
     }
 
     public void Init()
     {
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(mContext)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage((FragmentActivity)mContext, this)
-                .build();
-
         mAutoCompleteAdapter = new PlaceAutoCompleteAdapter(mContext, Places.getGeoDataClient((Activity)mContext), LAT_LNG_BOUNDSC, null);
         mTxtAutoComplete.setAdapter(mAutoCompleteAdapter);
 
@@ -88,9 +82,4 @@ public class PlaceAutoCompleteTextView implements GoogleApiClient.OnConnectionFa
         }
     };
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
-    {
-        Log.d(TAG, "Connection Failed PlaceAutoComplete: " + connectionResult.getErrorMessage());
-    }
 }

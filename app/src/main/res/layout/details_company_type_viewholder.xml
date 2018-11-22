@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relType"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:visibility="invisible">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cnstEditCompanyType"
@@ -26,12 +26,13 @@
 
         <ImageButton
             android:id="@+id/ibtnEditCompanyType"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="12dp"
-            android:scaleType="centerCrop"
+            android:background="@color/transparent"
+            android:scaleType="fitCenter"
             android:src="@drawable/editpencil"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +56,7 @@
         android:id="@+id/cnstSaveCompanyType"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/txtSelectCompanyType"
@@ -95,4 +96,4 @@
 
     </android.support.constraint.ConstraintLayout>
 
-</FrameLayout>
+</RelativeLayout>

@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.CompanyJobEdit.CompanyJobEditViewHolder;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyJobs;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
 import gullideckel.seasonhunter.R;
 
 public class CompanyJobSavedAdapter extends RecyclerView.Adapter<CompanyJobSavedViewHolder>
@@ -38,9 +37,9 @@ public class CompanyJobSavedAdapter extends RecyclerView.Adapter<CompanyJobSaved
     {
         holder.getTxtJobTitle().setText(items.get(position).getJobTitle());
         holder.getTxtPayment().setText(GetPayment(items.get(position)));
-        holder.getTxtDuration().setText(items.get(position).getStartDay() + context.getString(R.string.of) +
+        holder.getTxtDuration().setText(items.get(position).getStartDay() + " " + context.getString(R.string.of) + " " +
                                         items.get(position).getStartMonth() + " - " +
-                                        items.get(position).getEndDay() + context.getString(R.string.of) +
+                                        items.get(position).getEndDay() + " " + context.getString(R.string.of) + " " +
                                         items.get(position).getEndMonth());
         holder.getTxtAdditionalInfo().setText(items.get(position).getAddtionalInfo());
     }

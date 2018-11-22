@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import gullideckel.seasonhunter.CostumLayouts.AutoFitGridRecyclerView;
@@ -12,6 +13,8 @@ import gullideckel.seasonhunter.R;
 
 public class CompanyBenefitsViewHolder extends RecyclerView.ViewHolder
 {
+    private RelativeLayout relBenefits;
+
     private AutoFitGridRecyclerView rcylBenefitsSaved;
     private RecyclerView rcylBenefitsEdit;
 
@@ -21,6 +24,10 @@ public class CompanyBenefitsViewHolder extends RecyclerView.ViewHolder
     private Button btnSave;
     private ImageButton iBtnEdit;
 
+    public RelativeLayout getRelBenefits()
+    {
+        return relBenefits;
+    }
 
     public Button getBtnSave()
     {
@@ -55,6 +62,8 @@ public class CompanyBenefitsViewHolder extends RecyclerView.ViewHolder
     public CompanyBenefitsViewHolder(View v)
     {
         super(v);
+
+        relBenefits = (RelativeLayout) v.findViewById(R.id.relBenefits);
 
         rcylBenefitsEdit = (RecyclerView) v.findViewById(R.id.rcylBenefitsEdit);
         rcylBenefitsSaved = (AutoFitGridRecyclerView) v.findViewById(R.id.rcylBenefitsSaved);

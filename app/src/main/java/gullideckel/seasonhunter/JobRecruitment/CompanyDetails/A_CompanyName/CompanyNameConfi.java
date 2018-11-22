@@ -1,23 +1,22 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.A_CompanyName;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsObject;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.ComplexCompanyDetailsAdapter;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyName;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyName;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyName;
 import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
 public class CompanyNameConfi extends CompanyDetailsBase
 {
+    private CompanyName item;
 
-    public CompanyNameConfi(CompanyNameViewHolder vh, ICompanyDetails listener, CompanyDetailsObject companyDetails)
+    public CompanyNameConfi(CompanyNameViewHolder vh, ICompanyDetails listener, CompanyDetails companyDetails)
     {
         super(vh, listener, companyDetails);
+        item = getObjectAtPosition(CompanyName.class);
     }
 
     public void Confi()
@@ -41,7 +40,8 @@ public class CompanyNameConfi extends CompanyDetailsBase
                 getName().GetCnstEdit().setVisibility(View.GONE);
                 getName().GetCnstSave().setVisibility(View.VISIBLE);
                 getName().GetTxtCompanyName().setText(getName().GetEdtCompanyName().getText());
-                getListener().OnItemUpdate(ComplexCompanyDetailsAdapter.COMPANYNAME);
+                item.setCompanyName(getName().GetTxtCompanyName().getText().toString());
+                getListener().OnItemUpdate(CompanyDetails.COMPANYTYPE);
                 StaticMethod.HideKeypadFrom(getContext(), getName().GetEdtCompanyName());
             }
 
@@ -54,6 +54,7 @@ public class CompanyNameConfi extends CompanyDetailsBase
         {
             getName().GetCnstEdit().setVisibility(View.VISIBLE);
             getName().GetCnstSave().setVisibility(View.GONE);
+            getBtnPost().setVisibility(View.GONE);
         }
     };
 

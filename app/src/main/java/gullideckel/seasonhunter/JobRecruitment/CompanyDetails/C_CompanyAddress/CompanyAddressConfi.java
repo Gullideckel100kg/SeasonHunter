@@ -1,10 +1,10 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.location.Geocoder;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
@@ -17,44 +17,48 @@ import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.P
 
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.Snapshot.MySnapshot;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsObject;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.ComplexCompanyDetailsAdapter;
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyAddress;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyAddress;
-import gullideckel.seasonhunter.Objects.JobInformation.JobInformationSub.CompanyContact;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
 import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
 
 public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapReadyCallback, ICompanyAddress, ISnapShot
 {
-    private Bitmap mLogo;
-    private GoogleMap mMap;
+    private GoogleMap map;
+    private Bitmap logo;
     private volatile CompanyAddress companyAddress;
+    PlaceAutoCompleteTextView autoComplete;
 
-    public CompanyAddressConfi(CompanyAddressViewHolder vh, ICompanyDetails listener, Bitmap logo, CompanyDetailsObject detailsObject)
+    public CompanyAddressConfi(CompanyAddressViewHolder vh, ICompanyDetails listener, CompanyDetails detailsObject)
     {
         super(vh, listener, detailsObject);
-        mLogo = logo;
         companyAddress = getObjectAtPosition(CompanyAddress.class);
     }
 
-    public void Confi()
+    public void Confi(Bitmap logo)
     {
-        if (getAddress().GetMapView() != null)
+        if(getAddress().getRelAddress().getVisibility() == View.INVISIBLE || getAddress().getRelAddress().getVisibility() == View.GONE)
         {
-            getAddress().GetMapView().onCreate(null);
-            getAddress().GetMapView().onResume();
-            getAddress().GetMapView().getMapAsync(this);
+            if (getAddress().GetMapView() != null)
+            {
+                getAddress().GetMapView().onCreate(null);
+                getAddress().GetMapView().onResume();
+                getAddress().GetMapView().getMapAsync(this);
+            }
+
+            OpenAddress();
+
+            getAddress().GetBtnSave().setOnClickListener(Select);
+            getAddress().GetIBtnEdit().setOnClickListener(Edit);
+
+            getAddress().getRelAddress().setVisibility(View.VISIBLE);
         }
 
-        getLayoutManager().scrollToPosition(3);
-        getLayoutManager().setScrollEnabled(false);
+        getAddress().GetLogo().setImageBitmap(logo);
+        this.logo = logo;
 
-        getAddress().GetLogo().setImageBitmap(mLogo);
-
-        getAddress().GetBtnSave().setOnClickListener(Select);
-        getAddress().GetIBtnEdit().setOnClickListener(Edit);
     }
 
 
@@ -66,7 +70,7 @@ public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapRead
         public void onClick(View v)
         {
 
-            if(getAddress().GetTxtAddress().getText().toString().isEmpty() || getAddress().GetTxtCoordinates().getText().toString().isEmpty())
+            if(getAddress().getTxtAddressEdit().getText().toString().isEmpty() || getAddress().getTxtCoordinatesEdit().getText().toString().isEmpty())
             {
                 getAddress().GetTxtAddressHeadLine().setTextColor(Color.RED);
             }
@@ -74,16 +78,13 @@ public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapRead
             {
                 getAddress().GetTxtAddressHeadLine().setTextColor(Color.BLACK);
                 getLayoutManager().setScrollEnabled(true);
-                getAddress().GetCnstMapView().setVisibility(View.GONE);
-                getAddress().GetIBtnEdit().setVisibility(View.VISIBLE);
-                getAddress().GetBtnSave().setVisibility(View.GONE);
-                getAddress().GetTxtAddressHeadLine().setVisibility(View.GONE);
-                getAddress().GetTxtAutoComplete().setVisibility(View.GONE);
-                getAddress().getRelSnapPic().setVisibility(View.VISIBLE);
+
+                getAddress().getCnstAddressEdit().setVisibility(View.GONE);
+                getAddress().getCnstAddressSaved().setVisibility(View.VISIBLE);
+
                 TakeSnapshot();
 
-
-                getListener().OnItemUpdate(ComplexCompanyDetailsAdapter.COMPANYADDRESS);
+                getListener().OnItemUpdate(CompanyDetails.COMPANYCONTACT);
             }
         }
     };
@@ -93,21 +94,13 @@ public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapRead
         @Override
         public void onClick(View v)
         {
-            getLayoutManager().scrollToPosition(2);
-            getLayoutManager().setScrollEnabled(false);
-            getAddress().GetCnstMapView().setVisibility(View.VISIBLE);
-            getAddress().GetIBtnEdit().setVisibility(View.GONE);
-            getAddress().GetBtnSave().setVisibility(View.VISIBLE);
-            getAddress().GetTxtAutoComplete().setVisibility(View.VISIBLE);
-            getAddress().GetTxtAddressHeadLine().setVisibility(View.VISIBLE);
-            getAddress().getRelSnapPic().setVisibility(View.GONE);
-
+            OpenAddress();
         }
     };
 
     private void TakeSnapshot()
     {
-        mMap.setOnMapLoadedCallback(new MySnapshot(mMap, this, mLogo, getAddress().GetSnapLogo()));
+        map.setOnMapLoadedCallback(new MySnapshot(map, this, logo, getAddress().GetSnapLogo()));
     }
 
     @Override
@@ -115,21 +108,30 @@ public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapRead
     {
         MapsInitializer.initialize(getContext());
 
-        mMap = map;
+        this.map = map;
 
         CameraMove cameraMove = new CameraMove(getContext(), new GeoMap(new Geocoder(getContext()), map), this);
         cameraMove.Start();
 
-        PlaceAutoCompleteTextView autoComplete = new PlaceAutoCompleteTextView(map, getContext(), getAddress().GetTxtAutoComplete());
+        autoComplete = new PlaceAutoCompleteTextView(map, getContext(), getAddress().GetTxtAutoComplete(), getGoogleApiClient());
         autoComplete.Init();
     }
 
     @Override
     public void OnCompanyAddress(CompanyAddress companyAddress)
     {
-        companyAddress = companyAddress;
-        getAddress().GetTxtAddress().setText(companyAddress.GetAddress());
-        getAddress().GetTxtCoordinates().setText(StaticMethod.GPSConvert(companyAddress.GetLatitude(), companyAddress.GetLongitude()));
+        this.companyAddress.setAddress(companyAddress.getAddress());
+        this.companyAddress.setCountry(companyAddress.getCountry());
+        this.companyAddress.setLatitude(companyAddress.getLatitude());
+        this.companyAddress.setLongitude(companyAddress.getLongitude());
+        SetAddressInTxtView(getAddress().getTxtAddressEdit(), getAddress().getTxtCoordinatesEdit());
+        SetAddressInTxtView(getAddress().getTxtAddressSaved(), getAddress().getTxtCoordinatesSaved());
+    }
+
+    private void SetAddressInTxtView(TextView address, TextView coordinates)
+    {
+        address.setText(companyAddress.getAddress());
+        coordinates.setText(StaticMethod.GPSConvert(companyAddress.getLatitude(), companyAddress.getLongitude()));
     }
 
     @Override
@@ -138,9 +140,25 @@ public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapRead
         getAddress().GetSnapAddress().setImageBitmap(bitmap);
     }
 
+    private void OpenAddress()
+    {
+        getBtnPost().setVisibility(View.GONE);
+        getLayoutManager().scrollToPosition(CompanyDetails.COMPANYADDRESS);
+        getLayoutManager().setScrollEnabled(false);
+        getAddress().getCnstAddressEdit().setVisibility(View.VISIBLE);
+        getAddress().getCnstAddressSaved().setVisibility(View.GONE);
+    }
+
     public void SetLogo(Bitmap logo)
     {
         getAddress().GetLogo().setImageBitmap(logo);
         getAddress().GetSnapLogo().setImageBitmap(logo);
+    }
+
+    @Override
+    protected void OnKeyPadDisappearing()
+    {
+        super.OnKeyPadDisappearing();
+        ScrollToPosition(CompanyDetails.COMPANYADDRESS);
     }
 }

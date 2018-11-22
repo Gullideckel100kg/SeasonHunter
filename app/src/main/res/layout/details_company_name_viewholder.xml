@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameName"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/cnstEditCompanyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cnstEditCompanyName"
         android:visibility="visible">
 
         <Button
@@ -47,12 +46,13 @@
 
         <ImageButton
             android:id="@+id/ibtnEditCompanyName"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="16dp"
+            android:background="@color/transparent"
             android:contentDescription="@string/edit"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:src="@drawable/editpencil"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -71,4 +71,4 @@
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
-</FrameLayout>
+</RelativeLayout>

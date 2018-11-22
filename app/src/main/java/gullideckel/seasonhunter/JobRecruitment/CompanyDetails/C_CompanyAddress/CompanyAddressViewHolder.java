@@ -3,6 +3,7 @@ package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,9 +17,17 @@ import gullideckel.seasonhunter.R;
 
 public class CompanyAddressViewHolder extends RecyclerView.ViewHolder
 {
+    private RelativeLayout relAddress;
+
+    private ConstraintLayout cnstAddressEdit;
+    private ConstraintLayout cnstAddressSaved;
+
     private TextView mTxtAddressHeadLine;
-    private TextView mTxtAddress;
-    private TextView mTxtCoordinates;
+    private TextView txtAddressSaved;
+    private TextView txtCoordinatesSaved;
+    private TextView txtAddressEdit;
+    private TextView txtCoordinatesEdit;
+
     private Button mBtnSave;
     private ImageButton mIBtnEdit;
 
@@ -37,14 +46,21 @@ public class CompanyAddressViewHolder extends RecyclerView.ViewHolder
     private ImageView mLogo;
     private ConstraintLayout mCnstMapView;
 
-
     public CompanyAddressViewHolder(View v)
     {
         super(v);
+        relAddress = (RelativeLayout) v.findViewById(R.id.relAddress);
+
+        cnstAddressEdit = (ConstraintLayout) v.findViewById(R.id.cnstAddressEdit);
+        cnstAddressSaved = (ConstraintLayout) v.findViewById(R.id.cnstAddressSaved);
 
         mTxtAddressHeadLine = v.findViewById(R.id.txtAddressHeadLine);
-        mTxtAddress = v.findViewById(R.id.txtJobAddress);
-        mTxtCoordinates = v.findViewById(R.id.txtCoordinates);
+        txtAddressEdit = v.findViewById(R.id.txtAddressEdit);
+        txtCoordinatesEdit = v.findViewById(R.id.txtCoordinatesEdit);
+
+        txtAddressSaved = (TextView) v.findViewById(R.id.txtAddressSaved);
+        txtCoordinatesSaved = (TextView) v.findViewById(R.id.txtCoordinatesSaved);
+
 
         mBtnSave = v.findViewById(R.id.btnSelectAddress);
         mIBtnEdit = v.findViewById(R.id.ibtnEditAddress);
@@ -61,19 +77,44 @@ public class CompanyAddressViewHolder extends RecyclerView.ViewHolder
 
     }
 
+    public RelativeLayout getRelAddress()
+    {
+        return relAddress;
+    }
+
+    public ConstraintLayout getCnstAddressEdit()
+    {
+        return cnstAddressEdit;
+    }
+
+    public ConstraintLayout getCnstAddressSaved()
+    {
+        return cnstAddressSaved;
+    }
+
     public TextView GetTxtAddressHeadLine()
     {
         return mTxtAddressHeadLine;
     }
 
-    public TextView GetTxtAddress()
+    public TextView getTxtAddressSaved()
     {
-        return mTxtAddress;
+        return txtAddressSaved;
     }
 
-    public TextView GetTxtCoordinates()
+    public TextView getTxtCoordinatesSaved()
     {
-        return mTxtCoordinates;
+        return txtCoordinatesSaved;
+    }
+
+    public TextView getTxtAddressEdit()
+    {
+        return txtAddressEdit;
+    }
+
+    public TextView getTxtCoordinatesEdit()
+    {
+        return txtCoordinatesEdit;
     }
 
     public Button GetBtnSave()

@@ -7,13 +7,17 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import gullideckel.seasonhunter.R;
 
 public class CompanyContactViewHolder extends RecyclerView.ViewHolder
 {
-    private ConstraintLayout cnstContactEdit;
+    private RelativeLayout relContact;
+
+    private ScrollView cnstContactEdit;
     private ConstraintLayout cnstContactSaved;
 
     private ImageButton iBtnAddPhone;
@@ -33,11 +37,20 @@ public class CompanyContactViewHolder extends RecyclerView.ViewHolder
 
     private ImageButton iBtnEdit;
 
+    private TextView txtWrongInput;
+
+    public TextView GetTxtWrongInput()
+    {
+        return txtWrongInput;
+    }
+
     public CompanyContactViewHolder(View vh)
     {
         super(vh);
 
-        cnstContactEdit = (ConstraintLayout) vh.findViewById(R.id.cnstContactEdit);
+        relContact = (RelativeLayout) vh.findViewById(R.id.relContact);
+
+        cnstContactEdit = (ScrollView) vh.findViewById(R.id.cnstContactEdit);
         cnstContactSaved = (ConstraintLayout) vh.findViewById(R.id.cnstContactSaved);
 
         iBtnAddPhone = (ImageButton) vh.findViewById(R.id.iBtnAddPhone);
@@ -56,9 +69,17 @@ public class CompanyContactViewHolder extends RecyclerView.ViewHolder
         txtWebsite = (TextView) vh.findViewById(R.id.txtWebsite);
 
         iBtnEdit = (ImageButton) vh.findViewById(R.id.ibtnEditContact);
+
+        txtWrongInput = (TextView) vh.findViewById(R.id.txtContactWrongInput);
+
     }
 
-    public ConstraintLayout GetCnstContactEdit()
+    public RelativeLayout getRelContact()
+    {
+        return relContact;
+    }
+
+    public ScrollView GetCnstContactEdit()
     {
         return cnstContactEdit;
     }
