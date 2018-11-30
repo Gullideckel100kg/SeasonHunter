@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
+import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
 import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
+import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.Snapshot.MySnapshot;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.FragCompanyDetails;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes;
@@ -54,7 +56,7 @@ public class ButtonClicks
 //    }
 
     //TODO: Companytypes should be saved on Server
-    private List<gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes.CompanyType> CompanyTypes;
+    public static List<gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes.CompanyType> CompanyTypes;
 
     private View.OnClickListener ClickNewCompany = new View.OnClickListener() {
         @Override
@@ -68,12 +70,13 @@ public class ButtonClicks
             CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.fruit), "Fruit farm"));
             CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.chef), "Restaurant"));
             CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.tree), "Tree planting"));
+            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.wine), "Vineyard"));
             CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.factory), "Factory"));
             CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.christmas), "Christmas"));
             CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.otherwork), "Others"));
 
 
-            ((IReplaceFragment) mActivity).onReplaceFragment(FragCompanyDetails.NewInstance(CompanyTypes));
+            ((IFragmentHandler) mActivity).onReplaceFragment(FragCompanyDetails.NewInstance(CompanyTypes), IntFrag.ADD);
         }
     };
 

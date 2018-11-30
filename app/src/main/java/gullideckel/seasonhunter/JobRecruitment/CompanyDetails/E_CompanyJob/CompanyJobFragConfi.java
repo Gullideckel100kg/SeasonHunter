@@ -68,7 +68,7 @@ public class CompanyJobFragConfi extends CompanyDetailsBase
             StaticMethod.RemoveKeyPad((Activity)getContext());
             items.getCompanyJobs().add(new CompanyJobs.CompanyJob());
             adapterEdit.notifyItemInserted(items.getCompanyJobs().size() - 1);
-            getJobFrag().getRcylJobEdit().scrollToPosition(adapterEdit.getItemCount() - 1);
+            ScrollToPosition(adapterEdit.getItemCount() - 1);
         }
     };
 

@@ -36,17 +36,21 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import gullideckel.seasonhunter.ActivityMap.Jobs.JobsMarker;
+import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
+import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.CompanyAddressConfi;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.GeoCoding.GeoMap;
 import gullideckel.seasonhunter.ActivityMap.MapHunterClickListener.ButtonClicks;
 import gullideckel.seasonhunter.Interfaces.IAddressHandler;
 import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes;
 import gullideckel.seasonhunter.R;
 
-public class MapHunter extends FragmentActivity implements OnMapReadyCallback, IAddressHandler, IReplaceFragment,
-        GoogleMap.OnMarkerClickListener
+public class MapHunter extends FragmentActivity implements OnMapReadyCallback, IFragmentHandler
 {
 
     private GoogleMap mMap;
@@ -59,6 +63,14 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
     private boolean mIsSelectCompanyLocation = false;
 
     public static List<Marker> mLstJobMarkers = new ArrayList<>();
+
+
+
+    public static final HashMap<String, Bitmap> companyTypes = new HashMap<>();
+
+
+
+    //TODO: Just a for testing. Logos should be saved on device as small as possible and put somewhere where it makes more sense
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -77,6 +89,15 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
         mButtonClicks.AddNewLogOutClickEvent();
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        companyTypes.put( "Farm", BitmapFactory.decodeResource(getResources(), R.drawable.farm));
+        companyTypes.put( "Packhouse", BitmapFactory.decodeResource(getResources(), R.drawable.packing));
+        companyTypes.put( "Fruit farm", BitmapFactory.decodeResource(getResources(), R.drawable.fruit));
+        companyTypes.put( "Restaurant", BitmapFactory.decodeResource(getResources(), R.drawable.chef));
+        companyTypes.put( "Vineyard", BitmapFactory.decodeResource(getResources(), R.drawable.wine));
+        companyTypes.put( "Tree planting", BitmapFactory.decodeResource(getResources(), R.drawable.tree));
+        companyTypes.put( "Factory", BitmapFactory.decodeResource(getResources(), R.drawable.factory));
+        companyTypes.put( "Christmas", BitmapFactory.decodeResource(getResources(), R.drawable.christmas));
+        companyTypes.put( "Others", BitmapFactory.decodeResource(getResources(), R.drawable.otherwork));
     }
 
     @Override
@@ -88,61 +109,54 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
 
         options.compassEnabled(true);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50,-120), 7));
-        ExampleMarkers(googleMap);
-    }
 
-    //TODO: Just for test. Have to be deleted later
-    private void ExampleMarkers(GoogleMap map)
-    {
-        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(50,-120))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("red_barn",50,50))));
-
-        mLstJobMarkers.add(marker);
-
-        marker = map.addMarker(new MarkerOptions().position(new LatLng(49.731491,-119.797831))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("red_barn",50,50))));
-
-        mLstJobMarkers.add(marker);
-
-        marker = map.addMarker(new MarkerOptions().position(new LatLng(49.596290,-119.734889))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("red_barn",50,50))));
-
-        mLstJobMarkers.add(marker);
-    }
-
-
-
-    @Override
-    public boolean onMarkerClick(Marker marker)
-    {
-        Intent intent = new Intent(this, TestCompanyInfo.class);
-        startActivity(intent);
-        return false;
-    }
-
-    public Bitmap resizeMapIcons(String iconName, int width, int height){
-        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
-        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
-        return resizedBitmap;
-    }
-
-
-
-    @Override
-    public void SetAddress(String companyName)
-    {
-//        mAddressSelection.SetAddress(companyName, new GeoMap(mGeocoder, mMap), new PlaceAutoCompleteClass((PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.frag_place_autocomplete), mMap));
-        getSupportFragmentManager().popBackStackImmediate();
-        mIsSelectCompanyLocation = true;
+        JobsMarker jobsMarker = new JobsMarker(googleMap, this, this);
+        jobsMarker.LoadJobs();
     }
 
     @Override
-    public void onReplaceFragment(Fragment fragment)
+    public void onReplaceFragment(Fragment fragment, int intFrag)
     {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        switch (intFrag)
+        {
+            case IntFrag.ADD:
+                AddFragment(getSupportFragmentManager().beginTransaction(), fragment);
+                break;
+            case IntFrag.REPLACE:
+                ReplaceFragment(getSupportFragmentManager().beginTransaction(), fragment);
+                break;
+            case IntFrag.POPSTACK:
+                onBackPressed();
+                break;
+            case IntFrag.POPSTACKCOMPLETLY:
+                getSupportFragmentManager().popBackStackImmediate();
+                break;
+            case IntFrag.REMOVE:
+                RemoveFragment(getSupportFragmentManager().beginTransaction(), fragment);
+                break;
+        }
+    }
+
+    private void AddFragment(FragmentTransaction transaction, Fragment fragment)
+    {
         transaction.add(R.id.frmJobRecruitment, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+    private void ReplaceFragment(FragmentTransaction transaction, Fragment fragment)
+    {
+        transaction.replace(R.id.frmJobRecruitment, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    private void RemoveFragment(FragmentTransaction transaction, Fragment fragment)
+    {
+        transaction.remove(fragment);
+        transaction.commit();
+    }
+
 
 }

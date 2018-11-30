@@ -139,4 +139,9 @@
 
     <string name="post">POST</string>
 
+    <string name="more_details">More details >>></string>
+
+    <string name="company_saved">Company saved. It will show up in a few days. Thanks!!!</string>
+    <string name="company_saved_failed">Error: Could not save your company.</string>
+
 </resources>

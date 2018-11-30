@@ -49,7 +49,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ActivityMap.TestCompanyInfo"
-            android:label="@string/title_activity_test_company_info"
+            android:label="Info Example"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

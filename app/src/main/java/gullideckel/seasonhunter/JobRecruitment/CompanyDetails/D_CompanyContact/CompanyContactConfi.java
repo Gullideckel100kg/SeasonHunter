@@ -130,6 +130,8 @@ public class CompanyContactConfi extends CompanyDetailsBase
 
     private void StringPhone()
     {
+        getContact().GetTxtPhone().setVisibility(View.GONE);
+
         StringBuilder sb = new StringBuilder();
         item.getPhoneNumber().clear();
         for(int i = 0; i < lstPhone.size(); i++)
@@ -145,11 +147,17 @@ public class CompanyContactConfi extends CompanyDetailsBase
             }
         }
         if(!sb.toString().isEmpty())
+        {
             getContact().GetTxtPhone().setText(sb);
+            getContact().GetTxtPhone().setVisibility(View.VISIBLE);
+        }
+
     }
 
     private void StringEmail()
     {
+        getContact().GetTxtEmail().setVisibility(View.GONE);
+
         StringBuilder sb = new StringBuilder();
         item.getEmail().clear();
         for(int i = 0; i < lstEmail.size(); i++)
@@ -165,11 +173,16 @@ public class CompanyContactConfi extends CompanyDetailsBase
             }
         }
         if(!sb.toString().isEmpty())
+        {
             getContact().GetTxtEmail().setText(sb);
+            getContact().GetTxtEmail().setVisibility(View.VISIBLE);
+        }
     }
 
     private void StringWebsite()
     {
+        getContact().GetTxtWebsite().setVisibility(View.GONE);
+
         if(!getContact().GetEdtWebsite().getText().toString().isEmpty())
         {
             item.setWebsite(getContact().GetEdtWebsite().getText().toString());
@@ -184,6 +197,7 @@ public class CompanyContactConfi extends CompanyDetailsBase
                 getContact().GetTxtWebsite().setText(getContext().getString(R.string.website) + " " +
                         getContact().GetEdtWebsite().getText());
             }
+            getContact().GetTxtWebsite().setVisibility(View.VISIBLE);
         }
     }
 
@@ -202,7 +216,6 @@ public class CompanyContactConfi extends CompanyDetailsBase
         getContact().GetCnstContactSaved().setVisibility(View.GONE);
 
         ScrollToPositionDelayed(CompanyDetails.COMPANYCONTACT);
-        getLayoutManager().setScrollEnabled(false);
     }
 
 

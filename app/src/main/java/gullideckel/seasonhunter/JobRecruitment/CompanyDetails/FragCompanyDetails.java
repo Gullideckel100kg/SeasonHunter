@@ -1,5 +1,6 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -26,6 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
 
 import gullideckel.seasonhunter.CostumLayouts.CostumLayoutManager;
+import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
+import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.IPost;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyBenefits;
@@ -48,7 +52,9 @@ public class FragCompanyDetails extends Fragment implements IPost, GoogleApiClie
 
     private CollectionReference mRef = FirebaseFirestore.getInstance().collection("companies");
 
-    GoogleApiClient googleApiClient;
+    private GoogleApiClient googleApiClient;
+
+    private IFragmentHandler listener;
 
 
     //TODO: List
@@ -155,38 +161,42 @@ public class FragCompanyDetails extends Fragment implements IPost, GoogleApiClie
                 @Override
                 public void onSuccess(DocumentReference documentReference)
                 {
-                    System.out.print("");
+                    Toast.makeText(getContext(), getContext().getText(R.string.company_saved),Toast.LENGTH_LONG);
                 }
             })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e)
                     {
-                        System.out.print("");
+                        Toast.makeText(getContext(), getContext().getText(R.string.company_saved_failed),Toast.LENGTH_LONG);
+                        Log.d(TAG, "onFailure: " + e);
                     }
                 });
+            listener.onReplaceFragment(null, IntFrag.POPSTACKCOMPLETLY);
 
         }
     };
 
-    private void SetDocument(String document, Object obj)
-    {
-        DocumentReference docRef = mRef.document(document);
-
-        docRef.set(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid)
-            {
-                Log.d(TAG, "Document has been saved");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e)
-            {
-                Log.w(TAG, "Document was not saved");
-            }
-        });
-    }
+//    private void SetDocument(String document, Object obj)
+//    {
+//        DocumentReference docRef = mRef.document(document);
+//
+//        docRef.set(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
+//            @Override
+//            public void onSuccess(Void aVoid)
+//            {
+//                Log.d(TAG, "Document has been saved");
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e)
+//            {
+//                Log.w(TAG, "Document was not saved");
+//            }
+//        });
+//
+//
+//    }
 
 
     @Override
@@ -211,14 +221,23 @@ public class FragCompanyDetails extends Fragment implements IPost, GoogleApiClie
                 .addApi(Places.PLACE_DETECTION_API)
                 .enableAutoManage(getActivity(), this)
                 .build();
+
+        if (context instanceof IFragmentHandler)
+            listener = (IFragmentHandler) context;
+         else
+            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+
     }
+
 
     @Override
     public void onDetach()
     {
         super.onDetach();
+
         googleApiClient.stopAutoManage(getActivity());
         googleApiClient.disconnect();
+        listener = null;
     }
 
     @Override

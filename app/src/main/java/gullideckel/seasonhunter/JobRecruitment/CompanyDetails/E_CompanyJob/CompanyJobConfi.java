@@ -4,7 +4,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
 import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
+import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.CompanyJobSaved.CompanyJobSavedAdapter;
@@ -59,7 +61,7 @@ public class CompanyJobConfi extends CompanyDetailsBase implements ICompanyJobUp
 
     private void OpenJob()
     {
-        ((IReplaceFragment) getContext()).onReplaceFragment(FragCompanyJobs.NewInstance(getListener(), getDetailObject(), this));
+        ((IFragmentHandler) getContext()).onReplaceFragment(FragCompanyJobs.NewInstance(getListener(), getDetailObject(), this), IntFrag.ADD);
     }
 
     @Override
