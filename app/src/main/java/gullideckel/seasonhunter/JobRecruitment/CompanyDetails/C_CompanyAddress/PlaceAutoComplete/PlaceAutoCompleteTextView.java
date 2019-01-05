@@ -22,14 +22,16 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
+import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyAddress;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
 import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
 public class PlaceAutoCompleteTextView
 {
-    private GoogleMap mMap;
     private Context mContext;
     private AutoCompleteTextView mTxtAutoComplete;
 
+    private ICompanyAddress listener;
 
     private GoogleApiClient mGoogleApiClient;
     private PlaceAutoCompleteAdapter mAutoCompleteAdapter;
@@ -37,9 +39,9 @@ public class PlaceAutoCompleteTextView
     private static final LatLngBounds LAT_LNG_BOUNDSC = new LatLngBounds(new LatLng(-40, -168), new LatLng(71,146));
     private static final String TAG = "PlaceAutoCompleteTV";
 
-    public PlaceAutoCompleteTextView(GoogleMap map, Context context, AutoCompleteTextView txtAutoComplete, GoogleApiClient googleApiClient)
+    public PlaceAutoCompleteTextView(Context context, AutoCompleteTextView txtAutoComplete, GoogleApiClient googleApiClient, ICompanyAddress listener)
     {
-        mMap = map;
+        this.listener = listener;
         mContext = context;
         mTxtAutoComplete = txtAutoComplete;
         mGoogleApiClient = googleApiClient;
@@ -78,7 +80,14 @@ public class PlaceAutoCompleteTextView
                 return;
             }
 
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(places.get(0).getLatLng(), 13));
+            CompanyAddress address = new CompanyAddress();
+            address.setAddress(places.get(0).getAddress().toString());
+            address.setCountry(places.get(0).getLocale().getCountry());
+            address.setLatitude(places.get(0).getLatLng().latitude);
+            address.setLongitude(places.get(0).getLatLng().longitude);
+
+            listener.OnCompanyAddress(address);
+//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(places.get(0).getLatLng(), 13));
         }
     };
 

@@ -28,16 +28,16 @@ public class OnClickSignIn implements View.OnClickListener
     private EditText mSignEmail;
     private EditText mSignPassword;
 
-    private Activity mContext;
+    private Activity activity;
 
     private static final String TAG = "OnClickSignIn";
     private FirebaseAuth mAuth;
 
-    public OnClickSignIn(EditText signEmail, EditText signPassword, Context context)
+    public OnClickSignIn(EditText signEmail, EditText signPassword, Activity activity)
     {
         mSignEmail = signEmail;
         mSignPassword = signPassword;
-        mContext = (Activity) context;
+        this.activity =  activity;
         mAuth = FirebaseAuth.getInstance();
     }
 
@@ -59,7 +59,7 @@ public class OnClickSignIn implements View.OnClickListener
 
 
         //TODO: Enable Button so map activity pops up only one time!!!
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mContext, new OnCompleteListener<AuthResult>()
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(activity, new OnCompleteListener<AuthResult>()
         {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task)
@@ -68,25 +68,18 @@ public class OnClickSignIn implements View.OnClickListener
                 {
                     Log.d(TAG, "signInWithEmail:success");
                     if(mAuth.getCurrentUser().isEmailVerified())
-                        OpenMapHunter();
+                        activity.finish();
                     else
                          AlertDialogVerification();
                 }
                 else
                 {
                     Log.w(TAG, "signInWithEmail:failure", task.getException());
-                    Toast.makeText(mContext, "Authentication failed.",
+                    Toast.makeText(activity, "Authentication failed.",
                             Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-
-    private void OpenMapHunter()
-    {
-        Intent intent = new Intent(mContext, MapHunter.class);
-        mContext.startActivity(intent);
-        mContext.finish();
     }
 
     private void AlertDialogVerification()
@@ -94,9 +87,9 @@ public class OnClickSignIn implements View.OnClickListener
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         {
-            builder = new AlertDialog.Builder(mContext, android.R.style.Theme_Material_Dialog_Alert);
+            builder = new AlertDialog.Builder(activity, android.R.style.Theme_Material_Dialog_Alert);
         } else {
-            builder = new AlertDialog.Builder(mContext);
+            builder = new AlertDialog.Builder(activity);
         }
         builder.setTitle("Email not verified")
                 .setMessage("Send new verification email?")
@@ -104,7 +97,7 @@ public class OnClickSignIn implements View.OnClickListener
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
-                        ((IFragmentHandler)mContext).onReplaceFragment(new FragEmailVerification(), IntFrag.REPLACE);
+                        ((IFragmentHandler)activity).onReplaceFragment(new FragEmailVerification(), IntFrag.REPLACE);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

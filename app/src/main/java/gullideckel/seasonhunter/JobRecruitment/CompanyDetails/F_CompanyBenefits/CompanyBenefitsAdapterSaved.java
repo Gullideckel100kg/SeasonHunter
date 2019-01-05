@@ -15,40 +15,58 @@ import gullideckel.seasonhunter.R;
 
 public class CompanyBenefitsAdapterSaved extends RecyclerView.Adapter<CompanyBenefitsViewHolderSaved>
 {
-    private List<CompanyBenefits.CompanyBenefit> items;
-    private Context context;
-
-    public CompanyBenefitsAdapterSaved(List<CompanyBenefits.CompanyBenefit> items, Context context)
-    {
-        this.items = items;
-        this.context = context;
-    }
-
     @NonNull
     @Override
     public CompanyBenefitsViewHolderSaved onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.details_company_benefits_viewholder_saved, parent, false);
-        CompanyBenefitsViewHolderSaved viewHolder = new CompanyBenefitsViewHolderSaved(v);
-        return viewHolder;
+        return null;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CompanyBenefitsViewHolderSaved holder, final int position)
+    public void onBindViewHolder(@NonNull CompanyBenefitsViewHolderSaved holder, int position)
     {
-        holder.getImgBenefit().setImageBitmap(items.get(position).getBenefitLogo());
-        holder.getImgBenefit().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Toast.makeText(context, items.get(position).getBenefit(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 
     @Override
     public int getItemCount()
     {
-        return items.size();
+        return 0;
     }
+//    private List<CompanyBenefits.CompanyBenefit> items;
+//    private Context context;
+//
+//    public CompanyBenefitsAdapterSaved(List<CompanyBenefits.CompanyBenefit> items, Context context)
+//    {
+//        this.items = items;
+//        this.context = context;
+//    }
+//
+//    @NonNull
+//    @Override
+//    public CompanyBenefitsViewHolderSaved onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+//    {
+//        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.details_company_benefits_viewholder_saved, parent, false);
+//        CompanyBenefitsViewHolderSaved viewHolder = new CompanyBenefitsViewHolderSaved(v);
+//        return viewHolder;
+//    }
+//
+//    @Override
+//    public void onBindViewHolder(@NonNull final CompanyBenefitsViewHolderSaved holder, final int position)
+//    {
+//        holder.getImgBenefit().setImageBitmap(items.get(position).getBenefitLogo());
+//        holder.getImgBenefit().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Toast.makeText(context, items.get(position).getBenefit(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//
+//    @Override
+//    public int getItemCount()
+//    {
+//        return items.size();
+//    }
 }

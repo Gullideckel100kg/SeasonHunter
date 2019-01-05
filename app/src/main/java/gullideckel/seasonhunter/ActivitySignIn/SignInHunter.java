@@ -1,20 +1,26 @@
 package gullideckel.seasonhunter.ActivitySignIn;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragCreateAccountHunter;
+import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragForgotPassword;
 import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragSignInHunter;
 import gullideckel.seasonhunter.ActivitySignIn.OnClickSignInHunter.OnClickSignIn;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.R;
 
-public class SignInHunter extends FragmentActivity implements IFragmentHandler
+public class SignInHunter extends FragmentActivity
 {
 
     @Override
@@ -23,20 +29,35 @@ public class SignInHunter extends FragmentActivity implements IFragmentHandler
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_sign_in_hunter);
 
-        ReplaceFragment(new FragSignInHunter());
+        EditText edtSignEmail = (EditText) findViewById(R.id.edtSignEmail);
+        EditText edtSignPassword = (EditText) findViewById(R.id.edtSignPassword);
+
+        TextView txtForgotPassword = (TextView) findViewById(R.id.txtForgotPassword);
+//        TextView txtSignInWithoutPassword = (TextView) findViewById(R.id.txtSignInWithoutPassword);
+
+        Button btnCreateAccount = (Button) findViewById(R.id.btnCreateAccount);
+        Button btnSignIn = (Button) findViewById(R.id.btnSignIn);
+
+        btnCreateAccount.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                ReplaceFragment(new FragCreateAccountHunter());
+            }
+        });
+
+        btnSignIn.setOnClickListener(new OnClickSignIn(edtSignEmail, edtSignPassword, this));
+
+        txtForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                ReplaceFragment(new FragForgotPassword());
+            }
+        });
     }
 
-    @Override
-    public void onReplaceFragment(Fragment fragment, int intFrag)
-    {
-        switch (intFrag)
-        {
-            case IntFrag.REPLACE:
-                ReplaceFragment(fragment);
-            case IntFrag.POPSTACK:
-                PopStack();
-        }
-    }
 
     private void ReplaceFragment(Fragment fragment)
     {
@@ -46,13 +67,14 @@ public class SignInHunter extends FragmentActivity implements IFragmentHandler
         transaction.commit();
     }
 
-    private  void PopStack()
+    @Override
+    public void onBackPressed()
     {
-        getSupportFragmentManager().popBackStackImmediate();
-    }
-
-    private void PopStackCompeletly()
-    {
-        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+        startActivity(intent);
+        finish();
+        System.exit(0);
     }
 }

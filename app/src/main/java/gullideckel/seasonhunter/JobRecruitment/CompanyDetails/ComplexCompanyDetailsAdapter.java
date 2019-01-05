@@ -155,8 +155,6 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
                 break;
             case CompanyDetails.COMPANYBENEFITS:
                 benefitsConfi.Confi();
-                break;
-            case CompanyDetails.POST:
                 isPost = true;
                 break;
         }

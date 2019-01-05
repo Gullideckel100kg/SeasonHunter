@@ -1,5 +1,7 @@
 package gullideckel.seasonhunter;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,18 +15,10 @@ import java.util.Calendar;
 import gullideckel.seasonhunter.ActivityMap.MapHunter;
 import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
 
-public class LoadingHunter extends AppCompatActivity
+public class LoadingHunter
 {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_start_loading);
-        OpenApp(LoadUser());
-    }
-
-    private boolean LoadUser()
+    public boolean LoadUser()
     {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -36,18 +30,18 @@ public class LoadingHunter extends AppCompatActivity
     }
 
 
-    private void OpenApp(boolean isCurrentUser)
-    {
-        if(isCurrentUser)
-        {
-            Intent intent = new Intent(this, MapHunter.class);
-            startActivity(intent);
-        }
-        else
-        {
-            Intent intent = new Intent(this, SignInHunter.class);
-            startActivity(intent);
-        }
-        finish();
-    }
+//    public void OpenApp(Context context)
+//    {
+//        if(LoadUser())
+//        {
+//            Intent intent = new Intent(this, MapHunter.class);
+//            startActivity(intent);
+//        }
+//        else
+//        {
+//            Intent intent = new Intent(this, SignInHunter.class);
+//            startActivity(intent);
+//        }
+//        finish();
+//    }
 }

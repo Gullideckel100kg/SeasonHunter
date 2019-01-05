@@ -9,6 +9,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoadingHunter"
+            android:name=".ActivityMap.MapHunter"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -39,18 +40,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".ActivityMap.MapHunter"
-            android:label="@string/title_activity_map_hunter"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <!--<activity-->
+            <!--android:name=".ActivityMap.MapHunter"-->
+            <!--android:label="@string/title_activity_map_hunter"-->
+            <!--android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />-->
         <activity
             android:name=".ActivitySignIn.SignInHunter"
             android:label="@string/title_activity_sign_in_hunter"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ActivityMap.TestCompanyInfo"
-            android:label="Info Example"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

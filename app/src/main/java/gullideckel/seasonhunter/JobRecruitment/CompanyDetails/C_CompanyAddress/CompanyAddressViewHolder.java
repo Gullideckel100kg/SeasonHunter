@@ -31,20 +31,20 @@ public class CompanyAddressViewHolder extends RecyclerView.ViewHolder
     private Button mBtnSave;
     private ImageButton mIBtnEdit;
 
-    private RelativeLayout relSnapPic;
+//    private RelativeLayout relSnapPic;
 
-    public RelativeLayout getRelSnapPic()
-    {
-        return relSnapPic;
-    }
+//    public RelativeLayout getRelSnapPic()
+//    {
+//        return relSnapPic;
+//    }
 
-    private ImageView mSnapAddress;
-    private ImageView mSnapLogo;
+//    private ImageView mSnapAddress;
+//    private ImageView mSnapLogo;
     private AutoCompleteTextView mTxtAutoComplete;
 
-    private MapView mMapView;
-    private ImageView mLogo;
-    private ConstraintLayout mCnstMapView;
+//    private MapView mMapView;
+//    private ImageView mLogo;
+//    private ConstraintLayout mCnstMapView;
 
     public CompanyAddressViewHolder(View v)
     {
@@ -67,13 +67,13 @@ public class CompanyAddressViewHolder extends RecyclerView.ViewHolder
 
         mTxtAutoComplete = v.findViewById(R.id.txtAutoComplete);
 
-        relSnapPic = (RelativeLayout) v.findViewById(R.id.relSnapPic);
-        mSnapAddress = v.findViewById(R.id.imgSnapAddress);
-        mSnapLogo = v.findViewById(R.id.imgSnapLogo);
-
-        mMapView = v.findViewById(R.id.mapView);
-        mLogo = v.findViewById(R.id.imgJobMarker);
-        mCnstMapView = v.findViewById(R.id.cnstMapView);
+//        relSnapPic = (RelativeLayout) v.findViewById(R.id.relSnapPic);
+//        mSnapAddress = v.findViewById(R.id.imgSnapAddress);
+//        mSnapLogo = v.findViewById(R.id.imgSnapLogo);
+//
+////        mMapView = v.findViewById(R.id.mapView);
+//        mLogo = v.findViewById(R.id.imgJobMarker);
+//        mCnstMapView = v.findViewById(R.id.cnstMapView);
 
     }
 
@@ -132,25 +132,25 @@ public class CompanyAddressViewHolder extends RecyclerView.ViewHolder
         return mTxtAutoComplete;
     }
 
-    public ImageView GetSnapAddress()
-    {
-        return mSnapAddress;
-    }
-
-    public ImageView GetSnapLogo()  { return mSnapLogo; }
-
-    public MapView GetMapView()
-    {
-        return mMapView;
-    }
-
-    public ImageView GetLogo()
-    {
-        return mLogo;
-    }
-
-    public ConstraintLayout GetCnstMapView()
-    {
-        return mCnstMapView;
-    }
+//    public ImageView GetSnapAddress()
+//    {
+//        return mSnapAddress;
+//    }
+//
+//    public ImageView GetSnapLogo()  { return mSnapLogo; }
+//
+////    public MapView GetMapView()
+////    {
+////        return mMapView;
+////    }
+//
+//    public ImageView GetLogo()
+//    {
+//        return mLogo;
+//    }
+//
+//    public ConstraintLayout GetCnstMapView()
+//    {
+//        return mCnstMapView;
+//    }
 }

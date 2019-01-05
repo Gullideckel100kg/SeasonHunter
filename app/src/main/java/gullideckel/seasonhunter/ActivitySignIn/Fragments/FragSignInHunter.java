@@ -29,35 +29,7 @@ public class FragSignInHunter extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        EditText edtSignEmail = (EditText) view.findViewById(R.id.edtSignEmail);
-        EditText edtSignPassword = (EditText) view.findViewById(R.id.edtSignPassword);
 
-        TextView txtForgotPassword = (TextView) view.findViewById(R.id.txtForgotPassword);
-        TextView txtSignInWithoutPassword = (TextView) view.findViewById(R.id.txtSignInWithoutPassword);
-
-        Button btnCreateAccount = (Button) view.findViewById(R.id.btnCreateAccount);
-        Button btnSignIn = (Button) view.findViewById(R.id.btnSignIn);
-
-        final Fragment createAccount = new FragCreateAccountHunter();
-
-        btnCreateAccount.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                mListener.onReplaceFragment(new FragCreateAccountHunter(), IntFrag.REPLACE);
-            }
-        });
-
-        btnSignIn.setOnClickListener(new OnClickSignIn(edtSignEmail, edtSignPassword, getActivity()));
-
-        txtForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                mListener.onReplaceFragment(new FragForgotPassword(), IntFrag.REPLACE);
-            }
-        });
     }
 
 

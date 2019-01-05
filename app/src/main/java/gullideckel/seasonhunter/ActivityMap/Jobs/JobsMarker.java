@@ -1,9 +1,7 @@
 package gullideckel.seasonhunter.ActivityMap.Jobs;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -16,21 +14,18 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.common.collect.SetMultimap;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreSettings;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.model.DocumentCollections;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import gullideckel.seasonhunter.ActivityMap.MapHunter;
-import gullideckel.seasonhunter.ActivityMap.TestCompanyInfo;
+import gullideckel.seasonhunter.CompanyInfo.FragCompanyInfo;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
+import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyDocument;
 
 public class JobsMarker implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener
@@ -57,8 +52,7 @@ public class JobsMarker implements GoogleMap.OnMarkerClickListener, GoogleMap.On
         this.listener = listener;
         map.setOnMarkerClickListener(this);
         map.setOnInfoWindowClickListener(this);
-        map.setInfoWindowAdapter(new MarkerInfoWindow(context   ));
-
+        map.setInfoWindowAdapter(new MarkerInfoWindow(context));
         this.context = context;
         markers = new HashMap<>();
     }
@@ -112,11 +106,6 @@ public class JobsMarker implements GoogleMap.OnMarkerClickListener, GoogleMap.On
     public void onInfoWindowClick(Marker marker)
     {
         CompanyDocument doc = (CompanyDocument) marker.getTag();
-
-        //TODO: Just for test
-        Intent intent = new Intent(context, TestCompanyInfo.class);
-        context.startActivity(intent);
-
-//        listener.onReplaceFragment();
+        listener.onReplaceFragment(FragCompanyInfo.NewInstance(doc), IntFrag.REPLACE);
     }
 }

@@ -25,6 +25,8 @@ import gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes;
 
 public final class CompanyDetails
 {
+
+    //TODO:Make an inheritance for CompanyDocument
     public static final String TAG = "CompanyDetails";
 
     public static final int COMPANYNAME = 0;
@@ -143,5 +145,10 @@ public final class CompanyDetails
         return jobs;
     }
 
-    public List<CompanyBenefits.CompanyBenefit> getBenefits() { return benefits.getCompanyBenefitsSaved(); }
+//    public List<CompanyBenefits.CompanyBenefit> getBenefits() { return benefits.getCompanyBenefitsSaved(); }
+
+    public String getBenifits()
+    {
+        return  benefits.getFeatures();
+    }
 }

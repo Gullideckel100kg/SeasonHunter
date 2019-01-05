@@ -34,12 +34,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import gullideckel.seasonhunter.ActivityMap.Jobs.JobsMarker;
+import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.CompanyAddressConfi;
@@ -64,19 +66,31 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
 
     public static List<Marker> mLstJobMarkers = new ArrayList<>();
 
-
-
     public static final HashMap<String, Bitmap> companyTypes = new HashMap<>();
 
 
+    private boolean LoadUser()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    //TODO: Just a for testing. Logos should be saved on device as small as possible and put somewhere where it makes more sense
+        if(user != null)
+            return true;
+        return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        if(!LoadUser())
+        {
+            Intent intent = new Intent(this, SignInHunter.class);
+            startActivity(intent);
+        }
         setContentView(R.layout.act_map_hunter);
+
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -89,15 +103,9 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
         mButtonClicks.AddNewLogOutClickEvent();
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        companyTypes.put( "Farm", BitmapFactory.decodeResource(getResources(), R.drawable.farm));
-        companyTypes.put( "Packhouse", BitmapFactory.decodeResource(getResources(), R.drawable.packing));
-        companyTypes.put( "Fruit farm", BitmapFactory.decodeResource(getResources(), R.drawable.fruit));
-        companyTypes.put( "Restaurant", BitmapFactory.decodeResource(getResources(), R.drawable.chef));
-        companyTypes.put( "Vineyard", BitmapFactory.decodeResource(getResources(), R.drawable.wine));
-        companyTypes.put( "Tree planting", BitmapFactory.decodeResource(getResources(), R.drawable.tree));
-        companyTypes.put( "Factory", BitmapFactory.decodeResource(getResources(), R.drawable.factory));
-        companyTypes.put( "Christmas", BitmapFactory.decodeResource(getResources(), R.drawable.christmas));
-        companyTypes.put( "Others", BitmapFactory.decodeResource(getResources(), R.drawable.otherwork));
+        FillCompanyTypes();
+
+//        onReplaceFragment(new LoadingScreen(), IntFrag.ADD);
     }
 
     @Override
@@ -109,15 +117,14 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
 
         options.compassEnabled(true);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50,-120), 7));
-
-        JobsMarker jobsMarker = new JobsMarker(googleMap, this, this);
-        jobsMarker.LoadJobs();
+//
+//        JobsMarker jobsMarker = new JobsMarker(googleMap, this, this);
+//        jobsMarker.LoadJobs();
     }
 
     @Override
     public void onReplaceFragment(Fragment fragment, int intFrag)
     {
-
         switch (intFrag)
         {
             case IntFrag.ADD:
@@ -158,5 +165,17 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
         transaction.commit();
     }
 
-
+    //TODO: Has to be changed
+    private void FillCompanyTypes()
+    {
+        companyTypes.put( "Farm", BitmapFactory.decodeResource(getResources(), R.drawable.farm));
+        companyTypes.put( "Packhouse", BitmapFactory.decodeResource(getResources(), R.drawable.packing));
+        companyTypes.put( "Fruit farm", BitmapFactory.decodeResource(getResources(), R.drawable.fruit));
+        companyTypes.put( "Restaurant", BitmapFactory.decodeResource(getResources(), R.drawable.chef));
+        companyTypes.put( "Vineyard", BitmapFactory.decodeResource(getResources(), R.drawable.wine));
+        companyTypes.put( "Tree planting", BitmapFactory.decodeResource(getResources(), R.drawable.tree));
+        companyTypes.put( "Factory", BitmapFactory.decodeResource(getResources(), R.drawable.factory));
+        companyTypes.put( "Christmas", BitmapFactory.decodeResource(getResources(), R.drawable.christmas));
+        companyTypes.put( "Others", BitmapFactory.decodeResource(getResources(), R.drawable.otherwork));
+    }
 }

@@ -9,7 +9,18 @@ public class CompanyDocument
     private CompanyAddress address;
     private CompanyContact contact;
     private CompanyJobs jobs;
+    private String features;
     private List<CompanyBenefits.CompanyBenefit> benefits;
+
+    public List<CompanyBenefits.CompanyBenefit> getBenefits()
+    {
+        return benefits;
+    }
+
+    public void setBenefits(List<CompanyBenefits.CompanyBenefit> benefits)
+    {
+        this.benefits = benefits;
+    }
 
     public CompanyDocument() {}
 
@@ -63,13 +74,13 @@ public class CompanyDocument
         this.jobs = jobs;
     }
 
-    public List<CompanyBenefits.CompanyBenefit> getBenefits()
+    public String getFeatures()
     {
-        return benefits;
+        return features;
     }
 
-    public void setBenefits(List<CompanyBenefits.CompanyBenefit> benefits)
+    public void setFeatures(String features)
     {
-        this.benefits = benefits;
+        this.features = features;
     }
 }

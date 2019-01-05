@@ -144,36 +144,29 @@ public class FragCompanyDetails extends Fragment implements IPost, GoogleApiClie
     }
 
 
+    //TODO: Add SuccessListener and FailListener before closing Fragment or just be imagenativ
     private View.OnClickListener Post = new View.OnClickListener() {
         @Override
         public void onClick(View v)
         {
-            String companyName = companyDetails.getName();
-            String companyType = companyDetails.getType();
-            CompanyAddress companyAddress = companyDetails.getAddress();
-            CompanyContact companyContact = companyDetails.getContact();
-            CompanyJobs companyJobs = companyDetails.getJobs();
-            List<CompanyBenefits.CompanyBenefit> companyBenefits = companyDetails.getBenefits();
-
-
-
-            mRef.add(companyDetails).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference)
-                {
-                    Toast.makeText(getContext(), getContext().getText(R.string.company_saved),Toast.LENGTH_LONG);
-                }
-            })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e)
-                    {
-                        Toast.makeText(getContext(), getContext().getText(R.string.company_saved_failed),Toast.LENGTH_LONG);
-                        Log.d(TAG, "onFailure: " + e);
-                    }
-                });
+            mRef.add(companyDetails);
+//                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>()
+//            {
+//                @Override
+//                public void onSuccess(DocumentReference documentReference)
+//                {
+//                    Toast.makeText(getContext(), getContext().getText(R.string.company_saved),Toast.LENGTH_LONG);
+//                }
+//            })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e)
+//                    {
+//                        Toast.makeText(getContext(), getContext().getText(R.string.company_saved_failed),Toast.LENGTH_LONG);
+//                        Log.d(TAG, "onFailure: " + e);
+//                    }
+//                });
             listener.onReplaceFragment(null, IntFrag.POPSTACKCOMPLETLY);
-
         }
     };
 

@@ -24,7 +24,7 @@ import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
 import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
 
-public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapReadyCallback, ICompanyAddress, ISnapShot
+public class CompanyAddressConfi extends CompanyDetailsBase implements ICompanyAddress
 {
     private GoogleMap map;
     private Bitmap logo;
@@ -41,12 +41,14 @@ public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapRead
     {
         if(getAddress().getRelAddress().getVisibility() == View.INVISIBLE || getAddress().getRelAddress().getVisibility() == View.GONE)
         {
-            if (getAddress().GetMapView() != null)
-            {
-                getAddress().GetMapView().onCreate(null);
-                getAddress().GetMapView().onResume();
-                getAddress().GetMapView().getMapAsync(this);
-            }
+            autoComplete = new PlaceAutoCompleteTextView(getContext(), getAddress().GetTxtAutoComplete(), getGoogleApiClient(), this);
+            autoComplete.Init();
+//            if (getAddress().GetMapView() != null)
+//            {
+//                getAddress().GetMapView().onCreate(null);
+//                getAddress().GetMapView().onResume();
+//                getAddress().GetMapView().getMapAsync(this);
+//            }
 
             OpenAddress();
 
@@ -56,7 +58,7 @@ public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapRead
             getAddress().getRelAddress().setVisibility(View.VISIBLE);
         }
 
-        getAddress().GetLogo().setImageBitmap(logo);
+//        getAddress().GetLogo().setImageBitmap(logo);
         this.logo = logo;
 
     }
@@ -82,7 +84,7 @@ public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapRead
                 getAddress().getCnstAddressEdit().setVisibility(View.GONE);
                 getAddress().getCnstAddressSaved().setVisibility(View.VISIBLE);
 
-                TakeSnapshot();
+//                TakeSnapshot();
 
                 getListener().OnItemUpdate(CompanyDetails.COMPANYCONTACT);
             }
@@ -98,24 +100,23 @@ public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapRead
         }
     };
 
-    private void TakeSnapshot()
-    {
-        map.setOnMapLoadedCallback(new MySnapshot(map, this, logo, getAddress().GetSnapLogo()));
-    }
+//    private void TakeSnapshot()
+//    {
+//        map.setOnMapLoadedCallback(new MySnapshot(map, this, logo, getAddress().GetSnapLogo()));
+//    }
 
-    @Override
-    public void onMapReady(GoogleMap map)
-    {
-        MapsInitializer.initialize(getContext());
-
-        this.map = map;
-
-        CameraMove cameraMove = new CameraMove(getContext(), new GeoMap(new Geocoder(getContext()), map), this);
-        cameraMove.Start();
-
-        autoComplete = new PlaceAutoCompleteTextView(map, getContext(), getAddress().GetTxtAutoComplete(), getGoogleApiClient());
-        autoComplete.Init();
-    }
+//    @Override
+//    public void onMapReady(GoogleMap map)
+//    {
+//        MapsInitializer.initialize(getContext());
+//
+//        this.map = map;
+//
+//        CameraMove cameraMove = new CameraMove(getContext(), new GeoMap(new Geocoder(getContext()), map), this);
+//        cameraMove.Start();
+//
+//
+//    }
 
     @Override
     public void OnCompanyAddress(CompanyAddress companyAddress)
@@ -134,11 +135,11 @@ public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapRead
         coordinates.setText(StaticMethod.GPSConvert(companyAddress.getLatitude(), companyAddress.getLongitude()));
     }
 
-    @Override
-    public void onSnapShotBitmap(Bitmap bitmap)
-    {
-        getAddress().GetSnapAddress().setImageBitmap(bitmap);
-    }
+//    @Override
+//    public void onSnapShotBitmap(Bitmap bitmap)
+//    {
+//        getAddress().GetSnapAddress().setImageBitmap(bitmap);
+//    }
 
     private void OpenAddress()
     {
@@ -149,11 +150,11 @@ public class CompanyAddressConfi extends CompanyDetailsBase implements OnMapRead
         getAddress().getCnstAddressSaved().setVisibility(View.GONE);
     }
 
-    public void SetLogo(Bitmap logo)
-    {
-        getAddress().GetLogo().setImageBitmap(logo);
-        getAddress().GetSnapLogo().setImageBitmap(logo);
-    }
+//    public void SetLogo(Bitmap logo)
+//    {
+//        getAddress().GetLogo().setImageBitmap(logo);
+//        getAddress().GetSnapLogo().setImageBitmap(logo);
+//    }
 
     @Override
     protected void OnKeyPadDisappearing()

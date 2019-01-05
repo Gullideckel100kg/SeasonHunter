@@ -61,42 +61,44 @@ public class OnClickCreateAccount implements View.OnClickListener
         CheckEmailOnServer();
 
         mAuth.createUserWithEmailAndPassword(mEdtEmail.getText().toString(), mEdtPassword.getText().toString())
-                .addOnCompleteListener(mContext, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
-                    {
-                        if (task.isSuccessful())
-                        {
-                            Log.d(TAG, "createUserWithEmail:success");
-                            ((IFragmentHandler) mContext).onReplaceFragment(new FragEmailVerification(), IntFrag.REPLACE);
-                        }
-                        else
-                        {
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(mContext, "Authentication failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                .addOnCompleteListener(mContext, new OnCompleteListener<AuthResult>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task)
+            {
+                if (task.isSuccessful())
+                {
+                    Log.d(TAG, "createUserWithEmail:success");
+                    ((IFragmentHandler) mContext).onReplaceFragment(new FragEmailVerification(), IntFrag.REPLACE);
+                }
+                else
+                {
+                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                    Toast.makeText(mContext, "Authentication failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void CheckEmailOnServer()
     {
         mAuth.fetchSignInMethodsForEmail(mEdtEmail.getText().toString())
-                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task)
-                    {
-                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException)
-                        {
-                            Log.w(TAG, "Invalid Email address");
-                            Toast.makeText(mContext, "Invalid Email address", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        if(!task.getResult().getSignInMethods().isEmpty())
-                        {
-                            Toast.makeText(mContext, "Email already exist", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<SignInMethodQueryResult> task)
+            {
+                if (task.getException() instanceof FirebaseAuthInvalidCredentialsException)
+                {
+                    Log.w(TAG, "Invalid Email address");
+                    Toast.makeText(mContext, "Invalid Email address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!task.getResult().getSignInMethods().isEmpty())
+                {
+                    Toast.makeText(mContext, "Email already exist", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
