@@ -14,7 +14,7 @@ import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.Compa
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
 import gullideckel.seasonhunter.R;
-import gullideckel.seasonhunter.StaticMethods.StaticMethod;
+import gullideckel.seasonhunter.Statics.StaticMethod;
 
 public class CompanyJobFragConfi extends CompanyDetailsBase
 {

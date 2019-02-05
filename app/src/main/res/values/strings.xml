@@ -5,6 +5,13 @@
     <string name="title_activity_sign_in_hunter">SignInHunter</string>
     <string name="title_activity_create_account_hunter">CreateAccountHunter</string>
 
+    <string name="web_client_id">699243007049-1cfrugd5clvm7lt8chtmvrv3v8ptp2eh.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id">401392967269455</string>
+    <string name="fb_login_protocol_scheme">fb401392967269455</string>
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_job_ad_info">JobAdInfo</string>

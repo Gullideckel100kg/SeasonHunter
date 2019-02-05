@@ -16,7 +16,7 @@ import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyContact;
 import gullideckel.seasonhunter.R;
-import gullideckel.seasonhunter.StaticMethods.StaticMethod;
+import gullideckel.seasonhunter.Statics.StaticMethod;
 
 public class CompanyContactConfi extends CompanyDetailsBase
 {

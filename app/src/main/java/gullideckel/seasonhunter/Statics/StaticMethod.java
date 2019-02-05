@@ -1,4 +1,4 @@
-package gullideckel.seasonhunter.StaticMethods;
+package gullideckel.seasonhunter.Statics;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,6 +1,7 @@
 package gullideckel.seasonhunter.ActivitySignIn.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.BinderThread;
@@ -24,6 +25,9 @@ public class FragForgotPassword extends Fragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
+
+        view.bringToFront();
+        view.setBackgroundColor(Color.WHITE);
 
         EditText edtText = (EditText) view.findViewById(R.id.edtResetEmail);
 

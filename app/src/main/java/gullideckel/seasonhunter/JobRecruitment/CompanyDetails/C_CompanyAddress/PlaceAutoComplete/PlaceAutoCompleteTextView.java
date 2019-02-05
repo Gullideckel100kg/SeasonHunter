@@ -2,29 +2,24 @@ package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.
 
 import android.app.Activity;
 import android.content.Context;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.AutocompletePrediction;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyAddress;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
-import gullideckel.seasonhunter.StaticMethods.StaticMethod;
+import gullideckel.seasonhunter.Statics.StaticMethod;
 
 public class PlaceAutoCompleteTextView
 {

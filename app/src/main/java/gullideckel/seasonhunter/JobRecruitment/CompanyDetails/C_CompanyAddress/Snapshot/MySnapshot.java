@@ -4,13 +4,8 @@ import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import gullideckel.seasonhunter.Interfaces.ISnapShot;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.GeoCoding.CameraMove;
-import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
 public class MySnapshot implements GoogleMap.SnapshotReadyCallback, GoogleMap.OnMapLoadedCallback
 {

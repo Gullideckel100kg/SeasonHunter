@@ -90,12 +90,4 @@ public class ButtonClicks
             mActivity.finish();
         }
     };
-
-//    private View.OnClickListener ClickNewAddress = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v)
-//        {
-//           mMap.setOnMapLoadedCallback(mMySnapshot);
-//        }
-//    };
 }

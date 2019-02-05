@@ -100,7 +100,7 @@ public class FragEmailVerification extends Fragment
         @Override
         public void onClick(View v)
         {
-            mListener.onReplaceFragment(new FragSignInHunter(), IntFrag.REPLACE);
+            getActivity().onBackPressed();
         }
     };
 

@@ -1,23 +1,14 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.F_CompanyBenefits;
 
-import android.app.Activity;
-import android.graphics.BitmapFactory;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-
-import java.util.ArrayList;
 
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyBenefits;
-import gullideckel.seasonhunter.R;
-import gullideckel.seasonhunter.StaticMethods.StaticMethod;
 
 public class CompanyBenefitsConfi extends CompanyDetailsBase
 {

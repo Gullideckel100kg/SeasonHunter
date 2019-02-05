@@ -1,5 +1,6 @@
 package gullideckel.seasonhunter.ActivityMap.Jobs;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import gullideckel.seasonhunter.ActivityMap.MapHunter;
+import gullideckel.seasonhunter.ActivityMap.SeasonHunter;
 import gullideckel.seasonhunter.CompanyInfo.FragCompanyInfo;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
@@ -38,7 +39,7 @@ public class JobsMarker implements GoogleMap.OnMarkerClickListener, GoogleMap.On
 
     private List<CompanyDocument> docs;
 
-    HashMap<Marker, CompanyDocument> markers;
+    private HashMap<Marker, CompanyDocument> markers;
 
     private IFragmentHandler listener;
     private  Context context;
@@ -72,6 +73,7 @@ public class JobsMarker implements GoogleMap.OnMarkerClickListener, GoogleMap.On
                             marker.showInfoWindow();
                             markers.put(marker, doc);
                         }
+                        listener.onReplaceFragment(null,IntFrag.POPSTACK);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -87,7 +89,7 @@ public class JobsMarker implements GoogleMap.OnMarkerClickListener, GoogleMap.On
     {
         return map.addMarker(new MarkerOptions()
                             .position(new LatLng(document.getAddress().getLatitude(), document.getAddress().getLongitude()))
-                            .icon(resizeMapIcons(MapHunter.companyTypes.get(document.getType()),30,30)));
+                            .icon(resizeMapIcons(SeasonHunter.companyTypes.get(document.getType()),30,30)));
     }
 
     private BitmapDescriptor resizeMapIcons(Bitmap bmp, int width, int height){

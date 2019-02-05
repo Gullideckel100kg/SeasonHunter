@@ -10,10 +10,7 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Calendar;
 
-import gullideckel.seasonhunter.ActivityMap.MapHunter;
-import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
 
 public class LoadingHunter
 {

@@ -24,16 +24,6 @@ public class LoadingScreen extends Fragment
     private IFragmentHandler listener;
 
 
-//    // TODO: Rename and change types and number of parameters
-//    public static LoadingScreen newInstance(String param1, String param2)
-//    {
-//
-//    }
-
-
-
-
-
     private View view;
 
     @Override

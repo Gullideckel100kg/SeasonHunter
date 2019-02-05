@@ -24,11 +24,7 @@
             android:src="@drawable/marker"
             android:layout_marginTop="15dp"/>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/fragCreateAccount"
-                android:layout_centerInParent="true"/>
+
 
             </LinearLayout>
 </android.support.constraint.ConstraintLayout>

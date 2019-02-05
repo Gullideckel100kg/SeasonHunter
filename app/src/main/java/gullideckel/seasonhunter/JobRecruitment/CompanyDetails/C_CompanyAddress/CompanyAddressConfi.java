@@ -2,26 +2,19 @@ package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.location.Geocoder;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.OnMapReadyCallback;
 
-import gullideckel.seasonhunter.Interfaces.ISnapShot;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.GeoCoding.CameraMove;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.GeoCoding.GeoMap;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.PlaceAutoComplete.PlaceAutoCompleteTextView;
 
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.Snapshot.MySnapshot;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyAddress;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
-import gullideckel.seasonhunter.StaticMethods.StaticMethod;
+import gullideckel.seasonhunter.Statics.StaticMethod;
 
 
 public class CompanyAddressConfi extends CompanyDetailsBase implements ICompanyAddress

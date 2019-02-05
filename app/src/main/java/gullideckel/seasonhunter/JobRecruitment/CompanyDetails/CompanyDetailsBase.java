@@ -20,7 +20,7 @@ import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.Compa
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.FragCompanyJobs;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.F_CompanyBenefits.CompanyBenefitsViewHolder;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
-import gullideckel.seasonhunter.StaticMethods.StaticMethod;
+import gullideckel.seasonhunter.Statics.StaticMethod;
 
 public class CompanyDetailsBase extends RecyclerViewKeyPadSolution
 {

@@ -18,6 +18,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
@@ -51,16 +53,19 @@ import gullideckel.seasonhunter.Interfaces.IAddressHandler;
 import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes;
 import gullideckel.seasonhunter.R;
+import gullideckel.seasonhunter.Statics.StaticVariabels;
 
-public class MapHunter extends FragmentActivity implements OnMapReadyCallback, IFragmentHandler
+public class SeasonHunter extends FragmentActivity implements OnMapReadyCallback, IFragmentHandler
 {
 
-    private GoogleMap mMap;
+    //TODO:Check is Thread save. More proccess access this variable
+    private volatile GoogleMap map;
 
     private Button mBtnLogOut;
     private FirebaseAuth mAuth;
     private Geocoder mGeocoder;
-    ButtonClicks mButtonClicks;
+    private ButtonClicks mButtonClicks;
+    private boolean isLoggedIn = false;
 
     private boolean mIsSelectCompanyLocation = false;
 
@@ -68,29 +73,14 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
 
     public static final HashMap<String, Bitmap> companyTypes = new HashMap<>();
 
-
-    private boolean LoadUser()
-    {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        if(user != null)
-            return true;
-        return false;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
-        if(!LoadUser())
-        {
-            Intent intent = new Intent(this, SignInHunter.class);
-            startActivity(intent);
-        }
         setContentView(R.layout.act_map_hunter);
 
 
+        onReplaceFragment(new LoadingScreen(), IntFrag.ADD);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -104,22 +94,19 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         FillCompanyTypes();
-
-//        onReplaceFragment(new LoadingScreen(), IntFrag.ADD);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
-        mMap = googleMap;
+        map = googleMap;
 
         GoogleMapOptions options = new GoogleMapOptions();
 
         options.compassEnabled(true);
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50,-120), 7));
-//
-//        JobsMarker jobsMarker = new JobsMarker(googleMap, this, this);
-//        jobsMarker.LoadJobs();
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50,-120), 7));
+
+        LoadMarkers();
     }
 
     @Override
@@ -165,6 +152,26 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
         transaction.commit();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == StaticVariabels.Result_LogIn_Ok)
+        {
+            AddFragment(getSupportFragmentManager().beginTransaction(), new LoadingScreen());
+            if(map != null)
+            {
+                LoadMarkers();
+            }
+        }
+    }
+
+    private void LoadMarkers()
+    {
+        JobsMarker jobsMarker = new JobsMarker(map, this, this);
+        jobsMarker.LoadJobs();
+    }
+
     //TODO: Has to be changed
     private void FillCompanyTypes()
     {
@@ -178,4 +185,6 @@ public class MapHunter extends FragmentActivity implements OnMapReadyCallback, I
         companyTypes.put( "Christmas", BitmapFactory.decodeResource(getResources(), R.drawable.christmas));
         companyTypes.put( "Others", BitmapFactory.decodeResource(getResources(), R.drawable.otherwork));
     }
+
+
 }

@@ -4,17 +4,13 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyBenefits;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyDocument;
 import gullideckel.seasonhunter.R;
-import gullideckel.seasonhunter.StaticMethods.StaticMethod;
+import gullideckel.seasonhunter.Statics.StaticMethod;
 
 public class InitCompanyInfo
 {
