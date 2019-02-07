@@ -176,6 +176,7 @@ public class SeasonHunter extends FragmentActivity implements OnMapReadyCallback
     private void FillCompanyTypes()
     {
         companyTypes.put( "Farm", BitmapFactory.decodeResource(getResources(), R.drawable.farm));
+        companyTypes.put( "Orchard", BitmapFactory.decodeResource(getResources(), R.drawable.farm));
         companyTypes.put( "Packhouse", BitmapFactory.decodeResource(getResources(), R.drawable.packing));
         companyTypes.put( "Fruit farm", BitmapFactory.decodeResource(getResources(), R.drawable.fruit));
         companyTypes.put( "Restaurant", BitmapFactory.decodeResource(getResources(), R.drawable.chef));

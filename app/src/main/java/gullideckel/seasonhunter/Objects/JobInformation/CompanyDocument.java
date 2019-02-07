@@ -6,10 +6,33 @@ public class CompanyDocument
 {
     private String name;
     private String type;
+    private List<String> types;
     private CompanyAddress address;
     private CompanyContact contact;
     private CompanyJobs jobs;
     private String features;
+    private CompanyExtras extras;
+
+    public List<String> getTypes()
+    {
+        return types;
+    }
+
+    public void setTypes(List<String> types)
+    {
+        this.types = types;
+    }
+
+    public CompanyExtras getExtras()
+    {
+        return extras;
+    }
+
+    public void setExtras(CompanyExtras extras)
+    {
+        this.extras = extras;
+    }
+
     private List<CompanyBenefits.CompanyBenefit> benefits;
 
     public List<CompanyBenefits.CompanyBenefit> getBenefits()

@@ -89,12 +89,20 @@ public class JobsMarker implements GoogleMap.OnMarkerClickListener, GoogleMap.On
     {
         return map.addMarker(new MarkerOptions()
                             .position(new LatLng(document.getAddress().getLatitude(), document.getAddress().getLongitude()))
-                            .icon(resizeMapIcons(SeasonHunter.companyTypes.get(document.getType()),30,30)));
+                            .icon(resizeMapIcons(SeasonHunter.companyTypes.get(document.getTypes().get(0)),30,30)));
     }
 
     private BitmapDescriptor resizeMapIcons(Bitmap bmp, int width, int height){
-        Bitmap resizedBitmap = Bitmap.createScaledBitmap(bmp, width, height, false);
-        return BitmapDescriptorFactory.fromBitmap(resizedBitmap);
+        if(bmp != null)
+        {
+            Bitmap resizedBitmap = Bitmap.createScaledBitmap(bmp, width, height, false);
+            return BitmapDescriptorFactory.fromBitmap(resizedBitmap);
+        }
+        else
+        {
+            Bitmap resizedBitmap = Bitmap.createScaledBitmap(SeasonHunter.companyTypes.get("Others"), width, height, false);
+            return BitmapDescriptorFactory.fromBitmap(resizedBitmap);
+        }
     }
 
     @Override
