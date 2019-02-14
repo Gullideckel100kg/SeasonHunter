@@ -7,22 +7,17 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.squareup.okhttp.Call;
 
-import gullideckel.seasonhunter.ActivityMap.SeasonHunter;
-import gullideckel.seasonhunter.R;
+import gullideckel.seasonhunter.ActSeasonHunter;
 
 public class OnClickFacebook implements FacebookCallback<LoginResult>
 {
@@ -60,7 +55,7 @@ public class OnClickFacebook implements FacebookCallback<LoginResult>
 
     private void FinishLogIn()
     {
-        Intent intent = new Intent(activity, SeasonHunter.class);
+        Intent intent = new Intent(activity, ActSeasonHunter.class);
         activity.startActivity(intent);
     }
 

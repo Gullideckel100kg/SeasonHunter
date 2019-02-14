@@ -10,18 +10,12 @@ import gullideckel.seasonhunter.R;
 public class JobsViewHolder extends RecyclerView.ViewHolder
 {
     private TextView txtJobTitle;
-    private TextView txtPayment;
     private TextView txtDuration;
     private TextView txtAdditionalInfo;
 
     public TextView getTxtJobTitle()
     {
         return txtJobTitle;
-    }
-
-    public TextView getTxtPayment()
-    {
-        return txtPayment;
     }
 
     public TextView getTxtDuration()
@@ -40,7 +34,6 @@ public class JobsViewHolder extends RecyclerView.ViewHolder
         super(v);
 
         txtJobTitle = (TextView) v.findViewById(R.id.txtJobTitle);
-        txtPayment = (TextView) v.findViewById(R.id.txtPayKind);
         txtDuration = (TextView) v.findViewById(R.id.txtDuration);
         txtAdditionalInfo = (TextView) v.findViewById(R.id.txtAdditionInfo);
     }

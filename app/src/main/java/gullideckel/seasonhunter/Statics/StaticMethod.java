@@ -9,6 +9,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import java.util.List;
 
@@ -109,17 +113,27 @@ public class StaticMethod
         return false;
     }
 
-    public static Bitmap GetResizedBitmap(Bitmap bm, int newWidth, int newHeight)
+//    public static Bitmap GetResizedBitmap(Bitmap bm, int newWidth, int newHeight)
+//    {
+//        int width = bm.getWidth();
+//        int height = bm.getHeight();
+//        float scaleWidth = ((float) newWidth) / width;
+//        float scaleHeight = ((float) newHeight) / height;
+//
+//        Matrix matrix = new Matrix();
+//
+//        matrix.postScale(scaleWidth, scaleHeight);
+//
+//        return Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+//    }
+
+    public static void Toast(String message, Context context)
     {
-        int width = bm.getWidth();
-        int height = bm.getHeight();
-        float scaleWidth = ((float) newWidth) / width;
-        float scaleHeight = ((float) newHeight) / height;
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
 
-        Matrix matrix = new Matrix();
-
-        matrix.postScale(scaleWidth, scaleHeight);
-
-        return Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+    public static BitmapDescriptor ResizeBitmap(Bitmap bmp, int width, int height)
+    {
+        return BitmapDescriptorFactory.fromBitmap(Bitmap.createScaledBitmap(bmp, width, height, false));
     }
 }

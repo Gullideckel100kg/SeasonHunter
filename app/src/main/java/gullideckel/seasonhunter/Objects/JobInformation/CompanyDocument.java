@@ -12,6 +12,8 @@ public class CompanyDocument
     private CompanyJobs jobs;
     private String features;
     private CompanyExtras extras;
+    private CompanyPhoto photo;
+    private CompanyReview review;
 
     public List<String> getTypes()
     {
@@ -105,5 +107,25 @@ public class CompanyDocument
     public void setFeatures(String features)
     {
         this.features = features;
+    }
+
+    public CompanyPhoto getPhoto()
+    {
+        return photo;
+    }
+
+    public void setPhoto(CompanyPhoto photo)
+    {
+        this.photo = photo;
+    }
+
+    public CompanyReview getReview()
+    {
+        return review;
+    }
+
+    public void setReview(CompanyReview review)
+    {
+        this.review = review;
     }
 }

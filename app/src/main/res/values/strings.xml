@@ -11,12 +11,77 @@
     <string name="fb_login_protocol_scheme">fb401392967269455</string>
 
 
+    <!--Headlines for the Tablayout Seasonhunter-->
+    <string name="map">Map</string>
+    <string name="list">List</string>
+    <string name="filter">Filter</string>
+    <string name="add_company">Add Company</string>
+    <string name="settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_job_ad_info">JobAdInfo</string>
+
+    <!--Country type key for loading Database collectiob-->
+    <string name="country_part_key">CoUntr3yK3Y</string>
+
+
+    <!--CompanyTypes array like it is saved at the backend-->
+    <string-array name="company_types">
+        <item>Orchard</item>
+        <item>Packhouse</item>
+        <item>Restaurant</item>
+        <item>Vineyard</item>
+        <item>Farm</item>
+        <item>Tree planting</item>
+        <item>Factory</item>
+        <item>Christmas</item>
+        <item>Resort</item>
+        <item>Sport</item>
+        <item>National park</item>
+        <item>Winter job</item>
+    </string-array>
+
+    <!--Every item in the company types array has to be safed with a key-->
+    <!--In the class ComopanyType you have to initialize picture to the type-->
+    <string name="orchard">Orchard</string>
+    <string name="packhouse">Packhouse</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="vineyard">Vineyard</string>
+    <string name="farm">Farm</string>
+    <string name="tree_planting">Tree planting</string>
+    <string name="factory">Factory</string>
+    <string name="christmas">Christmas</string>
+    <string name="resort">Resort</string>
+    <string name="sport">Sport</string>
+    <string name="national_park">National park</string>
+    <string name="winter_job">Winter job</string>
+    <string name="other">Other</string>
+
+
+    <!--CollectionPath strings for recieve Data from Firestore-->
+    <string name="all_companies">companies</string>
+
+
+    <!--Names for Imagebuttons at the Company details-->
+    <string name="favourite">Favourite</string>
+    <string name="share">Share</string>
+    <string name="review">Add review</string>
+    <string name="edit_job">Edit job</string>
+
+
+    <!--Company details Ui strings-->
+    <string name="contact">Contact:</string>
+    <string name="jobs">Jobs:</string>
+    <string name="notes">Notes:</string>
+
+
+    <!--Company detail TabLayout Headers-->
+    <string name="info">Info</string>
+    <string name="reviews">Reviews</string>
+    <string name="description">Description</string>
+    <string name="photos">Photos</string>
+
 
     <string name="company_name_with_colon">Company name:</string>
+
     <string name="save_choose_location">Save and choose location</string>
 
     <string name="no_address_found">No Address found</string>
@@ -155,7 +220,9 @@
     <string name="company_saved">Company saved. It will show up in a few days. Thanks!!!</string>
     <string name="company_saved_failed">Error: Could not save your company.</string>
     <string name="address">Address:</string>
-    <string name="work_features">Work features:</string>
+    <string name="facilities_header">Facilities:</string>
+    <string name="courses_header">Courses:</string>
+    <string name="description_header">Description:</string>
 
     <string name="no_phone">No phone number availible</string>
     <string name="no_email">No email availible</string>
@@ -171,4 +238,15 @@
 
     <string name="or">Or</string>
     <string name="sign_up_mail">Sign up with e-mail</string>
+    <string name="title_activity_act_country_selection">ActCountrySelection</string>
+
+
+    <!--Error Messages-->
+
+    <!--Error Loading from Database-->
+    <string name="error_loading_firestore">Server problem: Couldn\'t recieve data from Server</string>
+    <string name="title_activity_act_company_info">ActCompanyInfo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

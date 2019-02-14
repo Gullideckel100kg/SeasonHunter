@@ -7,18 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes;
+import java.util.List;
+
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyType;
 import gullideckel.seasonhunter.R;
 
 public class CompanyTypeAdapter extends RecyclerView.Adapter<CompanyTypeViewHolderList>
 {
-    private CompanyTypes items;
+    private List<String> items;
 
     private int mLastCheckedPosition = -1;
 
-    private CompanyTypes.CompanyType mCompanyType;
-
-    public CompanyTypeAdapter(CompanyTypes items)
+    public CompanyTypeAdapter(List<String> items)
     {
         this.items = items;
     }
@@ -35,37 +35,39 @@ public class CompanyTypeAdapter extends RecyclerView.Adapter<CompanyTypeViewHold
     @Override
     public void onBindViewHolder(@NonNull final CompanyTypeViewHolderList holder, final int position)
     {
-        holder.GetImgCompanyType().setImageBitmap(items.getCompanyTypes().get(position).getLogo());
-        holder.GetTxtCompanyType().setText(items.getCompanyTypes().get(position).getCompanyType());
-
-
-        holder.getV().setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                mLastCheckedPosition = position;
-                notifyDataSetChanged();
-                if(holder.GetRdbCompanyType().isChecked())
-                    items.setSelectedCompanyType(position);
-            }
-        });
-
-        holder.GetRdbCompanyType().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if(isChecked)
-                    items.setSelectedCompanyType(position);
-            }
-        });
-
-        holder.GetRdbCompanyType().setChecked(position == mLastCheckedPosition);
+//        CompanyType companyType = new CompanyType()
+//
+//        holder.GetImgCompanyType().setImageBitmap(items.get(position).getLogo());
+//        holder.GetTxtCompanyType().setText(items.getCompanyTypes().get(position).getCompanyType());
+//
+//
+//        holder.getV().setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                mLastCheckedPosition = position;
+//                notifyDataSetChanged();
+//                if(holder.GetRdbCompanyType().isChecked())
+//                    items.setSelectedCompanyType(position);
+//            }
+//        });
+//
+//        holder.GetRdbCompanyType().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+//            {
+//                if(isChecked)
+//                    items.setSelectedCompanyType(position);
+//            }
+//        });
+//
+//        holder.GetRdbCompanyType().setChecked(position == mLastCheckedPosition);
     }
 
     @Override
     public int getItemCount()
     {
-        return items.getCompanyTypes().size();
+        return 0;
     }
 }

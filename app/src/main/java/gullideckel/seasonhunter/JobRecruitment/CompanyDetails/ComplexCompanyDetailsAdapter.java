@@ -26,15 +26,13 @@ import gullideckel.seasonhunter.Objects.JobInformation.CompanyBenefits;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyContact;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyName;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes;
+import gullideckel.seasonhunter.Objects.JobInformation.CompanyType;
 import gullideckel.seasonhunter.R;
 
 //ICompanyDetails: This listener is for looking up the next Item not the previous one
 public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ICompanyDetails
 {
     private static final String TAG = "ComplexCompanyDetails";
-
-    private List<CompanyTypes.CompanyType> mLstCompanyTypes;
 
     private CompanyNameConfi nameConfi;
     private CompanyTypeConfi typeConfi;
@@ -46,10 +44,9 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
 
     private boolean isPost = false;
 
-    public ComplexCompanyDetailsAdapter(CompanyDetails detailsObject, List<CompanyTypes.CompanyType> lstCompanyTypes)
+    public ComplexCompanyDetailsAdapter(CompanyDetails detailsObject)
     {
         this.companyDetails = detailsObject;
-        mLstCompanyTypes = lstCompanyTypes;
     }
 
 
@@ -58,7 +55,7 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
     {
         if (companyDetails.getItems().get(position) instanceof CompanyName)
             return CompanyDetails.COMPANYNAME;
-        else if (companyDetails.getItems().get(position) instanceof CompanyTypes)
+        else if (companyDetails.getItems().get(position) instanceof CompanyType)
             return CompanyDetails.COMPANYTYPE;
         else if (companyDetails.getItems().get(position) instanceof CompanyAddress)
             return CompanyDetails.COMPANYADDRESS;
@@ -93,7 +90,7 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
                 View v2 = inflater.inflate(R.layout.details_company_type_viewholder, parent, false);
                 viewHolder = new CompanyTypeViewHolder(v2);
                 heightPreviousItems += v2.getHeight();
-                typeConfi = new CompanyTypeConfi((CompanyTypeViewHolder) viewHolder, this, companyDetails, mLstCompanyTypes);
+                typeConfi = new CompanyTypeConfi((CompanyTypeViewHolder) viewHolder, this, companyDetails);
                 break;
             case CompanyDetails.COMPANYADDRESS:
                 View v3 = inflater.inflate(R.layout.details_company_address_viewholder, parent, false);
@@ -144,8 +141,8 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
                 typeConfi.Confi();
                 break;
             case CompanyDetails.COMPANYADDRESS:
-                CompanyTypes companyTypes = (CompanyTypes) companyDetails.getItems().get(CompanyDetails.COMPANYTYPE);
-                addressConfi.Confi(companyTypes.getCompanyTypes().get(companyTypes.getSelectedCompanyType()).getLogo());
+//                CompanyTypes companyTypes = (CompanyTypes) companyDetails.getItems().get(CompanyDetails.COMPANYTYPE);
+//                addressConfi.Confi(companyTypes.getCompanyTypes().get(companyTypes.getSelectedCompanyType()).getLogo());
                 break;
             case CompanyDetails.COMPANYCONTACT:
                 contactConfi.Confi();

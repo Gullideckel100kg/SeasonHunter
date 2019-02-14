@@ -1,7 +1,6 @@
 package gullideckel.seasonhunter.ActivitySignIn.OnClickSignInHunter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -17,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import gullideckel.seasonhunter.ActivityMap.SeasonHunter;
+import gullideckel.seasonhunter.ActSeasonHunter;
 import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragEmailVerification;
 import gullideckel.seasonhunter.Authentification.Validation;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
@@ -69,7 +68,7 @@ public class OnClickSignIn implements View.OnClickListener
                     Log.d(TAG, "signInWithEmail:success");
                     if(mAuth.getCurrentUser().isEmailVerified())
                     {
-                        Intent intent = new Intent(activity, SeasonHunter.class);
+                        Intent intent = new Intent(activity, ActSeasonHunter.class);
                         activity.startActivity(intent);
                     }
                     else

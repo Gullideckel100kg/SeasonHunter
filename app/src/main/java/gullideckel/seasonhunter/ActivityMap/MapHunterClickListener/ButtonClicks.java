@@ -18,7 +18,6 @@ import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.Snapshot.MySnapshot;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.FragCompanyDetails;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes;
 import gullideckel.seasonhunter.R;
 
 public class ButtonClicks
@@ -31,16 +30,10 @@ public class ButtonClicks
 
     public ButtonClicks(View view, Activity activity)
     {
-        mBtnAddCompany = (Button)  view.findViewById(R.id.btnAddCompany);
-        mBtnLogOut = (Button) view.findViewById(R.id.btnLogout);
         mBtnAddAddress = (Button) view.findViewById(R.id.btnSelectAddress);
         mActivity = activity;
     }
 
-    public void AddNewCompanyClickEvent()
-    {
-        mBtnAddCompany.setOnClickListener(ClickNewCompany);
-    }
 
     public void AddNewLogOutClickEvent()
     {
@@ -55,30 +48,6 @@ public class ButtonClicks
 //        mMap = map;
 //    }
 
-    //TODO: Companytypes should be saved on Server
-    public static List<gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes.CompanyType> CompanyTypes;
-
-    private View.OnClickListener ClickNewCompany = new View.OnClickListener() {
-        @Override
-        public void onClick(View v)
-        {
-
-            CompanyTypes = new ArrayList<>();
-
-            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.farm), "Farm"));
-            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.packing), "Packhouse"));
-            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.fruit), "Fruit farm"));
-            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.chef), "Restaurant"));
-            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.tree), "Tree planting"));
-            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.wine), "Vineyard"));
-            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.factory), "Factory"));
-            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.christmas), "Christmas"));
-            CompanyTypes.add(new CompanyTypes.CompanyType(BitmapFactory.decodeResource(mActivity.getResources(), R.drawable.otherwork), "Others"));
-
-
-            ((IFragmentHandler) mActivity).onReplaceFragment(FragCompanyDetails.NewInstance(CompanyTypes), IntFrag.ADD);
-        }
-    };
 
     private View.OnClickListener ClickLockOut = new View.OnClickListener() {
         @Override

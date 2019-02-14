@@ -36,6 +36,40 @@ public class CompanyJobs
         private String endMonth;
         private String addtionalInfo;
 
+        private String startDate;
+        private String endDate;
+        private String notes = "";
+
+        public String getStartDate()
+        {
+            return startDate;
+        }
+
+        public void setStartDate(String startDate)
+        {
+            this.startDate = startDate;
+        }
+
+        public String getEndDate()
+        {
+            return endDate;
+        }
+
+        public void setEndDate(String endDate)
+        {
+            this.endDate = endDate;
+        }
+
+        public String getNotes()
+        {
+            return notes;
+        }
+
+        public void setNotes(String notes)
+        {
+            this.notes = notes;
+        }
+
         public boolean isHourlyPaid()
         {
             return hourlyPaid;

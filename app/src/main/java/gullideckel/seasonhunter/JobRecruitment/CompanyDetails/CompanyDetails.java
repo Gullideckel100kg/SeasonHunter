@@ -21,7 +21,6 @@ import gullideckel.seasonhunter.Objects.JobInformation.CompanyBenefits;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyContact;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyName;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes;
 
 public final class CompanyDetails
 {
@@ -49,7 +48,7 @@ public final class CompanyDetails
     private GoogleApiClient googleApiClient;
 
     private CompanyName name;
-    private CompanyTypes types;
+    private List<String> types;
     private CompanyAddress address;
     private CompanyContact contact;
     private CompanyJobs jobs;
@@ -69,7 +68,6 @@ public final class CompanyDetails
         this.googleApiClient = googleApiClient;
 
         name = new CompanyName();
-        types = new CompanyTypes();
         address = new CompanyAddress();
         contact = new CompanyContact();
         jobs = new CompanyJobs();
@@ -121,13 +119,14 @@ public final class CompanyDetails
 
     public String getType()
     {
-        if(types.getSelectedCompanyType() > -1 && types.getCompanyTypes().size() > types.getSelectedCompanyType())
-            return types.getCompanyTypes().get(types.getSelectedCompanyType()).getCompanyType();
-        else
-        {
-            Log.d(TAG, "getType: SelectedCompanyType is Out of Index ");
-            return null;
-        }
+//        if(types.getSelectedCompanyType() > -1 && types.getCompanyTypes().size() > types.getSelectedCompanyType())
+//            return types.getCompanyTypes().get(types.getSelectedCompanyType()).getCompanyType();
+//        else
+//        {
+//            Log.d(TAG, "getType: SelectedCompanyType is Out of Index ");
+//            return null;
+//        }
+        return  null;
     }
 
     public CompanyAddress getAddress()

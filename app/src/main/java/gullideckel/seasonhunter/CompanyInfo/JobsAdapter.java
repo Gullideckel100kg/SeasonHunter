@@ -38,17 +38,11 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsViewHolder>
     {
         holder.getTxtJobTitle().setText(jobs.get(position).getJobTitle());
 
-        if(jobs.get(position).isHourlyPaid())
-            holder.getTxtPayment().setText(context.getText(R.string.hourly_paid));
-        else if(jobs.get(position).isPieceWork())
-            holder.getTxtPayment().setText(context.getText(R.string.piece_work));
-        else if(jobs.get(position).isVolunteering())
-            holder.getTxtPayment().setText(context.getText(R.string.volunteering));
 
-        holder.getTxtDuration().setText(jobs.get(position).getStartDay() + " of " + jobs.get(position).getStartMonth() + " - " +
-                                        jobs.get(position).getEndDay() + " of " + jobs.get(position).getEndMonth());
+        holder.getTxtDuration().setText(jobs.get(position).getStartDate() + " - " +
+                                        jobs.get(position).getEndDate());
 
-        holder.getTxtAdditionalInfo().setText(jobs.get(position).getAddtionalInfo());
+        holder.getTxtAdditionalInfo().setText(jobs.get(position).getNotes());
     }
 
     @Override

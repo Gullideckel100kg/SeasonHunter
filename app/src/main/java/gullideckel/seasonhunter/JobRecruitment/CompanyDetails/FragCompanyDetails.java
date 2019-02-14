@@ -36,15 +36,12 @@ import gullideckel.seasonhunter.Objects.JobInformation.CompanyBenefits;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyContact;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
 import gullideckel.seasonhunter.Objects.JobInformation.CompanyName;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyTypes;
 import gullideckel.seasonhunter.R;
 
 
 public class FragCompanyDetails extends Fragment implements IPost, GoogleApiClient.OnConnectionFailedListener
 {
     private static final String TAG = "FragCompanyDetails";
-
-    protected List<CompanyTypes.CompanyType> companyTypes;
 
     private RecyclerView mRclyCompanyDetails;
 
@@ -69,10 +66,9 @@ public class FragCompanyDetails extends Fragment implements IPost, GoogleApiClie
     //TODO: Fix Post Button after filled out every item. It shouldnt show up if a item is in edit mode
     //TODO: Remove all the useless code
     //TODO: After fixed this problems bring example for design to Adrian
-    public static FragCompanyDetails NewInstance(List<CompanyTypes.CompanyType> companyTypes)
+    public static FragCompanyDetails NewInstance()
     {
         FragCompanyDetails fragment = new FragCompanyDetails();
-        fragment.companyTypes = companyTypes;
         return fragment;
     }
 
@@ -84,18 +80,18 @@ public class FragCompanyDetails extends Fragment implements IPost, GoogleApiClie
         view.bringToFront();
         view.setBackgroundColor(Color.WHITE);
 
-        mRclyCompanyDetails = (RecyclerView) view.findViewById(R.id.rclyCompanyDetails);
-
-        CostumLayoutManager layoutManager = new CostumLayoutManager(getContext());
-        mRclyCompanyDetails.setLayoutManager(layoutManager);
-
-        Button btnPost = (Button) view.findViewById(R.id.btnPostJob);
-        btnPost.setOnClickListener(Post);
-
-        companyDetails = new CompanyDetails(getContext(), btnPost, mRclyCompanyDetails, googleApiClient);
-
-        ComplexCompanyDetailsAdapter adapter = new ComplexCompanyDetailsAdapter(companyDetails, companyTypes);
-        mRclyCompanyDetails.setAdapter(adapter);
+//        mRclyCompanyDetails = (RecyclerView) view.findViewById(R.id.rclyCompanyDetails);
+//
+//        CostumLayoutManager layoutManager = new CostumLayoutManager(getContext());
+//        mRclyCompanyDetails.setLayoutManager(layoutManager);
+//
+//        Button btnPost = (Button) view.findViewById(R.id.btnPostJob);
+//        btnPost.setOnClickListener(Post);
+//
+//        companyDetails = new CompanyDetails(getContext(), btnPost, mRclyCompanyDetails, googleApiClient);
+//
+//        ComplexCompanyDetailsAdapter adapter = new ComplexCompanyDetailsAdapter(companyDetails);
+//        mRclyCompanyDetails.setAdapter(adapter);
     }
 
 
@@ -118,23 +114,17 @@ public class FragCompanyDetails extends Fragment implements IPost, GoogleApiClie
 
         private List<CompanyJobs.CompanyJob> jobs;
         private CompanyName companyName;
-        private CompanyTypes.CompanyType companyType;
 
         public CompanyName getCompanyName()
         {
             return companyName;
         }
 
-        public CompanyTypes.CompanyType getCompanyType()
-        {
-            return companyType;
-        }
 
-        public TestObject(List<CompanyJobs.CompanyJob> jobs, CompanyName companyName, CompanyTypes.CompanyType companyType)
+        public TestObject(List<CompanyJobs.CompanyJob> jobs, CompanyName companyName)
         {
             this.jobs = jobs;
             this.companyName = companyName;
-            this.companyType = companyType;
         }
 
         public List<CompanyJobs.CompanyJob> getJobs()
@@ -204,34 +194,35 @@ public class FragCompanyDetails extends Fragment implements IPost, GoogleApiClie
         companyDetails.getBtnPost().setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public void onAttach(Context context)
-    {
-        super.onAttach(context);
-        googleApiClient = new GoogleApiClient
-                .Builder(getContext())
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage(getActivity(), this)
-                .build();
+//    @Override
+//    public void onAttach(Context context)
+//    {
+//        super.onAttach(context);
+//        googleApiClient = new GoogleApiClient
+//                .Builder(getContext())
+//                .addApi(Places.GEO_DATA_API)
+//                .addApi(Places.PLACE_DETECTION_API)
+//                .enableAutoManage(getActivity(), this)
+//                .build();
+//
+//        if (context instanceof IFragmentHandler)
+//            listener = (IFragmentHandler) context;
+//         else
+//            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+//
+//    }
 
-        if (context instanceof IFragmentHandler)
-            listener = (IFragmentHandler) context;
-         else
-            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
 
-    }
+//    @Override
+//    public void onDetach()
+//    {
+//        super.onDetach();
+//
+//        googleApiClient.stopAutoManage(getActivity());
+//        googleApiClient.disconnect();
+//        listener = null;
+//    }
 
-
-    @Override
-    public void onDetach()
-    {
-        super.onDetach();
-
-        googleApiClient.stopAutoManage(getActivity());
-        googleApiClient.disconnect();
-        listener = null;
-    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
