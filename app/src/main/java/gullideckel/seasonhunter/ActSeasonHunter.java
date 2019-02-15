@@ -9,15 +9,18 @@ import android.widget.FrameLayout;
 import java.util.List;
 
 import gullideckel.seasonhunter.Firestore.LoadAllDocuments;
+import gullideckel.seasonhunter.Firestore.LoadAllReviews;
 import gullideckel.seasonhunter.Interfaces.IDocumentList;
+import gullideckel.seasonhunter.Interfaces.IReviewList;
 import gullideckel.seasonhunter.JobFilter.FragJobFilter;
 import gullideckel.seasonhunter.JobList.FragJobList;
 import gullideckel.seasonhunter.JobMap.FragJobMap;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.FragCompanyDetails;
+import gullideckel.seasonhunter.CompanyInfo.ComanyInfoAddings.Job.CompanyDetails.FragCompanyDetails;
 import gullideckel.seasonhunter.JobSettings.FragJobSettings;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
+import gullideckel.seasonhunter.Objects.Review.CompanyReview;
 
-public class ActSeasonHunter extends FragmentActivity implements IDocumentList
+public class ActSeasonHunter extends FragmentActivity implements IDocumentList, IReviewList
 {
     private ViewPager vpSeasonHunter;
     private TabLayout tabSeasonHunter;
@@ -59,6 +62,9 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList
         LoadAllDocuments loadDocuments = new LoadAllDocuments(this, this);
         loadDocuments.InitDocuments(getCountryType());
 
+        LoadAllReviews loadReviews = new LoadAllReviews(this,this);
+        loadReviews.InitDocuments(getCountryType());
+
         fragMap = FragJobMap.newInstance();
         fragList = FragJobList.newInstance();
         fragFilter = FragJobFilter.newInstance();
@@ -92,9 +98,17 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList
         fragMap.InitDocuments(docs, getCountryType());
     }
 
+    @Override
+    public void RecieveReviews(List<CompanyReview> reviews)
+    {
+
+    }
+
     //TODO Now it returns default value because there is no countrypart selection
     private int getCountryType()
     {
         return getIntent().getIntExtra(getString(R.string.country_part_key), -1);
     }
+
+
 }

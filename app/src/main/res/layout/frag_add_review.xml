@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CompanyInfo.ComanyInfoAddings.Review.FragAddReview">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/txtGiveFeedbackHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/give_feedback"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtAddPositionHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/quest_work_position"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtGiveFeedbackHead" />
+
+        <EditText
+            android:id="@+id/edtAddWorkPosition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddPositionHead" />
+
+        <TextView
+            android:id="@+id/txtCalWorkTimeHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/quest_work_time"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtAddWorkPosition" />
+
+        <Button
+            android:id="@+id/btnAddWorkTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="40dp"
+            android:text="@string/add_work_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCalWorkTimeHead" />
+
+        <ImageView
+            android:id="@+id/imgAddWorkTime"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="11dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/calender"
+            android:translationZ="10dp"
+            app:layout_constraintStart_toStartOf="@+id/btnAddWorkTime"
+            app:layout_constraintTop_toTopOf="@+id/btnAddWorkTime" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/quest_pay_method"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddWorkTime" />
+
+        <RadioGroup
+            android:id="@+id/rdgAddWageType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+            <RadioButton
+                android:id="@+id/rdbAddHourly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_hourly" />
+
+            <RadioButton
+                android:id="@+id/rdbAddPiece"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_piece_rate" />
+
+        </RadioGroup>
+
+        <View
+            android:id="@+id/viewAddWageType"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rdgAddWageType" />
+
+        <TextView
+            android:id="@+id/txtAddEarningsHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/add_earnings"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+
+        <ImageView
+            android:id="@+id/imgAddOrganisationFive"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddOrganisationFour"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddAtmosphereFive" />
+
+        <ImageView
+            android:id="@+id/imgAddOrganisationFour"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddOrganisationThree"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddAtmosphereFive" />
+
+        <ImageView
+            android:id="@+id/imgAddOrganisationThree"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddOrganisationTwo"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddAtmosphereFive" />
+
+        <ImageView
+            android:id="@+id/imgAddOrganisationTwo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddOrganisationOne"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddAtmosphereFive" />
+
+        <ImageView
+            android:id="@+id/imgAddOrganisationOne"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/txtAddOrganisationHead"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddAtmosphereFive" />
+
+        <ImageView
+            android:id="@+id/imgAddAtmosphereFive"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddAtmosphereFour"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddEarnigsFive" />
+
+        <ImageView
+            android:id="@+id/imgAddAtmosphereFour"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddAtmosphereThree"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddEarnigsFive" />
+
+        <ImageView
+            android:id="@+id/imgAddAtmosphereThree"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddAtmosphereTwo"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddEarnigsFive" />
+
+        <ImageView
+            android:id="@+id/imgAddAtmosphereTwo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddAtmosphereOne"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddEarnigsFive" />
+
+        <ImageView
+            android:id="@+id/imgAddAtmosphereOne"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/txtAddOrganisationHead"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddEarningsOne" />
+
+        <ImageView
+            android:id="@+id/imgAddEarnigsFive"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddEarnigsFour"
+            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+
+        <ImageView
+            android:id="@+id/imgAddEarnigsFour"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddEarnigsThree"
+            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+
+        <ImageView
+            android:id="@+id/imgAddEarnigsThree"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddEarnigsTwo"
+            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+
+        <ImageView
+            android:id="@+id/imgAddEarnigsTwo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/imgAddEarningsOne"
+            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+
+        <ImageView
+            android:id="@+id/imgAddEarningsOne"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:src="@drawable/stargrey"
+            app:layout_constraintStart_toEndOf="@+id/txtAddOrganisationHead"
+            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+
+        <TextView
+            android:id="@+id/txtAddAtmosphereHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/add_atmosphere"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddEarnigsFive" />
+
+        <TextView
+            android:id="@+id/txtAddOrganisationHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/add_organisation"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddAtmosphereFive" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/quest_comment"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgAddOrganisationFive" />
+
+        <EditText
+            android:id="@+id/edtAddComment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/transparent"
+            android:gravity="top|left"
+            android:hint="@string/hint_comment"
+            android:inputType="textMultiLine"
+            android:maxLines="40"
+            android:minLines="4"
+            android:textColorHint="@color/colorGrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <Button
+            android:id="@+id/btnAddReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/done"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtAddComment" />
+
+        <Button
+            android:id="@+id/btnCancelReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtAddComment" />
+
+        <TextView
+            android:id="@+id/txtAddWorkTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddWorkTime" />
+
+        <FrameLayout
+            android:id="@+id/frmCalenderReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </FrameLayout>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

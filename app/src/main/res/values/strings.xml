@@ -23,7 +23,7 @@
     <string name="country_part_key">CoUntr3yK3Y</string>
 
 
-        <!--CompanyTypes array like it is saved at the backend-->
+    <!--CompanyTypes array like it is saved at the backend-->
     <string-array name="company_types">
         <item>Orchard</item>
         <item>Packhouse</item>
@@ -105,6 +105,37 @@
     <string name="atmosphere">Atmosphere:</string>
     <string name="work_organication">Organication:</string>
     <string name="comment">Comment:</string>
+
+    <!--Give your feedback strings for UI-->
+    <string name="give_feedback">Give your feedback</string>
+    <string name="quest_work_position">What was your work position?</string>
+    <string name="quest_work_time">How long did you work there?</string>
+    <string name="add_work_time">Add work time</string>
+    <string name="quest_pay_method">How did you get paid?</string>
+    <string name="add_hourly">Hourly</string>
+    <string name="add_piece_rate">Piece rate</string>
+    <string name="add_volunteer">Volunteer</string>
+    <string name="quest_hourly_pay">How much did you earn?</string>
+    <string name="add_overtime_pay">Overtime pay</string>
+    <string name="add_bonus">Bonus</string>
+    <string name="add_per">per</string>
+    <string name="quest_volunteer">What did you recieve for your work?</string>
+    <string name="add_earnings">Earnings:</string>
+    <string name="add_atmosphere">Atmosphere:</string>
+    <string name="add_organisation">Organisation:</string>
+    <string name="quest_comment">How was your experience at this company?</string>
+    <string name="hint_comment">Comment here</string>
+
+    <!--Strings for the Custom Calender to Add review-->
+    <string name="cal_start_date">Start date</string>
+    <string name="cal_end_date">End date</string>
+    <string name="cal_duration">Duration:</string>
+    <string name="cal_duration_days">days</string>
+
+
+    <!--Button commands-->
+    <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
 
     <string name="company_name_with_colon">Company name:</string>
 

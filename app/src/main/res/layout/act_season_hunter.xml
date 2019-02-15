@@ -7,33 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/frmLoading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        map:layout_constraintBottom_toBottomOf="parent"
-        map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="@+id/vpSeasonHunter">
-
-    </FrameLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/frmFragCompanyInfo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        map:layout_constraintBottom_toBottomOf="parent"
-        map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent">
-
-    </RelativeLayout>
-
     <android.support.design.widget.TabLayout
         android:id="@+id/tabSeasonHunter"
         android:layout_width="0dp"
@@ -53,6 +26,21 @@
         map:layout_constraintTop_toBottomOf="@+id/tabSeasonHunter">
 
     </gullideckel.seasonhunter.CostumLayouts.NonSwipeViewPager>
+
+    <FrameLayout
+        android:id="@+id/frmLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="@+id/vpSeasonHunter">
+
+    </FrameLayout>
 
 
 </android.support.constraint.ConstraintLayout>

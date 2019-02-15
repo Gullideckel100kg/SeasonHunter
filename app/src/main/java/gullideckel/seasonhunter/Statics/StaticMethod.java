@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
+import java.util.Calendar;
 import java.util.List;
 
 import gullideckel.seasonhunter.R;
@@ -147,5 +148,18 @@ public class StaticMethod
         return b.toString();
     }
 
+    public static float getCountOfDays(int startDay, int startMonth, int startYear, int endDay, int endMonth, int endYear)
+    {
+        Calendar dateStart = Calendar.getInstance();
+        Calendar dateEnd = Calendar.getInstance();
 
+        dateStart.clear();
+        dateStart.set(startYear, startMonth, startDay);
+        dateEnd.clear();
+        dateEnd.set(endYear, endMonth, endDay);
+
+        long diff = dateEnd.getTimeInMillis() - dateStart.getTimeInMillis();
+
+        return (float) diff / (24 * 60 * 60 * 1000);
+    }
 }

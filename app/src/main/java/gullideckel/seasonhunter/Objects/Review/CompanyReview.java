@@ -7,15 +7,15 @@ public class CompanyReview
     private String id;
     private String uid = "";
     private String companyId = "";
-    private String companyPosition = "";
-    private String companyTime = "";
-    private Integer wage = -1;
-    private CompanyWageHourly hourly;
-    private CompanyWagePiece piece;
-    private CompanyWageVolunteer volunteer;
-    private Integer earnings = -1;
-    private Integer atmosphere = -1;
-    private Integer organisation = -1;
+    private String workPosition = "";
+    private String workTime = "";
+    private int wage = -1;
+//    private CompanyWageHourly hourly;
+//    private CompanyWagePiece piece;
+//    private CompanyWageVolunteer volunteer;
+    private int earnings = -1;
+    private int atmosphere = -1;
+    private int organisation = -1;
     private String comment = "";
 
     @Exclude
@@ -49,24 +49,24 @@ public class CompanyReview
         this.companyId = companyId;
     }
 
-    public String getCompanyPosition()
+    public String getWorkPosition()
     {
-        return companyPosition;
+        return workPosition;
     }
 
-    public void setCompanyPosition(String companyPosition)
+    public void setWorkPosition(String workPosition)
     {
-        this.companyPosition = companyPosition;
+        this.workPosition = workPosition;
     }
 
-    public String getCompanyTime()
+    public String getWorkTime()
     {
-        return companyTime;
+        return workTime;
     }
 
-    public void setCompanyTime(String companyTime)
+    public void setWorkTime(String workTime)
     {
-        this.companyTime = companyTime;
+        this.workTime = workTime;
     }
 
     public Integer getWage()
@@ -79,35 +79,35 @@ public class CompanyReview
         this.wage = wage;
     }
 
-    public CompanyWageHourly getHourly()
-    {
-        return hourly;
-    }
-
-    public void setHourly(CompanyWageHourly hourly)
-    {
-        this.hourly = hourly;
-    }
-
-    public CompanyWagePiece getPiece()
-    {
-        return piece;
-    }
-
-    public void setPiece(CompanyWagePiece piece)
-    {
-        this.piece = piece;
-    }
-
-    public CompanyWageVolunteer getVolunteer()
-    {
-        return volunteer;
-    }
-
-    public void setVolunteer(CompanyWageVolunteer volunteer)
-    {
-        this.volunteer = volunteer;
-    }
+//    public CompanyWageHourly getHourly()
+//    {
+//        return hourly;
+//    }
+//
+//    public void setHourly(CompanyWageHourly hourly)
+//    {
+//        this.hourly = hourly;
+//    }
+//
+//    public CompanyWagePiece getPiece()
+//    {
+//        return piece;
+//    }
+//
+//    public void setPiece(CompanyWagePiece piece)
+//    {
+//        this.piece = piece;
+//    }
+//
+//    public CompanyWageVolunteer getVolunteer()
+//    {
+//        return volunteer;
+//    }
+//
+//    public void setVolunteer(CompanyWageVolunteer volunteer)
+//    {
+//        this.volunteer = volunteer;
+//    }
 
     public Integer getEarnings()
     {

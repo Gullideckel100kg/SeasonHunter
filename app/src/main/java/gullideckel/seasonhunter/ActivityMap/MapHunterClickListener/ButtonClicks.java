@@ -2,22 +2,14 @@ package gullideckel.seasonhunter.ActivityMap.MapHunterClickListener;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
-import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
-import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
-import gullideckel.seasonhunter.Interfaces.IntFrag;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.C_CompanyAddress.Snapshot.MySnapshot;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.FragCompanyDetails;
+import gullideckel.seasonhunter.CompanyInfo.ComanyInfoAddings.Job.CompanyDetails.C_CompanyAddress.Snapshot.MySnapshot;
 import gullideckel.seasonhunter.R;
 
 public class ButtonClicks

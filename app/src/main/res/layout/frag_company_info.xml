@@ -13,12 +13,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
+        android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/imbFavourite"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
             android:scaleType="fitCenter"
             android:src="@drawable/favourite" />
@@ -36,13 +38,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
+        android:clickable="true"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linFavourite"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/imbShare"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
             android:scaleType="fitCenter"
             android:src="@drawable/share" />
@@ -61,12 +65,14 @@
         android:layout_marginEnd="24dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
+        android:clickable="true"
         app:layout_constraintEnd_toStartOf="@+id/linEditJob"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/imbAddReview"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
             android:scaleType="fitCenter"
             android:src="@drawable/review" />
@@ -85,12 +91,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/imbEditJob"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
             android:scaleType="fitCenter"
             android:src="@drawable/edit" />
@@ -100,6 +108,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/edit_job" />
+
+
     </LinearLayout>
 
     <android.support.design.widget.TabLayout
@@ -124,5 +134,16 @@
         android:nestedScrollingEnabled="true">
 
     </gullideckel.seasonhunter.CostumLayouts.NonSwipeViewPager>
+
+    <FrameLayout
+        android:id="@+id/frmInfoFragHolder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
