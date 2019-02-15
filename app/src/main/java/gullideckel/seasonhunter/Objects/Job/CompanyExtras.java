@@ -1,4 +1,4 @@
-package gullideckel.seasonhunter.Objects.JobInformation;
+package gullideckel.seasonhunter.Objects.Job;
 
 public class CompanyExtras
 {

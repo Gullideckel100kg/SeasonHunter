@@ -5,11 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyType;
 import gullideckel.seasonhunter.R;
 
 public class CompanyTypeAdapter extends RecyclerView.Adapter<CompanyTypeViewHolderList>

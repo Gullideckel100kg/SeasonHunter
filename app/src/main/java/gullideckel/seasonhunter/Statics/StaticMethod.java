@@ -3,6 +3,7 @@ package gullideckel.seasonhunter.Statics;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.location.Location;
 import android.net.ConnectivityManager;
@@ -15,6 +16,8 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import java.util.List;
+
+import gullideckel.seasonhunter.R;
 
 public class StaticMethod
 {
@@ -113,19 +116,6 @@ public class StaticMethod
         return false;
     }
 
-//    public static Bitmap GetResizedBitmap(Bitmap bm, int newWidth, int newHeight)
-//    {
-//        int width = bm.getWidth();
-//        int height = bm.getHeight();
-//        float scaleWidth = ((float) newWidth) / width;
-//        float scaleHeight = ((float) newHeight) / height;
-//
-//        Matrix matrix = new Matrix();
-//
-//        matrix.postScale(scaleWidth, scaleHeight);
-//
-//        return Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
-//    }
 
     public static void Toast(String message, Context context)
     {
@@ -136,4 +126,26 @@ public class StaticMethod
     {
         return BitmapDescriptorFactory.fromBitmap(Bitmap.createScaledBitmap(bmp, width, height, false));
     }
+
+    public static String StringBuilder(List<String> strings, String seperater)
+    {
+        StringBuilder b = new StringBuilder();
+        b.append("");
+
+        if(strings.size() > 0)
+            b.append(strings.get(0));
+
+        if(strings.size() > 1)
+        {
+            for(int i = 1; i < strings.size(); i++)
+            {
+                b.append(seperater);
+                b.append(strings.get(i));
+            }
+        }
+
+        return b.toString();
+    }
+
+
 }

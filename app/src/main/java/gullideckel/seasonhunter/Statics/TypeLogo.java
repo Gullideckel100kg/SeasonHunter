@@ -1,31 +1,14 @@
-package gullideckel.seasonhunter.Objects.JobInformation;
+package gullideckel.seasonhunter.Statics;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.google.firebase.firestore.Exclude;
-
 import gullideckel.seasonhunter.R;
 
-public class CompanyType
+public class TypeLogo
 {
-    private String companyType;
-    private Context context;
-
-    public CompanyType(String companyType, Context context)
-    {
-        this.companyType = companyType;
-        this.context = context;
-    }
-
-    public String getCompanyType()
-    {
-        return companyType;
-    }
-
-    @Exclude
-    public Bitmap getLogo()
+    public static Bitmap getLogo(String companyType, Context context)
     {
         if (companyType.equals(context.getString(R.string.farm)))
             return BitmapFactory.decodeResource(context.getResources(), R.drawable.farm);

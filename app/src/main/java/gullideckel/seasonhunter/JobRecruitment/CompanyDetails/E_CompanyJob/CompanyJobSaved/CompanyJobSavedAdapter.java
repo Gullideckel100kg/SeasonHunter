@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
+import gullideckel.seasonhunter.Objects.Job.CompanyJobs;
 import gullideckel.seasonhunter.R;
 
 public class CompanyJobSavedAdapter extends RecyclerView.Adapter<CompanyJobSavedViewHolder>

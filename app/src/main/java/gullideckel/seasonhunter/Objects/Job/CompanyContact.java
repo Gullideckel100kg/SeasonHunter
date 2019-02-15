@@ -1,4 +1,4 @@
-package gullideckel.seasonhunter.Objects.JobInformation;
+package gullideckel.seasonhunter.Objects.Job;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ public class CompanyContact
 {
     private List<String> phoneNumber = new ArrayList<>();
     private List<String> email = new ArrayList<>();
-    private String website;
+    private String website = "";
     private boolean onlineRecruitment = false;
 
     public List<String> getPhoneNumber()

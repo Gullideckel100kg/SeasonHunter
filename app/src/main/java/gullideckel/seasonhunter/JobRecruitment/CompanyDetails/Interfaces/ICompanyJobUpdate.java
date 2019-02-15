@@ -1,6 +1,6 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces;
 
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
+import gullideckel.seasonhunter.Objects.Job.CompanyJobs;
 
 public interface ICompanyJobUpdate
 {

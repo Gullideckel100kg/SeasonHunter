@@ -15,7 +15,7 @@ import android.widget.ImageButton;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyJobUpdate;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
+import gullideckel.seasonhunter.Objects.Job.CompanyJobs;
 import gullideckel.seasonhunter.R;
 
 

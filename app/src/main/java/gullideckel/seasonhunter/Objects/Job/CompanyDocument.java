@@ -1,6 +1,10 @@
-package gullideckel.seasonhunter.Objects.JobInformation;
+package gullideckel.seasonhunter.Objects.Job;
+
+import com.google.firebase.firestore.Exclude;
 
 import java.util.List;
+
+import gullideckel.seasonhunter.Objects.Review.CompanyReview;
 
 public class CompanyDocument
 {
@@ -14,6 +18,18 @@ public class CompanyDocument
     private CompanyExtras extras;
     private CompanyPhoto photo;
     private CompanyReview review;
+    private String Id;
+
+    @Exclude
+    public String getId()
+    {
+        return Id;
+    }
+
+    public void setId(String id)
+    {
+        Id = id;
+    }
 
     public List<String> getTypes()
     {

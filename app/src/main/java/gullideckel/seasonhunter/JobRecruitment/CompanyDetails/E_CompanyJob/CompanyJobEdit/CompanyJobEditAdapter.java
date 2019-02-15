@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
+import gullideckel.seasonhunter.Objects.Job.CompanyJobs;
 import gullideckel.seasonhunter.R;
 
 public class CompanyJobEditAdapter extends RecyclerView.Adapter<CompanyJobEditViewHolder>

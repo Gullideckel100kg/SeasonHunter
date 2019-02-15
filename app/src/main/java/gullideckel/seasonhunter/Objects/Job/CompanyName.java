@@ -1,4 +1,4 @@
-package gullideckel.seasonhunter.Objects.JobInformation;
+package gullideckel.seasonhunter.Objects.Job;
 
 //Info: Class not needed. Just created cause of performance
 public class CompanyName

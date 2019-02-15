@@ -18,7 +18,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyAddress;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
+import gullideckel.seasonhunter.Objects.Job.CompanyAddress;
 import gullideckel.seasonhunter.Statics.StaticMethod;
 
 public class PlaceAutoCompleteTextView

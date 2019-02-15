@@ -1,6 +1,6 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces;
 
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
+import gullideckel.seasonhunter.Objects.Job.CompanyAddress;
 
 public interface ICompanyAddress
 {

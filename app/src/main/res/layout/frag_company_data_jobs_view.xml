@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linNotes"
+        android:id="@+id/linJobNotes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -16,31 +16,30 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgDetailsCalender">
+        app:layout_constraintTop_toBottomOf="@+id/imgJobCalender">
 
         <TextView
-            android:id="@+id/txtDetailsNotesHead"
+            android:id="@+id/txtJobNotesHead"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/notes"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/txtDetailsNotes"
+            android:id="@+id/txtJobNotes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/txtDetailJob"
+        android:id="@+id/txtJobTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        android:text="Cherry picking"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,23 +47,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imgDetailsCalender"
+        android:id="@+id/imgJobCalender"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="20dp"
         android:scaleType="fitCenter"
+        android:src="@drawable/calender"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDetailJob"
-        app:srcCompat="@drawable/calender" />
+        app:layout_constraintTop_toBottomOf="@+id/txtJobTitle" />
 
     <TextView
-        android:id="@+id/txtDetailsDate"
+        android:id="@+id/txtJobDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgDetailsCalender"
-        app:layout_constraintTop_toBottomOf="@+id/txtDetailJob" />
+        app:layout_constraintStart_toEndOf="@+id/imgJobCalender"
+        app:layout_constraintTop_toBottomOf="@+id/txtJobTitle" />
 </android.support.constraint.ConstraintLayout>

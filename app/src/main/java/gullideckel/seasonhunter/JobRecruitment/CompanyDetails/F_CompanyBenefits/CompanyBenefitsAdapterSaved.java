@@ -1,17 +1,8 @@
 package gullideckel.seasonhunter.JobRecruitment.CompanyDetails.F_CompanyBenefits;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import java.util.List;
-
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyBenefits;
-import gullideckel.seasonhunter.R;
 
 public class CompanyBenefitsAdapterSaved extends RecyclerView.Adapter<CompanyBenefitsViewHolderSaved>
 {

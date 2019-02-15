@@ -1,4 +1,4 @@
-package gullideckel.seasonhunter.Objects.JobInformation;
+package gullideckel.seasonhunter.Objects.Job;
 
 import android.graphics.Bitmap;
 
@@ -6,8 +6,6 @@ import com.google.firebase.firestore.Exclude;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.F_CompanyBenefits.CompanyBenefitsViewHolder;
 
 public class CompanyBenefits
 {

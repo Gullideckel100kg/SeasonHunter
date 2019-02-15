@@ -13,7 +13,7 @@ import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyAddress;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
+import gullideckel.seasonhunter.Objects.Job.CompanyAddress;
 import gullideckel.seasonhunter.Statics.StaticMethod;
 
 

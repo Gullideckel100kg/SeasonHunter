@@ -8,10 +8,7 @@ import android.widget.TextView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 
-import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
-import gullideckel.seasonhunter.Interfaces.IntFrag;
-import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.FragCompanyDetails;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyDocument;
+import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.R;
 
 public class MarkerInfoWindow implements GoogleMap.InfoWindowAdapter

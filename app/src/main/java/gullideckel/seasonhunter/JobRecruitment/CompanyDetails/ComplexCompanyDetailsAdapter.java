@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.A_CompanyName.CompanyNameConfi;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.A_CompanyName.CompanyNameViewHolder;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.B_CompanyType.CompanyTypeConfi;
@@ -21,12 +19,11 @@ import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.Compa
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.F_CompanyBenefits.CompanyBenefitsConfi;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.F_CompanyBenefits.CompanyBenefitsViewHolder;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyBenefits;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyContact;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyName;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyType;
+import gullideckel.seasonhunter.Objects.Job.CompanyAddress;
+import gullideckel.seasonhunter.Objects.Job.CompanyBenefits;
+import gullideckel.seasonhunter.Objects.Job.CompanyContact;
+import gullideckel.seasonhunter.Objects.Job.CompanyJobs;
+import gullideckel.seasonhunter.Objects.Job.CompanyName;
 import gullideckel.seasonhunter.R;
 
 //ICompanyDetails: This listener is for looking up the next Item not the previous one
@@ -55,8 +52,8 @@ public class ComplexCompanyDetailsAdapter extends RecyclerView.Adapter<RecyclerV
     {
         if (companyDetails.getItems().get(position) instanceof CompanyName)
             return CompanyDetails.COMPANYNAME;
-        else if (companyDetails.getItems().get(position) instanceof CompanyType)
-            return CompanyDetails.COMPANYTYPE;
+//        else if (companyDetails.getItems().get(position) instanceof nul)
+//            return CompanyDetails.COMPANYTYPE;
         else if (companyDetails.getItems().get(position) instanceof CompanyAddress)
             return CompanyDetails.COMPANYADDRESS;
         else if (companyDetails.getItems().get(position) instanceof CompanyContact)

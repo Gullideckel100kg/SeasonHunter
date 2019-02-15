@@ -12,7 +12,7 @@ import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.CompanyJobEdit.CompanyJobEditAdapter;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.CompanyJobEdit.CompanyJobEditViewHolder;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
+import gullideckel.seasonhunter.Objects.Job.CompanyJobs;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
 

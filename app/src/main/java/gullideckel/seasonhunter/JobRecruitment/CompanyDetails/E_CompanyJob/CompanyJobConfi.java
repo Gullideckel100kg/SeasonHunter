@@ -5,14 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
-import gullideckel.seasonhunter.Interfaces.IReplaceFragment;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.CompanyDetailsBase;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.E_CompanyJob.CompanyJobSaved.CompanyJobSavedAdapter;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyDetails;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.Interfaces.ICompanyJobUpdate;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
+import gullideckel.seasonhunter.Objects.Job.CompanyJobs;
 
 public class CompanyJobConfi extends CompanyDetailsBase implements ICompanyJobUpdate
 {

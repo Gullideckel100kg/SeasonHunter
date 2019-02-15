@@ -1,29 +1,21 @@
 package gullideckel.seasonhunter;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.widget.FrameLayout;
 
-import com.google.android.gms.maps.GoogleMap;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import gullideckel.seasonhunter.ActivityMap.MapHunterClickListener.ButtonClicks;
-import gullideckel.seasonhunter.DocumentsFirebase.LoadAllDocuments;
+import gullideckel.seasonhunter.Firestore.LoadAllDocuments;
 import gullideckel.seasonhunter.Interfaces.IDocumentList;
 import gullideckel.seasonhunter.JobFilter.FragJobFilter;
 import gullideckel.seasonhunter.JobList.FragJobList;
 import gullideckel.seasonhunter.JobMap.FragJobMap;
 import gullideckel.seasonhunter.JobRecruitment.CompanyDetails.FragCompanyDetails;
 import gullideckel.seasonhunter.JobSettings.FragJobSettings;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyDocument;
-import gullideckel.seasonhunter.Statics.StaticMethod;
+import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 
 public class ActSeasonHunter extends FragmentActivity implements IDocumentList
 {

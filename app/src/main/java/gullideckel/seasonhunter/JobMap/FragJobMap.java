@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -22,9 +21,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import java.util.List;
 
 import gullideckel.seasonhunter.JobMap.Markers.MarkerOnMap;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyDocument;
+import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.R;
-import gullideckel.seasonhunter.Statics.StaticMethod;
 
 public class FragJobMap extends Fragment implements OnMapReadyCallback
 {

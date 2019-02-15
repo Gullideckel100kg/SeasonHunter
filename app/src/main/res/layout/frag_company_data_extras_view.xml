@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/txtDetailsNotes"
+        android:id="@+id/txtExtrasNotes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -15,10 +15,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDetailsExtrasHead" />
+        app:layout_constraintTop_toBottomOf="@+id/txtExtrasHead" />
 
     <TextView
-        android:id="@+id/txtDetailsExtrasHead"
+        android:id="@+id/txtExtrasHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

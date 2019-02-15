@@ -1,30 +1,27 @@
 package gullideckel.seasonhunter.JobMap.Markers;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-import gullideckel.seasonhunter.ActSeasonHunter;
 import gullideckel.seasonhunter.CompanyInfo.FragCompanyInfo;
-import gullideckel.seasonhunter.Interfaces.IntFrag;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyDocument;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyType;
+import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
+import gullideckel.seasonhunter.Statics.TypeLogo;
 
 public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener
 {
+    private static final String TAG = "MarkerOnMap";
+
     private GoogleMap map;
     private FragmentActivity activity;
 
@@ -42,16 +39,15 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
         for(CompanyDocument doc : docs)
         {
             Bitmap bmp;
+
             if(doc.getTypes().size() > 0)
-            {
-                CompanyType type = new CompanyType(doc.getTypes().get(0), activity);
-                bmp = type.getLogo();
-            }
+                bmp = TypeLogo.getLogo(doc.getTypes().get(0), activity);
             else
             {
-                CompanyType type = new CompanyType(activity.getString(R.string.other), activity);
-                bmp = type.getLogo();
+                bmp = TypeLogo.getLogo(activity.getString(R.string.other), activity);
+                Log.wtf(TAG, "SetMarker: No Company type. Document: " + doc.getId());
             }
+
 
             Marker marker =  map.addMarker(new MarkerOptions()
                                 .position(new LatLng(doc.getAddress().getLatitude(), doc.getAddress().getLongitude()))

@@ -3,7 +3,6 @@ package gullideckel.seasonhunter.JobRecruitment.CompanyDetails;
 import android.content.Context;
 import android.support.annotation.IntDef;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Button;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -16,11 +15,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import gullideckel.seasonhunter.CostumLayouts.CostumLayoutManager;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyAddress;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyBenefits;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyContact;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyJobs;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyName;
+import gullideckel.seasonhunter.Objects.Job.CompanyAddress;
+import gullideckel.seasonhunter.Objects.Job.CompanyBenefits;
+import gullideckel.seasonhunter.Objects.Job.CompanyContact;
+import gullideckel.seasonhunter.Objects.Job.CompanyJobs;
+import gullideckel.seasonhunter.Objects.Job.CompanyName;
 
 public final class CompanyDetails
 {

@@ -6,247 +6,123 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabCompanyInfo"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linFavourite"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:src="@drawable/favourite" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/favourite" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@+id/linFavourite"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:src="@drawable/share" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/share" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/linEditJob"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:src="@drawable/review" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/add_review" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linEditJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:src="@drawable/edit" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/edit_job" />
+    </LinearLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabCompanyInfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linShare">
+
     </android.support.design.widget.TabLayout>
 
-    <android.support.v4.view.ViewPager
+    <gullideckel.seasonhunter.CostumLayouts.NonSwipeViewPager
         android:id="@+id/vPCompanyInfo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabCompanyInfo">
+        app:layout_constraintTop_toBottomOf="@+id/tabCompanyInfo"
+        android:nestedScrollingEnabled="true">
 
-    </android.support.v4.view.ViewPager>
+    </gullideckel.seasonhunter.CostumLayouts.NonSwipeViewPager>
 
-    <!--<android.support.constraint.ConstraintLayout-->
-    <!--android:id="@+id/cnstInfoCompany"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-    <!--tools:context=".ActivityMap.TestCompanyInfo">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoEmailHead"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="24dp"-->
-    <!--android:layout_marginHorizontal="20dp"-->
-    <!--android:layout_marginStart="24dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:text="@string/email"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoPhone" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoName"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_marginStart="16dp"-->
-    <!--android:layout_marginTop="30dp"-->
-    <!--android:textSize="16sp"-->
-    <!--app:layout_constraintStart_toEndOf="@+id/imgInfoType"-->
-    <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoPhoneHead"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginHorizontal="20dp"-->
-    <!--android:layout_marginStart="24dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:text="@string/phone"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoContactHead" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtWebiteHead"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginHorizontal="20dp"-->
-    <!--android:layout_marginStart="24dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:text="@string/website"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoEmail" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoContactHead"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="19dp"-->
-    <!--android:layout_marginHorizontal="10dp"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="16dp"-->
-    <!--android:text="Contact:"-->
-    <!--android:textSize="16sp"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoAddress" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoAddressHead"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginHorizontal="10dp"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="20dp"-->
-    <!--android:text="@string/address"-->
-    <!--android:textSize="14sp"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/imgInfoType" />-->
-
-    <!--<ImageView-->
-    <!--android:id="@+id/imgInfoType"-->
-    <!--android:layout_width="40dp"-->
-    <!--android:layout_height="40dp"-->
-    <!--android:layout_gravity="center_horizontal"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="20dp"-->
-    <!--android:scaleType="fitCenter"-->
-    <!--android:src="@drawable/farm"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoAddress"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="20dp"-->
-    <!--android:textSize="14sp"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintHorizontal_bias="1.0"-->
-    <!--app:layout_constraintStart_toEndOf="@+id/txtInfoAddressHead"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/imgInfoType" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoJobsHead"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="20dp"-->
-    <!--android:text="@string/jobs_semi"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtWebiteHead" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoPhone"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toEndOf="@+id/txtInfoPhoneHead"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoContactHead" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoEmail"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintHorizontal_bias="0.491"-->
-    <!--app:layout_constraintStart_toEndOf="@+id/txtInfoEmailHead"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoPhone" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoWebsite"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toEndOf="@+id/txtWebiteHead"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoEmail" />-->
-
-    <!--<android.support.v7.widget.RecyclerView-->
-    <!--android:id="@+id/rcylInfoJobs"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginStart="24dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:scrollbars="none"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoJobsHead" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoFacilitiesHeader"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="20dp"-->
-    <!--android:text="@string/facilities_header"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/rcylInfoJobs" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoFacilities"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginStart="20dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoFacilitiesHeader" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoCoursesHeader"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="20dp"-->
-    <!--android:text="@string/courses_header"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoFacilities" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoCourses"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginStart="20dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoCoursesHeader" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoDescriptionHeader"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="20dp"-->
-    <!--android:text="@string/description_header"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoCourses" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/txtInfoDescription"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginStart="20dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/txtInfoDescriptionHeader" />-->
-
-
-    <!--</android.support.constraint.ConstraintLayout>-->
 </android.support.constraint.ConstraintLayout>

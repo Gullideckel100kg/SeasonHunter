@@ -19,11 +19,11 @@
     <string name="settings">Settings</string>
 
 
-    <!--Country type key for loading Database collectiob-->
+    <!--Country part key for loading Database collection-->
     <string name="country_part_key">CoUntr3yK3Y</string>
 
 
-    <!--CompanyTypes array like it is saved at the backend-->
+        <!--CompanyTypes array like it is saved at the backend-->
     <string-array name="company_types">
         <item>Orchard</item>
         <item>Packhouse</item>
@@ -56,21 +56,18 @@
     <string name="other">Other</string>
 
 
-    <!--CollectionPath strings for recieve Data from Firestore-->
+    <!--CollectionPath companies for recieve Data from Firestore-->
     <string name="all_companies">companies</string>
 
+
+    <!--CollectionPath reviews for recieve Data from Firestor-->
+    <string name="all_reviews">reviews</string>
 
     <!--Names for Imagebuttons at the Company details-->
     <string name="favourite">Favourite</string>
     <string name="share">Share</string>
-    <string name="review">Add review</string>
+    <string name="add_review">Add review</string>
     <string name="edit_job">Edit job</string>
-
-
-    <!--Company details Ui strings-->
-    <string name="contact">Contact:</string>
-    <string name="jobs">Jobs:</string>
-    <string name="notes">Notes:</string>
 
 
     <!--Company detail TabLayout Headers-->
@@ -79,6 +76,35 @@
     <string name="description">Description</string>
     <string name="photos">Photos</string>
 
+
+    <!--Company info Ui strings-->
+    <string name="contact">Contact:</string>
+    <string name="jobs">Jobs:</string>
+    <string name="notes">Notes:</string>
+    <string name="online_recruitment">Online recruitment</string>
+    <string name="courses">Courses:</string>
+    <string name="facilities">Facilities:</string>
+    <!--Warn advise for Job working dates-->
+    <string name="warning_job_dates">Working time indication can be inaccurate or incorrect.\nAlways enquire about job availability toward the company.</string>
+
+
+    <!--Company review Ui strings-->
+    <string name="review">Review:</string>
+    <!--Advise to swipe to see the next review-->
+    <string name="swipe_review">&#60; Swipe to see the next Review &#62;</string>
+    <string name="work_position">Work position:</string>
+    <string name="work_time">Work time:</string>
+    <string name="wage">Wage:</string>
+    <string name="piece_work">Piece work</string>
+    <string name="piece_rate">Piece rate</string>
+    <string name="hourly_paid">Hourly paid</string>
+    <string name="hourly_rate">Hourly raite</string>
+    <string name="volunteering">Volunteering</string>
+    <string name="benefits">Benefits</string>
+    <string name="earnings">Earnings:</string>
+    <string name="atmosphere">Atmosphere:</string>
+    <string name="work_organication">Organication:</string>
+    <string name="comment">Comment:</string>
 
     <string name="company_name_with_colon">Company name:</string>
 
@@ -104,7 +130,6 @@
     <string name="add_phone">Add phone number</string>
     <string name="add_email">Add email</string>
     <string name="add_website">Add Website</string>
-    <string name="online_recruitment">Online recruitment</string>
 
     <string name="phone">Phone:</string>
     <string name="email">Email:</string>
@@ -116,9 +141,6 @@
     <string name="job_offer_headline">Post your job offers:</string>
     <string name="job_title">Job title:</string>
     <string name="no_payment">Please select a kind of Payment</string>
-    <string name="hourly_paid">Hourly paid</string>
-    <string name="piece_work">Piece work</string>
-    <string name="volunteering">Volunteering</string>
     <string name="start_date">Start date: (approximately)</string>
     <string name="no_start_date">Please select a start date</string>
     <string name="end_date">End date: (approximately)</string>
@@ -190,7 +212,6 @@
 
 
     <string name="benefits_headline">Select the benefits which you offer additional to your employer</string>
-    <string name="benefits">Benefits</string>
     <string name="offer_food">Offer food</string>
     <string name="offer_dring">Offer drinks</string>
     <string name="sleepingplace">Sleeping place</string>

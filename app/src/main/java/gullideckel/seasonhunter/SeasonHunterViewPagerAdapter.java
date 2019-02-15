@@ -3,12 +3,13 @@ package gullideckel.seasonhunter;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SeasonHunterViewPagerAdapter extends FragmentStatePagerAdapter
+public class SeasonHunterViewPagerAdapter extends FragmentPagerAdapter
 {
     private final List<Fragment> fragmentList = new ArrayList<>();
     private final List<String> fragmentTitleList = new ArrayList<>();

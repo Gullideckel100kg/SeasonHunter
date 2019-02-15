@@ -1,11 +1,9 @@
-package gullideckel.seasonhunter.DocumentsFirebase;
+package gullideckel.seasonhunter.Firestore;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -17,8 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gullideckel.seasonhunter.Interfaces.IDocumentList;
-import gullideckel.seasonhunter.Interfaces.IntFrag;
-import gullideckel.seasonhunter.Objects.JobInformation.CompanyDocument;
+import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
 
@@ -57,7 +54,9 @@ public class LoadAllDocuments
                         {
                             try
                             {
-                                docs.add(document.toObject(CompanyDocument.class));
+                                CompanyDocument doc = document.toObject(CompanyDocument.class);
+                                doc.setId(document.getId());
+                                docs.add(doc);
                             }catch (ClassCastException e)
                             {
                                 Log.e(TAG, "onComplete: ", e);
