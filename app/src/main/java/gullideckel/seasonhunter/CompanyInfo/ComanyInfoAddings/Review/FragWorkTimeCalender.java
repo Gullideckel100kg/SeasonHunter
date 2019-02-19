@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 import gullideckel.seasonhunter.Interfaces.IWorkTime;
-import gullideckel.seasonhunter.Objects.Review.CompanyWorkTime;
+import gullideckel.seasonhunter.Objects.Review.ReviewWorkTime;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
 
@@ -36,7 +36,7 @@ public class FragWorkTimeCalender extends Fragment
     private boolean isStartDate = true;
     private boolean isEndDate = false;
 
-    private CompanyWorkTime workTime;
+    private ReviewWorkTime workTime;
     private IWorkTime listener;
 
 
@@ -55,7 +55,7 @@ public class FragWorkTimeCalender extends Fragment
         View v = inflater.inflate(R.layout.frag_work_time_calender, container, false);
 
         v.bringToFront();
-        v.setBackgroundColor(Color.WHITE);
+        v.setBackgroundColor(Color.GRAY);
 
         linStartDate = (LinearLayout) v.findViewById(R.id.linCalStartDate);
         linEndDate = (LinearLayout) v.findViewById(R.id.linCalEndDate);
@@ -66,7 +66,7 @@ public class FragWorkTimeCalender extends Fragment
         btnCancel = (Button) v.findViewById(R.id.btnCalCancel);
         btnDone = (Button) v.findViewById(R.id.btnCalDone);
 
-        workTime = new CompanyWorkTime();
+        workTime = new ReviewWorkTime();
 
         linStartDate.bringToFront();
         linEndDate.bringToFront();
@@ -95,11 +95,11 @@ public class FragWorkTimeCalender extends Fragment
                 Log.d("Date", "Year=" + year + " Month=" + (month + 1) + " day=" + dayOfMonth);
                 if(isStartDate)
                 {
-                    txtStartDate.setText(dayOfMonth + " / " + month + 1 + " / " + year);
+                    txtStartDate.setText(dayOfMonth + " / " + (month + 1) + " / " + year);
                     workTime.setStartDay(dayOfMonth);
                     workTime.setStartMonth(month + 1);
                     workTime.setStartYear(year);
-                    if(workTime.getEndDay() == -1 && workTime.getEndMonth() == -1 && workTime.getEndYear() == -1)
+                    if(workTime.getEndDay() != -1 && workTime.getEndMonth() != -1 && workTime.getEndYear() != -1)
                     {
                         workTime.setDuration(StaticMethod.getCountOfDays(dayOfMonth, month + 1, year, workTime.getEndDay(), workTime.getEndMonth(), workTime.getEndYear()));
                         txtDuration.setText(getContext().getText(R.string.cal_duration) + " " + workTime.getDuration() + " " + getContext().getText(R.string.cal_duration_days));
@@ -108,11 +108,11 @@ public class FragWorkTimeCalender extends Fragment
 
                 if(isEndDate)
                 {
-                    txtEndDate.setText(dayOfMonth + " / " + month + 1 + " / " + year);
+                    txtEndDate.setText(dayOfMonth + " / " + (month + 1) + " / " + year);
                     workTime.setEndDay(dayOfMonth);
                     workTime.setEndMonth(month + 1);
                     workTime.setEndYear(year);
-                    if (workTime.getStartDay() == -1 && workTime.getStartMonth() == -1 && workTime.getStartYear() == -1)
+                    if (workTime.getStartDay() != -1 && workTime.getStartMonth() != -1 && workTime.getStartYear() != -1)
                     {
                         workTime.setDuration(StaticMethod.getCountOfDays(workTime.getStartDay(), workTime.getStartMonth(), workTime.getStartYear(), dayOfMonth, month + 1, year));
                         txtDuration.setText(getContext().getText(R.string.cal_duration) + " " + workTime.getDuration() + " " + getContext().getText(R.string.cal_duration_days));
@@ -121,6 +121,7 @@ public class FragWorkTimeCalender extends Fragment
             }
         });
 
+        txtStartDate.setText(datePicker.getDayOfMonth() + " / " + (datePicker.getMonth() + 1) + " / " + datePicker.getYear());
         workTime.setStartDay(datePicker.getDayOfMonth());
         workTime.setStartMonth(datePicker.getMonth() + 1);
         workTime.setStartYear(datePicker.getYear());
@@ -184,7 +185,14 @@ public class FragWorkTimeCalender extends Fragment
 
     private void SendWorkTime()
     {
-        listener.RevieveWorkTime(workTime);
+        if(workTime.getDuration() > 0)
+        {
+            listener.RevieveWorkTime(workTime);
+            getActivity().onBackPressed();
+        }
+        else
+            StaticMethod.Toast(getContext().getString(R.string.cal_duration_warning), getContext());
+
     }
 
 

@@ -2,12 +2,14 @@ package gullideckel.seasonhunter.Statics;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -15,13 +17,19 @@ import android.widget.Toast;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import gullideckel.seasonhunter.R;
 
 public class StaticMethod
 {
+    private static final String TAG = "StaticMethod";
+
     private boolean isNetworkAvailable(Context context)
     {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -148,18 +156,24 @@ public class StaticMethod
         return b.toString();
     }
 
-    public static float getCountOfDays(int startDay, int startMonth, int startYear, int endDay, int endMonth, int endYear)
+    public static long getCountOfDays(int startDay, int startMonth, int startYear, int endDay, int endMonth, int endYear)
     {
-        Calendar dateStart = Calendar.getInstance();
-        Calendar dateEnd = Calendar.getInstance();
 
-        dateStart.clear();
-        dateStart.set(startYear, startMonth, startDay);
-        dateEnd.clear();
-        dateEnd.set(endYear, endMonth, endDay);
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+        String inputString1 = startDay + " " + startMonth + " " + startYear;
+        String inputString2 = endDay + " " + endMonth + " " + endYear;
 
-        long diff = dateEnd.getTimeInMillis() - dateStart.getTimeInMillis();
-
-        return (float) diff / (24 * 60 * 60 * 1000);
+        try {
+            Date date1 = myFormat.parse(inputString1);
+            Date date2 = myFormat.parse(inputString2);
+            long diff = date2.getTime() - date1.getTime();
+            return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            Log.e(TAG, "getCountOfDays: ", e);
+        }
+        return 0;
     }
+
+
 }

@@ -1,8 +1,9 @@
 package gullideckel.seasonhunter.Interfaces;
 
-import gullideckel.seasonhunter.Objects.Review.CompanyWorkTime;
+
+import gullideckel.seasonhunter.Objects.Review.ReviewWorkTime;
 
 public interface IWorkTime
 {
-    void RevieveWorkTime(CompanyWorkTime workTime);
+    void RevieveWorkTime(ReviewWorkTime workTime);
 }

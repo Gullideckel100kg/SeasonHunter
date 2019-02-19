@@ -57,11 +57,11 @@
 
 
     <!--CollectionPath companies for recieve Data from Firestore-->
-    <string name="all_companies">companies</string>
+    <string name="db_all_companies">companies</string>
 
 
     <!--CollectionPath reviews for recieve Data from Firestor-->
-    <string name="all_reviews">reviews</string>
+    <string name="db_all_reviews">reviews</string>
 
     <!--Names for Imagebuttons at the Company details-->
     <string name="favourite">Favourite</string>
@@ -91,16 +91,14 @@
     <!--Company review Ui strings-->
     <string name="review">Review:</string>
     <!--Advise to swipe to see the next review-->
-    <string name="swipe_review">&#60; Swipe to see the next Review &#62;</string>
+    <string name="swipe_review">Swipe to see the next Review</string>
     <string name="work_position">Work position:</string>
     <string name="work_time">Work time:</string>
     <string name="wage">Wage:</string>
     <string name="piece_work">Piece work</string>
-    <string name="piece_rate">Piece rate</string>
+    <!--<string name="piece_rate">Piece rate</string>-->
     <string name="hourly_paid">Hourly paid</string>
-    <string name="hourly_rate">Hourly raite</string>
-    <string name="volunteering">Volunteering</string>
-    <string name="benefits">Benefits</string>
+    <!--<string name="hourly_rate">Hourly rate</string>-->
     <string name="earnings">Earnings:</string>
     <string name="atmosphere">Atmosphere:</string>
     <string name="work_organication">Organication:</string>
@@ -113,29 +111,41 @@
     <string name="add_work_time">Add work time</string>
     <string name="quest_pay_method">How did you get paid?</string>
     <string name="add_hourly">Hourly</string>
-    <string name="add_piece_rate">Piece rate</string>
-    <string name="add_volunteer">Volunteer</string>
-    <string name="quest_hourly_pay">How much did you earn?</string>
-    <string name="add_overtime_pay">Overtime pay</string>
-    <string name="add_bonus">Bonus</string>
-    <string name="add_per">per</string>
-    <string name="quest_volunteer">What did you recieve for your work?</string>
+    <string name="add_piece_rate">Piece work</string>
+    <string name="add_others">Other payment</string>
+    <string name="quest_payment">How was your rate?</string>
+    <string name="quest_salary">How much did you earn?</string>
     <string name="add_earnings">Earnings:</string>
     <string name="add_atmosphere">Atmosphere:</string>
     <string name="add_organisation">Organisation:</string>
     <string name="quest_comment">How was your experience at this company?</string>
     <string name="hint_comment">Comment here</string>
+    <string name="review_sent">Your review has been sent</string>
+    <string name="review_not_sent">There was a problem. Your review could not be sent!</string>
 
     <!--Strings for the Custom Calender to Add review-->
     <string name="cal_start_date">Start date</string>
     <string name="cal_end_date">End date</string>
     <string name="cal_duration">Duration:</string>
     <string name="cal_duration_days">days</string>
+    <string name="cal_duration_warning">Your end date is under the start date!</string>
+
+    <!--Strings for the instepction of adding a review-->
+    <string name="no_work_position">Please let the others know your work position</string>
+    <string name="no_work_time">Please let the others know the dates when you worked there</string>
+    <string name="no_rate_earnings">Please rate how was the earning</string>
+    <string name="no_rate_atmosphere">Please rate how was the atmosphere</string>
+    <string name="no_rate_organisation">Please rate how was the company organisation</string>
+    <string name="fill_fields_review">Please fill out this fields before to continue</string>
+    <string name="no_wage_rate">No wage rate is filled</string>
+    <string name="no_comment">No comment is filled</string>
+    <string name="quest_send_review">Do you want to send your Review?</string>
 
 
     <!--Button commands-->
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+
 
     <string name="company_name_with_colon">Company name:</string>
 

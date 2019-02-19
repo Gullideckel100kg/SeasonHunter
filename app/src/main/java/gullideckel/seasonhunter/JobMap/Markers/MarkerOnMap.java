@@ -13,6 +13,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
 import gullideckel.seasonhunter.CompanyInfo.FragCompanyInfo;
+import gullideckel.seasonhunter.Interfaces.IDocument;
+import gullideckel.seasonhunter.Interfaces.IReview;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
@@ -23,7 +25,8 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
     private static final String TAG = "MarkerOnMap";
 
     private GoogleMap map;
-    private FragmentActivity activity;
+    private final FragmentActivity activity;
+    private CompanyDocument doc;
 
     public MarkerOnMap(GoogleMap map, FragmentActivity activity)
     {
@@ -36,25 +39,29 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
 
     public void SetMarker(List<CompanyDocument> docs)
     {
-        for(CompanyDocument doc : docs)
-        {
-            Bitmap bmp;
 
-            if(doc.getTypes().size() > 0)
-                bmp = TypeLogo.getLogo(doc.getTypes().get(0), activity);
-            else
+            for(CompanyDocument doc : docs)
             {
-                bmp = TypeLogo.getLogo(activity.getString(R.string.other), activity);
-                Log.wtf(TAG, "SetMarker: No Company type. Document: " + doc.getId());
+                this.doc = doc;
+                Bitmap bmp;
+
+                if(doc.getTypes().size() > 0)
+                    bmp = TypeLogo.getLogo(doc.getTypes().get(0), activity);
+                else
+                {
+                    bmp = TypeLogo.getLogo(activity.getString(R.string.other), activity);
+                    Log.wtf(TAG, "SetMarker: No Company type. Document: " + doc.getId());
+                }
+
+
+                Marker marker =  map.addMarker(new MarkerOptions()
+                        .position(new LatLng(doc.getAddress().getLatitude(), doc.getAddress().getLongitude()))
+                        .icon(StaticMethod.ResizeBitmap(bmp,30,30)));
+
+                marker.setTag(doc);
             }
 
 
-            Marker marker =  map.addMarker(new MarkerOptions()
-                                .position(new LatLng(doc.getAddress().getLatitude(), doc.getAddress().getLongitude()))
-                                .icon(StaticMethod.ResizeBitmap(bmp,30,30)));
-
-            marker.setTag(doc);
-        }
     }
 
 
@@ -64,11 +71,12 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
     {
         CompanyDocument doc = (CompanyDocument) marker.getTag();
         FragmentTransaction transaction  = activity.getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(doc));
+        transaction.add(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(doc, (IDocument) activity));
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
+//    HhXZc6nZvl3L3jdy3LlJ
     @Override
     public boolean onMarkerClick(Marker marker)
     {

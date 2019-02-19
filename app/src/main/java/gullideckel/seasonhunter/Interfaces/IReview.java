@@ -1,10 +1,8 @@
 package gullideckel.seasonhunter.Interfaces;
 
-import java.util.List;
-
 import gullideckel.seasonhunter.Objects.Review.Review;
 
-public interface IReviewList
+public interface IReview
 {
-    void RecieveReviews(List<Review> reviews);
+    void RecieveReview(Review review, String docId);
 }

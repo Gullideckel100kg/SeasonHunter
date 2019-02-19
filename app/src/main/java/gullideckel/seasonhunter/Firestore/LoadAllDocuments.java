@@ -25,11 +25,13 @@ public class LoadAllDocuments
 
     private Context context;
     private IDocumentList listener;
+    private FirebaseFirestore db;
 
-    public  LoadAllDocuments(Context context, IDocumentList listener)
+    public  LoadAllDocuments(Context context, IDocumentList listener, FirebaseFirestore db)
     {
         this.context = context;
         this.listener = listener;
+        this.db = db;
     }
 
     public void InitDocuments(int countryPart)
@@ -37,14 +39,13 @@ public class LoadAllDocuments
         switch (countryPart)
         {
             case -1:
-                LoadDocuments(context.getString(R.string.all_companies));
+                LoadDocuments(context.getString(R.string.db_all_companies));
                 break;
         }
     }
 
     private void LoadDocuments(String collectionPath)
     {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection(collectionPath).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task)
@@ -55,8 +56,12 @@ public class LoadAllDocuments
                             try
                             {
                                 CompanyDocument doc = document.toObject(CompanyDocument.class);
-                                doc.setId(document.getId());
-                                docs.add(doc);
+                                if(doc.getAddress() != null && doc.getContact() != null && doc.getJobs() != null)
+                                {
+                                    doc.setId(document.getId());
+                                    docs.add(doc);
+                                }
+
                             }catch (ClassCastException e)
                             {
                                 Log.e(TAG, "onComplete: ", e);

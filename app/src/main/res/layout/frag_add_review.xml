@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollAddReview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CompanyInfo.ComanyInfoAddings.Review.FragAddReview">
@@ -101,8 +102,8 @@
             android:id="@+id/rdgAddWageType"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -123,19 +124,14 @@
                 android:layout_weight="1"
                 android:text="@string/add_piece_rate" />
 
-        </RadioGroup>
+            <RadioButton
+                android:id="@+id/rdbAddOtherPayment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_others" />
 
-        <View
-            android:id="@+id/viewAddWageType"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rdgAddWageType" />
+        </RadioGroup>
 
         <TextView
             android:id="@+id/txtAddEarningsHead"
@@ -147,7 +143,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+            app:layout_constraintTop_toBottomOf="@+id/edtAddSalary" />
 
         <ImageView
             android:id="@+id/imgAddOrganisationFive"
@@ -213,7 +209,7 @@
             android:clickable="true"
             android:src="@drawable/stargrey"
             app:layout_constraintStart_toEndOf="@+id/imgAddAtmosphereFour"
-            app:layout_constraintTop_toBottomOf="@+id/imgAddEarnigsFive" />
+            app:layout_constraintTop_toBottomOf="@+id/imgAddEarningsFive" />
 
         <ImageView
             android:id="@+id/imgAddAtmosphereFour"
@@ -224,7 +220,7 @@
             android:clickable="true"
             android:src="@drawable/stargrey"
             app:layout_constraintStart_toEndOf="@+id/imgAddAtmosphereThree"
-            app:layout_constraintTop_toBottomOf="@+id/imgAddEarnigsFive" />
+            app:layout_constraintTop_toBottomOf="@+id/imgAddEarningsFive" />
 
         <ImageView
             android:id="@+id/imgAddAtmosphereThree"
@@ -235,7 +231,7 @@
             android:clickable="true"
             android:src="@drawable/stargrey"
             app:layout_constraintStart_toEndOf="@+id/imgAddAtmosphereTwo"
-            app:layout_constraintTop_toBottomOf="@+id/imgAddEarnigsFive" />
+            app:layout_constraintTop_toBottomOf="@+id/imgAddEarningsFive" />
 
         <ImageView
             android:id="@+id/imgAddAtmosphereTwo"
@@ -246,7 +242,7 @@
             android:clickable="true"
             android:src="@drawable/stargrey"
             app:layout_constraintStart_toEndOf="@+id/imgAddAtmosphereOne"
-            app:layout_constraintTop_toBottomOf="@+id/imgAddEarnigsFive" />
+            app:layout_constraintTop_toBottomOf="@+id/imgAddEarningsFive" />
 
         <ImageView
             android:id="@+id/imgAddAtmosphereOne"
@@ -260,40 +256,40 @@
             app:layout_constraintTop_toBottomOf="@+id/imgAddEarningsOne" />
 
         <ImageView
-            android:id="@+id/imgAddEarnigsFive"
+            android:id="@+id/imgAddEarningsFive"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:clickable="true"
             android:src="@drawable/stargrey"
-            app:layout_constraintStart_toEndOf="@+id/imgAddEarnigsFour"
-            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+            app:layout_constraintStart_toEndOf="@+id/imgAddEarningsFour"
+            app:layout_constraintTop_toBottomOf="@+id/edtAddSalary" />
 
         <ImageView
-            android:id="@+id/imgAddEarnigsFour"
+            android:id="@+id/imgAddEarningsFour"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:clickable="true"
             android:src="@drawable/stargrey"
-            app:layout_constraintStart_toEndOf="@+id/imgAddEarnigsThree"
-            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+            app:layout_constraintStart_toEndOf="@+id/imgAddEarningsThree"
+            app:layout_constraintTop_toBottomOf="@+id/edtAddSalary" />
 
         <ImageView
-            android:id="@+id/imgAddEarnigsThree"
+            android:id="@+id/imgAddEarningsThree"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:clickable="true"
             android:src="@drawable/stargrey"
-            app:layout_constraintStart_toEndOf="@+id/imgAddEarnigsTwo"
-            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+            app:layout_constraintStart_toEndOf="@+id/imgAddEarningsTwo"
+            app:layout_constraintTop_toBottomOf="@+id/edtAddSalary" />
 
         <ImageView
-            android:id="@+id/imgAddEarnigsTwo"
+            android:id="@+id/imgAddEarningsTwo"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
@@ -301,7 +297,7 @@
             android:clickable="true"
             android:src="@drawable/stargrey"
             app:layout_constraintStart_toEndOf="@+id/imgAddEarningsOne"
-            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+            app:layout_constraintTop_toBottomOf="@+id/edtAddSalary" />
 
         <ImageView
             android:id="@+id/imgAddEarningsOne"
@@ -312,7 +308,7 @@
             android:clickable="true"
             android:src="@drawable/stargrey"
             app:layout_constraintStart_toEndOf="@+id/txtAddOrganisationHead"
-            app:layout_constraintTop_toBottomOf="@+id/viewAddWageType" />
+            app:layout_constraintTop_toBottomOf="@+id/edtAddSalary" />
 
         <TextView
             android:id="@+id/txtAddAtmosphereHead"
@@ -324,7 +320,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgAddEarnigsFive" />
+            app:layout_constraintTop_toBottomOf="@+id/imgAddEarningsFive" />
 
         <TextView
             android:id="@+id/txtAddOrganisationHead"
@@ -394,27 +390,58 @@
 
         <TextView
             android:id="@+id/txtAddWorkTime"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnAddWorkTime" />
+            app:layout_constraintTop_toBottomOf="@+id/frmCalenderReview" />
+
+        <EditText
+            android:id="@+id/edtAddSalary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/quest_salary"
+            android:inputType="textUri|textPersonName"
+            android:textColorHint="@color/colorGrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtAddOtherPayment" />
 
         <FrameLayout
             android:id="@+id/frmCalenderReview"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/btnAddWorkTime">
 
         </FrameLayout>
+
+        <EditText
+            android:id="@+id/edtAddOtherPayment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/quest_pay_method"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorGrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rdgAddWageType" />
+
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

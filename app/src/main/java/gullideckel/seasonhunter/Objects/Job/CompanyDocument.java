@@ -2,23 +2,24 @@ package gullideckel.seasonhunter.Objects.Job;
 
 import com.google.firebase.firestore.Exclude;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import gullideckel.seasonhunter.Objects.Review.CompanyReview;
+import gullideckel.seasonhunter.Objects.Review.Review;
 
 public class CompanyDocument
 {
-    private String name;
-    private String type;
-    private List<String> types;
+    private String name = "";
+    private String type = "";
+    private List<String> types = new ArrayList<>();
     private CompanyAddress address;
     private CompanyContact contact;
     private CompanyJobs jobs;
-    private String features;
+    private String features = "";
     private CompanyExtras extras;
     private CompanyPhoto photo;
-    private CompanyReview review;
-    private String Id;
+    private List<Review> reviews = new ArrayList<>();
+    private String Id = "";
 
     @Exclude
     public String getId()
@@ -135,13 +136,13 @@ public class CompanyDocument
         this.photo = photo;
     }
 
-    public CompanyReview getReview()
+    public List<Review> getReviews()
     {
-        return review;
+        return reviews;
     }
 
-    public void setReview(CompanyReview review)
+    public void addReview(Review review)
     {
-        this.review = review;
+        reviews.add(review);
     }
 }

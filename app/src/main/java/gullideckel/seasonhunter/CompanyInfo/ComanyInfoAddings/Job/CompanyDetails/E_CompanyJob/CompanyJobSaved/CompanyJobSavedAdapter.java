@@ -53,7 +53,7 @@ public class CompanyJobSavedAdapter extends RecyclerView.Adapter<CompanyJobSaved
         else if(companyJob.isPieceWork())
             return context.getString(R.string.piece_work);
         else if(companyJob.isVolunteering())
-            return context.getString(R.string.volunteering);
+            return "Volunteering";
         return "No payment method selected";
     }
 

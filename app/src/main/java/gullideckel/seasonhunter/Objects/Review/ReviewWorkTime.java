@@ -1,6 +1,6 @@
 package gullideckel.seasonhunter.Objects.Review;
 
-public class CompanyWorkTime
+public class ReviewWorkTime
 {
     private int startDay = -1;
     private int startMonth = -1;
@@ -10,7 +10,7 @@ public class CompanyWorkTime
     private int endMonth = -1;
     private int endYear = -1;
 
-    private float duration;
+    private long duration;
 
     public int getStartDay()
     {
@@ -72,12 +72,12 @@ public class CompanyWorkTime
         this.endYear = endYear;
     }
 
-    public float getDuration()
+    public long getDuration()
     {
         return duration;
     }
 
-    public void setDuration(float duration)
+    public void setDuration(long duration)
     {
         this.duration = duration;
     }

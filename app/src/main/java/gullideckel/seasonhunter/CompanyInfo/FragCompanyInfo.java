@@ -1,7 +1,6 @@
 package gullideckel.seasonhunter.CompanyInfo;
 
 import android.graphics.Color;
-import android.location.Address;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,18 +10,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-
-import com.google.firebase.firestore.Transaction;
 
 import gullideckel.seasonhunter.CompanyInfo.ComanyInfoAddings.Review.FragAddReview;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyData.FragCompanyData;
+import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyReviews.FragReviewHolder;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.FragCompanyDescription;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.FragCompanyPhotos;
-import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.FragCompanyReview;
+import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyReviews.FragCompanyReview;
 import gullideckel.seasonhunter.CostumLayouts.NonSwipeViewPager;
+import gullideckel.seasonhunter.Interfaces.IDocument;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.SeasonHunterViewPagerAdapter;
@@ -33,18 +30,20 @@ public class FragCompanyInfo extends Fragment
     private TabLayout tabCompanyInfo;
 
     private FragCompanyData fragData;
-    private FragCompanyReview fragReview;
+    private FragReviewHolder fragReview;
     private FragCompanyDescription fragDescription;
     private FragCompanyPhotos fragPhotos;
 
     private ImageButton imbAddReview;
 
     protected CompanyDocument doc;
+    protected IDocument reviewListener;
 
-    public static FragCompanyInfo NewInstance(CompanyDocument doc)
+    public static FragCompanyInfo NewInstance(CompanyDocument doc, IDocument reviewListener)
     {
         FragCompanyInfo frag = new FragCompanyInfo();
         frag.doc = doc;
+        frag.reviewListener = reviewListener;
         return frag;
     }
 
@@ -80,7 +79,7 @@ public class FragCompanyInfo extends Fragment
         {
             imbAddReview.setEnabled(false);
             FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-            transaction.add(R.id.frmInfoFragHolder, FragAddReview.newInstance());
+            transaction.add(R.id.frmInfoFragHolder, FragAddReview.newInstance(reviewListener, doc));
             transaction.addToBackStack(null);
             transaction.commit();
             imbAddReview.setEnabled(true);
@@ -94,9 +93,9 @@ public class FragCompanyInfo extends Fragment
         fragData = FragCompanyData.newInstance(doc);
         adapter.addFrag(fragData, getContext().getString(R.string.info));
 
-        if(doc.getReview() != null)
+        if(doc.getReviews() != null && doc.getReviews().size() > 0)
         {
-            fragReview = FragCompanyReview.newInstance();
+            fragReview = FragReviewHolder.newInstance(doc.getReviews());
             adapter.addFrag(fragReview, getContext().getString(R.string.reviews));
         }
         else if(!doc.getExtras().getDescription().isEmpty())
@@ -118,6 +117,7 @@ public class FragCompanyInfo extends Fragment
     {
         return inflater.inflate(R.layout.frag_company_info, container, false);
     }
+
 
 
 }
