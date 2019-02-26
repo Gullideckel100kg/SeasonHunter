@@ -13,7 +13,7 @@ import android.widget.TextView;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
-import gullideckel.seasonhunter.Statics.TypeLogo;
+import gullideckel.seasonhunter.Statics.StaticTypes;
 
 public class InitCompanyData
 {
@@ -48,12 +48,12 @@ public class InitCompanyData
 
         if(doc.getTypes().size() > 0)
         {
-            imgType.setImageBitmap(TypeLogo.getLogo(doc.getTypes().get(0), activity));
+            imgType.setImageBitmap(StaticTypes.getLogo(doc.getTypes().get(0), activity));
             txtType.setText(StaticMethod.StringBuilder(doc.getTypes(), " + "));
         }
         else
         {
-            imgType.setImageBitmap(TypeLogo.getLogo(activity.getString(R.string.other), activity));
+            imgType.setImageBitmap(StaticTypes.getLogo(activity.getString(R.string.other), activity));
             txtType.setText(activity.getText(R.string.other));
             Log.wtf(TAG, "Init: No CompanyType availibe \n Document: " + doc.getId());
         }

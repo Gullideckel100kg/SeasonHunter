@@ -14,11 +14,10 @@ import java.util.List;
 
 import gullideckel.seasonhunter.CompanyInfo.FragCompanyInfo;
 import gullideckel.seasonhunter.Interfaces.IDocument;
-import gullideckel.seasonhunter.Interfaces.IReview;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
-import gullideckel.seasonhunter.Statics.TypeLogo;
+import gullideckel.seasonhunter.Statics.StaticTypes;
 
 public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener
 {
@@ -46,10 +45,10 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
                 Bitmap bmp;
 
                 if(doc.getTypes().size() > 0)
-                    bmp = TypeLogo.getLogo(doc.getTypes().get(0), activity);
+                    bmp = StaticTypes.getLogo(doc.getTypes().get(0), activity);
                 else
                 {
-                    bmp = TypeLogo.getLogo(activity.getString(R.string.other), activity);
+                    bmp = StaticTypes.getLogo(activity.getString(R.string.other), activity);
                     Log.wtf(TAG, "SetMarker: No Company type. Document: " + doc.getId());
                 }
 
@@ -71,7 +70,7 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
     {
         CompanyDocument doc = (CompanyDocument) marker.getTag();
         FragmentTransaction transaction  = activity.getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(doc, (IDocument) activity));
+        transaction.replace(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(doc, (IDocument) activity));
         transaction.addToBackStack(null);
         transaction.commit();
     }

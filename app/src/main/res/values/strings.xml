@@ -124,6 +124,7 @@
     <string name="review_not_sent">There was a problem. Your review could not be sent!</string>
 
     <!--Strings for the Custom Calender to Add review-->
+    <!--May will be removed through my Costum range calendar-->
     <string name="cal_start_date">Start date</string>
     <string name="cal_end_date">End date</string>
     <string name="cal_duration">Duration:</string>
@@ -141,11 +142,45 @@
     <string name="no_comment">No comment is filled</string>
     <string name="quest_send_review">Do you want to send your Review?</string>
 
+    <!--Strings for List View-->
+    <string name="swipe_document">Swipe to see the next document!</string>
+    <string name="list_show_more">Show more...</string>
+    <string name="list_review_count">review/s</string>
 
     <!--Button commands-->
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+    <string name="clear_filter">Clear filter</string>
 
+    <!--Shortcut String array for the Calender weekdays-->
+    <string-array name="weekdays_shortcuts">
+        <item>Son</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+    
+    <!--Strings for RangeCalender-->
+    <string name="cal_range_select_date_range">Select a date range</string>
+    <string name="cal_range_start_date">Start date:</string>
+    <string name="cal_range_select_end_date">Select end date</string>
+    <string name="cal_range_end_date">End date:</string>
+
+    <!--Strings for the Filter-->
+    <string name="filter_title">Job title:</string>
+    <string name="filter_keyword">Keyword</string>
+    <string name="filter_company_type_plus"> + Company type</string>
+    <string name="filter_compnay_type_minus"> - Company type</string>
+    <string name="filter_phone">Show only with phone number</string>
+    <string name="filter_email">Show only with e-mail</string>
+    <string name="filter_website">Show only with website</string>
+    <string name="filter_facilities">Filter facilities</string>
+    <string name="filter_date">Work date</string>
+    <string name="filter_docs_not_loaded">The documents are not loaded yet!</string>
 
     <string name="company_name_with_colon">Company name:</string>
 

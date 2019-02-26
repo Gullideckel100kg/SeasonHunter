@@ -9,4 +9,7 @@
     <color name="transparent">#0000</color>
     <color name="dark_yellow">#9b870c</color>
     <color name="blue">#0000ff</color>
+    <color name="black">#000000</color>
+    <color name="sky_blue">#87CEFA</color>
+    <color name="dark_grey">#9EACB4</color>
 </resources>

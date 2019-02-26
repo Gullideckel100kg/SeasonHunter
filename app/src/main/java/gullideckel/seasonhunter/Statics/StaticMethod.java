@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -175,5 +176,10 @@ public class StaticMethod
         return 0;
     }
 
+    public static String getDate(Date date, String pattern)
+    {
+        DateFormat df = new SimpleDateFormat(pattern);
+        return df.format(date);
+    }
 
 }

@@ -1,6 +1,5 @@
 package gullideckel.seasonhunter;
 
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -9,28 +8,25 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.widget.FrameLayout;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
+import gullideckel.seasonhunter.CostumLayouts.CostumRangeCalender.FragCostumRangeCalender;
 import gullideckel.seasonhunter.Firestore.LoadAllDocuments;
 import gullideckel.seasonhunter.Firestore.SetReview;
 import gullideckel.seasonhunter.Interfaces.IDocument;
 import gullideckel.seasonhunter.Interfaces.IDocumentList;
-import gullideckel.seasonhunter.Interfaces.IReview;
-import gullideckel.seasonhunter.Interfaces.IReviewList;
+import gullideckel.seasonhunter.Interfaces.IFilteredDocuments;
 import gullideckel.seasonhunter.JobFilter.FragJobFilter;
-import gullideckel.seasonhunter.JobList.FragJobList;
+import gullideckel.seasonhunter.JobList.FragJobListView;
 import gullideckel.seasonhunter.JobMap.FragJobMap;
 import gullideckel.seasonhunter.CompanyInfo.ComanyInfoAddings.Job.CompanyDetails.FragCompanyDetails;
 import gullideckel.seasonhunter.JobSettings.FragJobSettings;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
-import gullideckel.seasonhunter.Objects.Review.Review;
 
 
-public class ActSeasonHunter extends FragmentActivity implements IDocumentList, IDocument
+public class ActSeasonHunter extends FragmentActivity implements IDocumentList, IDocument, IFilteredDocuments
 {
     private ViewPager vpSeasonHunter;
     private TabLayout tabSeasonHunter;
@@ -39,10 +35,11 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
     private LoadingScreen loadingScreen;
 
     private FragJobMap fragMap;
-    private FragJobList fragList;
+    private FragJobListView fragList;
     private FragJobFilter fragFilter;
     private FragCompanyDetails fragNew;
     private FragJobSettings fragSettings;
+    private FragCostumRangeCalender test;
 
     FirebaseFirestore db;
 
@@ -77,22 +74,22 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
         loadDocuments.InitDocuments(getCountryType());
 
         fragMap = FragJobMap.newInstance();
-        fragList = FragJobList.newInstance();
-        fragFilter = FragJobFilter.newInstance();
+        fragList = FragJobListView.newInstance();
+        fragFilter = FragJobFilter.newInstance(this);
         fragNew = FragCompanyDetails.NewInstance();
         fragSettings = FragJobSettings.newInstance();
+        test = new FragCostumRangeCalender();
 
         vpSeasonHunter.setAdapter(SetupAdapter());
         tabSeasonHunter.setupWithViewPager(vpSeasonHunter);
         vpSeasonHunter.setOffscreenPageLimit(5);
     }
 
-
-
     private SeasonHunterViewPagerAdapter SetupAdapter()
     {
         SeasonHunterViewPagerAdapter adapter = new SeasonHunterViewPagerAdapter(getSupportFragmentManager());
 
+        adapter.addFrag(test, "TEst");
         adapter.addFrag(fragMap, getString(R.string.map));
         adapter.addFrag(fragList, getString(R.string.list));
         adapter.addFrag(fragFilter, getString(R.string.filter));
@@ -105,8 +102,12 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
     @Override
     public void recievedDocuments(List<CompanyDocument> docs)
     {
-        frmLoading.removeAllViews();
+        if(frmLoading != null)
+            frmLoading.removeAllViews();
+
         fragMap.InitDocuments(docs, getCountryType());
+        fragList.InitDocuments(docs);
+        fragFilter.SetDocs(docs);
     }
 
 
@@ -124,6 +125,7 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
         if (fm.getBackStackEntryCount() > 0)
         {
             fm.popBackStack();
+            int count = fm.getBackStackEntryCount();
             return;
         }
 
@@ -134,7 +136,6 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
     private FragmentManager getLastFragmentManagerWithBack(FragmentManager fm)
     {
         FragmentManager fmLast = fm;
-
         List<Fragment> fragments = fm.getFragments();
 
         for (Fragment f : fragments)
@@ -148,7 +149,6 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
                     fmLast = fmChild;
             }
         }
-
         return fmLast;
     }
 
@@ -158,5 +158,11 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
     {
         SetReview setReview = new SetReview(this , db);
         setReview.Set(doc);
+    }
+
+    @Override
+    public void RecieveFilterdDocuments(List<CompanyDocument> docs)
+    {
+
     }
 }

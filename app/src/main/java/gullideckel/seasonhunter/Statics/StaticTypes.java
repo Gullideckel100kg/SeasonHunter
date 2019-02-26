@@ -4,9 +4,14 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gullideckel.seasonhunter.R;
 
-public class TypeLogo
+//All different Types are safed here. It is importand to add it to the list in the string folder
+// and add to it a logo in the method getLogo here!!
+public class StaticTypes
 {
     public static Bitmap getLogo(String companyType, Context context)
     {
