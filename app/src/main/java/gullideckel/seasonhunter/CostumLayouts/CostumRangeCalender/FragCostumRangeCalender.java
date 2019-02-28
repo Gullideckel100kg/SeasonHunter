@@ -65,8 +65,9 @@ public class FragCostumRangeCalender extends Fragment implements View.OnClickLis
     {
         View v = inflater.inflate(R.layout.frag_costum_range_calender, container, false);
 
-        v.bringToFront();
         v.setBackgroundColor(Color.WHITE);
+        v.bringToFront();
+
         calendar = Calendar.getInstance(Locale.getDefault());
         month = calendar.get(Calendar.MONTH) + 1;
         year = calendar.get(Calendar.YEAR);

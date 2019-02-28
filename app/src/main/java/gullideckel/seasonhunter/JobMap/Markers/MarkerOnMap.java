@@ -10,6 +10,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gullideckel.seasonhunter.CompanyInfo.FragCompanyInfo;
@@ -26,11 +27,13 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
     private GoogleMap map;
     private final FragmentActivity activity;
     private CompanyDocument doc;
+    private List<Marker> markers;
 
     public MarkerOnMap(GoogleMap map, FragmentActivity activity)
     {
         this.map = map;
         this.activity = activity;
+        markers = new ArrayList<>();
         map.setOnMarkerClickListener(this);
         map.setOnInfoWindowClickListener(this);
         map.setInfoWindowAdapter(new MarkerInfoWindow(activity));
@@ -38,29 +41,30 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
 
     public void SetMarker(List<CompanyDocument> docs)
     {
+        if(markers.size() > 0)
+            for(Marker marker : markers)
+                marker.remove();
 
-            for(CompanyDocument doc : docs)
+        for(CompanyDocument doc : docs)
+        {
+            this.doc = doc;
+            Bitmap bmp;
+
+            if(doc.getTypes().size() > 0)
+                bmp = StaticTypes.getLogo(doc.getTypes().get(0), activity);
+            else
             {
-                this.doc = doc;
-                Bitmap bmp;
-
-                if(doc.getTypes().size() > 0)
-                    bmp = StaticTypes.getLogo(doc.getTypes().get(0), activity);
-                else
-                {
-                    bmp = StaticTypes.getLogo(activity.getString(R.string.other), activity);
-                    Log.wtf(TAG, "SetMarker: No Company type. Document: " + doc.getId());
-                }
-
-
-                Marker marker =  map.addMarker(new MarkerOptions()
-                        .position(new LatLng(doc.getAddress().getLatitude(), doc.getAddress().getLongitude()))
-                        .icon(StaticMethod.ResizeBitmap(bmp,30,30)));
-
-                marker.setTag(doc);
+                bmp = StaticTypes.getLogo(activity.getString(R.string.other), activity);
+                Log.wtf(TAG, "SetMarker: No Company type. Document: " + doc.getId());
             }
 
+            Marker marker =  map.addMarker(new MarkerOptions()
+                    .position(new LatLng(doc.getAddress().getLatitude(), doc.getAddress().getLongitude()))
+                    .icon(StaticMethod.ResizeBitmap(bmp,30,30)));
 
+            marker.setTag(doc);
+            markers.add(marker);
+        }
     }
 
 

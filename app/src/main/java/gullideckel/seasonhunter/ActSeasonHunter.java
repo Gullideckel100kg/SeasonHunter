@@ -78,7 +78,6 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
         fragFilter = FragJobFilter.newInstance(this);
         fragNew = FragCompanyDetails.NewInstance();
         fragSettings = FragJobSettings.newInstance();
-        test = new FragCostumRangeCalender();
 
         vpSeasonHunter.setAdapter(SetupAdapter());
         tabSeasonHunter.setupWithViewPager(vpSeasonHunter);
@@ -89,7 +88,6 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
     {
         SeasonHunterViewPagerAdapter adapter = new SeasonHunterViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFrag(test, "TEst");
         adapter.addFrag(fragMap, getString(R.string.map));
         adapter.addFrag(fragList, getString(R.string.list));
         adapter.addFrag(fragFilter, getString(R.string.filter));
@@ -128,9 +126,7 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
             int count = fm.getBackStackEntryCount();
             return;
         }
-
         super.onBackPressed();
-
     }
 
     private FragmentManager getLastFragmentManagerWithBack(FragmentManager fm)
@@ -152,7 +148,6 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
         return fmLast;
     }
 
-
     @Override
     public void RecieveDocument(CompanyDocument doc)
     {
@@ -163,6 +158,8 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
     @Override
     public void RecieveFilterdDocuments(List<CompanyDocument> docs)
     {
-
+        fragList.InitDocuments(docs);
+        fragMap.InitDocuments(docs, getCountryType());
+        vpSeasonHunter.setCurrentItem(0);
     }
 }

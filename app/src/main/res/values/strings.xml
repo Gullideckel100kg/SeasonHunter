@@ -179,8 +179,25 @@
     <string name="filter_email">Show only with e-mail</string>
     <string name="filter_website">Show only with website</string>
     <string name="filter_facilities">Filter facilities</string>
-    <string name="filter_date">Work date</string>
+    <string name="filter_month">Work in these months</string>
+    <string name="filter_to">to</string>
     <string name="filter_docs_not_loaded">The documents are not loaded yet!</string>
+
+    <!--String array for all months in the year-->
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>Mai</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 
     <string name="company_name_with_colon">Company name:</string>
 
@@ -228,20 +245,7 @@
 
     <string name="of">of</string>
 
-    <string-array name="months">
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
-        <item>April</item>
-        <item>Mai</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
-        <item>September</item>
-        <item>October</item>
-        <item>November</item>
-        <item>December</item>
-    </string-array>
+
 
     <string-array name="days">
         <item>first week</item>

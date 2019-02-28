@@ -51,6 +51,7 @@ public class CalenderCellMarking implements View.OnClickListener
                 if(lastMarked == -1)
                 {
                     AddTextColor(firstMarked, cal);
+                    listener.RecieveDate(cal, true);
                 }
                 else
                     SetFirstMarked(cal);
@@ -69,7 +70,8 @@ public class CalenderCellMarking implements View.OnClickListener
     {
         for(CalenderObject cal : list)
         {
-            cal.getBtnCell().setBackgroundColor(Color.TRANSPARENT);
+            if(cal != null)
+                cal.getBtnCell().setBackgroundColor(Color.TRANSPARENT);
         }
         listener.RecieveDate(null, true);
         listener.RecieveDate(null, false);

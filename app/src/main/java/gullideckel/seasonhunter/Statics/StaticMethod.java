@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -20,6 +21,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -180,6 +182,73 @@ public class StaticMethod
     {
         DateFormat df = new SimpleDateFormat(pattern);
         return df.format(date);
+    }
+
+
+    public static Date getMonthFromStringDate(String date, Context context)
+    {
+        String[] months = context.getResources().getStringArray(R.array.months);
+
+        SimpleDateFormat format = new SimpleDateFormat("MMMM");
+
+        for(String month : months)
+        {
+            if(date.contains(month))
+            {
+                try
+                {
+                    return format.parse(month);
+                } catch (ParseException e)
+                {
+                    Log.e(TAG, "getMonthFromStringDate: Could not parse the Month", e);;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static Date getDateFromString(String dateStr)
+    {
+        StringBuilder b = new StringBuilder();
+
+        String[] wN = new String[]{"1", "7", "14" , "21"};
+
+        dateStr = dateStr.replace(" ", "").toLowerCase();
+
+        if(dateStr.length() > 1)
+        {
+            if(Character.isDigit(dateStr.charAt(0)) && dateStr.charAt(1) == 'w')
+            {
+                if(dateStr.charAt(0) == '1')
+                    dateStr = dateStr.replace(String.valueOf(dateStr.charAt(0)) + String.valueOf(dateStr.charAt(1)), wN[0]);
+                else if(dateStr.charAt(0) == '2')
+                    dateStr = dateStr.replace(String.valueOf(dateStr.charAt(0)) + String.valueOf(dateStr.charAt(1)), wN[1]);
+                else if(dateStr.charAt(0) == '3')
+                    dateStr = dateStr.replace(String.valueOf(dateStr.charAt(0)) + String.valueOf(dateStr.charAt(1)), wN[2]);
+                else if(dateStr.charAt(0) == '4')
+                    dateStr = dateStr.replace(String.valueOf(dateStr.charAt(0)) + String.valueOf(dateStr.charAt(1)), wN[3]);
+            }
+        }
+
+
+        SimpleDateFormat format = new SimpleDateFormat("ddMMMM");
+
+        try
+        {
+            return format.parse(dateStr);
+        } catch (ParseException e)
+        {
+            SimpleDateFormat format1 = new SimpleDateFormat("MMMM");
+            try
+            {
+                return format1.parse(dateStr);
+            }catch (ParseException e1)
+            {
+                Log.e(TAG, "getDateFromString: Could not parse Date", e);
+            }
+        }
+
+        return null;
     }
 
 }

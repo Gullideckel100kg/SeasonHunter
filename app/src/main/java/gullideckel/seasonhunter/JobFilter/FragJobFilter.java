@@ -9,11 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.facebook.appevents.AppEventsLogger;
@@ -22,6 +24,7 @@ import java.util.Date;
 import java.util.List;
 
 import gullideckel.seasonhunter.CostumLayouts.CostumRangeCalender.FragCostumRangeCalender;
+import gullideckel.seasonhunter.CostumLayouts.CostumRangeCalender.MonthInitializer;
 import gullideckel.seasonhunter.Interfaces.IDocumentList;
 import gullideckel.seasonhunter.Interfaces.IFilteredDocuments;
 import gullideckel.seasonhunter.Interfaces.ISelectedDate;
@@ -30,7 +33,7 @@ import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
 
 
-public class FragJobFilter extends Fragment implements ISelectedDate
+public class FragJobFilter extends Fragment
 {
     private static final String TAG = "FragJobFilter";
 
@@ -42,8 +45,10 @@ public class FragJobFilter extends Fragment implements ISelectedDate
     private CheckBox chkWebSite;
     private CheckBox chkFacilities;
     private EditText edtFacilities;
-    private Button btnDate;
-    private TextView txtDate;
+    private CheckBox chkWorkMonths;
+    private Spinner spinStartDate;
+    private Spinner spinEndMonth;
+
     private Button btnClear;
     private Button btnApply;
 
@@ -73,8 +78,9 @@ public class FragJobFilter extends Fragment implements ISelectedDate
         chkWebSite = v.findViewById(R.id.chkFilterWebsite);
         chkFacilities = v.findViewById(R.id.chkFilterFacilities);
         edtFacilities = v.findViewById(R.id.edtFilterFacilites);
-        btnDate = v.findViewById(R.id.btnFilterDate);
-        txtDate = v.findViewById(R.id.txtFilterDate);
+        chkWorkMonths = v.findViewById(R.id.chkFilterMonth);
+        spinStartDate = v.findViewById(R.id.spinFilterStartMonth);
+        spinEndMonth = v.findViewById(R.id.spinFilterEndMonth);
         btnClear = v.findViewById(R.id.btnFilterClear);
         btnApply = v.findViewById(R.id.btnFilterApply);
 
@@ -82,9 +88,20 @@ public class FragJobFilter extends Fragment implements ISelectedDate
 
         chkFacilities.setOnCheckedChangeListener(Facilities);
         btnType.setOnClickListener(WorkType);
-        btnDate.setOnClickListener(WorkDate);
+
+        chkWorkMonths.setOnCheckedChangeListener(Months);
+        spinEndMonth.setEnabled(false);
+        spinStartDate.setEnabled(false);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.months, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinStartDate.setAdapter(adapter);
+        spinEndMonth.setAdapter(adapter);
+
         btnClear.setOnClickListener(Clear);
         btnApply.setOnClickListener(Apply);
+
+
 
         return v;
     }
@@ -97,8 +114,19 @@ public class FragJobFilter extends Fragment implements ISelectedDate
                 StaticMethod.Toast(getContext().getString(R.string.filter_docs_not_loaded), getContext());
             else
             {
-                List<String> types = fillTypes.getSelectedTypes();
-                Log.e(TAG, "onClick: " );
+                FilterObject filter = new FilterObject();
+                filter.setKeywordJob(edtFacilities.getText().toString());
+                filter.setTypes(fillTypes.getSelectedTypes());
+                filter.setPhone(chkPhone.isChecked());
+                filter.setEmail(chkEmail.isChecked());
+                filter.setWebSite(chkWebSite.isChecked());
+                filter.setFacilities(chkFacilities.isChecked());
+                filter.setKeywordFacilities(edtFacilities.getText().toString());
+                filter.setStartMonth(spinStartDate.getSelectedItem().toString());
+                filter.setEndMonth(spinEndMonth.getSelectedItem().toString());
+
+                DocumentFilter docFilter = new DocumentFilter(docs,  getContext());
+                listener.RecieveFilterdDocuments(docFilter.filterDocs(filter));
             }
         }
     };
@@ -108,7 +136,6 @@ public class FragJobFilter extends Fragment implements ISelectedDate
         public void onClick(View v)
         {
             edtTitle.setText("");
-            txtDate.setText("");
             startDate = null;
             endDate = null;
             fillTypes.Clear();
@@ -117,19 +144,10 @@ public class FragJobFilter extends Fragment implements ISelectedDate
             chkWebSite.setChecked(false);
             chkFacilities.setChecked(false);
             edtFacilities.setText("");
+            chkWorkMonths.setChecked(false);
         }
     };
 
-    private View.OnClickListener WorkDate = new View.OnClickListener() {
-        @Override
-        public void onClick(View v)
-        {
-            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-            transaction.add(R.id.frmFilterCalender, FragCostumRangeCalender.newInstance(FragJobFilter.this));
-            transaction.addToBackStack(null);
-            transaction.commit();
-        }
-    };
 
     private View.OnClickListener WorkType = new View.OnClickListener() {
         @Override
@@ -160,24 +178,26 @@ public class FragJobFilter extends Fragment implements ISelectedDate
         }
     };
 
+    private CompoundButton.OnCheckedChangeListener Months = new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+        {
+            if(isChecked)
+            {
+                spinEndMonth.setEnabled(true);
+                spinStartDate.setEnabled(true);
+            }
+            else
+            {
+                spinStartDate.setEnabled(false);
+                spinEndMonth.setEnabled(false);
+            }
+        }
+    };
+
     public void SetDocs(List<CompanyDocument> docs)
     {
         this.docs = docs;
         fillTypes.SetTypes(docs);
-    }
-
-    @Override
-    public void RecieveDates(Date startDate, Date endDate)
-    {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        if(startDate != null)
-        {
-            if(endDate != null)
-                txtDate.setText(StaticMethod.getDate(startDate, "dd/MM/yyyy") + " - " + StaticMethod.getDate(endDate, "yy/MM/yyyy"));
-            else
-                txtDate.setText(StaticMethod.getDate(startDate, "dd/MM/yyyy"));
-
-        }
     }
 }
