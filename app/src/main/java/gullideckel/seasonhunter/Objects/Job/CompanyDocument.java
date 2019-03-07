@@ -17,7 +17,6 @@ public class CompanyDocument
     private CompanyJobs jobs;
     private String features = "";
     private CompanyExtras extras;
-    private CompanyPhoto photo;
     private List<Review> reviews = new ArrayList<>();
     private String Id = "";
 
@@ -124,16 +123,6 @@ public class CompanyDocument
     public void setFeatures(String features)
     {
         this.features = features;
-    }
-
-    public CompanyPhoto getPhoto()
-    {
-        return photo;
-    }
-
-    public void setPhoto(CompanyPhoto photo)
-    {
-        this.photo = photo;
     }
 
     public List<Review> getReviews()

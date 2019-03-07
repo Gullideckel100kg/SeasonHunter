@@ -197,7 +197,7 @@ public class StaticMethod
             {
                 try
                 {
-                    return format.parse(month);
+                    return format.parse(month.toLowerCase());
                 } catch (ParseException e)
                 {
                     Log.e(TAG, "getMonthFromStringDate: Could not parse the Month", e);;

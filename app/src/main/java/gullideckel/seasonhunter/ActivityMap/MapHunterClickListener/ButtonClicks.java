@@ -9,7 +9,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.firebase.auth.FirebaseAuth;
 
 import gullideckel.seasonhunter.ActivitySignIn.SignInHunter;
-import gullideckel.seasonhunter.CompanyInfo.ComanyInfoAddings.Job.CompanyDetails.C_CompanyAddress.Snapshot.MySnapshot;
+import gullideckel.seasonhunter.CompanyInfo.ComanyInfoConfi.Job.CompanyDetails.C_CompanyAddress.Snapshot.MySnapshot;
 import gullideckel.seasonhunter.R;
 
 public class ButtonClicks

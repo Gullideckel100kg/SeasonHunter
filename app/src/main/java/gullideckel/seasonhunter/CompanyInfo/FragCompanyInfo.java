@@ -12,12 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import gullideckel.seasonhunter.CompanyInfo.ComanyInfoAddings.Review.FragAddReview;
+import gullideckel.seasonhunter.CompanyInfo.ComanyInfoConfi.Review.FragAddReview;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyData.FragCompanyData;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyReviews.FragReviewHolder;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.FragCompanyDescription;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.FragCompanyPhotos;
-import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyReviews.FragCompanyReview;
 import gullideckel.seasonhunter.CostumLayouts.NonSwipeViewPager;
 import gullideckel.seasonhunter.Interfaces.IDocument;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
@@ -103,11 +102,11 @@ public class FragCompanyInfo extends Fragment
             fragDescription = FragCompanyDescription.newInstance(doc.getExtras().getDescription());
             adapter.addFrag(fragDescription, getContext().getString(R.string.description));
         }
-        else if(doc.getPhoto() != null)
-        {
-            fragPhotos = FragCompanyPhotos.newInstance();
-            adapter.addFrag(fragPhotos, getContext().getString(R.string.photos));
-        }
+//        else if(doc.getPhoto() != null)
+//        {
+//            fragPhotos = FragCompanyPhotos.newInstance();
+//            adapter.addFrag(fragPhotos, getContext().getString(R.string.photos));
+//        }
 
         return adapter;
     }

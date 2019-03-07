@@ -18,12 +18,12 @@ import gullideckel.seasonhunter.Firestore.SetReview;
 import gullideckel.seasonhunter.Interfaces.IDocument;
 import gullideckel.seasonhunter.Interfaces.IDocumentList;
 import gullideckel.seasonhunter.Interfaces.IFilteredDocuments;
-import gullideckel.seasonhunter.JobFilter.FragJobFilter;
-import gullideckel.seasonhunter.JobList.FragJobListView;
-import gullideckel.seasonhunter.JobMap.FragJobMap;
-import gullideckel.seasonhunter.CompanyInfo.ComanyInfoAddings.Job.CompanyDetails.FragCompanyDetails;
-import gullideckel.seasonhunter.JobSettings.FragJobSettings;
+import gullideckel.seasonhunter.SeasonHunterPages.JobFilter.FragJobFilter;
+import gullideckel.seasonhunter.SeasonHunterPages.JobList.FragJobListView;
+import gullideckel.seasonhunter.SeasonHunterPages.JobMap.FragJobMap;
+import gullideckel.seasonhunter.SeasonHunterPages.JobSettings.FragJobSettings;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
+import gullideckel.seasonhunter.SeasonHunterPages.NewCompany.FragNewCompany;
 
 
 public class ActSeasonHunter extends FragmentActivity implements IDocumentList, IDocument, IFilteredDocuments
@@ -37,7 +37,7 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
     private FragJobMap fragMap;
     private FragJobListView fragList;
     private FragJobFilter fragFilter;
-    private FragCompanyDetails fragNew;
+    private FragNewCompany fragNew;
     private FragJobSettings fragSettings;
     private FragCostumRangeCalender test;
 
@@ -76,7 +76,7 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
         fragMap = FragJobMap.newInstance();
         fragList = FragJobListView.newInstance();
         fragFilter = FragJobFilter.newInstance(this);
-        fragNew = FragCompanyDetails.NewInstance();
+        fragNew = FragNewCompany.newInstance();
         fragSettings = FragJobSettings.newInstance();
 
         vpSeasonHunter.setAdapter(SetupAdapter());

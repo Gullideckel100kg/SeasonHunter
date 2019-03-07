@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@color/blue"
-    tools:context=".CompanyInfo.ComanyInfoAddings.Review.FragWorkTimeCalender">
+    tools:context=".CompanyInfo.ComanyInfoConfi.Review.FragWorkTimeCalender">
 
     <LinearLayout
         android:id="@+id/linCalStartDate"

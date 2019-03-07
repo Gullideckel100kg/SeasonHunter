@@ -25,6 +25,7 @@
 
     <!--CompanyTypes array like it is saved at the backend-->
     <string-array name="company_types">
+        <item></item>
         <item>Orchard</item>
         <item>Packhouse</item>
         <item>Restaurant</item>
@@ -151,7 +152,8 @@
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
     <string name="apply">Apply</string>
-    <string name="clear_filter">Clear filter</string>
+    <string name="clear">Clear</string>
+    <string name="send">Send</string>
 
     <!--Shortcut String array for the Calender weekdays-->
     <string-array name="weekdays_shortcuts">
@@ -163,7 +165,7 @@
         <item>Fri</item>
         <item>Sat</item>
     </string-array>
-    
+
     <!--Strings for RangeCalender-->
     <string name="cal_range_select_date_range">Select a date range</string>
     <string name="cal_range_start_date">Start date:</string>
@@ -181,7 +183,16 @@
     <string name="filter_facilities">Filter facilities</string>
     <string name="filter_month">Work in these months</string>
     <string name="filter_to">to</string>
-    <string name="filter_docs_not_loaded">The documents are not loaded yet!</string>
+    <string name="filter_docs_not_loaded">The documents are not loaded yet!</string>\
+
+
+    <!--&lt;!&ndash;Strings for adding a new Company&ndash;&gt;-->
+    <!--<string name="new_company_name">What is the name of the company?</string>-->
+    <!--<string name="new_company_type">Select the type of the company</string>-->
+    <!--<string name="new_company_contact">Add the contact details to the company</string>-->
+    <!--<string name="new_company_job">What jobs does the company offer?</string>-->
+    <!--<string name="new_company_extras">What else does the company offer</string>-->
+    <!--<string name="new_company_description">Descripe the company in a few sentences</string>-->
 
     <!--String array for all months in the year-->
     <string-array name="months">
@@ -189,7 +200,7 @@
         <item>February</item>
         <item>March</item>
         <item>April</item>
-        <item>Mai</item>
+        <item>May</item>
         <item>June</item>
         <item>July</item>
         <item>August</item>
@@ -198,6 +209,54 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+
+    <!--Strings for addind a new Company-->
+    <string name="new_name">What is the name of the company?</string>
+    <string name="new_address">Type in the correct address</string>
+    <string name="new_type">What kind of company is it?</string>
+    <string name="new_type_other">Other company type</string>
+    <string name="new_contact">Which contact informations do you have?</string>
+    <string name="new_contact_error">Please fill in at least one contact information!</string>
+    <string name="new_phone">Phone number</string>
+    <string name="new_phone_hint">With countrycode (+1...)</string>
+    <string name="new_email">E-mail</string>
+    <string name="new_website">Website</string>
+    <string name="new_online_recruitment">Online recruitment</string>
+    <string name="new_job">Which jobs does the company offer?</string>
+    <string name="new_job_title">Job title...</string>
+    <string name="new_start_date">Start date of the job</string>
+    <string name="new_end_date">End date of the job</string>
+    <string name="new_of">of</string>
+    <string name="new_start">Start date:</string>
+    <string name="new_end">End date:</string>
+    <string name="new_notes">Do you have some extra information for this job?</string>
+    <string name="new_facilities">Does the company offer facilites?</string>
+    <string name="new_facilities_hint">Facilities...</string>
+    <string name="new_courses">Does the company offer courses?</string>
+    <string name="new_courses_hint">Courses...</string>
+    <string name="new_description">Can you describe the company in a few words?</string>
+    <string name="new_toast_error">Please fill out the missing fields!</string>
+    <string name="new_yes">Yes</string>
+    <string name="new_no">No</string>
+    <string name="new_clear">Do you want to clear everything?</string>
+
+
+    <!--Strings for the Review after finishing to create a new Company-->
+    <string name="check_name">Company name:</string>
+    <string name="check_type">Company type:</string>
+    <string name="check_address">Company address:</string>
+    <string name="check_contact">Contact:</string>
+    <string name="check_phone">Phone:</string>
+    <string name="check_email">Email:</string>
+    <string name="check_website">Website:</string>
+    <string name="check_online_recruitment">Online recruitment</string>
+    <string name="check_job">Job:</string>
+    <string name="check_title">Job title:</string>
+    <string name="check_date">Date:</string>
+    <string name="check_notes">Notes:</string>
+    <string name="check_facilities">Facilities:</string>
+    <string name="check_courses">Courses:</string>
+    <string name="check_description">Description:</string>
 
     <string name="company_name_with_colon">Company name:</string>
 
@@ -246,17 +305,12 @@
     <string name="of">of</string>
 
 
-
-    <string-array name="days">
+    <string-array name="days31">
+        <item></item>
         <item>first week</item>
         <item>second week</item>
         <item>third week</item>
         <item>fourth week</item>
-        <item>full month</item>
-        <item>Summer</item>
-        <item>Autumn</item>
-        <item>Winter</item>
-        <item>Spring</item>
         <item>1st</item>
         <item>2nd</item>
         <item>3rd</item>
@@ -288,6 +342,80 @@
         <item>29th</item>
         <item>30th</item>
         <item>31th</item>
+    </string-array>
+
+    <string-array name="days30">
+        <item></item>
+        <item>first week</item>
+        <item>second week</item>
+        <item>third week</item>
+        <item>fourth week</item>
+        <item>1st</item>
+        <item>2nd</item>
+        <item>3rd</item>
+        <item>4th</item>
+        <item>5th</item>
+        <item>6th</item>
+        <item>7th</item>
+        <item>8th</item>
+        <item>9th</item>
+        <item>10th</item>
+        <item>11th</item>
+        <item>12th</item>
+        <item>13th</item>
+        <item>14th</item>
+        <item>15th</item>
+        <item>16th</item>
+        <item>17th</item>
+        <item>18th</item>
+        <item>19th</item>
+        <item>20th</item>
+        <item>21st</item>
+        <item>22nd</item>
+        <item>23rd</item>
+        <item>24th</item>
+        <item>25th</item>
+        <item>26th</item>
+        <item>27th</item>
+        <item>28th</item>
+        <item>29th</item>
+        <item>30th</item>
+    </string-array>
+
+    <string-array name="days28">
+        <item></item>
+        <item>first week</item>
+        <item>second week</item>
+        <item>third week</item>
+        <item>fourth week</item>
+        <item>1st</item>
+        <item>2nd</item>
+        <item>3rd</item>
+        <item>4th</item>
+        <item>5th</item>
+        <item>6th</item>
+        <item>7th</item>
+        <item>8th</item>
+        <item>9th</item>
+        <item>10th</item>
+        <item>11th</item>
+        <item>12th</item>
+        <item>13th</item>
+        <item>14th</item>
+        <item>15th</item>
+        <item>16th</item>
+        <item>17th</item>
+        <item>18th</item>
+        <item>19th</item>
+        <item>20th</item>
+        <item>21st</item>
+        <item>22nd</item>
+        <item>23rd</item>
+        <item>24th</item>
+        <item>25th</item>
+        <item>26th</item>
+        <item>27th</item>
+        <item>28th</item>
     </string-array>
 
 
