@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.util.List;
 
 import gullideckel.seasonhunter.CompanyInfo.FragCompanyInfo;
@@ -29,12 +31,14 @@ public class JobListViewAdapter extends RecyclerView.Adapter<JobListViewHolder>
     private LayoutInflater inflater;
     private IDocument listener;
     private FragmentManager manager;
+    private GoogleApiClient client;
 
-    public JobListViewAdapter(List<CompanyDocument> docs, IDocument listener, FragmentManager manager)
+    public JobListViewAdapter(List<CompanyDocument> docs, IDocument listener, FragmentManager manager, GoogleApiClient client)
     {
         this.docs = docs;
         this.listener = listener;
         this.manager = manager;
+        this.client = client;
     }
 
     @NonNull
@@ -88,7 +92,7 @@ public class JobListViewAdapter extends RecyclerView.Adapter<JobListViewHolder>
             public void onClick(View v)
             {
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(docs.get(position), listener));
+                transaction.replace(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(docs.get(position), listener, client));
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

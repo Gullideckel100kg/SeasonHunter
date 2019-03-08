@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -28,11 +29,13 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
     private final FragmentActivity activity;
     private CompanyDocument doc;
     private List<Marker> markers;
+    private GoogleApiClient client;
 
-    public MarkerOnMap(GoogleMap map, FragmentActivity activity)
+    public MarkerOnMap(GoogleMap map, FragmentActivity activity, GoogleApiClient client)
     {
         this.map = map;
         this.activity = activity;
+        this.client = client;
         markers = new ArrayList<>();
         map.setOnMarkerClickListener(this);
         map.setOnInfoWindowClickListener(this);
@@ -74,7 +77,7 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
     {
         CompanyDocument doc = (CompanyDocument) marker.getTag();
         FragmentTransaction transaction  = activity.getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(doc, (IDocument) activity));
+        transaction.replace(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(doc, (IDocument) activity, client));
         transaction.addToBackStack(null);
         transaction.commit();
     }

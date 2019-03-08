@@ -44,7 +44,7 @@ import gullideckel.seasonhunter.SeasonHunterPages.NewCompany.Contact.NewPhone;
 import gullideckel.seasonhunter.SeasonHunterPages.NewCompany.Job.NewJob;
 import gullideckel.seasonhunter.Statics.StaticMethod;
 
-public class FragNewCompany extends Fragment implements ICompanyAddress, GoogleApiClient.OnConnectionFailedListener
+public class FragNewCompany extends Fragment implements ICompanyAddress
 {
     private static final String TAG = "FragNewCompany";
 
@@ -82,11 +82,12 @@ public class FragNewCompany extends Fragment implements ICompanyAddress, GoogleA
 
     private List<NewJob> jobs;
 
+    protected GoogleApiClient client;
 
-    public static FragNewCompany newInstance()
+    public static FragNewCompany newInstance(GoogleApiClient client)
     {
         FragNewCompany fragment = new FragNewCompany();
-
+        fragment.client = client;
         return fragment;
     }
 
@@ -126,7 +127,7 @@ public class FragNewCompany extends Fragment implements ICompanyAddress, GoogleA
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinType.setAdapter(adapter);
 
-        PlaceAutoCompleteTextView autoComplete = new PlaceAutoCompleteTextView(getContext(), edaAddress, getGoogleApiClient(), this);
+        PlaceAutoCompleteTextView autoComplete = new PlaceAutoCompleteTextView(getContext(), edaAddress, client, this);
         autoComplete.Init();
 
         newPhone = new NewPhone(getLayoutInflater(), getContext(), linPhone);
@@ -364,16 +365,6 @@ public class FragNewCompany extends Fragment implements ICompanyAddress, GoogleA
     };
 
 
-    private GoogleApiClient getGoogleApiClient()
-    {
-        return new GoogleApiClient
-                .Builder(getContext())
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage(getActivity(), this)
-                .build();
-    }
-
     private View.OnClickListener Clear = new View.OnClickListener() {
         @Override
         public void onClick(View v)
@@ -436,11 +427,5 @@ public class FragNewCompany extends Fragment implements ICompanyAddress, GoogleA
     public void OnCompanyAddress(CompanyAddress companyAddress)
     {
         address = companyAddress;
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
-    {
-        Log.e(TAG, "onConnectionFailed: " +  connectionResult.getErrorMessage());
     }
 }

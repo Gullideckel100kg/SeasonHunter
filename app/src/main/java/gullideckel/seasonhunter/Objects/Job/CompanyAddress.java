@@ -2,8 +2,8 @@ package gullideckel.seasonhunter.Objects.Job;
 
 public class CompanyAddress
 {
-    private String address;
-    private String country;
+    private String address = "";
+    private String country = "";
     private double latitude;
     private double longitude;
 

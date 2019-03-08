@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
@@ -38,10 +39,12 @@ public class FragJobMap extends Fragment implements OnMapReadyCallback
     private List<CompanyDocument> docs;
 
     private MarkerOnMap markerOnMap;
+    protected GoogleApiClient client;
 
-    public static FragJobMap newInstance()
+    public static FragJobMap newInstance(GoogleApiClient client)
     {
         FragJobMap fragment = new FragJobMap();
+        fragment.client = client;
         return fragment;
     }
 
@@ -85,7 +88,7 @@ public class FragJobMap extends Fragment implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap)
     {
         latLngCountry = new LatLngCountry(googleMap);
-        markerOnMap = new MarkerOnMap(googleMap, getActivity());
+        markerOnMap = new MarkerOnMap(googleMap, getActivity(), client);
 
         // For showing a move to my location button
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED

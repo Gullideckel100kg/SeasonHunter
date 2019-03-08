@@ -66,7 +66,7 @@
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         android:clickable="true"
-        app:layout_constraintEnd_toStartOf="@+id/linEditJob"
+        app:layout_constraintEnd_toStartOf="@+id/linReportMistake"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -85,18 +85,19 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linEditJob"
+        android:id="@+id/linReportMistake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="vertical"
         android:clickable="true"
+        android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imbEditJob"
+            android:id="@+id/imbEditCompany"
             android:layout_width="40dp"
             android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
@@ -104,10 +105,11 @@
             android:src="@drawable/edit" />
 
         <TextView
+            android:id="@+id/txtReportMistake"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/edit_job" />
+            android:text="@string/report_mistake" />
 
 
     </LinearLayout>
@@ -119,7 +121,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linShare">
+        app:layout_constraintTop_toBottomOf="@+id/linReportMistake">
 
     </android.support.design.widget.TabLayout>
 

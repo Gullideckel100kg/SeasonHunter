@@ -1,13 +1,18 @@
 package gullideckel.seasonhunter;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.widget.FrameLayout;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.places.Places;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -26,8 +31,10 @@ import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.SeasonHunterPages.NewCompany.FragNewCompany;
 
 
-public class ActSeasonHunter extends FragmentActivity implements IDocumentList, IDocument, IFilteredDocuments
+public class ActSeasonHunter extends FragmentActivity implements IDocumentList, IDocument, IFilteredDocuments, GoogleApiClient.OnConnectionFailedListener
 {
+    private static final String TAG = "ActSeasonHunter";
+
     private ViewPager vpSeasonHunter;
     private TabLayout tabSeasonHunter;
 
@@ -73,10 +80,12 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
         LoadAllDocuments loadDocuments = new LoadAllDocuments(this, this,db);
         loadDocuments.InitDocuments(getCountryType());
 
-        fragMap = FragJobMap.newInstance();
-        fragList = FragJobListView.newInstance();
+        GoogleApiClient client = getGoogleApiClient();
+
+        fragMap = FragJobMap.newInstance(client);
+        fragList = FragJobListView.newInstance(client);
         fragFilter = FragJobFilter.newInstance(this);
-        fragNew = FragNewCompany.newInstance();
+        fragNew = FragNewCompany.newInstance(client);
         fragSettings = FragJobSettings.newInstance();
 
         vpSeasonHunter.setAdapter(SetupAdapter());
@@ -161,5 +170,21 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
         fragList.InitDocuments(docs);
         fragMap.InitDocuments(docs, getCountryType());
         vpSeasonHunter.setCurrentItem(0);
+    }
+
+    private GoogleApiClient getGoogleApiClient()
+    {
+        return new GoogleApiClient
+                .Builder(this)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .enableAutoManage(this, this)
+                .build();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
+    {
+        Log.e(TAG, "onConnectionFailed: " +  connectionResult.getErrorMessage());
     }
 }

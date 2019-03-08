@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+
+import gullideckel.seasonhunter.CompanyInfo.ComanyInfoConfi.Edit.FragEditCompany;
 import gullideckel.seasonhunter.CompanyInfo.ComanyInfoConfi.Review.FragAddReview;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyData.FragCompanyData;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyReviews.FragReviewHolder;
@@ -34,15 +37,18 @@ public class FragCompanyInfo extends Fragment
     private FragCompanyPhotos fragPhotos;
 
     private ImageButton imbAddReview;
+    private ImageButton imbEdit;
 
     protected CompanyDocument doc;
     protected IDocument reviewListener;
+    protected GoogleApiClient client;
 
-    public static FragCompanyInfo NewInstance(CompanyDocument doc, IDocument reviewListener)
+    public static FragCompanyInfo NewInstance(CompanyDocument doc, IDocument reviewListener, GoogleApiClient client)
     {
         FragCompanyInfo frag = new FragCompanyInfo();
         frag.doc = doc;
         frag.reviewListener = reviewListener;
+        frag.client = client;
         return frag;
     }
 
@@ -57,6 +63,9 @@ public class FragCompanyInfo extends Fragment
 
         imbAddReview = (ImageButton) view.findViewById(R.id.imbAddReview);
         imbAddReview.setOnClickListener(AddReview);
+
+        imbEdit = (ImageButton) view.findViewById(R.id.imbEditCompany);
+        imbEdit.setOnClickListener(Edit);
 
         vPCompanyInfo = (NonSwipeViewPager) view.findViewById(R.id.vPCompanyInfo);
         tabCompanyInfo = (TabLayout) view.findViewById(R.id.tabCompanyInfo);
@@ -77,13 +86,28 @@ public class FragCompanyInfo extends Fragment
         public void onClick(View v)
         {
             imbAddReview.setEnabled(false);
-            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-            transaction.add(R.id.frmInfoFragHolder, FragAddReview.newInstance(reviewListener, doc));
-            transaction.addToBackStack(null);
-            transaction.commit();
+            AddFragment(FragAddReview.newInstance(reviewListener, doc));
             imbAddReview.setEnabled(true);
         }
     };
+
+    private View.OnClickListener Edit = new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            imbEdit.setEnabled(false);
+            AddFragment(FragEditCompany.newInstance(doc, client));
+            imbEdit.setEnabled(true);
+        }
+    };
+
+    private void AddFragment(Fragment fragment)
+    {
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.add(R.id.frmInfoFragHolder, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
     private SeasonHunterViewPagerAdapter SetupAdapter()
     {

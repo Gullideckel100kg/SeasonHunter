@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.util.List;
 
 import gullideckel.seasonhunter.CostumLayouts.CostumLayoutManager;
@@ -22,11 +24,12 @@ public class FragJobListView extends Fragment
     private boolean isListReady = false;
 
     private RecyclerView rcylListView;
+    protected GoogleApiClient client;
 
-
-    public static FragJobListView newInstance()
+    public static FragJobListView newInstance(GoogleApiClient client)
     {
         FragJobListView fragment = new FragJobListView();
+        fragment.client = client;
         return fragment;
     }
 
@@ -55,6 +58,6 @@ public class FragJobListView extends Fragment
 
     private void InitList()
     {
-        rcylListView.setAdapter(new JobListViewAdapter(docs, (IDocument)getContext(), getActivity().getSupportFragmentManager()));
+        rcylListView.setAdapter(new JobListViewAdapter(docs, (IDocument)getContext(), getActivity().getSupportFragmentManager(), client));
     }
 }

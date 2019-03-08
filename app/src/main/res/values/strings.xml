@@ -69,6 +69,7 @@
     <string name="share">Share</string>
     <string name="add_review">Add review</string>
     <string name="edit_job">Edit job</string>
+    <string name="report_mistake">Edit</string>
 
 
     <!--Company detail TabLayout Headers-->
@@ -186,14 +187,6 @@
     <string name="filter_docs_not_loaded">The documents are not loaded yet!</string>\
 
 
-    <!--&lt;!&ndash;Strings for adding a new Company&ndash;&gt;-->
-    <!--<string name="new_company_name">What is the name of the company?</string>-->
-    <!--<string name="new_company_type">Select the type of the company</string>-->
-    <!--<string name="new_company_contact">Add the contact details to the company</string>-->
-    <!--<string name="new_company_job">What jobs does the company offer?</string>-->
-    <!--<string name="new_company_extras">What else does the company offer</string>-->
-    <!--<string name="new_company_description">Descripe the company in a few sentences</string>-->
-
     <!--String array for all months in the year-->
     <string-array name="months">
         <item>January</item>
@@ -257,6 +250,54 @@
     <string name="check_facilities">Facilities:</string>
     <string name="check_courses">Courses:</string>
     <string name="check_description">Description:</string>
+
+
+    <!--Settings strings-->
+    <string name="settings_report">Send message</string>
+    <string name="settings_share">Share Season Hunter</string>
+    <string name="settings_rate">Rate Season Hunter</string>
+    <string name="settings_log_out">Log out</string>
+
+
+    <!--Strings for sending a message-->
+    <string name="message_head">Do you have a question, any improving ideas or an error occured? Please let me know!!!</string>
+    <string name="message">Send a message</string>
+
+
+    <!--Strings for reporting a mistake-->
+    <string name="edit_question">What is wrong?</string>
+    <string-array name="edit_areas">
+        <item>Company name</item>
+        <item>Company type</item>
+        <item>Address</item>
+        <item>Contact</item>
+        <item>Job</item>
+        <item>Facilities</item>
+        <item>Courses</item>
+        <item>Description</item>
+    </string-array>
+    <string name="edit_name">New company name...</string>
+    <string name="edit_type">New company type</string>
+    <string name="edit_address">New address</string>
+    <string name="edit_phone">Phone:</string>
+    <string name="edit_new_phone">New number...</string>
+    <string name="edit_email">Email:</string>
+    <string name="edit_new_email">New email...</string>
+    <string name="edit_website">Website:</string>
+    <string name="edit_new_website">New website...</string>
+    <string name="edit_online_recruitment">Online recruitment</string>
+    <string name="edit_add_job">New job</string>
+    <string name="edit_title">Job title:</string>
+    <string name="edit_date">Date:</string>
+    <string name="edit_notes">Notes:</string>
+    <string name="edit_title_hint">Job title...</string>
+    <string name="edit_start_date">Start date:</string>
+    <string name="edit_end_date">End date:</string>
+    <string name="edit_of">of</string>
+    <string name="edit_add_facilities">Add facilities...</string>
+    <string name="edit_add_courses">Add courses...</string>
+    <string name="edit_add_description">Add description...</string>
+
 
     <string name="company_name_with_colon">Company name:</string>
 
