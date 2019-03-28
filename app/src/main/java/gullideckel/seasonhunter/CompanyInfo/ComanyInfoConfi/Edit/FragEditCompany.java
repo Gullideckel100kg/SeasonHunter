@@ -179,6 +179,9 @@ public class FragEditCompany extends Fragment
         }
     };
 
+
+    //TODO: By uploading to database can be a loading symbol so user know by very bad internet connection
+    //TODO: Or upload happens from the base activity in background. There could be built an interface which helps from every upper class
     private void Send(DocEditValue edit)
     {
         db.collection(getContext().getString(R.string.db_edit)).add(edit).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

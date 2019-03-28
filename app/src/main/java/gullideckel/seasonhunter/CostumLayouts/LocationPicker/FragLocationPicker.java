@@ -21,6 +21,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import gullideckel.seasonhunter.CompanyInfo.ComanyInfoConfi.Job.CompanyDetails.C_CompanyAddress.GeoCoding.GeoMap;
+import gullideckel.seasonhunter.Interfaces.IAddressSelected;
 import gullideckel.seasonhunter.Interfaces.ICancelCommand;
 import gullideckel.seasonhunter.Interfaces.ICompanyAddress;
 import gullideckel.seasonhunter.Objects.Job.CompanyAddress;
@@ -28,7 +29,7 @@ import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
 
 public class FragLocationPicker extends Fragment implements OnMapReadyCallback, GoogleMap.OnCameraIdleListener
-        , ICompanyAddress, GoogleMap.OnMapLoadedCallback, GoogleMap.SnapshotReadyCallback, ICancelCommand
+        , ICompanyAddress, GoogleMap.OnMapLoadedCallback, GoogleMap.SnapshotReadyCallback, ICancelCommand, IAddressSelected
 {
     private static final String TAG = "FragLocationPicker";
 
@@ -36,6 +37,7 @@ public class FragLocationPicker extends Fragment implements OnMapReadyCallback, 
     private MapView mapView;
     private TextView txtAddress;
     private Button btnSelect;
+    private FrameLayout frmPicker;
     private GeoMap geoMap;
     private CompanyAddress address;
     private GoogleMap map;
@@ -57,6 +59,7 @@ public class FragLocationPicker extends Fragment implements OnMapReadyCallback, 
 
         txtAddress = v.findViewById(R.id.txtPickerAddress);
         btnSelect = v.findViewById(R.id.btnPickerSelect);
+        frmPicker = (FrameLayout) v.findViewById(R.id.frmPickerConfirm);
 
         mapView = (MapView) v.findViewById(R.id.mapViewPicker);
         mapView.onCreate(savedInstanceState);
@@ -144,18 +147,27 @@ public class FragLocationPicker extends Fragment implements OnMapReadyCallback, 
     {
         if(address != null && !address.getAddress().isEmpty())
         {
-            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-            transaction.add(R.id.frmPickerConfirm, PickerConfirm.newInstance(listener, marker, address, StaticMethod.getMapResizedSnapshot(bitmap)));
-            transaction.addToBackStack(null);
-            transaction.commit();
+            PickerConfirm pickerConfirm = new PickerConfirm(this, marker, address,
+                    StaticMethod.getMapResizedSnapshot(bitmap), getLayoutInflater(), frmPicker);
+            frmPicker.addView(pickerConfirm.getView());
         }
         else
+        {
             StaticMethod.Toast(getContext().getString(R.string.picker_select_address), getContext());
+            marker.remove();
+        }
     }
 
     @Override
     public void OnCancel()
     {
         marker.remove();
+    }
+
+    @Override
+    public void OnSelected()
+    {
+        listener.OnCompanyAddress(address);
+        getActivity().onBackPressed();
     }
 }

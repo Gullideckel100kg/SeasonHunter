@@ -10,24 +10,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.Marker;
 
+import gullideckel.seasonhunter.Interfaces.IAddressSelected;
 import gullideckel.seasonhunter.Interfaces.ICancelCommand;
 import gullideckel.seasonhunter.Interfaces.ICompanyAddress;
 import gullideckel.seasonhunter.Objects.Job.CompanyAddress;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
 
-public class PickerConfirm extends Fragment
+public class PickerConfirm
 {
-    protected ICompanyAddress listener;
-    protected Marker marker;
-    protected CompanyAddress address;
-    protected Bitmap bitmap;
+    private Marker marker;
+    private CompanyAddress address;
+    private Bitmap bitmap;
+    private LayoutInflater inflater;
+    private FrameLayout frm;
+    private IAddressSelected listener;
 
     private TextView txtCoordinates;
     private TextView txtAddress;
@@ -36,21 +40,19 @@ public class PickerConfirm extends Fragment
     private Button btnSelect;
 
 
-    public static PickerConfirm newInstance(ICompanyAddress listener, Marker marker, CompanyAddress  address, Bitmap bitmap)
+    public PickerConfirm(IAddressSelected listener, Marker marker, CompanyAddress address, Bitmap bitmap, LayoutInflater inflater, FrameLayout frm)
     {
-        PickerConfirm fragment = new PickerConfirm();
-        fragment.listener = listener;
-        fragment.marker = marker;
-        fragment.bitmap = bitmap;
-        fragment.address = address;
-        return  fragment;
+        this.marker = marker;
+        this.address = address;
+        this.bitmap = bitmap;
+        this.inflater = inflater;
+        this.frm = frm;
+        this.listener = listener;
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    public View getView()
     {
-        View v = inflater.inflate(R.layout.frag_location_picker_confirm, container, false);
+        View v = inflater.inflate(R.layout.frag_location_picker_confirm, null);
 
         v.bringToFront();
         v.setBackgroundColor(Color.WHITE);
@@ -68,7 +70,6 @@ public class PickerConfirm extends Fragment
         btnSelect.setOnClickListener(Select);
         btnChange.setOnClickListener(Change);
 
-
         return v;
     }
 
@@ -78,7 +79,7 @@ public class PickerConfirm extends Fragment
         public void onClick(View v)
         {
             marker.remove();
-            getActivity().onBackPressed();
+            frm.removeAllViews();
         }
     };
 
@@ -86,9 +87,8 @@ public class PickerConfirm extends Fragment
         @Override
         public void onClick(View v)
         {
-            listener.OnCompanyAddress(address);
             marker.remove();
-            getActivity().onBackPressed();
+            listener.OnSelected();
         }
     };
 }

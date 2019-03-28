@@ -86,10 +86,10 @@ public class Address implements ICompanyAddress
     {
         if(companyAddress != null)
         {
-            if(manager.findFragmentById(R.id.frmEditMapPicker) instanceof FragLocationPicker)
-            {
-                manager.beginTransaction().remove(fragment).commit();
-            }
+//            if(manager.findFragmentById(R.id.frmEditMapPicker) instanceof FragLocationPicker)
+//            {
+//                manager.beginTransaction().remove(fragment).commit();
+//            }
             edaAddress.setText(companyAddress.getAddress());
             this.address = companyAddress;
         }
