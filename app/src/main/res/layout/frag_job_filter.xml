@@ -91,24 +91,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/filter_facilities"
+                android:text="@string/filter_campground"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chkFilterWebsite" />
-
-            <EditText
-                android:id="@+id/edtFilterFacilites"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:ems="10"
-                android:hint="@string/filter_keyword"
-                android:inputType="textPersonName"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chkFilterFacilities" />
 
             <Button
                 android:id="@+id/btnFilterApply"
@@ -154,7 +139,7 @@
                 android:layout_marginTop="24dp"
                 android:text="@string/filter_month"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtFilterFacilites" />
+                app:layout_constraintTop_toBottomOf="@+id/chkFilterFacilities" />
 
             <Spinner
                 android:id="@+id/spinFilterStartMonth"
@@ -164,26 +149,6 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chkFilterMonth"></Spinner>
-
-            <Spinner
-                android:id="@+id/spinFilterEndMonth"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/txtFilterToConnectorMonth"
-                app:layout_constraintTop_toBottomOf="@+id/chkFilterMonth"></Spinner>
-
-            <TextView
-                android:id="@+id/txtFilterToConnectorMonth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="18dp"
-                android:text="@string/filter_to"
-                android:textSize="16dp"
-                app:layout_constraintStart_toEndOf="@+id/spinFilterStartMonth"
-                app:layout_constraintTop_toBottomOf="@+id/chkFilterMonth" />
 
 
         </android.support.constraint.ConstraintLayout>

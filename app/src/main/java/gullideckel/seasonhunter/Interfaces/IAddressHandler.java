@@ -3,6 +3,6 @@ package gullideckel.seasonhunter.Interfaces;
 
 public interface IAddressHandler
 {
-    void SetAddress(String companyName);
+    void SetAddress(String address);
 }
 

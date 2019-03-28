@@ -33,18 +33,14 @@ public class FragJobFilter extends Fragment
     private CheckBox chkEmail;
     private CheckBox chkWebSite;
     private CheckBox chkFacilities;
-    private EditText edtFacilities;
     private CheckBox chkWorkMonths;
     private Spinner spinStartDate;
-    private Spinner spinEndMonth;
 
     private Button btnClear;
     private Button btnApply;
 
     private IFilteredDocuments listener;
     private List<CompanyDocument> docs;
-    private Date startDate;
-    private Date endDate;
     private FillTypes fillTypes;
 
     public static FragJobFilter newInstance(IFilteredDocuments listener)
@@ -66,31 +62,24 @@ public class FragJobFilter extends Fragment
         chkEmail = v.findViewById(R.id.chkFilterEmail);
         chkWebSite = v.findViewById(R.id.chkFilterWebsite);
         chkFacilities = v.findViewById(R.id.chkFilterFacilities);
-        edtFacilities = v.findViewById(R.id.edtFilterFacilites);
         chkWorkMonths = v.findViewById(R.id.chkFilterMonth);
         spinStartDate = v.findViewById(R.id.spinFilterStartMonth);
-        spinEndMonth = v.findViewById(R.id.spinFilterEndMonth);
         btnClear = v.findViewById(R.id.btnFilterClear);
         btnApply = v.findViewById(R.id.btnFilterApply);
 
         fillTypes = new FillTypes(linType, getContext());
 
-        chkFacilities.setOnCheckedChangeListener(Facilities);
         btnType.setOnClickListener(WorkType);
 
         chkWorkMonths.setOnCheckedChangeListener(Months);
-        spinEndMonth.setEnabled(false);
         spinStartDate.setEnabled(false);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.months, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinStartDate.setAdapter(adapter);
-        spinEndMonth.setAdapter(adapter);
 
         btnClear.setOnClickListener(Clear);
         btnApply.setOnClickListener(Apply);
-
-
 
         return v;
     }
@@ -104,15 +93,14 @@ public class FragJobFilter extends Fragment
             else
             {
                 FilterObject filter = new FilterObject();
-                filter.setKeywordJob(edtFacilities.getText().toString());
+                filter.setKeywordJob(edtTitle.getText().toString());
                 filter.setTypes(fillTypes.getSelectedTypes());
                 filter.setPhone(chkPhone.isChecked());
                 filter.setEmail(chkEmail.isChecked());
                 filter.setWebSite(chkWebSite.isChecked());
                 filter.setFacilities(chkFacilities.isChecked());
-                filter.setKeywordFacilities(edtFacilities.getText().toString());
-                filter.setStartMonth(spinStartDate.getSelectedItem().toString());
-                filter.setEndMonth(spinEndMonth.getSelectedItem().toString());
+                if(chkWorkMonths.isChecked())
+                    filter.setStartMonth(spinStartDate.getSelectedItem().toString());
 
                 DocumentFilter docFilter = new DocumentFilter(docs,  getContext());
                 listener.RecieveFilterdDocuments(docFilter.filterDocs(filter));
@@ -125,14 +113,11 @@ public class FragJobFilter extends Fragment
         public void onClick(View v)
         {
             edtTitle.setText("");
-            startDate = null;
-            endDate = null;
             fillTypes.Clear();
             chkPhone.setChecked(false);
             chkEmail.setChecked(false);
             chkWebSite.setChecked(false);
             chkFacilities.setChecked(false);
-            edtFacilities.setText("");
             chkWorkMonths.setChecked(false);
         }
     };
@@ -156,16 +141,6 @@ public class FragJobFilter extends Fragment
         }
     };
 
-    private CompoundButton.OnCheckedChangeListener Facilities = new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-        {
-            if(isChecked)
-                edtFacilities.setVisibility(View.VISIBLE);
-            else
-                edtFacilities.setVisibility(View.GONE);
-        }
-    };
 
     private CompoundButton.OnCheckedChangeListener Months = new CompoundButton.OnCheckedChangeListener() {
         @Override
@@ -173,13 +148,11 @@ public class FragJobFilter extends Fragment
         {
             if(isChecked)
             {
-                spinEndMonth.setEnabled(true);
                 spinStartDate.setEnabled(true);
             }
             else
             {
                 spinStartDate.setEnabled(false);
-                spinEndMonth.setEnabled(false);
             }
         }
     };

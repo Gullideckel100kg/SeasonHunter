@@ -59,6 +59,8 @@
 
     <!--CollectionPath companies for recieve Data from Firestore-->
     <string name="db_all_companies">companies</string>
+    <string name="db_message">user_messages</string>
+    <string name="db_edit">edit</string>
 
 
     <!--CollectionPath reviews for recieve Data from Firestor-->
@@ -155,6 +157,8 @@
     <string name="apply">Apply</string>
     <string name="clear">Clear</string>
     <string name="send">Send</string>
+    <string name="change">Change</string>
+    <string name="remove">Remove</string>
 
     <!--Shortcut String array for the Calender weekdays-->
     <string-array name="weekdays_shortcuts">
@@ -182,8 +186,9 @@
     <string name="filter_email">Show only with e-mail</string>
     <string name="filter_website">Show only with website</string>
     <string name="filter_facilities">Filter facilities</string>
-    <string name="filter_month">Work in these months</string>
-    <string name="filter_to">to</string>
+    <string name="filter_campground">Has campground</string>
+    <string name="filter_month">Start month:</string>
+    <string name="filter_favourites">Show favourites</string>
     <string name="filter_docs_not_loaded">The documents are not loaded yet!</string>\
 
 
@@ -262,6 +267,8 @@
     <!--Strings for sending a message-->
     <string name="message_head">Do you have a question, any improving ideas or an error occured? Please let me know!!!</string>
     <string name="message">Send a message</string>
+    <string name="message_sent">Message sent</string>
+    <string name="message_not_sent">Could not sent message!</string>
 
 
     <!--Strings for reporting a mistake-->
@@ -278,7 +285,7 @@
     </string-array>
     <string name="edit_name">New company name...</string>
     <string name="edit_type">New company type</string>
-    <string name="edit_address">New address</string>
+    <string name="edit_address">New address:</string>
     <string name="edit_phone">Phone:</string>
     <string name="edit_new_phone">New number...</string>
     <string name="edit_email">Email:</string>
@@ -294,9 +301,27 @@
     <string name="edit_start_date">Start date:</string>
     <string name="edit_end_date">End date:</string>
     <string name="edit_of">of</string>
+    <string name="edit_no_facilities">No facilities</string>
     <string name="edit_add_facilities">Add facilities...</string>
+    <string name="edit_no_courses">No courses</string>
     <string name="edit_add_courses">Add courses...</string>
+    <string name="edit_no_description">No description</string>
     <string name="edit_add_description">Add description...</string>
+    <string name="edit_sent">Your correction has been sent successfully</string>
+    <string name="edit_not_sent">Your correcction could not be sent!</string>
+    <string name="edit_no_changes">No changes were made</string>
+
+
+    <!--Location Picker strings-->
+    <string name="picker_this_location">Use this location?</string>
+    <string name="picker_coordinates">Coordinates:</string>
+    <string name="picker_address">Address:</string>
+    <string name="picker_map_not_loaded">The map is not loaded yet!</string>
+    <string name="picker_select_address">Please select an area with an address!</string>
+
+
+    <!--Strings for sharing-->
+    <string name="share_body">Hi\nI am using Season hunter. This app helps me to find short time jobs in canada!</string>
 
 
     <string name="company_name_with_colon">Company name:</string>
@@ -308,7 +333,6 @@
 
     <string name="this_location">Use this location?</string>
     <string name="select">Select</string>
-    <string name="change">Change</string>
 
     <string name="save">Save</string>
     <string name="edit">Edit</string>
@@ -348,10 +372,10 @@
 
     <string-array name="days31">
         <item></item>
-        <item>first week</item>
-        <item>second week</item>
-        <item>third week</item>
-        <item>fourth week</item>
+        <item>1st week</item>
+        <item>2nd week</item>
+        <item>3rd week</item>
+        <item>4th week</item>
         <item>1st</item>
         <item>2nd</item>
         <item>3rd</item>
@@ -387,10 +411,10 @@
 
     <string-array name="days30">
         <item></item>
-        <item>first week</item>
-        <item>second week</item>
-        <item>third week</item>
-        <item>fourth week</item>
+        <item>1st week</item>
+        <item>2nd week</item>
+        <item>3rd week</item>
+        <item>4th week</item>
         <item>1st</item>
         <item>2nd</item>
         <item>3rd</item>
@@ -425,10 +449,10 @@
 
     <string-array name="days28">
         <item></item>
-        <item>first week</item>
-        <item>second week</item>
-        <item>third week</item>
-        <item>fourth week</item>
+        <item>1st week</item>
+        <item>2nd week</item>
+        <item>3rd week</item>
+        <item>4th week</item>
         <item>1st</item>
         <item>2nd</item>
         <item>3rd</item>

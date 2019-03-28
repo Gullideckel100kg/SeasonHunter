@@ -224,7 +224,7 @@ public class NewJob
         else if(position == 11)
             spinner.setAdapter(adapterDay31);
 
-        if(spinner.getAdapter().getCount() >= selectedItem)
+        if(spinner.getAdapter().getCount() > selectedItem)
             spinner.setSelection(selectedItem);
         }
 }

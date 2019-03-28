@@ -35,8 +35,8 @@ public class DocumentFilter
         if(!filter.getKeywordJob().isEmpty())
             filteredDocs.add(docsJob(filter.getKeywordJob()));
 
-        if(!filter.getStartMonth().isEmpty() && !filter.getEndMonth().isEmpty())
-            filteredDocs.add(docsDate(filter.getStartMonth(), filter.getEndMonth()));
+        if(!filter.getStartMonth().isEmpty())
+            filteredDocs.add(docsDate(filter.getStartMonth()));
 
         if(filter.getTypes() != null && filter.getTypes().size() > 0)
             filteredDocs.add(docsType(filter.getTypes()));
@@ -51,7 +51,7 @@ public class DocumentFilter
             filteredDocs.add(docsWebSite());
 
         if(filter.isFacilities())
-            filteredDocs.add(docsFacilities(filter.getKeywordFacilities()));
+            filteredDocs.add(docsFacilities());
 
         if(filteredDocs.size() > 0)
         {
@@ -142,30 +142,30 @@ public class DocumentFilter
         return docsWebsite;
     }
 
-    private List<CompanyDocument> docsFacilities(String facilites)
+    private List<CompanyDocument> docsFacilities()
     {
         List<CompanyDocument> docsFalc = new ArrayList<>();
 
         for(CompanyDocument doc : docs)
             if(doc.getExtras().getFacilities() != null && !doc.getExtras().getFacilities().isEmpty())
-                if(!facilites.isEmpty())
-                    if(doc.getExtras().getFacilities().contains(facilites))
-                        docsFalc.add(doc);
-                else
+            {
+                if(doc.getExtras().getFacilities().toLowerCase().contains("campground"))
                     docsFalc.add(doc);
-
+//                else if(facilites.isEmpty())
+//                    docsFalc.add(doc);
+            }
         return  docsFalc;
     }
 
-    private List<CompanyDocument> docsDate(String startMonth, String endMonth)
+    private List<CompanyDocument> docsDate(String startMonth)
     {
         List<CompanyDocument> dateDocs = new ArrayList<>();
         List<String> months = Arrays.asList(context.getResources().getStringArray(R.array.months));
 
-        if(startMonth != null && endMonth != null)
+        if(startMonth != null)
             for(CompanyDocument doc : docs)
                 for(CompanyJobs.CompanyJob job : doc.getJobs().getCompanyJobs())
-                    if(isInYear(job,months, startMonth, endMonth) && !dateDocs.contains(doc))
+                    if(isInYear(job,months, startMonth) && !dateDocs.contains(doc))
                         dateDocs.add(doc);
 
                     return dateDocs;
@@ -174,30 +174,17 @@ public class DocumentFilter
 
     //TODO Extend filter for Start and End date
     //The time filter filters the work outside and inside the time indication
-    private boolean isInYear(CompanyJobs.CompanyJob job, List<String> months, String startMonth, String endMonth)
+    private boolean isInYear(CompanyJobs.CompanyJob job, List<String> months, String startMonth)
     {
         int startDate = -1;
-        int endDate = -1;
 
         int start =  months.indexOf(startMonth);
-        int end = months.indexOf(endMonth);
 
         for (int i = 0; i < months.size(); i++)
         {
             if (job.getStartDate().contains(months.get(i)))
                 startDate = i;
-            if(job.getEndDate().contains(months.get(i)))
-                endDate = i;
         }
-
-        if(startDate == 8)
-            System.out.print("");
-
-        if(startDate > endDate)
-            endDate = endDate + 12;
-        if(start > end)
-            end = end + 12;
-
 
         if(start ==  startDate)
             return true;

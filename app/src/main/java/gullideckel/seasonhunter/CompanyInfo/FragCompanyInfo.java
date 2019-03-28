@@ -1,5 +1,6 @@
 package gullideckel.seasonhunter.CompanyInfo;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -34,10 +35,10 @@ public class FragCompanyInfo extends Fragment
     private FragCompanyData fragData;
     private FragReviewHolder fragReview;
     private FragCompanyDescription fragDescription;
-    private FragCompanyPhotos fragPhotos;
 
     private ImageButton imbAddReview;
     private ImageButton imbEdit;
+    private ImageButton imbShare;
 
     protected CompanyDocument doc;
     protected IDocument reviewListener;
@@ -66,6 +67,9 @@ public class FragCompanyInfo extends Fragment
 
         imbEdit = (ImageButton) view.findViewById(R.id.imbEditCompany);
         imbEdit.setOnClickListener(Edit);
+
+        imbShare = (ImageButton) view.findViewById(R.id.imbShare);
+        imbShare.setOnClickListener(Share);
 
         vPCompanyInfo = (NonSwipeViewPager) view.findViewById(R.id.vPCompanyInfo);
         tabCompanyInfo = (TabLayout) view.findViewById(R.id.tabCompanyInfo);
@@ -98,6 +102,18 @@ public class FragCompanyInfo extends Fragment
             imbEdit.setEnabled(false);
             AddFragment(FragEditCompany.newInstance(doc, client));
             imbEdit.setEnabled(true);
+        }
+    };
+
+    private View.OnClickListener Share = new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            String body = getContext().getString(R.string.share_body);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, body);
+            startActivity(Intent.createChooser(shareIntent, "Share using"));
         }
     };
 

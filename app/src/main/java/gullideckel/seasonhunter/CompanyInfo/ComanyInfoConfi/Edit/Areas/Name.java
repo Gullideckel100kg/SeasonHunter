@@ -10,7 +10,6 @@ import gullideckel.seasonhunter.R;
 public class Name
 {
     private LayoutInflater inflater;
-    private View v;
     private EditText edtName;
     private TextView txtName;
     private String name;
@@ -23,21 +22,21 @@ public class Name
 
     public View getView()
     {
-        if(v == null)
-        {
-            v = inflater.inflate(R.layout.frag_edit_name, null);
+        View v = inflater.inflate(R.layout.frag_edit_name, null);
 
-            edtName = (EditText) v.findViewById(R.id.edtEditName);
-            txtName = (TextView) v.findViewById(R.id.txtEditName);
+        edtName = (EditText) v.findViewById(R.id.edtEditName);
+        txtName = (TextView) v.findViewById(R.id.txtEditName);
 
-            txtName.setText(name);
-        }
+        txtName.setText(name);
 
         return v;
     }
 
-    public void Send()
+    public String GetName()
     {
-        System.out.print("");
+        if(edtName.getText().toString().isEmpty())
+            return null;
+        else
+            return edtName.getText().toString();
     }
 }

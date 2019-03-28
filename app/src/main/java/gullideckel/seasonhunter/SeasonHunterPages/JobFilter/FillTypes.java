@@ -48,11 +48,16 @@ public class FillTypes
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
         {
             if(isChecked)
+            {
                 if(!selectedTypes.contains(buttonView.getText().toString()))
                     selectedTypes.add(buttonView.getText().toString());
+            }
             else
+            {
                 if(selectedTypes.contains(buttonView.getText().toString()))
                     selectedTypes.remove(buttonView.getText().toString());
+            }
+
         }
     };
 

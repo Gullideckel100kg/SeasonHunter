@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/edtEditJobTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtEditDateHeadBottom"
+        android:id="@+id/txtEditStartDateBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -28,7 +28,7 @@
         android:text="@string/edit_start_date"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEditJobTitle" />
 
     <Spinner
         android:id="@+id/spinEditStartDay"
@@ -37,25 +37,27 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditDateHeadBottom" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditStartDateBottom" />
 
     <Spinner
+        android:id="@+id/spinEditEndMonth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        tools:layout_editor_absoluteY="164dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditEndDateBottom" />
 
     <Spinner
-        android:id="@+id/linEditEndDay"
+        android:id="@+id/spinEditEndDay"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditEndDate" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditEndDateBottom" />
 
     <Spinner
         android:id="@+id/spinEditStartMonth"
@@ -66,7 +68,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtEditStartOf"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditDateHeadBottom" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditStartDateBottom" />
 
     <TextView
         android:id="@+id/txtEditStartOf"
@@ -76,10 +78,10 @@
         android:layout_marginTop="10dp"
         android:text="@string/edit_of"
         app:layout_constraintStart_toEndOf="@+id/spinEditStartDay"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditDateHeadBottom" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditStartDateBottom" />
 
     <TextView
-        android:id="@+id/txtEditEndDate"
+        android:id="@+id/txtEditEndDateBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -96,8 +98,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
         android:text="@string/edit_of"
-        app:layout_constraintStart_toEndOf="@+id/linEditEndDay"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditEndDate" />
+        app:layout_constraintStart_toEndOf="@+id/spinEditEndDay"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditEndDateBottom" />
 
     <TextView
         android:id="@+id/txtEditNotesBottom"
@@ -108,7 +110,7 @@
         android:text="@string/edit_notes"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linEditEndDay" />
+        app:layout_constraintTop_toBottomOf="@+id/spinEditEndDay" />
 
     <EditText
         android:id="@+id/edtEditNotes"
@@ -121,6 +123,7 @@
         android:inputType="textMultiLine"
         android:maxLines="40"
         android:minLines="4"
+        android:gravity="top|left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

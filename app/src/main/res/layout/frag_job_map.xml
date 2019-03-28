@@ -26,26 +26,24 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        app:layout_constraintEnd_toStartOf="@+id/guidlineVerticalMap"
-        app:layout_constraintStart_toEndOf="@+id/imgBtnSearch"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/guidlineVerticalMap"
+        app:layout_constraintStart_toEndOf="@+id/imgBtnSearch"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/edtSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:nextFocusUp="@id/edtSearch"
             android:nextFocusLeft="@id/edtSearch"
-            />
+            android:nextFocusUp="@id/edtSearch" />
     </LinearLayout>
-
-
 
 
     <ImageButton
@@ -56,6 +54,7 @@
         android:layout_marginTop="8dp"
         android:scaleType="fitXY"
         android:src="@drawable/search"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

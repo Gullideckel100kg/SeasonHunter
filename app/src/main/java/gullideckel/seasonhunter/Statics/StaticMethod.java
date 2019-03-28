@@ -251,4 +251,20 @@ public class StaticMethod
         return null;
     }
 
+    public static Bitmap getMapResizedSnapshot(Bitmap bitmap)
+    {
+        if(bitmap != null)
+        {
+            Bitmap resizedBmp = Bitmap.createBitmap(bitmap,0, (int)(bitmap.getHeight()/2 - bitmap.getHeight() * 0.4),
+                                                    bitmap.getWidth(), (int)(bitmap.getHeight() * 0.4));
+
+            if(bitmap.getWidth() >= bitmap.getHeight())
+                return Bitmap.createBitmap(bitmap,0, bitmap.getWidth()/4 - bitmap.getHeight()/4,bitmap.getHeight(), bitmap.getHeight());
+            else
+                return Bitmap.createBitmap(bitmap,0, bitmap.getHeight()/2 - bitmap.getWidth()/4,bitmap.getWidth(),bitmap.getWidth()/2);
+        }
+        else
+            throw new NullPointerException("class:MySnapShop; First take a SnapShot then call getMapSnapshot");
+    }
+
 }

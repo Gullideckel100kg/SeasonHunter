@@ -70,6 +70,7 @@ public class OnClickSignIn implements View.OnClickListener
                     {
                         Intent intent = new Intent(activity, ActSeasonHunter.class);
                         activity.startActivity(intent);
+                        activity.finish();
                     }
                     else
                          AlertDialogVerification();

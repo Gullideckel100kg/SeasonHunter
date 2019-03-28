@@ -17,7 +17,6 @@ public class Type
     private LayoutInflater inflater;
     private String type;
     private Context context;
-    private View v;
 
     private Spinner spinType;
     private ArrayAdapter<CharSequence> adapter;
@@ -32,30 +31,32 @@ public class Type
 
     public View getView()
     {
-        if(v == null)
-        {
-            v = inflater.inflate(R.layout.frag_edit_type, null);
+        View v = inflater.inflate(R.layout.frag_edit_type, null);
 
-            txtEdit = (TextView) v.findViewById(R.id.txtEditType);
-            txtEdit.setText(type);
+        txtEdit = (TextView) v.findViewById(R.id.txtEditType);
+        txtEdit.setText(type);
 
-            spinType = (Spinner) v.findViewById(R.id.spinEditType);
+        spinType = (Spinner) v.findViewById(R.id.spinEditType);
 
-            adapter = ArrayAdapter.createFromResource(context, R.array.company_types, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinType.setAdapter(adapter);
+        adapter = ArrayAdapter.createFromResource(context, R.array.company_types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinType.setAdapter(adapter);
 
-            for(int i = 0; i < adapter.getCount(); i++)
-                if(adapter.getItem(i).toString().equals(type))
-                    spinType.setSelection(i);
-        }
+        for(int i = 0; i < adapter.getCount(); i++)
+            if(adapter.getItem(i).toString().equals(type))
+                spinType.setSelection(i);
 
         return v;
     }
 
-    public void Send()
+    public List<String> getType()
     {
         List<String> types = new ArrayList<>();
         types.add(spinType.getSelectedItem().toString());
+
+        if(spinType.getSelectedItem().toString().equals(txtEdit.getText().toString()))
+            return null;
+        else
+            return types;
     }
 }

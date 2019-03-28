@@ -83,6 +83,7 @@ public class OnClickGoogle implements View.OnClickListener
     {
         Intent intent = new Intent(activity, ActSeasonHunter.class);
         activity.startActivity(intent);
+        activity.finish();
     }
 
 }

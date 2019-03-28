@@ -31,14 +31,14 @@ public class Address implements ICompanyAddress
     private FragmentManager manager;
     private CompanyAddress address;
     private GoogleApiClient client;
-    private Context context;
-    private View v;
+    private Activity context;
+    private FragLocationPicker fragment;
 
     private TextView txtAddress;
     private AutoCompleteTextView edaAddress;
     private ImageButton imbPicker;
 
-    public Address(LayoutInflater inflater, FragmentManager manager, CompanyAddress address, GoogleApiClient client, Context context)
+    public Address(LayoutInflater inflater, FragmentManager manager, CompanyAddress address, GoogleApiClient client, Activity context)
     {
         this.inflater = inflater;
         this.manager = manager;
@@ -49,21 +49,21 @@ public class Address implements ICompanyAddress
 
     public View getView()
     {
-        if(v == null)
-        {
-            v = inflater.inflate(R.layout.frag_edit_address, null);
+        View v = inflater.inflate(R.layout.frag_edit_address, null);
 
-            txtAddress = (TextView) v.findViewById(R.id.txtEditAddress);
-            edaAddress = (AutoCompleteTextView) v.findViewById(R.id.edaEditAddress);
-            imbPicker = (ImageButton) v.findViewById(R.id.imbEditAddress);
+        txtAddress = (TextView) v.findViewById(R.id.txtEditAddress);
+        edaAddress = (AutoCompleteTextView) v.findViewById(R.id.edaEditAddress);
+        imbPicker = (ImageButton) v.findViewById(R.id.imbEditAddress);
 
-            txtAddress.setText(address.getAddress());
+        txtAddress.setText(address.getAddress());
 
-            imbPicker.setOnClickListener(Picker);
+        imbPicker.setOnClickListener(Picker);
 
-            PlaceAutoCompleteTextView autoComplete = new PlaceAutoCompleteTextView(context, edaAddress, client, this);
-            autoComplete.Init();
-        }
+        fragment = FragLocationPicker.newInstance(Address.this);
+
+        PlaceAutoCompleteTextView autoComplete = new PlaceAutoCompleteTextView(context, edaAddress, client, this);
+        autoComplete.Init();
+
 
         return v;
     }
@@ -75,7 +75,7 @@ public class Address implements ICompanyAddress
         public void onClick(View v)
         {
             FragmentTransaction transaction = manager.beginTransaction();
-            transaction.add(R.id.frmEditMapPicker, FragLocationPicker.newInstance(Address.this));
+            transaction.add(R.id.frmEditMapPicker, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }
@@ -86,10 +86,21 @@ public class Address implements ICompanyAddress
     {
         if(companyAddress != null)
         {
+            if(manager.findFragmentById(R.id.frmEditMapPicker) instanceof FragLocationPicker)
+            {
+                manager.beginTransaction().remove(fragment).commit();
+            }
             edaAddress.setText(companyAddress.getAddress());
             this.address = companyAddress;
         }
+    }
 
+    public CompanyAddress getAddress()
+    {
+        if(edaAddress.getText().toString().isEmpty())
+            return null;
+        else
+            return address;
     }
 
 }

@@ -22,6 +22,8 @@ public class CompanyJobs
         this.companyJobs = companyJobs;
     }
 
+    public void addCompanyJob(CompanyJob job) { companyJobs.add(job); }
+
     public static class CompanyJob
     {
         private String jobTitle;

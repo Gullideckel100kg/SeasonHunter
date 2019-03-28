@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/linEditPhoneHead"
+        android:id="@+id/linEditPhone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toStartOf="@+id/imbEditEmailPlus"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtEditPhonePlus"
-        app:layout_constraintTop_toBottomOf="@+id/linEditPhoneHead" />
+        app:layout_constraintTop_toBottomOf="@+id/linEditPhone" />
 
     <TextView
         android:id="@+id/txtEditPhonePlus"
@@ -40,7 +40,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linEditPhoneHead" />
+        app:layout_constraintTop_toBottomOf="@+id/linEditPhone" />
 
     <ImageButton
         android:id="@+id/imbEditEmailPlus"
@@ -64,7 +64,7 @@
         android:scaleType="fitCenter"
         android:src="@drawable/plus"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linEditPhoneHead" />
+        app:layout_constraintTop_toBottomOf="@+id/linEditPhone" />
 
     <LinearLayout
         android:id="@+id/linEditEmail"
