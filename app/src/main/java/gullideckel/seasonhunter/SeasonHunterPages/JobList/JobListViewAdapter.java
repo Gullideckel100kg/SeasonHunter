@@ -16,7 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.List;
 
 import gullideckel.seasonhunter.CompanyInfo.FragCompanyInfo;
-import gullideckel.seasonhunter.Interfaces.IDocument;
+import gullideckel.seasonhunter.Interfaces.IDocumentReview;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.Objects.Job.CompanyJobs;
 import gullideckel.seasonhunter.R;
@@ -29,11 +29,11 @@ public class JobListViewAdapter extends RecyclerView.Adapter<JobListViewHolder>
     private List<CompanyDocument> docs;
     private Context context;
     private LayoutInflater inflater;
-    private IDocument listener;
+    private IDocumentReview listener;
     private FragmentManager manager;
     private GoogleApiClient client;
 
-    public JobListViewAdapter(List<CompanyDocument> docs, IDocument listener, FragmentManager manager, GoogleApiClient client)
+    public JobListViewAdapter(List<CompanyDocument> docs, IDocumentReview listener, FragmentManager manager, GoogleApiClient client)
     {
         this.docs = docs;
         this.listener = listener;

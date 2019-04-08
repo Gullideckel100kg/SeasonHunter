@@ -82,7 +82,7 @@ public class DocumentFilter
 
         for(CompanyDocument doc : docs)
             for(CompanyJobs.CompanyJob job : doc.getJobs().getCompanyJobs())
-                if(job.getJobTitle().contains(keyword))
+                if(job.getJobTitle().toLowerCase().contains(keyword.toLowerCase()))
                     jobDocs.add(doc);
 
         return jobDocs;

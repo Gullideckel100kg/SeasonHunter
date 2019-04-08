@@ -10,6 +10,8 @@
     <string name="facebook_app_id">401392967269455</string>
     <string name="fb_login_protocol_scheme">fb401392967269455</string>
 
+    <string name="admob_id">ca-app-pub-7691767416808794~7579299208</string>
+
 
     <!--Headlines for the Tablayout Seasonhunter-->
     <string name="map">Map</string>
@@ -21,6 +23,10 @@
 
     <!--Country part key for loading Database collection-->
     <string name="country_part_key">CoUntr3yK3Y</string>
+
+    <!--Sign in Strings-->
+    <string name="sign_email">E- mail</string>
+    <string name="sign_password_short">The password has to be longer than 6 signs</string>
 
 
     <!--CompanyTypes array like it is saved at the backend-->
@@ -61,6 +67,8 @@
     <string name="db_all_companies">companies</string>
     <string name="db_message">user_messages</string>
     <string name="db_edit">edit</string>
+    <string name="db_review">reviews</string>
+    <string name="db_new_company">New_companies</string>
 
 
     <!--CollectionPath reviews for recieve Data from Firestor-->
@@ -237,6 +245,8 @@
     <string name="new_yes">Yes</string>
     <string name="new_no">No</string>
     <string name="new_clear">Do you want to clear everything?</string>
+    <string name="new_sent">The new company has been sent successfully</string>
+    <string name="new_not_sent">The new company could not be sent!</string>
 
 
     <!--Strings for the Review after finishing to create a new Company-->

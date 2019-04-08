@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
@@ -24,20 +26,24 @@ import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragCreateAccountHunter
 import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragForgotPassword;
 import gullideckel.seasonhunter.ActivitySignIn.OnClickSignInHunter.OnClickGoogle;
 import gullideckel.seasonhunter.ActivitySignIn.OnClickSignInHunter.OnClickSignIn;
+import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticVariabels;
 
-public class SignInHunter extends FragmentActivity
+public class SignInHunter extends FragmentActivity implements IFragmentHandler
 {
+    private ImageButton imbHidePassword;
+    private EditText edtSignPassword;
+    private boolean isHidden;
 
     private OnClickGoogle clickGoogle;
-    private CallbackManager callbackManager;
+//    private CallbackManager callbackManager;
 
     private boolean LoadUser()
     {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user != null)
+        if(user != null && user.isEmailVerified())
             return true;
         return false;
     }
@@ -51,13 +57,17 @@ public class SignInHunter extends FragmentActivity
         if(LoadUser())
         {
             Intent intent = new Intent(this, ActSeasonHunter.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
         }
 
         setContentView(R.layout.act_sign_in_hunter);
 
         EditText edtSignEmail = (EditText) findViewById(R.id.edtSignEmail);
-        EditText edtSignPassword = (EditText) findViewById(R.id.edtSignPassword);
+        edtSignPassword = (EditText) findViewById(R.id.edtSignPassword);
+
+        edtSignPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         TextView txtForgotPassword = (TextView) findViewById(R.id.txtForgotPassword);
 
@@ -109,10 +119,6 @@ public class SignInHunter extends FragmentActivity
                 e.printStackTrace();
             }
         }
-        else
-        {
-            callbackManager.onActivityResult(requestCode, resultCode, data);
-        }
     }
 
     private void ReplaceFragment(Fragment fragment)
@@ -122,4 +128,30 @@ public class SignInHunter extends FragmentActivity
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+    @Override
+    public void onReplaceFragment(Fragment fragment, int intFrag)
+    {
+        onBackPressed();
+        ReplaceFragment(fragment);
+    }
+
+
+    private View.OnClickListener PasswordHide = new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            if(isHidden)
+            {
+                edtSignPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                isHidden = false;
+            }
+            else
+            {
+                edtSignPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                isHidden = true;
+            }
+
+        }
+    };
 }

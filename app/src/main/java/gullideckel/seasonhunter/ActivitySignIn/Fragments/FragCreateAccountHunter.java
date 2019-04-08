@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import gullideckel.seasonhunter.ActivitySignIn.OnClickSignInHunter.OnClickCreateAccount;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
@@ -18,11 +20,12 @@ import gullideckel.seasonhunter.R;
 
 public class FragCreateAccountHunter extends Fragment
 {
-    //TODO: Checkbox show password
-    //TODO: Password typed in hidden
     //TODO: No line breaks at Editboxes
 
     private IFragmentHandler mListener;
+    private ImageButton imbHidePassword;
+    private EditText edtCreatePassword;
+    private boolean isHidden = true;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
@@ -33,11 +36,16 @@ public class FragCreateAccountHunter extends Fragment
         view.bringToFront();
 
         EditText edtCreateEmail = (EditText) view.findViewById(R.id.edtCreateEmail);
-        EditText edtCreatePassword = (EditText) view.findViewById(R.id.edtCreatePassword);
+        edtCreatePassword = (EditText) view.findViewById(R.id.edtCreatePassword);
+        imbHidePassword = (ImageButton) view.findViewById(R.id.imbCreatePasswordHide);
+
+        edtCreatePassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         Button btnCreateAccount = (Button) view.findViewById(R.id.btnCreateNewAccount);
+        imbHidePassword.setOnClickListener(PasswordHide);
 
         btnCreateAccount.setOnClickListener(new OnClickCreateAccount(edtCreateEmail,edtCreatePassword, getActivity()));
+
     }
 
     @Override
@@ -46,25 +54,23 @@ public class FragCreateAccountHunter extends Fragment
         return inflater.inflate(R.layout.frag_create_account_hunter, container, false);
     }
 
-//    @Override
-//    public void onAttach(Context context)
-//    {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener)
-//        {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else
-//        {
-//            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach()
-//    {
-//        super.onDetach();
-//        mListener = null;
-//    }
+    private View.OnClickListener PasswordHide = new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            if(isHidden)
+            {
+                edtCreatePassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                isHidden = false;
+            }
+            else
+            {
+                edtCreatePassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                isHidden = true;
+            }
+
+        }
+    };
 
 
 }

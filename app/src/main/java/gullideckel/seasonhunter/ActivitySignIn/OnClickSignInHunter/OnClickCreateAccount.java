@@ -19,6 +19,8 @@ import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragEmailVerification;
 import gullideckel.seasonhunter.Authentification.Validation;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
+import gullideckel.seasonhunter.R;
+import gullideckel.seasonhunter.Statics.StaticMethod;
 
 
 //TODO: Password with 6 signs
@@ -46,7 +48,10 @@ public class OnClickCreateAccount implements View.OnClickListener
     @Override
     public void onClick(View v)
     {
-        CreateAccount();
+        if(mEdtPassword.length() > 6)
+            CreateAccount();
+        else
+            StaticMethod.Toast(mContext.getString(R.string.sign_password_short), mContext);
     }
 
     //TODO: Remove keypad
@@ -74,8 +79,13 @@ public class OnClickCreateAccount implements View.OnClickListener
                 else
                 {
                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                    Toast.makeText(mContext, "Authentication failed", Toast.LENGTH_SHORT).show();
+                    if(mEdtPassword.getText().toString().length() < 8)
+                        Toast.makeText(mContext, "Password length has to contain at least 7 characters", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(mContext, "Could not create your account. May the email exist already", Toast.LENGTH_SHORT).show();
+
                 }
+
             }
         });
     }

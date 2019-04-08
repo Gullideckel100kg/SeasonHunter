@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gullideckel.seasonhunter.CompanyInfo.FragCompanyInfo;
-import gullideckel.seasonhunter.Interfaces.IDocument;
+import gullideckel.seasonhunter.Interfaces.IDocumentReview;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
@@ -77,7 +77,7 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
     {
         CompanyDocument doc = (CompanyDocument) marker.getTag();
         FragmentTransaction transaction  = activity.getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(doc, (IDocument) activity, client));
+        transaction.replace(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(doc, (IDocumentReview) activity, client));
         transaction.addToBackStack(null);
         transaction.commit();
     }

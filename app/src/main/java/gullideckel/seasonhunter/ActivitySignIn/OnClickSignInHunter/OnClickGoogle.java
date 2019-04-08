@@ -70,9 +70,9 @@ public class OnClickGoogle implements View.OnClickListener
                 else
                 {
                     // Now display a message to the user.
-                    //TODO: May built in a google logIn in the app
+                    //TODO: Handle the Exception for solving the problem. For example if the user is blocked
                     Log.w(TAG, "signInWithCredential:failure", task.getException());
-                    Snackbar.make(activity.findViewById(R.id.cnstLogIn), "Authentication Failed. You can Log In in you google account in the play store app", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(activity.findViewById(R.id.cnstLogIn), "Authentication Failed. ", Snackbar.LENGTH_LONG).show();
 
                 }
             }
@@ -82,6 +82,7 @@ public class OnClickGoogle implements View.OnClickListener
     private void FinishLogIn()
     {
         Intent intent = new Intent(activity, ActSeasonHunter.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         activity.startActivity(intent);
         activity.finish();
     }

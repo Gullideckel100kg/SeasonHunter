@@ -10,6 +10,11 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.widget.FrameLayout;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Places;
@@ -20,9 +25,10 @@ import java.util.List;
 import gullideckel.seasonhunter.CostumLayouts.CostumRangeCalender.FragCostumRangeCalender;
 import gullideckel.seasonhunter.Firestore.LoadAllDocuments;
 import gullideckel.seasonhunter.Firestore.SetReview;
-import gullideckel.seasonhunter.Interfaces.IDocument;
+import gullideckel.seasonhunter.Interfaces.IDocumentReview;
 import gullideckel.seasonhunter.Interfaces.IDocumentList;
 import gullideckel.seasonhunter.Interfaces.IFilteredDocuments;
+import gullideckel.seasonhunter.Objects.Review.Review;
 import gullideckel.seasonhunter.SeasonHunterPages.JobFilter.FragJobFilter;
 import gullideckel.seasonhunter.SeasonHunterPages.JobList.FragJobListView;
 import gullideckel.seasonhunter.SeasonHunterPages.JobMap.FragJobMap;
@@ -31,7 +37,7 @@ import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.SeasonHunterPages.NewCompany.FragNewCompany;
 
 
-public class ActSeasonHunter extends FragmentActivity implements IDocumentList, IDocument, IFilteredDocuments, GoogleApiClient.OnConnectionFailedListener
+public class ActSeasonHunter extends FragmentActivity implements IDocumentList, IDocumentReview, IFilteredDocuments, GoogleApiClient.OnConnectionFailedListener
 {
     private static final String TAG = "ActSeasonHunter";
 
@@ -46,8 +52,9 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
     private FragJobFilter fragFilter;
     private FragNewCompany fragNew;
     private FragJobSettings fragSettings;
-    private FragCostumRangeCalender test;
 
+    private AdView banner;
+    private InterstitialAd bigAd;
     FirebaseFirestore db;
 
     //TODO VERY IMPORTANT!!!!!!!!!!
@@ -66,6 +73,25 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_season_hunter);
+
+        MobileAds.initialize(this, getString(R.string.admob_id));
+
+        bigAd = new InterstitialAd(this);
+        bigAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        bigAd.loadAd(new AdRequest.Builder().build());
+
+        bigAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded()
+            {
+                super.onAdLoaded();
+                bigAd.show();
+            }
+        });
+
+        banner = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        banner.loadAd(adRequest);
 
         frmLoading = (FrameLayout) findViewById(R.id.frmLoading);
 
@@ -92,6 +118,8 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
         tabSeasonHunter.setupWithViewPager(vpSeasonHunter);
         vpSeasonHunter.setOffscreenPageLimit(5);
     }
+
+
 
     private SeasonHunterViewPagerAdapter SetupAdapter()
     {
@@ -157,12 +185,6 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
         return fmLast;
     }
 
-    @Override
-    public void RecieveDocument(CompanyDocument doc)
-    {
-        SetReview setReview = new SetReview(this , db);
-        setReview.Set(doc);
-    }
 
     @Override
     public void RecieveFilterdDocuments(List<CompanyDocument> docs)
@@ -186,5 +208,12 @@ public class ActSeasonHunter extends FragmentActivity implements IDocumentList, 
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
     {
         Log.e(TAG, "onConnectionFailed: " +  connectionResult.getErrorMessage());
+    }
+
+    @Override
+    public void onRecieveReview(Review review)
+    {
+        SetReview setReview = new SetReview(this , db);
+        setReview.Add(review);
     }
 }

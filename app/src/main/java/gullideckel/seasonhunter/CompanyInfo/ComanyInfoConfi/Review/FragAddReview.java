@@ -16,7 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import gullideckel.seasonhunter.Interfaces.IDocument;
+import gullideckel.seasonhunter.Interfaces.IDocumentReview;
 import gullideckel.seasonhunter.Interfaces.IWorkTime;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.Objects.Review.Review;
@@ -28,7 +28,7 @@ import gullideckel.seasonhunter.Statics.StaticVariabels;
 
 public class FragAddReview extends Fragment implements IWorkTime
 {
-    protected IDocument listener;
+    protected IDocumentReview listener;
     protected CompanyDocument doc;
 
     private View v;
@@ -52,7 +52,7 @@ public class FragAddReview extends Fragment implements IWorkTime
     private volatile boolean isBlockedScrollView = false;
 
 
-    public static FragAddReview newInstance(IDocument listener, CompanyDocument doc)
+    public static FragAddReview newInstance(IDocumentReview listener, CompanyDocument doc)
     {
         FragAddReview fragment = new FragAddReview();
         fragment.listener = listener;
@@ -202,8 +202,8 @@ public class FragAddReview extends Fragment implements IWorkTime
         public void onClick(DialogInterface dialog, int which) {
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE: ;
-                    doc.addReview(review);
-                    listener.RecieveDocument(doc);
+                    review.setDocId(doc.getId());
+                    listener.onRecieveReview(review);
                     getActivity().onBackPressed();
                     break;
                 case DialogInterface.BUTTON_NEGATIVE:

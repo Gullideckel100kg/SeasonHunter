@@ -36,7 +36,7 @@ public class OnClickResetPassword implements View.OnClickListener
                         if(task.isSuccessful())
                         {
                             Log.d(TAG, "Email sent: successfull");
-                            Toast.makeText(mContext, "E-mail sent", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "E-mail sent", Toast.LENGTH_LONG).show();
                         }
                         else
                         {

@@ -53,4 +53,24 @@ public class SetReview
             }
         });
     }
+
+    public void Add(Review review)
+    {
+        db = FirebaseFirestore.getInstance();
+        db.collection(context.getString(R.string.db_review)).add(review).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference)
+            {
+                Log.d(TAG, "onSuccess: Review has been sent successfull");
+                StaticMethod.Toast(context.getString(R.string.review_sent), context);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e)
+            {
+                Log.e(TAG, "onFailure: Review hasn't been sent successfull, ", e);
+                StaticMethod.Toast(context.getString(R.string.review_not_sent), context);
+            }
+        });
+    }
 }

@@ -12,7 +12,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.List;
 
 import gullideckel.seasonhunter.CostumLayouts.CostumLayoutManager;
-import gullideckel.seasonhunter.Interfaces.IDocument;
+import gullideckel.seasonhunter.Interfaces.IDocumentReview;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.R;
 
@@ -58,6 +58,6 @@ public class FragJobListView extends Fragment
 
     private void InitList()
     {
-        rcylListView.setAdapter(new JobListViewAdapter(docs, (IDocument)getContext(), getActivity().getSupportFragmentManager(), client));
+        rcylListView.setAdapter(new JobListViewAdapter(docs, (IDocumentReview)getContext(), getActivity().getSupportFragmentManager(), client));
     }
 }

@@ -1,6 +1,7 @@
 package gullideckel.seasonhunter.ActivitySignIn.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,6 +37,9 @@ public class FragEmailVerification extends Fragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
+
+        view.bringToFront();
+        view.setBackgroundColor(Color.WHITE);
 
         mAuth = FirebaseAuth.getInstance();
 

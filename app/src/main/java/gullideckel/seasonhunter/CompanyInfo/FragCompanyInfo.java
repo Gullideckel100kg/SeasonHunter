@@ -20,9 +20,8 @@ import gullideckel.seasonhunter.CompanyInfo.ComanyInfoConfi.Review.FragAddReview
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyData.FragCompanyData;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyReviews.FragReviewHolder;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.FragCompanyDescription;
-import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.FragCompanyPhotos;
 import gullideckel.seasonhunter.CostumLayouts.NonSwipeViewPager;
-import gullideckel.seasonhunter.Interfaces.IDocument;
+import gullideckel.seasonhunter.Interfaces.IDocumentReview;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.SeasonHunterViewPagerAdapter;
@@ -41,10 +40,10 @@ public class FragCompanyInfo extends Fragment
     private ImageButton imbShare;
 
     protected CompanyDocument doc;
-    protected IDocument reviewListener;
+    protected IDocumentReview reviewListener;
     protected GoogleApiClient client;
 
-    public static FragCompanyInfo NewInstance(CompanyDocument doc, IDocument reviewListener, GoogleApiClient client)
+    public static FragCompanyInfo NewInstance(CompanyDocument doc, IDocumentReview reviewListener, GoogleApiClient client)
     {
         FragCompanyInfo frag = new FragCompanyInfo();
         frag.doc = doc;

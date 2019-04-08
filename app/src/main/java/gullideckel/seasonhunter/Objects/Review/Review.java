@@ -6,6 +6,7 @@ public class Review
 {
     private String id;
     private String uid = "";
+    private String docId = "";
     private String workPosition = "";
     private ReviewWorkTime workTime;
     private int wage;
@@ -18,6 +19,16 @@ public class Review
     public String getId()
     {
         return id;
+    }
+
+    public String getDocId()
+    {
+        return docId;
+    }
+
+    public void setDocId(String docId)
+    {
+        this.docId = docId;
     }
 
     public void setId(String id)

@@ -69,6 +69,7 @@ public class OnClickSignIn implements View.OnClickListener
                     if(mAuth.getCurrentUser().isEmailVerified())
                     {
                         Intent intent = new Intent(activity, ActSeasonHunter.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         activity.startActivity(intent);
                         activity.finish();
                     }

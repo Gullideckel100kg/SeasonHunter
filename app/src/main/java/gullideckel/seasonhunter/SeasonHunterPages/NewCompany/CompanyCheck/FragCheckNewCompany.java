@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,19 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
 import gullideckel.seasonhunter.Objects.Job.CompanyJobs;
 import gullideckel.seasonhunter.R;
+import gullideckel.seasonhunter.Statics.StaticMethod;
 
 public class FragCheckNewCompany extends Fragment
 {
+    private static final String TAG = "FragCheckNewCompany";
 
     private TextView txtName;
     private TextView txtType;
@@ -39,6 +47,7 @@ public class FragCheckNewCompany extends Fragment
     private Button btnSend;
 
     protected CompanyDocument doc;
+    private FirebaseFirestore db;
 
 
     public static FragCheckNewCompany newInstance(CompanyDocument doc)
@@ -82,6 +91,8 @@ public class FragCheckNewCompany extends Fragment
 
         Init();
 
+        db = FirebaseFirestore.getInstance();
+
         return v;
     }
 
@@ -97,7 +108,21 @@ public class FragCheckNewCompany extends Fragment
         @Override
         public void onClick(View v)
         {
-            //Send to an extra Database
+            db.collection(getContext().getString(R.string.db_new_company)).add(doc).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference)
+                {
+                    StaticMethod.Toast(getContext().getString(R.string.new_sent), getContext());
+                    getActivity().onBackPressed();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e)
+                {
+                    StaticMethod.Toast(getContext().getString(R.string.new_not_sent), getContext());
+                    Log.e(TAG, "onFailure:   ", e);
+                }
+            });
         }
     };
 
