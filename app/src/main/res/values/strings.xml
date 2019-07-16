@@ -1,17 +1,23 @@
 <resources>
     <string name="app_name">Season Hunter</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_map_hunter">Map</string>
+
     <string name="title_activity_sign_in_hunter">SignInHunter</string>
-    <string name="title_activity_create_account_hunter">CreateAccountHunter</string>
 
-    <string name="web_client_id">699243007049-1cfrugd5clvm7lt8chtmvrv3v8ptp2eh.apps.googleusercontent.com</string>
-
+    <string name="web_client_id">699243007049-phc2fkj849hkjqqan93jkbe9fjkt20q9.apps.googleusercontent.com</string>
+    <string name="web_client_id_debug">699243007049-29pnq3a4if6qn0toqeh2g0cv4j36c1um.apps.googleusercontent.com</string>
     <string name="facebook_app_id">401392967269455</string>
     <string name="fb_login_protocol_scheme">fb401392967269455</string>
 
     <string name="admob_id">ca-app-pub-7691767416808794~7579299208</string>
+    <string name="admob_intersitial">ca-app-pub-7691767416808794/1369114070</string>
+    <string name="admob_banner">ca-app-pub-7691767416808794/7906602269</string>
 
+    <!--App store linke-->
+    <string name="app_store_link">https://play.google.com/store/apps/details?id=gullideckel.seasonhunter</string>
+
+
+    <!--Start Message Dialog strings-->
+    <string name="mes_dont_show">Dont show this message again!</string>
 
     <!--Headlines for the Tablayout Seasonhunter-->
     <string name="map">Map</string>
@@ -25,7 +31,6 @@
     <string name="country_part_key">CoUntr3yK3Y</string>
 
     <!--Sign in Strings-->
-    <string name="sign_email">E- mail</string>
     <string name="sign_password_short">The password has to be longer than 6 signs</string>
 
 
@@ -69,16 +74,15 @@
     <string name="db_edit">edit</string>
     <string name="db_review">reviews</string>
     <string name="db_new_company">New_companies</string>
+    <string name="db_user_info">user_info</string>
+    <string name="db_messages">messages</string>
+    <!--<string name="db_test_companies">test_companies</string>-->
 
-
-    <!--CollectionPath reviews for recieve Data from Firestor-->
-    <string name="db_all_reviews">reviews</string>
 
     <!--Names for Imagebuttons at the Company details-->
     <string name="favourite">Favourite</string>
     <string name="share">Share</string>
     <string name="add_review">Add review</string>
-    <string name="edit_job">Edit job</string>
     <string name="report_mistake">Edit</string>
 
 
@@ -86,7 +90,11 @@
     <string name="info">Info</string>
     <string name="reviews">Reviews</string>
     <string name="description">Description</string>
-    <string name="photos">Photos</string>
+
+    <!--TODO:Set strings for the log in-->
+    <!--Log in strings-->
+    <string name="login_create_account">Create Account</string>
+    <string name="login_network_exception">A network exception appeared. Please check your connection!</string>
 
 
     <!--Company info Ui strings-->
@@ -125,7 +133,6 @@
     <string name="add_hourly">Hourly</string>
     <string name="add_piece_rate">Piece work</string>
     <string name="add_others">Other payment</string>
-    <string name="quest_payment">How was your rate?</string>
     <string name="quest_salary">How much did you earn?</string>
     <string name="add_earnings">Earnings:</string>
     <string name="add_atmosphere">Atmosphere:</string>
@@ -155,7 +162,6 @@
     <string name="quest_send_review">Do you want to send your Review?</string>
 
     <!--Strings for List View-->
-    <string name="swipe_document">Swipe to see the next document!</string>
     <string name="list_show_more">Show more...</string>
     <string name="list_review_count">review/s</string>
 
@@ -193,11 +199,10 @@
     <string name="filter_phone">Show only with phone number</string>
     <string name="filter_email">Show only with e-mail</string>
     <string name="filter_website">Show only with website</string>
-    <string name="filter_facilities">Filter facilities</string>
     <string name="filter_campground">Has campground</string>
     <string name="filter_month">Start month:</string>
-    <string name="filter_favourites">Show favourites</string>
-    <string name="filter_docs_not_loaded">The documents are not loaded yet!</string>\
+    <string name="filter_docs_not_loaded">The documents are not loaded yet!</string>
+    <string name="filter_no_docs_found">There are no companies with these filter settings!!!</string>
 
 
     <!--String array for all months in the year-->
@@ -228,7 +233,6 @@
     <string name="new_email">E-mail</string>
     <string name="new_website">Website</string>
     <string name="new_online_recruitment">Online recruitment</string>
-    <string name="new_job">Which jobs does the company offer?</string>
     <string name="new_job_title">Job title...</string>
     <string name="new_start_date">Start date of the job</string>
     <string name="new_end_date">End date of the job</string>
@@ -247,6 +251,7 @@
     <string name="new_clear">Do you want to clear everything?</string>
     <string name="new_sent">The new company has been sent successfully</string>
     <string name="new_not_sent">The new company could not be sent!</string>
+    <string name="new_company_added">Thanks for adding a new company. After we have checked your input your company will be online. If there is any promotion it will be activated as well!!!</string>
 
 
     <!--Strings for the Review after finishing to create a new Company-->
@@ -258,9 +263,7 @@
     <string name="check_email">Email:</string>
     <string name="check_website">Website:</string>
     <string name="check_online_recruitment">Online recruitment</string>
-    <string name="check_job">Job:</string>
     <string name="check_title">Job title:</string>
-    <string name="check_date">Date:</string>
     <string name="check_notes">Notes:</string>
     <string name="check_facilities">Facilities:</string>
     <string name="check_courses">Courses:</string>
@@ -332,52 +335,27 @@
 
     <!--Strings for sharing-->
     <string name="share_body">Hi\nI am using Season hunter. This app helps me to find short time jobs in canada!</string>
+    <string name="share_name">Company name:</string>
+    <string name="share_type">Type:</string>
+    <string name="share_address">Address:</string>
+    <string name="share_contacts">Contacts:</string>
+    <string name="share_email">Email:</string>
+    <string name="share_phone">Phone:</string>
+    <string name="share_website">Website:</string>
+    <string name="share_online_recruitment">(Online recruitment)</string>
+    <string name="share_jobs">Jobs:</string>
+    <string name="share_job_title">Job title:</string>
+    <string name="share_job_date">Date:</string>
+    <string name="share_job_notes">Note:</string>
+    <string name="share_courses">Courses:</string>
+    <string name="share_facilities">Facilities:</string>
+    <string name="share_description">Description:</string>
 
-
-    <string name="company_name_with_colon">Company name:</string>
-
-    <string name="save_choose_location">Save and choose location</string>
-
-    <string name="no_address_found">No Address found</string>
-    <string name="title_activity_test_company_info">TestCompanyInfo</string>
-
-    <string name="this_location">Use this location?</string>
     <string name="select">Select</string>
 
-    <string name="save">Save</string>
     <string name="edit">Edit</string>
-    <string name="company_name">Company name</string>
 
-    <string name="select_company_type">Select company type</string>
-    <string name="select_Address">Enter the location of the company</string>
-
-    <string name="search_job_location">Search Location</string>
-    <string name="contact_headline">Add Contact informations:</string>
-
-    <string name="add_phone">Add phone number</string>
-    <string name="add_email">Add email</string>
-    <string name="add_website">Add Website</string>
-
-    <string name="phone">Phone:</string>
     <string name="email">Email:</string>
-    <string name="website">Website:</string>
-    <string name="contact_wrong_input">Please fill out at least one Contact information</string>
-
-    <string name="add_job_offers">Add your Job offers  > > > </string>
-    <string name="jobs_semi">Jobs:</string>
-    <string name="job_offer_headline">Post your job offers:</string>
-    <string name="job_title">Job title:</string>
-    <string name="no_payment">Please select a kind of Payment</string>
-    <string name="start_date">Start date: (approximately)</string>
-    <string name="no_start_date">Please select a start date</string>
-    <string name="end_date">End date: (approximately)</string>
-    <string name="no_end_date">Please select a end date</string>
-    <string name="day">Day</string>
-    <string name="month">Month</string>
-    <string name="additional_info">Additional info:</string>
-    <string name="toast_no_delete_first_item">Can not remove this item. There has to be at least one post</string>
-
-    <string name="of">of</string>
 
 
     <string-array name="days31">
@@ -494,50 +472,11 @@
     </string-array>
 
 
-    <string name="benefits_headline">Select the benefits which you offer additional to your employer</string>
-    <string name="offer_food">Offer food</string>
-    <string name="offer_dring">Offer drinks</string>
-    <string name="sleepingplace">Sleeping place</string>
-    <string name="campgroung">Campground</string>
-    <string name="shower">Shower</string>
-    <string name="toilet">Toilet</string>
-    <string name="dips">Dips</string>
-    <string name="language_course">Language course</string>
-    <string name="agriculter_course">Agriculter course</string>
-    <string name="cooking_course">Cooking course</string>
-    <string name="kitchen">Kitchen</string>
-    <string name="fridge">Fridge</string>
-    <string name="storage_room">Storage room</string>
-    <string name="community_area">Community area</string>
-    <string name="wifi">Wifi</string>
-    <string name="animals_allowed">Animals allowed</string>
-    <string name="barbecue">Barbecue</string>
-    <string name="laundry">Laundry</string>
-    <string name="power">Power</string>
-    <string name="scenery">Nice scenery</string>
-    <string name="organic">Organic</string>
-
-    <string name="post">POST</string>
-
     <string name="more_details">More details >>></string>
-
-    <string name="company_saved">Company saved. It will show up in a few days. Thanks!!!</string>
-    <string name="company_saved_failed">Error: Could not save your company.</string>
-    <string name="address">Address:</string>
-    <string name="facilities_header">Facilities:</string>
-    <string name="courses_header">Courses:</string>
-    <string name="description_header">Description:</string>
-
-    <string name="no_phone">No phone number availible</string>
-    <string name="no_email">No email availible</string>
-    <string name="no_website">No website availible</string>
-
-    <string name="work_features_info">Here you can describe or put important notes about your company!</string>
 
     <string name="loading">Loading...</string>
 
     <string name="continue_with">continue with</string>
-    <string name="facebook">Facebook</string>
     <string name="google">Google</string>
 
     <string name="or">Or</string>
@@ -549,7 +488,6 @@
 
     <!--Error Loading from Database-->
     <string name="error_loading_firestore">Server problem: Couldn\'t recieve data from Server</string>
-    <string name="title_activity_act_company_info">ActCompanyInfo</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

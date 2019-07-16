@@ -27,7 +27,6 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
 
     private GoogleMap map;
     private final FragmentActivity activity;
-    private CompanyDocument doc;
     private List<Marker> markers;
     private GoogleApiClient client;
 
@@ -50,7 +49,6 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
 
         for(CompanyDocument doc : docs)
         {
-            this.doc = doc;
             Bitmap bmp;
 
             if(doc.getTypes().size() > 0)
@@ -76,10 +74,16 @@ public class MarkerOnMap implements GoogleMap.OnMarkerClickListener, GoogleMap.O
     public void onInfoWindowClick(Marker marker)
     {
         CompanyDocument doc = (CompanyDocument) marker.getTag();
-        FragmentTransaction transaction  = activity.getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(doc, (IDocumentReview) activity, client));
-        transaction.addToBackStack(null);
-        transaction.commit();
+        if(doc != null)
+        {
+            FragmentTransaction transaction  = activity.getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.cnstMapHunter, FragCompanyInfo.NewInstance(doc, (IDocumentReview) activity, client));
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+        else
+            Log.wtf(TAG, "onInfoWindowClick: doc is null. Tag didnt work");
+
     }
 
 //    HhXZc6nZvl3L3jdy3LlJ

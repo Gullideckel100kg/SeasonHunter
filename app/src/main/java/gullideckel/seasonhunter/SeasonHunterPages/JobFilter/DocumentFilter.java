@@ -71,9 +71,10 @@ public class DocumentFilter
                 }
             }
 
+            return returnDocs;
         }
+        return docs;
 
-        return returnDocs;
     }
 
     private List<CompanyDocument> docsJob(String keyword)

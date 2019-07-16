@@ -24,7 +24,11 @@
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="100dp"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtLogoLoading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imgLogoRing"
@@ -39,6 +43,10 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/logosymbolsmall" />
+        android:src="@drawable/logosymbolsmall"
+        app:layout_constraintBottom_toTopOf="@+id/txtLogoLoading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

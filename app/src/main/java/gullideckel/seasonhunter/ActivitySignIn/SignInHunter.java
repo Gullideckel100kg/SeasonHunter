@@ -66,8 +66,10 @@ public class SignInHunter extends FragmentActivity implements IFragmentHandler
 
         EditText edtSignEmail = (EditText) findViewById(R.id.edtSignEmail);
         edtSignPassword = (EditText) findViewById(R.id.edtSignPassword);
+        imbHidePassword = (ImageButton) findViewById(R.id.imbHidePassword);
 
         edtSignPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
 
         TextView txtForgotPassword = (TextView) findViewById(R.id.txtForgotPassword);
 
@@ -96,6 +98,7 @@ public class SignInHunter extends FragmentActivity implements IFragmentHandler
 
         clickGoogle = new OnClickGoogle(this);
         findViewById(R.id.btnLogGoogle).setOnClickListener(clickGoogle);
+        imbHidePassword.setOnClickListener(PasswordHide);
 
 //        callbackManager = CallbackManager.Factory.create();
 //        LoginButton btnFacebook = findViewById(R.id.btnLogInFacebook);
@@ -117,6 +120,9 @@ public class SignInHunter extends FragmentActivity implements IFragmentHandler
                 clickGoogle.FirebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 e.printStackTrace();
+                int i = e.getStatusCode();
+                String s = e.getMessage();
+                e.getStatusCode();
             }
         }
     }

@@ -17,8 +17,12 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import gullideckel.seasonhunter.ActSeasonHunter;
+import gullideckel.seasonhunter.BuildConfig;
+import gullideckel.seasonhunter.Objects.User.UserInfo;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticVariabels;
 
@@ -28,6 +32,7 @@ public class OnClickGoogle implements View.OnClickListener
 
     private GoogleSignInClient googleSignInClient;
     private FirebaseAuth auth;
+    FirebaseFirestore db;
     private Activity activity;
 
     public OnClickGoogle(Activity activity)
@@ -35,6 +40,7 @@ public class OnClickGoogle implements View.OnClickListener
         this.activity = activity;
         googleSignInClient = GoogleSignIn.getClient(activity, ConfigureSignIn());
         auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
     }
 
     @Override
@@ -44,10 +50,19 @@ public class OnClickGoogle implements View.OnClickListener
         activity.startActivityForResult(signInIntent, StaticVariabels.Google_SIGN_IN);
     }
 
-    private GoogleSignInOptions ConfigureSignIn(){
+    private GoogleSignInOptions ConfigureSignIn()
+    {
+        String webClientId = "";
+
+        //Checking if application is in release or debub
+        if(BuildConfig.DEBUG)
+            webClientId = activity.getString(R.string.web_client_id_debug);
+        else
+            webClientId = activity.getString(R.string.web_client_id);
+
         // Configure sign-in to request the user's basic profile like name and email
         return  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(activity.getString(R.string.default_web_client_id))
+                .requestIdToken(webClientId)
                 .requestEmail()
                 .build();
     }
@@ -64,8 +79,47 @@ public class OnClickGoogle implements View.OnClickListener
             {
                 if(task.isSuccessful())
                 {
-                    Log.d(TAG, "signInWithCredential:success");
-                    FinishLogIn();
+                    final String uId = task.getResult().getUser().getUid();
+                    final String email = task.getResult().getUser().getEmail();
+
+                    db.collection(activity.getString(R.string.db_user_info)).document(uId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task)
+                        {
+                            if(task.isSuccessful())
+                            {
+                                DocumentSnapshot document = task.getResult();
+                                if(!document.exists())
+                                {
+                                    UserInfo info = new UserInfo(email, uId);
+                                    db.collection(activity.getString(R.string.db_user_info)).document(uId)
+                                            .set(info).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task)
+                                        {
+                                            if(task.isSuccessful())
+                                            {
+                                                Log.i(TAG, "onComplete: New UserInfo document in Database");
+                                                FinishLogIn();
+                                            }
+                                            else
+                                                Log.e(TAG, "onComplete: ", task.getException());
+                                        }
+                                    });
+                                }
+                                else
+                                {
+                                    Log.d(TAG, "signInWithCredential:success");
+                                    FinishLogIn();
+                                }
+                            }
+                            else
+                            {
+                                Log.e(TAG, "onComplete: ", task.getException());
+                            }
+                        }
+                    });
+
                 }
                 else
                 {

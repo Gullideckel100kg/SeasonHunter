@@ -2,6 +2,8 @@ package gullideckel.seasonhunter.CostumLayouts.CostumRangeCalender;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -83,7 +85,7 @@ public class CalenderCellMarking implements View.OnClickListener
         int indexTwo = list.indexOf(cal);
         if(list.size() > indexOne && list.size() > indexTwo && indexOne < indexTwo && indexOne > -1 && indexTwo > -1)
             for(int i = indexOne; i <= indexTwo; i++)
-                list.get(i).getBtnCell().setBackground(context.getResources().getDrawable(R.drawable.blue_round_background));
+                list.get(i).getBtnCell().setBackground(ContextCompat.getDrawable(context, R.drawable.blue_round_background));
         lastMarked = indexTwo;
         SetTextLastSelected(cal);
     }
@@ -93,7 +95,7 @@ public class CalenderCellMarking implements View.OnClickListener
         firstMarked = list.indexOf(cal);
         lastMarked = -1;
         listener.RecieveDate(cal, false);
-        cal.getBtnCell().setBackground(context.getResources().getDrawable(R.drawable.blue_round_background));
+        cal.getBtnCell().setBackground(ContextCompat.getDrawable(context, R.drawable.blue_round_background));
         SetTextFirstSelected(cal);
     }
 

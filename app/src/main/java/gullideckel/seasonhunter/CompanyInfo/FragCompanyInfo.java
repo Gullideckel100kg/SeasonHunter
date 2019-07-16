@@ -20,6 +20,7 @@ import gullideckel.seasonhunter.CompanyInfo.ComanyInfoConfi.Review.FragAddReview
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyData.FragCompanyData;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.CompanyReviews.FragReviewHolder;
 import gullideckel.seasonhunter.CompanyInfo.CompanyInfoPages.FragCompanyDescription;
+import gullideckel.seasonhunter.CompanyInfo.Share.ShareString;
 import gullideckel.seasonhunter.CostumLayouts.NonSwipeViewPager;
 import gullideckel.seasonhunter.Interfaces.IDocumentReview;
 import gullideckel.seasonhunter.Objects.Job.CompanyDocument;
@@ -109,7 +110,7 @@ public class FragCompanyInfo extends Fragment
         public void onClick(View v)
         {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            String body = getContext().getString(R.string.share_body);
+            String body = ShareString.GetText(doc, getContext());
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_TEXT, body);
             startActivity(Intent.createChooser(shareIntent, "Share using"));
@@ -136,7 +137,7 @@ public class FragCompanyInfo extends Fragment
             fragReview = FragReviewHolder.newInstance(doc.getReviews());
             adapter.addFrag(fragReview, getContext().getString(R.string.reviews));
         }
-        else if(!doc.getExtras().getDescription().isEmpty())
+        else if(doc.getExtras() != null && !doc.getExtras().getDescription().isEmpty())
         {
             fragDescription = FragCompanyDescription.newInstance(doc.getExtras().getDescription());
             adapter.addFrag(fragDescription, getContext().getString(R.string.description));

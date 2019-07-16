@@ -39,8 +39,10 @@ public class PickerConfirm
     private Button btnChange;
     private Button btnSelect;
 
+    private Button select;
 
-    public PickerConfirm(IAddressSelected listener, Marker marker, CompanyAddress address, Bitmap bitmap, LayoutInflater inflater, FrameLayout frm)
+
+    public PickerConfirm(Button select, IAddressSelected listener, Marker marker, CompanyAddress address, Bitmap bitmap, LayoutInflater inflater, FrameLayout frm)
     {
         this.marker = marker;
         this.address = address;
@@ -48,6 +50,7 @@ public class PickerConfirm
         this.inflater = inflater;
         this.frm = frm;
         this.listener = listener;
+        this.select = select;
     }
 
     public View getView()
@@ -80,6 +83,7 @@ public class PickerConfirm
         {
             marker.remove();
             frm.removeAllViews();
+            select.setVisibility(View.VISIBLE);
         }
     };
 
@@ -89,6 +93,7 @@ public class PickerConfirm
         {
             marker.remove();
             listener.OnSelected();
+            select.setVisibility(View.VISIBLE);
         }
     };
 }

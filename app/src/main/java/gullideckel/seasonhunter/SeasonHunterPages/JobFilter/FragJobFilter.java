@@ -41,7 +41,9 @@ public class FragJobFilter extends Fragment
 
     private IFilteredDocuments listener;
     private List<CompanyDocument> docs;
-    private FillTypes fillTypes;
+    protected FillTypes fillTypes;
+
+    private boolean isTypeSet = false;
 
     public static FragJobFilter newInstance(IFilteredDocuments listener)
     {
@@ -54,6 +56,7 @@ public class FragJobFilter extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.frag_job_filter, container, false);
+
 
         edtTitle = v.findViewById(R.id.edtFilterTitle);
         btnType = v.findViewById(R.id.btnFilterType);
@@ -68,6 +71,9 @@ public class FragJobFilter extends Fragment
         btnApply = v.findViewById(R.id.btnFilterApply);
 
         fillTypes = new FillTypes(linType, getContext());
+
+        if(!isTypeSet && docs != null)
+            fillTypes.SetTypes(docs);
 
         btnType.setOnClickListener(WorkType);
 
@@ -160,6 +166,10 @@ public class FragJobFilter extends Fragment
     public void SetDocs(List<CompanyDocument> docs)
     {
         this.docs = docs;
-        fillTypes.SetTypes(docs);
+        if(fillTypes != null)
+        {
+            fillTypes.SetTypes(docs);
+            isTypeSet = true;
+        }
     }
 }

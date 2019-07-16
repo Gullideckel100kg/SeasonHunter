@@ -12,11 +12,11 @@ public class CompanyDocument
     private String name = "";
     private String type = "";
     private List<String> types = new ArrayList<>();
-    private CompanyAddress address;
-    private CompanyContact contact;
-    private CompanyJobs jobs;
+    private CompanyAddress address = new CompanyAddress();
+    private CompanyContact contact = new CompanyContact();
+    private CompanyJobs jobs = new CompanyJobs();
     private String features = "";
-    private CompanyExtras extras;
+    private CompanyExtras extras = new CompanyExtras();
     private List<Review> reviews = new ArrayList<>();
     private String Id = "";
 

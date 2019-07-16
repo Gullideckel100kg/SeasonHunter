@@ -17,7 +17,6 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -41,7 +40,7 @@ public class FragCostumRangeCalender extends Fragment implements View.OnClickLis
     private GridCellAdapter adapter;
     private Calendar calendar;
     private int month, year;
-    private final DateFormat dateFormatter = new DateFormat();
+    private final  DateFormat dateFormatter = new DateFormat();
     private static final String dateTemplate = "MMMM yyyy";
 
     private Button btnCancel;

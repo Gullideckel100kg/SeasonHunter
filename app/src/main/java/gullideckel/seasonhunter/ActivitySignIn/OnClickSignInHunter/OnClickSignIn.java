@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import gullideckel.seasonhunter.ActSeasonHunter;
 import gullideckel.seasonhunter.ActivitySignIn.Fragments.FragEmailVerification;
-import gullideckel.seasonhunter.Authentification.Validation;
+import gullideckel.seasonhunter.ActivitySignIn.Authentification.Validation;
 import gullideckel.seasonhunter.Interfaces.IFragmentHandler;
 import gullideckel.seasonhunter.Interfaces.IntFrag;
 
@@ -46,7 +46,6 @@ public class OnClickSignIn implements View.OnClickListener
         SignIn(mSignEmail.getText().toString(), mSignPassword.getText().toString());
     }
 
-    //TODO:Sign in didnt work
     private void SignIn(String email, String password) {
 
 

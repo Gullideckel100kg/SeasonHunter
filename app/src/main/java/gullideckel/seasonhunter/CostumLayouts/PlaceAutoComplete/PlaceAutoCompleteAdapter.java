@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -32,7 +33,7 @@ import java.util.concurrent.TimeoutException;
 public class PlaceAutoCompleteAdapter extends ArrayAdapter<AutocompletePrediction> implements Filterable
 {
 
-    private static final String TAG = "PlaceAutocompleteAdapter";
+    private static final String TAG = "PlaceAutocompleteAdapte";
     private static final CharacterStyle STYLE_BOLD = new StyleSpan(Typeface.BOLD);
 
     private ArrayList<AutocompletePrediction> mResultList;
@@ -119,7 +120,13 @@ public class PlaceAutoCompleteAdapter extends ArrayAdapter<AutocompletePredictio
 
                 if (results != null && results.count > 0)
                 {
-                    mResultList = (ArrayList<AutocompletePrediction>) results.values;
+                    try
+                    {
+                        mResultList = (ArrayList<AutocompletePrediction>) results.values;
+                    } catch (ClassCastException e)
+                    {
+                        Log.e(TAG, "publishResults: ", e);
+                    }
                     notifyDataSetChanged();
                 } else
                 {

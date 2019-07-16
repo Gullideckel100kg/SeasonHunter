@@ -40,7 +40,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:clickable="true"
+        android:focusable="true"
         android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintStart_toEndOf="@+id/linFavourite"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -49,6 +51,7 @@
             android:layout_width="40dp"
             android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
+            android:focusable="true"
             android:scaleType="fitCenter"
             android:src="@drawable/share" />
 

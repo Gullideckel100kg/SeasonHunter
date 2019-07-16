@@ -16,6 +16,18 @@
             android:layout_height="match_parent">
 
 
+            <ImageButton
+                android:id="@+id/imbNewAddress"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/costum_border"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mapmark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtNewAddress" />
+
             <TextView
                 android:id="@+id/txtNewName"
                 android:layout_width="wrap_content"
@@ -46,11 +58,11 @@
                 android:id="@+id/edaNewAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imbNewAddress"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtNewAddress" />
 
@@ -347,6 +359,7 @@
                 android:id="@+id/btnNewDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoneffect"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/done"
@@ -357,6 +370,7 @@
                 android:id="@+id/btnNewClear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoneffect"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"

@@ -8,10 +8,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import gullideckel.seasonhunter.CompanyInfo.ComanyInfoConfi.Job.CompanyDetails.C_CompanyAddress.GeoCoding.GeoMap;
 import gullideckel.seasonhunter.Interfaces.ICompanyAddress;
 import gullideckel.seasonhunter.Objects.Job.CompanyAddress;
-import gullideckel.seasonhunter.Objects.Job.CompanyName;
+import gullideckel.seasonhunter.Objects.Map.GeoMap;
 
 public class PickerTask extends AsyncTask<GeoMap, Void, CompanyAddress>
 {

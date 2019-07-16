@@ -18,7 +18,7 @@ public class StaticTypes
         if (companyType.equals(context.getString(R.string.farm)))
             return BitmapFactory.decodeResource(context.getResources(), R.drawable.farm);
         else if (companyType.equals(context.getString(R.string.orchard)))
-            return BitmapFactory.decodeResource(context.getResources(), R.drawable.fruit);
+            return BitmapFactory.decodeResource(context.getResources(), R.drawable.tractor);
         else if (companyType.equals(context.getString(R.string.packhouse)))
             return BitmapFactory.decodeResource(context.getResources(), R.drawable.packing);
         else if (companyType.equals(context.getString(R.string.vineyard)))

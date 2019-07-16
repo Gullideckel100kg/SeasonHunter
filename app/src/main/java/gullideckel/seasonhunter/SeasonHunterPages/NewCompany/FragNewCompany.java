@@ -1,13 +1,11 @@
 package gullideckel.seasonhunter.SeasonHunterPages.NewCompany;
 
 import android.app.AlertDialog;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,14 +20,14 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.places.Places;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import gullideckel.seasonhunter.CostumLayouts.LocationPicker.FragLocationPicker;
 import gullideckel.seasonhunter.CostumLayouts.PlaceAutoComplete.PlaceAutoCompleteTextView;
+import gullideckel.seasonhunter.Interfaces.IClearNewCompany;
 import gullideckel.seasonhunter.Interfaces.ICompanyAddress;
 import gullideckel.seasonhunter.Objects.Job.CompanyAddress;
 import gullideckel.seasonhunter.Objects.Job.CompanyContact;
@@ -44,7 +42,7 @@ import gullideckel.seasonhunter.SeasonHunterPages.NewCompany.Contact.NewPhone;
 import gullideckel.seasonhunter.SeasonHunterPages.NewCompany.Job.NewJob;
 import gullideckel.seasonhunter.Statics.StaticMethod;
 
-public class FragNewCompany extends Fragment implements ICompanyAddress
+public class FragNewCompany extends Fragment implements ICompanyAddress, IClearNewCompany
 {
     private static final String TAG = "FragNewCompany";
 
@@ -84,6 +82,9 @@ public class FragNewCompany extends Fragment implements ICompanyAddress
 
     protected GoogleApiClient client;
 
+    private FragLocationPicker fragLocationPicker;
+    private ImageButton imbLocation;
+
     public static FragNewCompany newInstance(GoogleApiClient client)
     {
         FragNewCompany fragment = new FragNewCompany();
@@ -122,6 +123,7 @@ public class FragNewCompany extends Fragment implements ICompanyAddress
         edtDescription = (EditText) v.findViewById(R.id.edtNewDescription);
         btnDone = (Button) v.findViewById(R.id.btnNewDone);
         btnClear = (Button) v.findViewById(R.id.btnNewClear);
+        imbLocation = (ImageButton) v.findViewById(R.id.imbNewAddress);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.company_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -154,13 +156,31 @@ public class FragNewCompany extends Fragment implements ICompanyAddress
         btnDone.setOnClickListener(Done);
         btnClear.setOnClickListener(Clear);
 
+        fragLocationPicker = FragLocationPicker.newInstance(this, imbLocation);
+        imbLocation.setOnClickListener(Picker);
+
         return v;
     }
+
+    private View.OnClickListener Picker = new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            imbLocation.setEnabled(false);
+            StaticMethod.RemoveKeyPad(getActivity());
+            android.support.v4.app.FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+            transaction.add(R.id.frmCheckDocument, fragLocationPicker);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    };
+
 
     private View.OnClickListener Done = new View.OnClickListener() {
         @Override
         public void onClick(View v)
         {
+            StaticMethod.RemoveKeyPad(getActivity());
             if(!isCorrect())
                 StaticMethod.Toast(getContext().getString(R.string.new_toast_error), getContext());
             else
@@ -207,7 +227,7 @@ public class FragNewCompany extends Fragment implements ICompanyAddress
                 doc.setExtras(extras);
 
                 android.support.v4.app.FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                transaction.add(R.id.frmCheckDocument, FragCheckNewCompany.newInstance(doc));
+                transaction.add(R.id.frmCheckDocument, FragCheckNewCompany.newInstance(doc,  FragNewCompany.this));
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -265,7 +285,8 @@ public class FragNewCompany extends Fragment implements ICompanyAddress
 
         for(int i = 0; i<jobs.size(); i++)
         {
-            is = jobs.get(i).isCorrect();
+            if(!jobs.get(i).isCorrect())
+                is = jobs.get(i).isCorrect();
         }
 
         return is;
@@ -369,6 +390,7 @@ public class FragNewCompany extends Fragment implements ICompanyAddress
         @Override
         public void onClick(View v)
         {
+            StaticMethod.RemoveKeyPad(getActivity());
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setMessage(getContext().getString(R.string.new_clear))
                     .setPositiveButton(getContext().getText(R.string.new_yes), dialogClickListener)
@@ -382,50 +404,64 @@ public class FragNewCompany extends Fragment implements ICompanyAddress
         public void onClick(DialogInterface dialog, int which) {
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE:
-                    edtName.setText("");
-                    spinType.setSelection(0);
-                    edaAddress.setText("");
-                    address = null;
-
-                    chkPhone.setChecked(false);
-                    linPhone.removeAllViews();
-                    linPhone.addView(newPhone.createPhoneView());
-
-                    chkEmail.setChecked(false);
-                    linEmail.removeAllViews();
-                    linEmail.addView(newEmail.createEmailView());
-
-                    chkWebsite.setChecked(false);
-                    edtWebsite.setText("");
-                    chkOnlineRecruitment.setChecked(false);
-
-                    linJob.removeAllViews();
-                    jobs.clear();
-                    NewJob job = new NewJob(getLayoutInflater(), getContext(), linJob);
-                    linJob.addView(job.createJobView());
-                    jobs.add(job);
-
-                    chkFacilities.setChecked(false);
-                    edtFacilities.setText("");
-
-                    chkCourses.setChecked(false);
-                    edtCourses.setText("");
-
-                    edtDescription.setText("");
-
+                    ClearPage();
                     break;
-
                 case DialogInterface.BUTTON_NEGATIVE:
                     break;
             }
         }
     };
 
+    private void ClearPage()
+    {
+        edtName.setText("");
+        spinType.setSelection(0);
+        edaAddress.setText("");
+        address = null;
+
+        chkPhone.setChecked(false);
+        linPhone.removeAllViews();
+        linPhone.addView(newPhone.createPhoneView());
+
+        chkEmail.setChecked(false);
+        linEmail.removeAllViews();
+        linEmail.addView(newEmail.createEmailView());
+
+        chkWebsite.setChecked(false);
+        edtWebsite.setText("");
+        chkOnlineRecruitment.setChecked(false);
+
+        linJob.removeAllViews();
+        jobs.clear();
+        NewJob job = new NewJob(getLayoutInflater(), getContext(), linJob);
+        linJob.addView(job.createJobView());
+        jobs.add(job);
+
+        chkFacilities.setChecked(false);
+        edtFacilities.setText("");
+
+        chkCourses.setChecked(false);
+        edtCourses.setText("");
+
+        edtDescription.setText("");
+    }
+
 
 
     @Override
     public void OnCompanyAddress(CompanyAddress companyAddress)
     {
+        edaAddress.setText(companyAddress.getAddress());
         address = companyAddress;
+        imbLocation.setEnabled(true);
+    }
+
+    @Override
+    public void OnClear()
+    {
+        ClearPage();
+        ViewPager pager = getActivity().findViewById(R.id.vpSeasonHunter);
+        pager.setCurrentItem(0);
+
     }
 }

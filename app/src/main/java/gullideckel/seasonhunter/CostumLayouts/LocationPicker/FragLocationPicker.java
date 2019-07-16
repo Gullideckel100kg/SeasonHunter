@@ -1,16 +1,16 @@
 package gullideckel.seasonhunter.CostumLayouts.LocationPicker;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -20,11 +20,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import gullideckel.seasonhunter.CompanyInfo.ComanyInfoConfi.Job.CompanyDetails.C_CompanyAddress.GeoCoding.GeoMap;
 import gullideckel.seasonhunter.Interfaces.IAddressSelected;
 import gullideckel.seasonhunter.Interfaces.ICancelCommand;
 import gullideckel.seasonhunter.Interfaces.ICompanyAddress;
 import gullideckel.seasonhunter.Objects.Job.CompanyAddress;
+import gullideckel.seasonhunter.Objects.Map.GeoMap;
 import gullideckel.seasonhunter.R;
 import gullideckel.seasonhunter.Statics.StaticMethod;
 
@@ -43,10 +43,13 @@ public class FragLocationPicker extends Fragment implements OnMapReadyCallback, 
     private GoogleMap map;
     private Marker marker;
 
-    public static FragLocationPicker newInstance(ICompanyAddress listener)
+    protected ImageButton imbButton;
+
+    public static FragLocationPicker newInstance(ICompanyAddress listener, ImageButton button)
     {
         FragLocationPicker fragment = new FragLocationPicker();
         fragment.listener = listener;
+        fragment.imbButton = button;
         return fragment;
     }
 
@@ -56,6 +59,8 @@ public class FragLocationPicker extends Fragment implements OnMapReadyCallback, 
     {
         View v = inflater.inflate(R.layout.frag_location_picker, container, false);
 
+        v.bringToFront();
+        v.setBackgroundColor(Color.WHITE);
 
         txtAddress = v.findViewById(R.id.txtPickerAddress);
         btnSelect = v.findViewById(R.id.btnPickerSelect);
@@ -77,6 +82,7 @@ public class FragLocationPicker extends Fragment implements OnMapReadyCallback, 
         mapView.getMapAsync(this);
         btnSelect.setOnClickListener(Select);
 
+        imbButton.setEnabled(true);
 
         return v;
     }
@@ -85,6 +91,7 @@ public class FragLocationPicker extends Fragment implements OnMapReadyCallback, 
         @Override
         public void onClick(View v)
         {
+
             if(map != null)
                 map.setOnMapLoadedCallback(FragLocationPicker.this);
             else
@@ -147,7 +154,8 @@ public class FragLocationPicker extends Fragment implements OnMapReadyCallback, 
     {
         if(address != null && !address.getAddress().isEmpty())
         {
-            PickerConfirm pickerConfirm = new PickerConfirm(this, marker, address,
+            btnSelect.setVisibility(View.INVISIBLE);
+            PickerConfirm pickerConfirm = new PickerConfirm(btnSelect, this, marker, address,
                     StaticMethod.getMapResizedSnapshot(bitmap), getLayoutInflater(), frmPicker);
             frmPicker.addView(pickerConfirm.getView());
         }

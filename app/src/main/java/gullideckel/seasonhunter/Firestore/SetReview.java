@@ -26,17 +26,16 @@ public class SetReview
     private Context context;
     private FirebaseFirestore db;
 
-    public SetReview(Context context, FirebaseFirestore db)
+    public SetReview(Context context)
     {
         this.context = context;
-        this.db = db;
     }
 
     //TODO: Save Review in an extra collection so it can be checked before publishing. Has to build in in the admin tool
     public void Set(CompanyDocument doc)
     {
         db = FirebaseFirestore.getInstance();
-        db.collection(context.getString(R.string.db_all_companies)).document(doc.getId()).set(doc)
+        db.collection(context.getString(R.string.db_review)).document(doc.getId()).set(doc)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid)

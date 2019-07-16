@@ -13,9 +13,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.places.Places;
 
 import gullideckel.seasonhunter.CostumLayouts.LocationPicker.FragLocationPicker;
 import gullideckel.seasonhunter.CostumLayouts.LocationPicker.PickerTask;
@@ -59,7 +57,7 @@ public class Address implements ICompanyAddress
 
         imbPicker.setOnClickListener(Picker);
 
-        fragment = FragLocationPicker.newInstance(Address.this);
+        fragment = FragLocationPicker.newInstance(Address.this, imbPicker);
 
         PlaceAutoCompleteTextView autoComplete = new PlaceAutoCompleteTextView(context, edaAddress, client, this);
         autoComplete.Init();
@@ -74,6 +72,7 @@ public class Address implements ICompanyAddress
         @Override
         public void onClick(View v)
         {
+            imbPicker.setEnabled(false);
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.add(R.id.frmEditMapPicker, fragment);
             transaction.addToBackStack(null);
@@ -86,10 +85,6 @@ public class Address implements ICompanyAddress
     {
         if(companyAddress != null)
         {
-//            if(manager.findFragmentById(R.id.frmEditMapPicker) instanceof FragLocationPicker)
-//            {
-//                manager.beginTransaction().remove(fragment).commit();
-//            }
             edaAddress.setText(companyAddress.getAddress());
             this.address = companyAddress;
         }
